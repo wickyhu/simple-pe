@@ -1,0 +1,162 @@
+;--------------------------------------------------------------------------------------------------
+;
+;	sonyhcaudio2k.inf
+;		11/05/2001
+;
+;--------------------------------------------------------------------------------------------------
+[Version]
+LayoutFile		=Layout.inf, Layout1.inf, Layout2.inf
+signature		="$CHICAGO$"
+Class			=MEDIA
+ClassGUID		={4d36e96c-e325-11ce-bfc1-08002be10318}
+Provider		=%DriverProvider%
+DriverVer		= 11/05/2001,1.0.0.53
+CatalogFile.nt	=sonyhc.cat
+
+[ControlFlags]
+; All PnP devices should be excluded from manual AddDevice Applet list
+ExcludeFromSelect=*
+
+[Manufacturer]
+%TheMfg%=Models
+
+[SourceDisksNames]
+[SourceDisksFiles]
+
+[DestinationDirs]
+SONYHC_A.CopyFiles     = 10,system32\drivers ; %SystemRoot%\system32\drivers
+
+
+[Models]
+; DisplayName				Section			DeviceID
+;---------------------------------	------------------	-----------------------
+%USB\VID_054C&PID_0045&MI_01.DeviceDesc%	= SONYHC_A,	USB\VID_054C&PID_0045&MI_01
+
+
+
+;------------------------------------------------------------------------------
+;
+;	INF DDInstall Section for win2k
+;
+;------------------------------------------------------------------------------
+[SONYHC_A.NT]
+Include		= ks.inf, wdmaudio.inf
+Needs		= KS.Registration, WDMAUDIO.Registration.NT
+AddReg		= SONYHC_A.AddReg
+;opyFiles	= SONYHC_A.CopyFiles
+KnownFiles	= SONYHC_A.KnownFiles
+
+
+;------------------------------------------------------------------------------
+;
+;	INF AddReg Directive
+;
+;------------------------------------------------------------------------------
+[SONYHC_A.AddReg]
+HKR,,SetupPreferredAudioDevices,3,00,00,00,00
+HKR,,AssociatedFilters,,"wdmaud,swmidi,redbook"
+HKR,,Driver,,usbaudio.sys
+HKR,,NTMPDriver,,"usbaudio.sys,sbemul.sys"
+
+HKR,,CLSID,,%Proxy.CLSID%
+
+HKR,Drivers,SubClasses,,"wave,midi,mixer,aux"
+
+HKR,Drivers\wave\wdmaud.drv, Driver,,wdmaud.drv
+HKR,Drivers\midi\wdmaud.drv, Driver,,wdmaud.drv
+HKR,Drivers\mixer\wdmaud.drv,Driver,,wdmaud.drv
+HKR,Drivers\aux\wdmaud.drv,Driver,,wdmaud.drv
+
+HKR,Drivers\wave\wdmaud.drv,Description,,%USBGenericDesc%
+HKR,Drivers\midi\wdmaud.drv,Description,,%WDM_MIDI%
+HKR,Drivers\mixer\wdmaud.drv,Description,,%USBGenericDesc%
+HKR,Drivers\aux\wdmaud.drv,Description,,%USBGenericDesc%
+
+;HKLM,%MediaCategories%\%USBGUID.BassBoost%,Name,,%USBNode.BassBoost%
+;HKLM,%MediaCategories%\%USBGUID.BassBoost%,Display,1,00,00,00,00
+;HKLM,%MediaCategories%\%USBGUID.StereoExtend%,Name,,%USBNode.StereoExtend%
+;HKLM,%MediaCategories%\%USBGUID.StereoExtend%,Display,1,00,00,00,00
+
+
+;------------------------------------------------------------------------------
+;
+;	INF DDInstall.Interfaces Section
+;
+;------------------------------------------------------------------------------
+[SONYHC_A.NT.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,"GLOBAL",SONYHC_A.Interface,
+
+[SONYHC_A.Interface]
+AddReg=SONYHC_A.Interface.AddReg
+
+[SONYHC_A.Interface.AddReg]
+HKR,,FriendlyName,,%AudioDriverName%	;for me
+HKR,,CurveType,1,01,00,00,00
+HKR,,CLSID,,%Proxy.CLSID%				;for me
+
+
+[SONYHC_A.KnownFiles]
+usbaudio.sys.4.10.0 = safe
+
+
+;------------------------------------------------------------------------------
+;
+;	INF AddService Directive only for win2k
+;
+;------------------------------------------------------------------------------
+[SONYHC_A.NT.Services]
+AddService = usbaudio,0x00000002,SONYHC_A.ServiceInstall
+
+[SONYHC_A.ServiceInstall]
+DisplayName		= %AudioDriverName%
+ServiceType		= %SERVICE_KERNEL_DRIVER%
+StartType		= %SERVICE_DEMAND_START%
+ErrorControl	= %SERVICE_ERROR_NORMAL%
+ServiceBinary	= %10%\system32\drivers\usbaudio.sys
+
+[SONYHC_A.CopyFiles]
+usbaudio.sys
+
+[Strings]
+
+
+;------------------------------------------------------------------------------
+;
+; Non-Localizable
+;
+;------------------------------------------------------------------------------
+Proxy.CLSID			="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSCATEGORY_AUDIO	="{6994ad04-93ef-11d0-a3cc-00a0c9223196}"
+
+
+;service type
+SERVICE_KERNEL_DRIVER	=1
+
+;load type
+SERVICE_BOOT_START		=0
+SERVICE_SYSTEM_START	=1
+SERVICE_AUTO_START		=2
+SERVICE_DEMAND_START	=3
+
+;error type
+SERVICE_ERROR_IGNORE	=0
+SERVICE_ERROR_NORMAL	=1
+SERVICE_ERROR_SEVERE	=2
+SERVICE_ERROR_CRITICAL	=3
+
+
+;------------------------------------------------------------------------------
+;
+; Localizable
+;
+;------------------------------------------------------------------------------
+DiskDesc		="SONY PVC"
+DriverProvider	="SONY PVC"
+DriverName		="Sony Digital Imaging"
+TheMfg			="SONY PVC"
+
+AudioDriverName	="Sony Digital Imaging Audio"
+USBGenericDesc	="USB Audio Device"
+WDM_MIDI		="WDM MIDI Device"
+
+USB\VID_054C&PID_0045&MI_01.DeviceDesc="Sony Digital Imaging Audio"

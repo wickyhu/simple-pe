@@ -1,0 +1,10 @@
+<!-- Nu2Menu entry for Remote Desktop -->
+<!-- 		
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetProgramDrive()\Programs\mstsc\mstsc.exe))" CMD="RUN" FUNC="@GetProgramDrive()\Programs\mstsc\mstsc.exe">Remote Desktop Connection</MITEM>
+-->
+<NU2MENU>
+	<MENU ID="Programs">	   		
+	<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\mstsc.exe))" CMD="RUN" FUNC="@GetWinDir()\system32\mstsc.exe">Remote Desktop Connection</MITEM>
+	</MENU>
+</NU2MENU>
+

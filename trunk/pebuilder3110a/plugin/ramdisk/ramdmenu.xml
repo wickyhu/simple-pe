@@ -1,0 +1,6 @@
+<!-- Nu2Menu entry for Ramdisk -->
+<NU2MENU>
+	<MENU ID="Storage">
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="">Ramdisk is at drive @GetEnvVar('ramdrv')</MITEM>
+	</MENU>
+</NU2MENU>

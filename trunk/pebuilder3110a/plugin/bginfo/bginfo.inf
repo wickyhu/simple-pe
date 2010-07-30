@@ -1,0 +1,23 @@
+; bginfo.inf
+; PE Builder v3 plug-in INF file for bginfo
+; Created by Jeff Black
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="Background info (bginfo)"
+Enable=0
+Help="bginfo.htm"
+
+[WinntDirectories]
+a="Programs\bginfo",2
+
+[SourceDisksFiles]
+bginfo.exe=a,,1
+bginfo.bgi=a,,1
+bginfo.cmd=a,,1
+autorun_bginfo.cmd=2,,1
+
+[Append]
+nu2menu.xml, bginfo_nu2menu.xml

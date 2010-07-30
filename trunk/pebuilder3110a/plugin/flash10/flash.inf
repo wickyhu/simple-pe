@@ -1,0 +1,17 @@
+; flash.inf
+; PE Builder v3 plug-in INF file for Macromedia Flash Player 8.0.22
+; Created by RvdH
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="Flash 10 ActiveX "
+Enable=1
+
+[SourceDisksFiles]
+Files\FLASH10B.OCX=2,,1
+Files\FLASHUTIL10B.EXE=2,,1
+
+[Software.AddReg]
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\104","1024","X:\i386\SYSTEM32\FLASH10B.OCX|DllRegisterServer"

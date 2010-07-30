@@ -1,0 +1,44 @@
+<html>
+<head></head>
+<body>
+<i>PE Builder v3 help</i>
+<hr>
+<a href="index.htm">Table of contents</a><br>
+<h1>Plugin dialog</h1>
+<br>
+This dialog works like this:
+You select a plugin in the list and use the buttons to process the select item.<br>
+Multiple items can be selected in the list, but that is only useful for 
+&quot;Enable/Disable&quot;.
+All the other buttons only work with the first selected item.<br>
+<br>
+<table border="1">
+<tr><td>Enable/Disable</td><td>Toggles the Enable flag of the (multiple) 
+selected item(s).</td></tr>
+<tr><td>Config</td><td>Configures the plugin, for example with the nu2shell 
+plugin you can use it to enable the boot password protection.
+The exact funtion of this button can be different for each plugin.
+It depends on what the plugin creator uses for configuration.</td></tr>
+<tr><td>Refresh</td><td>Re-reads all plugin files. If you have added a plugin 
+manually (not using the Add button) and you don't see the new plugin in the list 
+you can hit the refresh button.</td></tr>
+<tr><td>Edit</td><td>Opens the plugin main <tt>.inf</tt> file in your default text editor.
+A plugin is based on one (or more) <tt>.inf</tt> file(s).
+For example checkout the plugin called <i>Boot Fix (Enabling &quot;Press any key to boot from CD&quot;)</i>
+It is a very small and simple plugin to copy the file <tt>bootfix.bin</tt>.
+See <a href="pluginformat.htm">Plugin file format</a> for more information about the <tt>.inf</tt> file format.</td></tr>
+<tr><td>Add</td><td>Adds a new plugin, you must select a cabinet (.cab) file and 
+pebuilder will extract it to the plugin folder.
+Please check the <a href="http://www.nu2.nu/pebuilder/#plugins">PE Builder webpage</a> for more plugins and links.</td></tr>
+<tr><td>Remove</td><td>Removes a plugin.
+<b>Warning:</b> this will remove all files and folders for that plugin. For 
+example if you remove the &quot;BartPE Installer v2&quot; plugin, pebuilder will 
+completely remove the <tt>plugin\peinst\</tt> folder!</td></tr>
+<tr><td>Help</td><td>Opens any additional information or help program for the plugin.</td></tr>
+</table>
+<br>
+<a href="index.htm">Table of contents</a><br>
+<hr>
+<i>PE Builder Copyright (c) 2002-2006 Bart Lagerweij. All rights reserved.</i><br>
+</body>
+</html>

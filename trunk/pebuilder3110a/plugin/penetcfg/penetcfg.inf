@@ -1,0 +1,20 @@
+; PE Builder v3 plug-in INF file
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="PENETCFG: PE Network configurator (theTruth)"
+Enable=1
+Help="penetcfg.htm"
+
+[SourceDisksFiles]
+penetcfg.exe=2,,1
+penetcfg.ini=2,,1
+penetcfg-*.ini=2,,1
+readme.txt=2,penetcfg.txt,1
+license.txt=2,penetcfg.lic,1
+srvsvc.dll=2
+
+[Append]
+nu2menu.xml, penetcfg_nu2menu.xml

@@ -1,0 +1,18 @@
+; chkdsk.inf
+; PE Builder v3 plug-in INF file for chkdsk.exe
+; Created by Bart Lagerweij
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="Check Disk (chkdsk.exe)"
+Enable=0
+Help="chkdsk.htm"
+
+[SourceDisksFiles]
+chkdsk.exe=2
+chkdsk.cmd=2,,1
+
+[Append]
+nu2menu.xml, chkdsk_nu2menu.xml

@@ -1,0 +1,1059 @@
+PE Builder change log file
+
+v3.1.10a
+
+Bugfix release
+  PE Builder would report, File 
+  "C:\pebuilder3110\BartPE\i386\system32\NTOSKRNL.EXE" not found, on some older 
+  windows versions.
+
+Changes to pebuilder.exe:
+- After building, PE Builder checks if files required for booting BartPE are 
+  missing. The messages printed about missing files should have been warning 
+  messages, but they where error messages. Changed them to warning.
+- The pre-flight check also did not work OK for server 2003 (with no SP) and 
+  Windows XP with SP1, this has been fixed.
+
+v3.1.10
+
+Boot BartPE on a system with 64MB
+  Did you ever try to boot BartPE on a system with only 64MB of memory? I used 
+  to keep a separate CD (nickname "SmallPE") for this. This CD did not have a 
+  ramdrive and some other plugins, so that it would boot on those old 64MB 
+  systems. Not anymore! Thanks to an updated nu2menu and a little ramdisk 
+  parameter tuning, you can use the same BartPE CD also for 64MB system. Of 
+  course this does not include huge and hungry plugins like xpe and so...
+
+Supported languages
+  PE Builder currently supports the following languages:
+  english*, dutch*, czech*, german*, japanese*, russian*, slovak*, arabic, 
+  brazilian, chinese_chs, chinese_traditional_bg5, french, greek, italian, 
+  macedonian, polish, portuguese, romanian, spanish and turkish.
+  (*) Help pages are also available.
+
+Pre-Flight check
+  This is a first attempt to check if all files required to boot BartPE exist in 
+  the output location. At current a warning message is printed if a file is 
+  missing.
+
+See below for more details...
+
+Changes to pebuilder.exe:
+- Added an error and warning counter on build dialog.
+- Added a value of 8 to SourceDisksFiles attribute. This will rename the 
+  filename to uppercase.
+- Uppercasing windows files is only done, when an ISO image is build.
+- Added an option where you can disable uppercasing the windows files.
+- The output directory was created in uppercase, while this is not needed. Fixed 
+  it.
+- Added a routine that, after building, checks if files required for booting 
+  BartPE are missing from the output directory. Prints warning messages if files 
+  are missing.
+- Added a parser variable @Lcid@, which expands to the system default language 
+  identifier (for example "409").
+- Added an option to erase the ISO image and the output folder after succesfull 
+  CD burn.
+- When burning using starburn, only devices capable of writing to CD or DVD are 
+  shown in the device listbox. Also when no device is selected PE Builder will 
+  select the best device for you.
+
+Changed items:
++ pebuilder.inf: Removed olethk32.dll from KnownDLLs. W2k3 SP1 will crash if the 
+  NTVDM.EXE is stored in i386\system32 with the above RegKey. This happens for 
+  example with the dospe plugin. In W2k3 the olethk32.dll doesn't exist in the 
+  KnownDll List.
++ pebuilder.inf: bootfont.bin is now also copied. Mainly used in non-english 
+  languages. It uses the new sourcedisksfiles attribute value of 8 to uppercase 
+  the file in ISO images.
++ nu2shell.exe: v1.3, the environment variables USERPROFILE and ALLUSERSPROFILE 
+  where not set correctly (in fact they where erased). Fixed.
++ plugin\stinger: updated to work with new stinger filenames like "stng259.exe".
++ plugin\irfanview: added "files" folder.
++ plugin\ramdisk: updated ramdisk.inf. Now the ramdisk switches to 4MB in size 
+  when the system is low on memory. Normally systems with 90MB or less will end up 
+  with a 4MB ramdisk. This enables you to run your normal BartPE CD on system with 
+  only 64MB of memory.
++ plugin\nu2menu: updated nu2menu.exe to v0.3.52. Nu2menu was running out of 
+  memory a bit fast on systems with very little memory (<64MB). Fixed memory 
+  allocation bug.
+- plugin\total commander\wincmd.ini, Small83Names=0
+- Updated the following languages files:
+  lang\english.lng: updated, the following language numbers: 288-293
+  lang\dutch.lng
+  lang\chinese_chs.lng
+  lang\czech.lng
+  lang\dutch.lng
+  lang\english.lng
+  lang\french.lng
+  lang\german.lng
+  lang\greek.lng
+  lang\italian.lng
+  lang\macedonian.lng
+  lang\polish.lng
+  lang\romanian.lng
+  lang\slovak.lng
+  lang\spanish.lng
+- Updated the following help files:
+  help\english\pluginformat.htm, added help for SourceDisksFiles attribute value 8.
+  help\dutch\pluginformat.htm
+
+Added items:
+- Added the following languages:
+  lang\arabic.lng
+  lang\brazilian.lng
+  lang\chinese_traditional_bg5.lng
+  lang\japanese.lng
+  lang\russian.lng
+  lang\portuguese.lng
+  lang\russian.lng
+  lang\turkish.lng
+
+v3.1.9 stable release
+
+Changes to pebuilder.exe:
+- Made the plugin and build dialog bigger, now you can "see" more.
+- When adding a custom folder, the build log showed "Error: Adding custom 
+  directory: <path>", while everything was fine. Fixed it.
+
+Added items:
+- plugin\starwind, forgot to add it in previous version.
+- plugin\deepburner, forgot to add some files in previous version.
+
+Changed items:
+- lang\english.lng: updated, the following language numbers: 24
+- lang\dutch.lng: updated to reflect change to english.lng
+
+v3.1.8b bugfix release
+
+Changes to pebuilder.exe:
+- Bug fix: When booting an error occurs: Could not load 
+  i386\system32\BIOSINFO.INF Error code 18. Problem was that the system32 folder 
+  (and all registry related files) where in lowercase. Fix it.
+
+v3.1.8a beta release
+
+Changes to pebuilder.exe:
+- Bug fix: When trying to copy "setupreg.hiv=a,,2" pebuilder always took the 
+  files from the pebuilder directory (default registry build location). PE Builder 
+  now never looks in de pebuilder directory anymore (maybe add an attribuut in 
+  time when needed).
+- Changed the registry building routines for the above bug fix. Instead of using 
+  the pebuilder directory as a temporarily place for building the registry files, 
+  PE Builder now directly uses the output location. This also saves an extra copy 
+  step.
+- A lot of changes to the program for multi language support.
+- Starburn now using SPTi, no need for aspi (WnASPI32.dll) anymore.
+- Improved starburn burning routines.
+- Added a data verify option for starburn.
+- Added context sensive and multilanguage enabled help (F1 key).
+  See translations.txt for more information.
+- If you change the plugin list columnwidth, the columnwidth is saved to 
+  input.inf as "pluginColumns".
+- Ability to suppress warnings (input.inf -> SupressWarnings=1)
+- Added a parser variable @Language@, which expands to the filename of the 
+  current selected language (for example "german").
+- Added a new "search" dialog. This dialog will search all drives (of the type: 
+  fixed, CD-Rom or removable) and all directories for valid windows installation 
+  files. Depending on how much files are on your system, this can take a while! 
+  When more than one valid location is found, a dialog will appear where you can 
+  select which location you want to use.
+- Somehow I managed to remove the duplicateonce option in mkisofs, have put it 
+  back.
+- Added language autodetect, to enable this you must fill in the lcid in the 
+  language file.
+- The current language file is copied on the CD as system32\lang\default.lng 
+  (directory id for "system32\lang" is 29999).
+
+Changed items:
+- lang\english.lng: updated, other languages need to check/update the following 
+  language strings: 35, 159-162, 206-216, 260-287
+  added lcid=409
+- lang\dutch.lng: almost redone the entire file (dutch is my first language)
+  added lcid=413
+- plugin\bartpe\netconfig.exe, updated for multilanguage support.
+
+Removed items:
+- Removed the firefox plugin, instead of this a new "ready to use" plugin has 
+  been created as a separate download. Check the PE Builder page for this.
+
+v3.1.7
+
+Changes to pebuilder.exe:
+- More changes to the program for multi language support.
+- Starburn devices can be selected manually (not autodetect).
+- Starburn now defaults to TAO write mode and not DAO.
+- You can now select between burning with cdrecord or starburn.
+- Fixed, [<<] and [>>] navigation buttons when using a non-english language.
+
+Added items:
+- deepburner plugin (see plugin\deepburner\deepburner.htm)
+
+Changed items:
+- lang\english.lng: updated
+- lang\dutch.lng: updated
+- pebuider.inf: added enable showing ACL permissions sheet on files and folders
+- firefox plugin, create a complete new plugin.
+
+v3.1.6
+
+Changes to pebuilder.exe:
+- More changes to the program for multi language support.
+
+v3.1.5
+
+Changes to pebuilder.exe:
+- A lot of changes made to whole program for multi language support.
+- In a network .inf file, if the word (class) "Net" is written in lowercase
+  it causes the builder to skip it as an unsupported class.
+  This has been fixed by using a caseless compare.
+- Skipping the beta popup warning when running with -auto parameter on the 
+  command line.
+- Changed the uppercase function, now uppercase is called *after* the 
+  plugins are parsed. Directories and files with dirid < 30000 are converted 
+  to uppercase.
+
+Added items:
+- plugin\starwind: iSCSI Target [server] from Rocket Division Software
+
+Changed items:
+- plugin\zz5\nu2shell: There was some testing code left behind in nu2shell.exe 
+that fixed the ramdrive letter to "b:", removed it.
+- plugin\zz5\nu2shell\nu2shell.inf: Fixed space in path problem.
+
+v3.1.4 beta release
+
+Changes to pebuilder.exe:
+- The Windows files are build/copied in UPPERCASE.
+  No need for mkisofs.exe to uppercase the entire CD anymore.
+  This opens the option to burn for example with Nero Burning Rom v6.6.0.6 
+  (and higher). Here is how to burn when using Nero Burning Rom:
+  1) New compilation, CD-ROM (Boot),
+     [Boot] Image file=<PE-Builder>\BartPE\bootsect.bin, kind of emulation=no 
+     emulation, number of loaded sectors=4
+     [ISO] data mode=1, file system=ISO 9660:1999
+     *** Important! any other file system then "ISO 9660:1999" will not work!!! ***
+  2) Add all files and folders from your pebuilder output folder
+     (<PE-Builder>\BartPE by default) to your compilation.
+  3) Burn it.
+- Added a "config" button to the plugin dialog to start a configuration tool 
+  for a plugin. This configuration tool can be a script or a executable.
+  Add to the [PEBuilder] section the key "Config".
+  Sample:
+    [PEBuilder]
+    Name="Nu2Shell"
+    Enable=1
+    Config=nu2shellcfg.exe @PluginFile@
+- Added a parser variable @PluginFile@, which expands to the filename of the 
+  current plugin (absolute path).
+- Added a "refresh" button to the plugin dialog to reread the plugin files.
+- Added "XP style look".
+- Added a check for administrator rights, for building pebuilder needs 
+  administrator rights.
+- Added a check to tell the user that a beta version is being used.
+
+Changed items:
+- plugin\zz5\nu2shell: Added "nu2shellcfg.exe" for setting password and boot 
+  prompt. See "config" button in PE Builder plugin dialog.
+- plugin\zz5\nu2shell: When a ramdrive is found, a profile is automatically 
+  build on the ramdrive.
+  The following shell folder IDs are created: CSIDL_PROFILE, 
+  CSIDL_FAVORITES, CSIDL_RECENT, CSIDL_SENDTO, CSIDL_STARTMENU, 
+  CSIDL_DESKTOPDIRECTORY, CSIDL_NETHOOD, CSIDL_APPDATA, CSIDL_PRINTHOOD, 
+  CSIDL_LOCAL_APPDATA, CSIDL_COMMON_STARTMENU, CSIDL_COMMON_PROGRAMS, 
+  CSIDL_COMMON_STARTUP, CSIDL_COMMON_DESKTOPDIRECTORY.
+- pebuilder.inf, small change, removed winbom.ini and winpeoem.sif. Added 
+  fsutil.exe
+- plugin\ramdrive: Updated to a Nu2 Production version 5.2.10.2. This 
+  version is specially created for BartPE.
+
+Added items:
+- plugin\firefox: Firefox v1.0.1
+- pe2usb.cmd: this installs BartPE to USB Flash Drive using setupldr from 
+  w2ksp1 with a ramdisk-bootstrap-loader. See pe2usb.txt for more info.
+
+Removed items:
+- plugin\peloader, sorry theTruth!
+- plugin\!profiles. Nu2shell.exe now creates the profiles.
+
+v3.1.3 public release
+Changes to pebuilder.exe:
+- Changed the way that the splash screen was destroyed. Hopefully this will 
+  fix that sometimes pebuilder comes up behind some other window.
+- PE Builder does not copy addon language files like spr*.dll and obr*.dll 
+  anymore. These files can be found in the file layout.inf section 
+  SourceDisksFiles and have a number between 700 and 740 in the 8th column. These 
+  files would overwrite the original file that is in the correct language. For 
+  example: When building from Windows XP SP2 US, xpsp2res.dll would be in the 
+  "Lithuanian" language.
+- If the "-auto" command line option is specified, pebuilder does not prompt 
+  the license agreement.
+
+Changed items:
+- plugin\peinst.cmd: added timeout=30 option for boot.ini and a small path 
+  fix for mkbt.exe.
+- plugin\autorun: updated to v1.0.5
+- plugin\nu2menu\nu2menu.xml: Added a dummy @SetMenuPos( 'L','B' ) to fix 
+  position of the "go" button after screen resolution change.
+- plugin\ultravnc\ultravnc.inf: small fix if missing some files
+- plugin\zz5\peloader\peloader_nu2menu.xml: removed an invalid line <?xml 
+  version="1.0"?>.
+
+Added items:
+- plugin\zz5\nu2shell: my own version of "peloader" (sorry TheTruth). 
+  Functionality is simular but with a boot password protection. See 
+  nu2shell.txt for more info.
+
+Changed items:
+- plugin\autorun: updated to v1.0.5.
+- plugin\peinst: small bugfix. Added "timeout=30" when installing to boot.ini.
+- plugin\ultravnc\ultravnc.cmd: minor changes.
+
+v3.1.2 public release
+
+Changes to pebuilder.exe:
+- Fixed a bug when adding some network drivers. PE Builder did not find the 
+  device sections when the Version/provider string is not equal to the key 
+  listed in the Manufacturer section. Fixed.
+- The "ISOduplicatesonce=1" option in the input.inf did not work, fixed.
+
+v3.1.1
+Changes to pebuilder.exe:
+- The "-exit" command line parameter did not work, fixed.
+
+Changed items:
+- Updated plugin\ultravnc. Some small changes and fixes. Added the 
+  ultravnc.htm file.
+
+v3.1.0 public release
+
+Changes to pebuilder.exe:
+- Fixed a bug when adding storage drivers. PE Builder did not add the last 
+  line from the "HardwareIds.scsi.xxx" section.
+
+Changed items:
+- the help files (help\*.htm) have been updated.
+- Updated plugin\ramdisk\ramdriv.sys to v5.2.10.2m. Should fix freezing 
+  problems on boot when running on Virtual PC.
+- Updated pebuilder.inf, added traffic.dll (needed for pathping.exe)
+- Updated pebuilder splashscreen and the bartpe wallpaper (blue look).
+
+Added items:
+- added plugin\ultravnc. VNC can be run in server mode, so you can connect 
+  to BartPE system.
+
+Removed items:
+- Removed plugin\vncviewer. You should now use ultravnc.
+
+v3.0.37 beta
+Changes to pebuilder.exe:
+- Fixed a bug when adding some network drivers. PE Builder did not handle 
+  empty Sections correctly and reported something like "Error: Section 
+  "DEFAULTDESTDIRS" does not exist..."
+- Fixed program crash when hitting Escape key while building.
+- Changed default font to tahoma, this way pebuilder also looks nice when 
+  running in BartPE. Yes pebuilder runs fine on BartPE.
+
+v3.0.36 beta
+Changes to pebuilder.exe:
+- Fixed a bug when adding some network drivers. PE Builder did not handle 
+  the INF DestinationDirs Section correct as described in Windows DDK Device 
+  Installation.
+- Fixed a bug when adding some network drivers. PE Builder did not select the 
+  correct CopyFiles Section.
+
+v3.0.35
+New items:
+- added a first version of my own network configuration GUI (netconfig.exe)
+  You can find it in the menu as system->network->Load Network Support (GUI)
+
+Changes to pebuilder.exe:
+- Added hnetcfg.dll to pluging\bartpe\bartpe.inf, to fix filesharing trouble with winxp/sp2.
+- Filtered out "disk" and "tape" devices from the devicelist combobox.
+- Added an advanced option to enable absolute output path.
+- Fixed problem with compressed driver files (for example "yk51x86.sy_") in 
+  drivers folder.
+- Fixed problem with some network drivers, where pebuilder complains about a 
+  section not having a copyfiles key. Pebuilder produced an error something like:
+  Error: File "c:\...\drivers\Net\cb102\CB102B.Reg" does not exist...
+- Fixed "cdrecord: No such file or directory" error when path to iso image 
+  contained spaces.
+- Many small internal code changes.
+
+Changed items:
+- Updated plugin\ramdisk\ramdriv.sys to v5.2.10.1
+- Updated nu2menu to v0.3.49 (now supports hidden menu items)
+- Change plugin\bartpe, added the new Network Configuration Tool (netconfig.exe)
+  added Load Fileshare Support (msserver.cmd) and some other small changes.
+
+v3.0.34
+Changes to pebuilder.exe:
+- Output directory is automatically created when using "-auto" argument.
+- Added CD burning (cdrecord.exe). Using Reanimatolog's Win32/Mingw32 
+  version 2.01 of mkisofs.exe and cdrecord.exe for this.
+  There is also a erase option and a combobox for selecting the writer 
+  device.
+- Fixed a bug in processing driver INF files (in drivers folder), this 
+  caused intel drivers failing to load (error 5 access denied). Now all 
+  sections (not only the first) from a copyfiles line are processed.
+
+Changed items:
+- pebuilder.inf: Removed [BuildISO] exec values. Use the GUI to change 
+  burning option. I will add more customized options in next version.
+- Some small changes.
+
+v3.0.33
+Changes to pebuilder.exe:
+- Completely new user interface. Because of this alot has changed!
+- Changed the icon.
+- Changed the splash screen.
+- When you start PE Builder for the first time, you must agree to the
+  license agreement.
+- On first build the windows end-user license agreement (eula.txt) is shown.
+- Added "skip building registry" and "skip building files" in the option
+  screen for advanced users.
+- Added "Build ISO (F5)" option to the "Builder" menu to quickly rebuild
+  the ISO image.
+- New command line options:
+  -auto -exit -overwrite -verbose -skipregistry -skipfiles -buildiso
+  See help index "Commandline options" for more info.
+- PE Builder now returns the number of errors while building as the
+  errorlevel.
+- When pebuilder starts building it first completely erases the output
+  folder. This is somewhat dangerous. Imagine what would happen if a user would
+  select c:\windows as the output path. So pebuilder now only accepts an
+  output path relative to the pebuilder directory. For example if you would
+  enter "BartPE" as the output path and pebuilder is located in your
+  "c:\pebuilder" directory the full output path becomes "c:\pebuilder\BartPE"
+- A few very small engine bug fixes.
+- A lot of other small changes and enhancements.
+
+New items:
+- Included a new plugin "zz_peloader" that contains peloader.exe and
+  peshutdown.exe created by Pierre Mounir (TheTruth). PELoader is a shell loader
+  that removes the resource limits (user resources limit & 24 hour time limit)
+  from BartPE in a legal way, no need for any patches.
+  Thanks Pierre!!!
+- New way of adding network drivers. Just create a new folder in "drivers\Net"
+  and drop all vendor nic driver files in that new folder and pebuilder will automatically
+  include those drivers.
+- New way of adding storage drivers. Just create a new folder in
+  "drivers\SCSIAdapter" and drop storage driver files in that new folder. PE
+  Builder will automatically include those drivers. Please note that PE Builder
+  needs the drivers "txtsetup.oem" file and it ignores the *.inf driver files.
+- Added a slipstream dialog that helps less advanced users to slipstream 
+  their windows installation files. See menu "source->slipstream".
+
+Changed items:
+- plugin\ghost8, some small changes
+- plugin\nu2menu, new version and some small changes to menu xml file.
+- split plugin\bartpe and plugin\penetcfg into 2 separate plugins.
+- updated penetcfg to v2.20
+- removed plugin\nic_xxx, use the new way of adding drivers!
+- removed plugin\dsk_xxx, use the new way of adding drivers!
+
+v3.0.32
+Changes to pebuilder.exe:
+- Pebuilder needed a very minor fix to support Windows XP SP2 Release
+  Candidate 1 (RC1)
+  To get the SP2 RC1 go here:
+  http://www.microsoft.com/technet/prodtechnol/winxppro/sp2preview.mspx
+
+New items:
+- plugin\dsk_hpt3xx: HighPoint HPT3xx ATA RAID Driver
+- bartpe.bmp: the new official "BartPE" wallpaper, created by Henk de
+  Jong.
+
+Changed items:
+- plugin\nu2menu:
+  * Updated nu2menu.exe to v0.3.45. Added @Exit() function.
+  * New program nu2menumsg.exe, this program can send simple script
+  commands to nu2menu.exe. See reboot.cmd for an example.
+  * Added nu2go.bmp: New "go" button.
+  * New command "reboot" to reboot BartPE from a batch/command script.
+- plugin\a43: Update A43 File Manager to v2.26
+
+v3.0.31
+- plugin\bartpe:
+- plugin\network:
+  updated penetcfg.exe to v2.1.1 build1 (same version but file is
+  different?!?)
+
+v3.0.30
+This version is the first official public release with "built-in"
+network support (using bartpe/penetcfg)!
+
+Changes to pebuilder.exe:
+- New button "search" added to the source dialog.
+  This will search your system for valid windows XP/2003 installation
+  locations.
+  First check (registry):
+    hive=HKEY_LOCAL_MACHINE subkey=SOFTWARE\Microsoft\Windows\CurrentVersion\Setup value=SourcePath
+    hive=HKEY_LOCAL_MACHINE subkey=SOFTWARE\Microsoft\Windows NT\CurrentVersion value=SourcePath
+  Second check (windir):
+    The current windows directory will be checked
+  Third check (drive search):
+    All local fixed disk and CD-Rom drives are searched, on fixed disk
+    only a list of paths will be searched, currently only the root, but
+    I can easily add other known locations. On CD-Rom drives the
+    entire media is searched.
+  When the source path editbox is empty, search function will go off automatically.
+- New button "check" added, this will show if source path is valid,
+  the windows productname and the windows CD name.
+- Changed SourceDiskFiles attribute value "4".
+  It was not possible to optionally copy files from the windows source
+  CD, for example: "msvbvm50.dll=2,,4" would give an error.
+  This has been fixed.
+- Changed the order of processing plugin INF sections, swapped
+  SourceDisksFiles and SourceDisksFolders
+  The old order was:
+    WinntDirectories, SourceDisksFiles, SourceDisksFiles.x86,
+    SourceDisksFiles.<buildnr>, SourceDisksFolders,
+    SourceDisksFolders.<buildnr>
+  The new order is:
+    WinntDirectories, SourceDisksFolders,
+    SourceDisksFolders.<buildnr>, SourceDisksFiles,
+    SourceDisksFiles.x86, SourceDisksFiles.<buildnr>,
+- Fixed GUI deadlock, when you have used "autobuild" and manually
+  (re)moved the source directory, next time you started pebuilder.exe
+  would get you in a deadlock situation, clicking "next" did not take
+  you to the next dialog window.
+
+Changed items:
+- Updated bartpe.exe to v1.2.3
+  The "-minint" option is now compatible with "factory.exe -minint".
+- plugin\bartpe:
+  updated penetcfg.exe to v2.1.1 build1
+  file sharing now also works!
+- plugin\dospe: when sertain files not exist the copy will not fail anymore.
+- plugin\autorun: updated keydown.exe to v1.1
+  (dospe and autorun changes done by Erwin Veermans)
+- plugin\network:
+  updated penetcfg.exe to v2.1.1 build1
+
+v3.0.29
+New items:
+- plugin\bartpe: Network Support [bartpe/penetcfg]
+  Network support using pebart.exe by Bart Lagerweij and penetcfg.exe
+  by theTruth (no need for factory.exe and [s]netcfg.exe!)
+  Warning: this plugin is a BETA version!
+  Note: file sharing does not work correctly at this time!
+
+Removed items:
+- plugin\penet (see the new plugin\bartpe)
+
+Changed items:
+- plugin\dsk_cpqcissm\cpqcissm.inf: added id
+  "PCI\VEN_0E11&DEV_0046&SUBSYS_409D0E11" to support Smart Array 6400
+  U320 EM Controller
+- plugin\pehdinst\pehdinst.cmd: PE Hardisk Installed updated to v1.0.3
+  Added a check for a "bartpe.tag" file before removing folders like
+  \minint and \programs on the target drive. This will prevent
+  accidental removal for those directories when a user already has a
+  \programs folder on his system before installing BartPE.
+- plugin\a43: updated A43 File Management Utility to v2.24
+
+v3.0.28
+- plugin\penet\penet.htm: fixed typo
+
+v3.0.27
+Changed items:
+- plugin\total commander\files folder was missing, added.
+- plugin\total commander\totalcmd.inf: added "files" to wincmd.key.
+- plugin\mcafee\mcafee.inf: fixed missing file scangui.txt
+- fixed some typos.
+
+New items:
+- plugin\snapshot: Drive snapshot tool (shareware)
+  Included with permission from the author.
+- plugin\penet: Network Support [PENET]
+  Network support using penet.exe by Bart Lagerweij
+  (instead of netcfg.exe or snetcfg.exe)
+  Warning, this plugin is a BETA version!
+
+v3.0.26
+Changes to pebuilder.exe:
+- Fixed bug that caused "Error: loadKey failed" when using the builder
+  on Windows 2000 systems and using the source files from CD.
+
+Changed items:
+- plugin\patch_824146.htm: fixed typo
+- plugin\mcafee: Updated scangui.exe to v1.0.3
+- plugin\a43: updated A43 File Management Utility to v2.19
+  (Fixed sorting bug when sorted by name on launching A43)
+
+v3.0.25
+Changes to pebuilder.exe:
+- Changed the source input path check, changed file version from 1106
+  (sp1a) into 1045 (sp1).
+- Added "buildnr" to Software.AddReg, Software.AddReg,
+  Software.DelReg, SetupReg.AddReg, Default.AddReg, Default.DelReg,
+  SourceDisksFiles and SourceDisksFolders section
+  Sample:
+  [SourceDisksFiles.2600]
+  files\xp\sp2\ole32.dll=2,,1           ; for XP
+  [SourceDisksFiles.3790]
+  files\2k3\rtmgdr\ole32.dll=2,,1       ; for 2k3
+- When an invalid directoryID is specified in sourcedisksfolders
+  pebuilder would crash. Fixed it, pebuilder print an error about not
+  finding the ID.
+
+New items:
+- plugin\patch_824146: RPCSS Service Security Patch (KB824146)
+- plugin\sermouse: Serial Mouse driver
+- plugin\mozillaembed: Mozilla Embedded webbrowser
+
+Changed items:
+- plugin\mcafee: Added a GUI (scangui.exe) to start the scanner.
+- pebuilder.inf, the environment path variable was set twice, so the
+  second entry wrote over the first one. Fixed.
+- plugin\nu2menu\nu2menu.xml, removed color depth.
+  This does not work on all video adapters.
+
+v3.0.24
+Changes to pebuilder.exe:
+- Input parameter are no longer saved to pebuilder.inf. They now are saved to a
+  separate file input.inf, this way the pebuilder.inf file stays somewhat
+  unchanged for most of us.
+- Added an extra value for SourceDisksFiles/attribute.
+  Value 4 means: only copy the file if it exists. Don't complain when it does
+  not exist. Handy for "trying" to copy file that "may" exist.
+
+New items:
+- plugin\dsk_cpqcissm: Added plugin for HP/Compaq Smart Array 5x and 6x Driver
+
+Changed items:
+- plugin\!profiles: The ProfilesDir environment variable was not set
+  correct, fixed.
+- plugin\total commander\totalcmd.inf: Updated. Try to copy wincmd.key
+- plugin\total commander\wincmd.ini: Updated.
+  added "StartupScreen=0" option to remove the Splash Screen...
+- plugin\total commander\totalcmd.htm: Updated.
+- plugin\bst5\bst5.inf: Updated. Try to copy bst5.key
+- plugin\nu2menu\nu2menu.inf: Updated. Try to copy nu2go.bmp
+- plugin\bst5\bst5.htm: Updated.
+- plugin\nic_intelpro\nic_intelpro.inf: Updated.
+  The plugin did not work on all systems.
+  Now including .cat, .din and prounstl.exe.
+
+v3.0.23
+Changes to pebuilder.exe:
+- Changed the source input path check, you cannot continue when you
+  are using windows xp sp0 or lower.
+
+New items:
+- A43 File Management Utility - as the new explorer replacement.
+  It is small, it loads fast, just what we need. The program is written
+  by B.G. Miller and it is included with PE Builder with permission from
+  the author. He even made some small changes to the program so that it
+  would run from a readonly media without trouble, isn't that great!
+- plugin\!profiles: This plugin creates the "Profiles" folder to store
+  user profiles. It creates the %systemroot%\Profiles\All Users\Desktop
+  and the %systemroot%\Profiles\Default User\Desktop folders. Where
+  %systemroot% is \i386 (on CD) and \minint (on HD). The
+  DefaultUserProfile and AllUsersProfile is set to point to these 2
+  directories. This should avoid any conflicts with existing "documents
+  and settings" folders when installing BartPE to harddisk, next to an
+  existing windows installation (boot.ini). Also this will avoid any
+  language conflicts. The profiles directory is the same on any language
+  now.
+  This plugin replaces the old !document.inf plugin! Note that this
+  plugin does not create the "document and setings" folder!
+
+Changed items:
+- plugin\network:
+  Changed line in network.inf to "penetcfg\penetcfg-*.ini=2,,1"
+  This will copy all ini file starting with "penetcfg-"
+  Also added custom A: and C: profiles.
+  Fixed some small things.
+- plugin\nic_intelpro: Updated Intel PRO 100/1000 network adapter plugin
+  This replaces the old nic_e100b325 and nic_e1000325 plugin!
+- plugin\pehdinst: PE Hardisk Installed updated to v1.0.2 Installing
+  BartPE to FAT system volume is now also working. This plugin replaces
+  the "pecd2hd" plugin! You can also use the PE Harddisk installer to
+  install from the PE Builder output directory, no need to burn a CD!
+  Very handy for testing BartPE!
+- plugin\total commander: Updated total commander plugin for version 6
+- plugin\nu2menu: Updated nu2menu.exe to v0.3.44.
+  We think there is a bug in server 2003, when booting winPE from
+  harddisk and the shell program tries to load a bitmap image from
+  file. Created a workaround in nu2menu for this.
+- plugin\aspi\aspi.inf: Added help entry.
+- Updated the pebuilder.hlp file a little bit.
+
+Removed items:
+- 2xexplorer plugin. It was loading very slow, on some systems
+  it didn't start. To much trouble.
+- plugin\nic_e100b325, see plugin\nic_intelpro
+- plugin\nic_e1000325, see plugin\nic_intelpro
+- plugin\pecd2hd, see plugin\pehdinst
+- plugin\!document.inf
+
+v3.0.22
+Changes to other files:
+- nu2menu.xml: replaced "cmd.exe /c start
+  @GetWinDir()\system32\[CPL_Name]" into "rundll32.exe
+  shell32.dll,Control_RunDLL @GetWinDir()[CPL_Name]"
+- Added ghost8 plugin.
+- Added aspi plugin.
+- Updated penetcfg to v2.0. Added 2 profiles, one for dhcp one for static IP.
+
+v3.0.21
+- Bugfix: There was a directory ID overlap in the "sourcedisksfolders"
+  function. This caused files to get copied into the wrong directory.
+- Rewrote some internal functions for handling directory IDs.
+
+v3.0.20
+Changes to pebuilder.exe:
+- BugFix: The registry data field "%RamDrv%\@ProfilesDir@" resulted in
+  "%RamDrv%\Documents and". The number of bytes to write was set to the
+  old (unparsed) string. This has been fixed.
+
+v3.0.19
+Changes to pebuilder.exe:
+- Updated the peParse() function. Supported variables are now:
+  @ProfilesDir@, @IsoFile@, @OutDir@, @SourcePath@, @Verbose@,
+  @Build@, @Version@, @Program@, @PluginDir@
+  Note: variables are case sensitive!
+  Added this parser function to Section/variable:
+    WinntDirectories/dirname (existed there already)
+    BuildISO/exec
+    SourceDisksFiles/filename, filenameRenamed
+    SourceDisksFolders/sourcepath
+    Software.AddReg, SetupReg.AddReg, Default.AddReg/regKey, regValue,
+    regData (only when data is a string)
+- Added a new value to the "attribute" field (SourceDisksFiles
+  section). Add a value of "2" if you do not want files to decompress.
+  You can see this in the log file, "DecompressOrCopy file.." or "Copy
+  file.."
+- The "add files/folders from (custom) directory" now uses the normal
+  filecopy function (no decompress). This makes an exact copy!
+- Changed pebuilder.inf: Added a section "BuildISO" and value "exec"
+  to hold the mkisofs commandline.
+- The builder now cleans up the temporarily files used for registry
+  building.
+- The builder (and plugin check) now handles absolute filenames correctly.
+  Example:
+    [SourceDisksFiles]
+    C:\Programme\AntiVirenKit professional\*.*=a,,1
+  or
+    [SourceDisksFiles]
+    \\corp-server\data\Network Associates\Mcafee\Superdat\sdat*.exe=a,,1
+- Added sourcedisksfolders section. This section allows you to copy a folder
+  including all files and subdirectories.
+  Example:
+    [SourceDisksFolders]
+    ; when openoffice folder is in plugin directory
+    openoffice=a
+  or
+    [SourceDisksFolders]
+    ; when openoffice folder is at c:\
+    c:\openoffice=a
+- Changed some other builder functions to support some of the new
+  changes.
+- When the appendFile() function failed ("append" section)
+  It would not say what file it did not find. This has been fixed.
+- The root directory (id 30000) is now created in pebuilder.exe and
+  the line is remove from pebuilder.inf
+- The xpsp1res.dll (Windows XP) is now copied in the correct (default)
+  language. So the about box in notepad is now in the correct language.
+
+Changes to other files:
+- Changed mkisofs.exe, removed some of the output warnings.
+- Updated pebuilder.inf: Added Virtual Disk Service. Now diskpart.exe
+  should also work in server 2003.
+- Updated pebuilder.inf: Added a pebuilder key and version value,
+  ControlSet001\Control\PE Builder\Version
+- Updated pebuilder.inf: Fix for "failed to create an empty document"
+  when starting wordpad now adding "msftedit.dll".
+- Updated pebuilder.inf: Added \bin to path environment.
+- Updated custom.inf: Disabled the timezone.
+- Updated 2xExplorer.inf: 2xexplorer would not start on windows XP
+  sometimes, I added a registry settings for "User Shell Folders", hopes
+  this fixes this. Hmm, didn't work... Must be missing something else.
+  Anyone?
+- Updated dospe.inf: now version 1.0.5
+- Updated nic_el2k_xp plugin.
+- Added nic_e1000325 plugin. Intel PRO/1000 Adapter driver
+- Added nic_e100b325 plugin. Intel PRO/100 Adapter driver
+
+v3.0.18
+- v3.0.17 copied PENetCfg.exe with the name netcfg.exe and the real
+  netcfg.exe was overwritten by PENetCfg.exe. Fixed this.
+
+v3.0.17
+- PE Builder can now build without the need of an already installed
+  workstation. So, the only source files needed is the Windows XP/2003
+  installation/setup CD-Rom. Coooool! This has changed the internal
+  build engine, so it needs a good test. Specially non-english versions
+  of Windows XP needs to be tested. When you build a non-english version
+  of XP please compare the folder \i386\WinSxS against the output from
+  Microsoft's Windows PE toolkit v1.2 or against %windir%\WinSxS.
+- bootfont.bin is now also copied. Mainly used in non-english languages.
+- Added Broadcom 440x network driver plugin (bcm4sbxp).
+- Added Broadcom BCM57xx NetXtreme gigabit driver plugin (b57xp32)
+- Changed network support plugin.
+  Now including PE network configurator by TheThruth.
+- Added keyboard layout plugin by Boris Mebarek.
+
+v3.0.16b
+- Fixed re-adding columns after adding a plugin.
+- All titles of all dialogs now include version number.
+- Minor wheel mouse fix in custom.inf
+- Minor fix in mcafee.inf
+- Some minor fixes...
+
+v3.0.16a
+- Updated custom.inf and pebuilder.inf.
+  v3.0.16 had wrong version of the files.
+
+v3.0.16
+- Added 2xExplorer as the explorer replacement.
+  Got permission from the author to include it in pebuilder.
+- Added confirmation box to overwrite a plugin when the plugin
+  directory already exists.
+- Removed "-beta" from version string.
+- Removed "driver storage" plugin.
+- Added "dsk_fasttx2k" as a new storage driver plugin.
+- Added mouse control panel.
+- Added date and time control panel.
+- Added accessibility options control panel.
+- Updated nero plugin, now all files are in the "files" directory.
+- Added "-auto" commandline option (for autobuild).
+- Added background info (bginfo) plugin.
+- Updated chkdsk plugin.
+- Updated dospe plugin.
+- Updated mcafee plugin, now also adding the superdat (sdat*.exe) file.
+- Added more command line tools:
+  cacls.exe, comp.exe, compact.exe, convert.exe, fc.exe, find.exe
+  findstr.exe, finger.exe, hostname.exe, label.exe, lpq.exe,
+  lpr.exe, makecab.exe, mountvol.exe, nbtstat.exe, pathping.exe,
+  print.exe, replace.exe, route.exe, sort.exe, subst.exe, tftp.exe
+- Updated custom.inf, added timezone info for "GMT+01:00"
+  This is the timezone where I live in...
+
+v3.0.15-BETA
+- The verbose checkbox did not stay checked next time you ran
+  pebuilder. Fixed.
+
+v3.0.14a-BETA
+- Removed quick fix for "spanish" about boxes in wordpad and so.
+  Does not work when build from win2003, must rework/think about that.
+- added network_nu2menu.xml, forgotten, (oops)
+
+v3.0.14-BETA
+- ramdisk.inf plugin, change the "tmp" and "temp" environment
+  variables from "b:\" into "b:". The ending backslash gives trouble to
+  some applications.
+- nu2menu updated to v0.3.43. This version has a new function
+  "@ShowRunDialog()" to show the default windows run dialog.
+  (thanks to Cyberian)
+- The "Add files/folders in from (custom) directory" option in the
+  source dialog, now also add's the files even when no ISO is generated.
+- Did a quick fix for "spanish" about boxes in wordpad and so.
+- Added a "what to do" dialog. This has the option to build using
+  previous settings or to (re)generate and iso image from the last
+  build.
+- Moved nu2menu from \programs to \programs\nu2menu
+  Please replace any @programdir() menus with @programdrive()\programs
+- Rearranged the menu
+- Added "autorun" plugin created by Erwin Veermans
+- Added "dospe" plugin created by Erwin Veermans
+- Added plugin to run chkdsk.exe
+- Added riched32.dll, used by wordpad.exe (and others)
+- Added file associations for wordpad
+- Removed the network dialog from pebuilder.exe.
+  Network support can now be enabled using the plugin "Network Support".
+- Added "network support" plugin
+  This plugin includes "static ip" using:
+  GNetCfg.exe from http://mitglied.lycos.de/cybtools/
+  IPChange3.0.exe from http://www.csparks.com/ipchange/
+  dhcpip.cmd by Ed Myers
+  network.inf by Davide Cavalca
+- Added "network autostart" plugin. You can easily autostart the
+  network by enabling this plugin.
+- Fixed typo in putty plugin.
+- Changed nero plugin, hope pebuilder doesn't complain about missing some files.
+- Changed adaware.cmd
+- open/save file/folder dialogs now showing file extensions and hidden
+  files and folders.
+  Also "My Documents" now points to the system drive.
+- off by one browser now defaults to www.google.com
+- pebuilder now support wildcards in filenames
+  Sample: *netcfg*.exe=2,netcfg.exe,1
+  Will take any file(s) matching "*netcfg*.exe" and copy/rename it to "netcfg.exe"
+  Sample: *.dll=a,,1
+  Will copy all "*.dll" files into the folder with ID "a"
+
+v3.0.13-BETA
+- Added an edit button to the plugin dialog to edit the .inf file.
+- The "document and settings" folder is now created from hivesft.inf
+  DEFAULT_PROFILES_DIR string so it should now have the correct name in any
+  languages.
+- The ISO file setting was not preserved, fixed it.
+- Plugin cab files can now also have subdirectories.
+- Fixed a few minor things...
+
+v3.0.12-BETA
+- Files in plugin folder can now also be "compressed".
+  PE Builder checks if the file exists or if a compressed version exists (ends
+  with '_').
+- Added a ramdisk plugin, default drive is B:, default size 32MB.
+  I'm using QSoft's ramdisk, with permission from author.
+  This version has "popups", but when keeping the size small the popups
+  will never show...
+  You can find/access the ramdrive using %temp%, %tmp% or %ramdrv% environment
+  variables.
+- Added a Nero Buring Rom plugin.
+  This is pretty cool. Burn/copy a CD/DVD from within WinPE.
+  You should not "boot" using your CD/DVD writer!
+  Boot from some other device.
+  The Nero cache will be set to the first found harddisk.
+- Added some extra checks before the builder engine starts.
+  Checking if file "win51" and "win5i?" exists in windows source path.
+  This should prevent any "Insert Windows XP CD-Rom..." errors while booting.
+- Changed adaware plugin, now using %temp% (ramdisk) to run from.
+- Moved all programs under the \Programs folder.
+  Updated all plugins for that.
+- Removed the option dialog. Move the bootfix option into a plugin.
+- In verbose mode the DWORD_REG data was always printed in the log as
+  0x0, fixed.
+
+Sep 15, 2003
+v3.0.11-BETA
+- Added an "Add" button to the plugin dialog. This will allow you to
+  easily add a plugin. The plugin file *must* be a .cab file.
+- Added a "Remove" button to the plugin dialog. This will remove any
+  directories and files in the selected plugin.
+- I forgot to include all pluginhelp (*.htm) files with v3.0.10, fixed.
+
+Sep 12, 2003
+v3.0.10-BETA
+- Added help support option for plugins.
+  Add a "help" key to the "pebuilder" section.
+  Sample:
+          [PEBuilder]
+          Name="Bart's Stuff Test (free edition)"
+          Enable=1
+          Help="bst5.htm"
+  This will launch "bst5.htm" when the user hits the "PluginHelp"
+  button.
+  This way a plugin writer can provide the user with information to
+  download some files or how to use the plugin...
+- Added some .htm plugin help files.
+- Added "file must exist before you can enable the plugin" attribute
+  (3th field) for plugins in the "SourceDisksFiles" section. This can be
+  handy when you want the user to download some file and put it in the
+  plugin directory before they can enable the plugin.
+  Sample:
+        [SourceDisksFiles]
+        putty.exe=a,,1
+  The 3th field set to "1" enables this option
+- Changed .inf files to have this new attribute when needed.
+- I noticed that v3.0.8 and v3.0.9 had the wrong startnet.cmd inside.
+  So snetcfg.exe could never have worked, fixed this.
+
+Sep 8, 2003
+v3.0.9-BETA
+- Bugfix, the netcfg.exe was wrongly copied into snetcfg.exe (it
+  worked but shouldn't do that).
+
+Sep 8, 2003
+v3.0.8-BETA
+- Added 2 buttons for navigating to error/warning.
+- When there where errors during building the "done" dialog displayed
+  the wrong messages.
+- Added snetcfg.exe support.
+- Added a message printing the Windows version from source path.
+- When you installed hotfixes to your windows kernel you will get:
+  "File Version Mismatch (source file version is 5.1.2600.1106 and
+  windir is 5.1.2600.1151)" This has been fixed.
+- Fixed complaining about wrong kernel version.
+
+Changed plugin support a little bit:
+- Added "name" key to this section for plugin name.
+- Added "enable" key to this section to enable/disable a plugin.
+  So plugins are not being renamed to ".fni" extension anymore.
+- Added "pebuilder" section to the plugin .inf files to "validate" the
+  plugin.
+- Changed the dynamic directory ID allocation
+  Previous versions used the dirid value 0 (zero) to allocate a
+  dynamic directory id. This limited a plugin to only use 1 dynamic
+  directory id. Larger plugins can need more dynamic id's. So I
+  changed it to use 26 dynamic directory id's per plugin.
+  You must use an alpha character from 'A' until 'Z'.
+  For example:
+    Old style: "0=nu2menu,2"
+    New style: "a=nu2menu,2"
+
+  *** Warning!
+  *** Check your "own" made plugins for these changes.
+
+Sep 4, 2003
+- v3.0.7-BETA
+- Bugfix: Some users reported this error:
+  Error: CreateDirectory "c:" returned error 5: Access is denied.
+  Bug in the mkdir() function, fixed.
+
+Sep 3, 2003
+- v3.0.6-BETA
+- Some OEM pre-install folders have no win51*.* tagfiles. PE Builder needs them.
+  PE Builder now checks for the "win51" tag file when you enter the path to the windows
+  installation files.
+- Some users reported this error:
+  Error: CreateDirectory "c:\pebldr\i386\msapps\msinfo" failed
+  The problem is that two directories (msapps\msinfo) are created at the same time.
+  This has been fixed.
+
+Sep 2, 2003
+- v3.0.5-BETA
+- Bugfix: When building from some languages like French the
+  nettcpip.inf, netnb.inf and netmscl.inf files are in unicode format.
+  Added an auto unicode to ascii converter to get around this.
+
+Sep 2, 2003
+- v3.0.4-BETA
+- Bugfix: DHCP service did not start when building from Windows Server 2003
+  This has been fixed.
+
+Sep 1, 2003
+- v3.0.3-BETA
+  Bugfix: MoveFileEx failed when your temp folder and the PE Builder
+  output folder where located on different volumes.
+  The error from the log would be something like:
+  --
+  Error: MoveFileEx "C:\DOCUME~1\Bart\LOCALS~1\Temp\peb27A.tmp" to
+  "f:\pebldr\i386\inf\netmscli.inf" returned error 17: The system
+  cannot move the file to a different disk drive.
+  Error: delLine() failed
+  --
+
+Aug 27, 2003
+- v3.0.2-BETA
+- PE Builder now "remembers" all GUI input.
+- Added a plugin dialog where you can enable/disable plugins.
+- Some other small fixes.
+
+Aug 26, 2003
+- v3.0.1-BETA
+- Added verbose checkbox in output dialog
+- Added [AddLine], [DelLine] and [SetValue] section
+  With these sections you can add/delete lines from text-based files or
+  set/delete values from inf-based files.
+- Updated PE Builder to use addline, delline and setvalue to patch
+  netmscli.inf, netnb.inf and nettcpip.inf
+
+- v3.0.0-BETA
+- Changed almost the entire layout of the pebuilder.inf file
+  Sections [SourceDisksFiles], [WinntDirectories] now have different layouts
+  see pebuilder.inf file for more info.
+- Removed software.inf, now in pebuilder.inf section "Software.[Add/Del]Reg"
+- Removed setupreg.inf, now in pebuilder.inf section "SetupReg.AddReg"
+- Removed default.inf, now in pebuilder.inf section "Default.[Add/Del]Reg"
+- Made some changes to the builder engine.
+  Preparing it for plugin support.
+- In verbose mode "-v option" now all regadd/regdel lines are printed.
+- Sometimes the ISO build would start after file copy errors, fixed.
+- Added Plugin support.
+- Added "append" section to append a file to another.
+- Added auto Directory ID. When ID is 0 (zero) PE Builder will create a unique ID.
+  A next plugin INF file will get a new ID.

@@ -1,0 +1,92 @@
+;--------------------------------------------------------------------------------------------------
+;
+;	sonyhcusb2k.inf
+;		11/05/2001
+;
+;--------------------------------------------------------------------------------------------------
+
+[Version]
+LayoutFile		=Layout.inf
+signature		="$CHICAGO$"
+Class			=USB
+ClassGUID		={36FC9E60-C465-11CF-8056-444553540000}
+Provider		=%DriverProvider%
+DriverVer		= 11/05/2001,1.0.0.53
+CatalogFile.nt	=sonyhc.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[Manufacturer]
+%TheMfg%=Models
+
+[SourceDisksNames]
+[SourceDisksFiles]
+
+
+[Models]
+; DisplayName								Section				DeviceID
+;---------------------------------------	----------------	-----------------------
+%USB\VID_054C&PID_0045.DeviceDesc%			= SONYHC_U.Device,	USB\VID_054C&PID_0045
+
+;------------------------------------------------------------------------------
+;
+;	INF DDInstall Section for win2k
+;
+;------------------------------------------------------------------------------
+[SONYHC_U.Device.NT]
+DelReg=SONYHC_U.DelReg.NT
+
+;------------------------------------------------------------------------------
+;
+;	INF DelReg Directive	forwin2k
+;
+;------------------------------------------------------------------------------
+[SONYHC_U.DelReg.NT]
+HKR,,EnumPropPages32
+
+[SONYHC_U.Device.NT.Services]
+AddService = usbhub, 0x00000002, SONYHC_U.Device.AddService
+
+[SONYHC_U.Device.AddService]
+DisplayName		= %DriverName%
+ServiceType		= %SERVICE_KERNEL_DRIVER%
+StartType		= %SERVICE_DEMAND_START%
+ErrorControl	= %SERVICE_ERROR_NORMAL%
+ServiceBinary	= %12%\usbhub.sys
+LoadOrderGroup	= Base
+
+[Strings]
+;------------------------------------------------------------------------------
+;
+; Non-Localizable
+;
+;------------------------------------------------------------------------------
+
+;service type
+SERVICE_KERNEL_DRIVER	=1
+
+;load type
+SERVICE_BOOT_START		=0
+SERVICE_SYSTEM_START	=1
+SERVICE_AUTO_START		=2
+SERVICE_DEMAND_START	=3
+
+;error type
+SERVICE_ERROR_IGNORE	=0
+SERVICE_ERROR_NORMAL	=1
+SERVICE_ERROR_SEVERE	=2
+SERVICE_ERROR_CRITICAL	=3
+
+;------------------------------------------------------------------------------
+;
+; Localizable
+;
+;------------------------------------------------------------------------------
+DriverName		= "Microsoft USB Standard Hub Driver"
+
+DriverProvider	="SONY PVC"
+DiskDesc		="SONY PVC"
+TheMfg			="SONY PVC"
+
+USB\VID_054C&PID_0045.DeviceDesc="Sony Digital Imaging USB"

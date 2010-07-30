@@ -1,0 +1,485 @@
+; PE Builder v3 plug-in INF file
+; Created by Sherpya
+; z_xpe-custom.inf.sample
+; Template, modify it and rename to z_xpe-custom.inf
+; Template Version 1.0.7
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="[Sherpya] Windows XPE: x_{Customizations}_x: template v1.0.7"
+Help="XPE.htm"
+Enable=1
+
+[Update]
+id=xpe-customizations
+parent=xpe
+url=http://winpe.sourceforge.net/plugin_check.php
+Version=1.0.7
+
+[SetValue]
+"txtsetup.sif","SetupData","loaderprompt","""Starting Windows XPE [The Horse Power]..."""
+
+; Add custom help files
+[WinntDirectories]
+;a="Programs\PEHelp",2
+
+[SourceDisksFiles]
+; Add custom help files
+;WinpeHelp.htm=a,,1
+;WinpeHelp.pdf=a,,1
+
+[SourceDisksFiles.2600]
+; Fix for the "crazy copy" bug (old pebuilder bug)
+;xpsp1res.dll=2,,4
+;xpsp2res.dll=2,,4
+;xpob2res.dll=2,,4
+
+[SetupReg.AddReg]
+; XPELogon.exe switches:
+; -w disable desktop switching (this implies winlogon resource limit)
+; -n doesn't show the progressbar
+; -d launch a command line prompt at startup (before any other action), this is used mainly for debug
+; -r calls xpeinit -r that does RunOnceEx using internal routine
+; -p profiles boot time, displays a message with msec elapsed during boot, the counter starts when XPELogon.exe is launched
+; -s only used with -r causes xpeinit to not display an error message when an entry in RunOnceEx fails
+; -e enables environment updates when receiving WM_SETTINGCHANGE broadcast messages, beware it can lead xpelogon crashes
+; -h set winlogon shell registry key according to shell selected within XPELogon
+; -x skips Registration directory and shell32 locale mismatch integrity checks, use only if sure
+0x1,"Setup","CmdLine","XPELogon.exe -r -x"
+
+; Force Mouse Wheel Detection
+0x4,"ControlSet001\Services\i8042prt\Parameters","EnableWheelDetection",0x2
+
+; Screen Resoultion 800x600 16bpp
+;0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.BitsPerPel",0x010
+;0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.XResolution",0x320
+;0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.YResolution",0x258
+
+; Screen Resolution 800x600 32bpp
+;0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.BitsPerPel",0x020
+;0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.XResolution",0x320
+;0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.YResolution",0x258
+
+; Screen Resoultion 1024x768 16bpp
+;0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.BitsPerPel",0x010
+;0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.XResolution",0x400
+;0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.YResolution",0x300
+
+; Screen Resoultion 1024x768 32bpp
+0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.BitsPerPel",0x020
+0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.XResolution",0x400
+0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.YResolution",0x300
+
+; System Locale cannot be set at runtime
+; 0405 - Czech
+; 0406 - Danish
+; 0413 - Dutch
+; 0C09 - English (Australia)
+; 0809 - English (Britain)
+; 1009 - English (Canada)
+; 1809 - English (Ireland)
+; 1409 - English (New Zealand)
+; 1C09 - English (South Africa)
+; 0401 - Arabic
+; 0409 - English (US)
+; 040B - Finnish
+; 040C - French
+; 040D - Hebrew
+; 0407 - German
+; 0408 - Greece
+; 040E - Hungarian
+; 0410 - Italian
+; 0814 - Norwegian
+; 0415 - Polish
+; 0816 - Portuguese(Portugal)
+; 0416 - Portuguese(Brazil)
+; 0419 - Russian
+; 080A - Spanish(Mexico)
+; 0C0A - Spanish(Modern Sort)
+; 040A - Spanish(Traditional Sort)
+; 041D - Swedish
+; 041F - Turkey
+; 0411 - Japanese
+; 0412 - Korean
+; 0804 - Chinese (PRC)
+; 0404 - Chinese (Taiwan)
+
+0x1,"ControlSet001\Control\Nls\Language","InstallLanguage","0409"
+0x1,"ControlSet001\Control\Nls\Language","Default","0804"
+0x1,"ControlSet001\Control\Nls\Locale",,"00000804"
+
+; Custom Usb Storage Ids
+; example: eXagerate Usb Key 256MB
+;0x3,"ControlSet001\Control\UsbFlags\011701170100","osvc",00,00
+
+; Set Default Computer Name
+0x1,"ControlSet001\Control\ComputerName\ComputerName","ComputerName","WinXPE"
+0x1,"ControlSet001\Control\Session Manager\Environment","ComputerName","WinXPE"
+
+[Software.AddReg]
+; Owner informations
+0x1,"Microsoft\Windows NT\CurrentVersion","RegisteredOrganization","Horse Power"
+0x1,"Microsoft\Windows NT\CurrentVersion","RegisteredOwner","XPE"
+
+; Remove resource limit by killing smss.exe and winlogon.exe, courtesy of Pierre Mounir (TheTruth)
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\A00","100","||xpeinit.exe -9"
+
+; Fonts settings for some locales - cdob
+; Us-ascii (?)
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA res)","coure.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA res)","serife.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA res)","sserife.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA res)","smalle.fon"
+
+;Central European
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA res)","couree.fon"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA res)","serifee.fon"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA res)","sserifee.fon"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA res)","smallee.fon"
+
+;Cyrillic
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA res)","courer.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA res)","serifer.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA res)","sserifer.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA res)","smaller.fon"
+
+;Greek
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA res)","coureg.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA res)","serifeg.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA res)","sserifeg.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA res)","smalleg.fon"
+
+;Turkish
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA res)","couret.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA res)","serifet.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA res)","sserifet.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA res)","smallet.fon"
+
+;German
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA-Auflösung)","coure.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA-Auflösung)","sserife.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA-Auflösung)","serife.fon"
+;0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA-Auflösung)","smalle.fon"
+
+; SetupApi Log Level
+; See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/install/hh/install/troubleshoot_7s6f.asp
+0x4,"Microsoft\Windows\CurrentVersion\Setup","LogLevel",0x0
+
+; Proxy Settings for Internet Explorer
+;0x1,"Sherpya\XPEinit\Proxy","ProxyServer","ftp=host:port;gopher=host:port;http=host:port;https=host:port;socks=host:port"
+; or
+;0x1,"Sherpya\XPEinit\Proxy","ProxyServer","host:port"
+
+; 0x0 Default Proxy
+; 0x1 No Proxy
+; 0x3 Proxy Enabled
+; 0x5 Automatic Proxy Enabled
+;0x4,"Sherpya\XPEinit\Proxy","ProxyEnable",0x3
+
+;0x1,"Sherpya\XPEinit\Proxy","Exclusion","localhost,;127.0.0.1;<local>"
+;0x1,"Sherpya\XPEinit\Proxy","AutoUrl","http://www.mydomain.com/config_url"
+; Setup Internet Explorer Proxy
+;0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","160","||xpeinit.exe -p"
+
+; XPELogon password lock, generate your hash using xpelogon.exe -5 your_password, the value will be
+; copied in your clipboard, then paste it here, uncommenting the line.
+; As example "0b659a5889bc413565804b1f849759f4" is the md5 hash for "Sherpya", without quotes
+;0x1,"Sherpya\XPELogon","Password","0b659a5889bc413565804b1f849759f4"
+
+; Disable password check for a specific boot media, i.e. setting CDLock to 0 will disable
+; password prompt when it boots from a cd but net and hdd will be enabled
+; The default is all to 1, password check for all media (only if above Password option is enabled)
+;0x4,"Sherpya\XPELogon","HDDLock",0x0
+;0x4,"Sherpya\XPELogon","CDLock",0x0
+;0x4,"Sherpya\XPELogon","NetLock",0x0
+
+; XPELogon Coordinates
+;0x4,"Sherpya\XPELogon","XPos",0x70
+;0x4,"Sherpya\XPELogon","YPos",0x50
+
+; XPELogon: Shell to launch, default is Explorer.exe - If you want to use nu2menu as shell then you need to DISABLE Startup Group Plugin
+;0x2,"Sherpya\XPELogon","Shell","%SystemDrive%\Programs\Nu2menu\nu2menu.exe"
+
+; Set default on eject media action before shutdown/reboot (it can be changed at runtime with tray icon)
+0x4,"Sherpya\XPELogon","Eject",0x0
+
+; Should XPElogon shows a prompt after ejecting?
+0x4,"Sherpya\XPELogon","EjectPrompt",0x0
+
+; Set this to hide eject tray icon
+;0x4,"Sherpya\XPELogon","HideTray",0x1
+
+; Set this to prevent killing processes before shutdown/restart
+;0x4,"Sherpya\XPELogon","NoProcessKill",0x1
+
+; Set this to prevent stop of services before shutdown/restart
+;0x4,"Sherpya\XPELogon","NoStopServices",0x1
+
+; Uncomment this to have xp style shutdown/restart dialog - Reboot/Shutdown not working yet
+;0x4,"Microsoft\Windows NT\CurrentVersion\Winlogon","LogonType",0x1
+
+; No arrow for shortcuts
+;0x2,"Microsoft\Windows\CurrentVersion\Explorer\Shell Icons","29","%SystemRoot%\System32\xpeinit.exe,1"
+; Small arrow for shortcuts
+0x2,"Microsoft\Windows\CurrentVersion\Explorer\Shell Icons","29","%SystemRoot%\System32\xpeinit.exe,2"
+
+; Re-Add Recycle bin icon on desktop and its function (I disable it by default)
+;0x1,"Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{645FF040-5081-101B-9F08-00AA002F954E}",,"Recycle Bin"
+;0x4,"Microsoft\Windows\CurrentVersion\Explorer\BitBucket","NukeOnDelete",0x0
+
+; XPELogon CAD (Control-Alt-Delete) Program to launch, default is TaskMgr.exe
+;0x2,"Sherpya\XPELogon","CADProgram","%SystemRoot%\System32\sysdm.cpl"
+
+; WinLogon Background Color
+0x1,"Microsoft\Windows NT\CurrentVersion\Winlogon","Background","0 0 0"
+
+; Set NumLock "On"
+0x1,"Microsoft\Windows NT\CurrentVersion\IniFileMapping\win.ini\Windows","InitialKeyboardIndicators","USR:Control Panel\Keyboard"
+
+; XPEinit startup menu & desktop
+
+; Start Menu Root
+;0x0,"Sherpya\XPEinit\StartMenu"
+;0x2,"Sherpya\XPEinit\StartMenu","Internet Explorer","%SystemRoot%\iexplore.exe"
+
+; Startup
+;0x0,"Sherpya\XPEinit\StartUp"
+
+; Desktop
+;0x2,"Sherpya\XPEinit\Desktop","@shell32.dll,-22022","%comspec%"
+; Same of above but not localized
+0x2,"Sherpya\XPEinit\Desktop","Command Prompt","%comspec%"
+
+; Add custom help files
+;0x2,"Sherpya\XPEinit\Desktop","Windows PE Help","%SystemRoot%\Programs\PEHelp\WinpeHelp.htm"
+
+; Programs
+;0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-21761\@shell32.dll,-22019","%SystemRoot%\system32\calc.exe"
+
+; Quick Launch
+;0x2,"Sherpya\XPEinit\QuickLaunch","Windows PE Media","%SystemRoot%\explorer.exe|%SystemDrive%|xpeinit.exe,0"
+
+; Send To
+;0x2,"Sherpya\XPEinit\SendTo","@shell32.dll,-22069","%SystemRoot%\system32\wordpad.exe"
+
+; ---------------------------------
+; Custom Actions
+; NOTE only keys between 400-600 are left if XPE is not used standalone (i.e. without nu2menu)
+
+; pre dll registration 100-399 - Only Standalone
+
+; 400 - 499 - Always pre registration
+; 500 - reserved for dll registrations
+; 500 -> 000-099 - XPE
+; 500 -> 100-199 - MMC
+; 900 -> 000-199 - XPE Custom
+
+; post dll registration - just before explorer starts
+; 501-600 Always post registration
+; 601+ Only Standalone
+
+; DO NOT REMOVE this line - PnP Support
+; Change computer name and workgroup
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","100","||xpeinit.exe -f -m ""Detecting PnP Devices"" bartpe.exe -pnp -cn WinXPE -wg WORKGROUP"
+
+; Select and set the best refresh - BEWARE THIS CAN DAMAGE YOUR MONITOR
+; EnumDisplaySettings should not select bad refresh rates anyway I take no responsability
+; -h is the max refresh to pick, since if windows doesn't pick the right inf for your monitor,
+;    EnumDisplaySettings can pick unsupported refresh rate
+; -s doesn't ask before switching resolution
+;0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","150","||xpeinit.exe -z -h 85"
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","150","||xpeinit.exe -s -z -h 85"
+
+; Uncomment this line to use PeNetCfg - you need "Network Support [factory/netcfg/penetcfg]" plugin enabled,
+; PeNetCfg version >= 2.20, and also REMOVE factory.exe and netcfg.exe or PeNetCfg will fail with this conf
+;0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","000","||xpeinit.exe -m ""Launching PeNetCfg"" penetcfg.exe /UseProfile"
+
+; You may need to enable/disable these services depending on your configuration
+; File Server
+;0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","108","||xpeinit.exe -m ""Installing MsServer"" bartpe.exe -v -c s -i ms_server"
+;0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","109","||xpeinit.exe -m ""Starting Server Service"" net start lanmanserver"
+
+[Software.DelReg]
+; Uncomment these lines if you are using PeNetCFG
+;"Microsoft\Windows\CurrentVersion\RunOnceEx\900","101"
+;"Microsoft\Windows\CurrentVersion\RunOnceEx\900","102"
+;"Microsoft\Windows\CurrentVersion\RunOnceEx\900","103"
+;"Microsoft\Windows\CurrentVersion\RunOnceEx\900","104"
+;"Microsoft\Windows\CurrentVersion\RunOnceEx\900","106"
+;"Microsoft\Windows\CurrentVersion\RunOnceEx\900","107"
+
+[Default.AddReg]
+; Preferences mask see: http://www.tburke.net/info/regentry/topics/55198.htm
+; you should put 2 bytes hex values in reversed order: 0x80003e9e becomes 9e,3e,00,80
+;0x3,"Control Panel\Desktop","UserPreferencesMask",9e,3e,00,80
+0x3,"Control Panel\Desktop","UserPreferencesMask",98,20,00,80
+
+; IE Start Page
+0x1,"Software\Microsoft\Internet Explorer\Main","Start Page","about:blank"
+0x1,"Software\Microsoft\Internet Explorer\Main","Default_Page_URL","about:blank"
+
+; Remove My documents from desktop
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu","{450D8FBA-AD25-11D0-98A8-0800361B1103}",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel","{450D8FBA-AD25-11D0-98A8-0800361B1103}",0x1
+
+; Points My Document to %Temp%
+; 0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders","Personal","%temp%"
+
+; WallPaper Style (mainly for w2k3) 2 is Extended
+0x1,"Control Panel\Desktop","Pattern Upgrade","TRUE"
+0x1,"Control Panel\Desktop","WallpaperStyle","2"
+0x1,"Software\Microsoft\Internet Explorer\Desktop\General","WallpaperStyle","2"
+
+; NumLock status
+0x1,"Control Panel\Keyboard","InitialKeyboardIndicators","2"
+
+; Console Copy/Paste
+0x4,"Console","QuickEdit",0x1
+0x4,"Console","InsertMode",0x1
+
+; Show Map/Disconnect Network Drive on each explorer windows
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","MapNetDrvBtn",0x1
+
+; Web View (show general folder tasks)
+;0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","WebView",0x1
+
+; Remove "shortcut to"
+0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer","link",00,00,00,00
+
+; Desktop Namespace
+; From here you can change the name for Network folder
+;0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{208D2C60-3AEA-1069-A2D7-08002B30309D}",,"My Death Net"
+0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{208D2C60-3AEA-1069-A2D7-08002B30309D}\DefaultIcon",,"%SystemRoot%\System32\shell32.dll,17"
+
+; From here you can change the name for "My Computer"
+;0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}",,"Toxic Factory"
+0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\DefaultIcon","","%SystemRoot%\explorer.exe,0"
+
+; From here you can change the name for "My Documents"
+;0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{450D8FBA-AD25-11D0-98A8-0800361B1103}",,"Top Secret"
+0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{450D8FBA-AD25-11D0-98A8-0800361B1103}\DefaultIcon",,"%SystemRoot%\System32\mydocs.dll,0"
+
+; From here you can change the name for Recycle bin
+;0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}",,"Trashcan"
+0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}\DefaultIcon","full","%SystemRoot%\System32\shell32.dll,32"
+0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}\DefaultIcon","empty","%SystemRoot%\System32\shell32.dll,31"
+0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}\DefaultIcon",,"%SystemRoot%\System32\shell32.dll,31"
+
+; Explorer Settings
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","TaskbarSizeMove",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","TaskbarGlomming",0x0
+;0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","Hidden",0x1
+;0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","HideFileExt",0x0
+;0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","ShowSuperHidden",0x1
+
+; MMC
+0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","StartMenuAdminTools","YES"
+
+; List View
+;0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\Streams","Settings",\
+;  09,00,00,00,03,00,00,00,00,00,00,00,e0,a5,1f,0e,73,35,cf,11,ae,69,08,00,2b,\
+;  2e,12,62,04,00,00,00,01,00,00,00,43,00,00,00
+
+; Detailed View
+0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\Streams","Settings",\
+  08,00,00,00,04,00,00,00,01,00,00,00,00,77,7e,13,73,35,cf,11,ae,69,08,00,2b,\
+  2e,12,62,04,00,00,00,01,00,00,00,43,00,00,00
+
+; Thumbs View
+;0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\Streams","Settings",\
+;  08,00,00,00,05,00,00,00,01,00,00,00,90,b2,eb,8b,d0,52,d0,11,b7,f4,00,c0,4f,\
+;  d7,06,ec,04,00,00,00,07,00,00,00,43,00,00,00
+
+; Performance
+; Animation when minimizing or maximizing windows - thx fafot
+0x1,"Control Panel\Desktop\WindowMetrics","MinAnimate","0"
+
+; JamesB
+0x1,"Control Panel\Desktop","DragFullWindows","0"
+
+; Visual Effects - beware this doesn't work as expected you should tweak also UserPreferencesMask
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects","VisualFXSetting",0x3
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\AnimateMinMax","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ComboBoxAnimation","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\CursorShadow","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\DragFullWindows","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\DropShadow","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\DropShadow","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListBoxSmoothScrolling","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewAlphaSelect","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewAlphaSelect","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewShadow","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewShadow","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewWatermark","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewWatermark","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\MenuAnimation","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\MenuAnimation","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\SelectionFade","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\SelectionFade","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\TaskbarAnimations","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\TaskbarAnimations","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\TooltipAnimation","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\TooltipAnimation","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\WebView","DefaultApplied",0x1
+
+; Full path display in windows explorer - thx fafot
+;0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState","Settings",0c,00,02,00,1b,01,e7,77,60,00,00,00
+;0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState","FullPath",0x1
+;0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState","FullPathAddress",0x1
+
+; Start Menu
+0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","CascadeControlPanel","YES"
+0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","CascadeNetworkConnections","YES"
+
+; Start Menu Delay
+0x1,"Control Panel\Desktop","MenuShowDelay","0"
+
+; Classic Start Menu
+0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer","ShellState",\
+  24,00,00,00,33,A8,00,00,00,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,0D,\
+  00,00,00,00,00,00,00,00,00,00,00
+
+; FontSmoothing - set FontSmoothingType to 0x1 if you don't like "bold" effect
+0x1,"Control Panel\Desktop","FontSmoothing","2"
+0x4,"Control Panel\Desktop","FontSmoothingOrientation",0x1
+0x4,"Control Panel\Desktop","FontSmoothingType",0x2
+
+; Mouse Settings - thx fafot
+0x4,"Control Panel\Mouse","ActiveWindowTracking",0x0
+0x1,"Control Panel\Mouse","DoubleClickHeight","4"
+0x1,"Control Panel\Mouse","DoubleClickSpeed","500"
+0x1,"Control Panel\Mouse","DoubleClickWidth","4"
+0x1,"Control Panel\Mouse","MouseSensitivity","10"
+0x1,"Control Panel\Mouse","MouseSpeed","1"
+0x1,"Control Panel\Mouse","MouseThreshold1","6"
+0x1,"Control Panel\Mouse","MouseThreshold2","10"
+0x1,"Control Panel\Mouse","SnapToDefaultButton","0"
+0x1,"Control Panel\Mouse","SwapMouseButtons","0"
+0x1,"Control Panel\Mouse","MouseTrails","0"
+
+; TaskBar on Top - Autohide
+;0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects2","Settings",\
+;  28,00,00,00,ff,ff,ff,ff,03,00,00,00,01,00,00,00,3c,00,00,00,1e,00,00,00,fe,\
+;  ff,ff,ff,fe,ff,ff,ff,02,04,00,00,1c,00,00,00
+
+; TaskBar on Bottom - Autohide
+;0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects2","Settings",\
+;  28,00,00,00,ff,ff,ff,ff,03,00,00,00,03,00,00,00,3c,00,00,00,1e,00,00,00,fe,\
+;  ff,ff,ff,e4,02,00,00,02,04,00,00,02,03,00,00
+
+; TaskBar on Left - Autohide
+;0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects2","Settings",\
+; 28,00,00,00,ff,ff,ff,ff,03,00,00,00,00,00,00,00,B2,00,00,00,28,00,00,00,00,\
+; 00,00,00,00,00,00,00,B2,00,00,00,00,04,00,00
+
+; TaskBar on Right - No AutoHide
+;0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects2","Settings",\
+;  28,00,00,00,ff,ff,ff,ff,02,00,00,00,02,00,00,00,4e,00,00,00,1e,00,00,00,b4,\
+;  03,00,00,fe,ff,ff,ff,02,04,00,00,02,03,00,00
+
+; TaskBar on Bottom - No Autohide
+0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects2","Settings",\
+  28,00,00,00,ff,ff,ff,ff,02,00,00,00,03,00,00,00,3f,00,00,00,1e,00,00,00,fe,\
+  ff,ff,ff,e4,02,00,00,02,04,00,00,02,03,00,00

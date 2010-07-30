@@ -1,0 +1,6 @@
+<!-- chkdsk_nu2menu.xml -->
+<NU2MENU>
+	<MENU ID="Storage">
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\chkdsk.cmd))" CMD="RUN" FUNC="@GetWinDir()\system32\chkdsk.cmd">Check Disk</MITEM>
+	</MENU>
+</NU2MENU>

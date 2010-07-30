@@ -1,0 +1,17 @@
+<!-- Nu2Menu entry for UnknownDevices -->
+<NU2MENU>
+
+	<MENU ID="Programs">
+		<MITEM TYPE="POPUP" MENUID="System Tools">System Tools</MITEM>	   		
+	</MENU>
+
+	<MENU ID="System Tools">	   		
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\HWPnP.exe))" 
+            CMD="RUN" FUNC="@GetWinDir()\system32\HWPnP.exe +all /log /p /d">Install Devices(HWPnP)</MITEM>
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\HWPnP.exe))" 
+            CMD="RUN" FUNC="@GetWinDir()\system32\HWPnP.exe +all /log /p /u /a /d">Force Install Devices(HWPnP)</MITEM>
+      <MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\HWPnP.exe))"
+         CMD="RUN" FUNC="@GetWinDir()\system32\HWPnP.exe -all /log+ /p +STORAGE\VOLUME +USB\ +USBSTOR\ /a /u /d">Force Install USB(HWPnP)</MITEM>
+	</MENU>
+	    
+</NU2MENU>

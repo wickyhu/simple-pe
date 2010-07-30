@@ -1,0 +1,5 @@
+<NU2MENU>
+	<MENU ID="System">	   		
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@GetProgramDrive()\Programs\peinst\peinst.cmd">BartPE Installer v2</MITEM>
+	</MENU>
+</NU2MENU>

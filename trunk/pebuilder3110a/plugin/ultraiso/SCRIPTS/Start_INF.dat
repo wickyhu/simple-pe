@@ -1,0 +1,19 @@
+; UltraISO.inf
+; PE Builder v3 plugin INF file for UltraISO v8.6.6.2180
+; Plugin by Xtreme
+; Xtremesony_xp@yahoo.com
+; Made For Windows Xpire Rd CD
+; © Windows Xpire Tech Center
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="(Xtreme) UltraISO v8.6.6.2180  -Press CONFIG to Enable-"
+Enable=1
+Help=Help.htm
+config=Get_Files.cmd
+
+
+[SourceDisksFiles]
+"please hit [Config] button to start collect files for your plugin then after finish hit [Refresh] button"=a,,1 

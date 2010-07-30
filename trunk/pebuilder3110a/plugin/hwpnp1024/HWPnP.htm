@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <title>HWPnP Plugin</title>
+    	<style type="text/css">
+body {
+	font-family: Arial, sans-serif;
+	font-size: medium;
+	color: #000;
+}
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+</style>
+    </head>
+    <body>
+        <i>PE Builder v3 plugin</i>
+        <hr>
+        <h1>HWPnP Plugin</h1>
+        <p>This plugin is used to detect and install devices which currently have no driver 
+            installed. By default it will install devices with device ids that start with:</p>
+        <ul>
+            <li>
+            PCI\VEN
+            <li>
+            ACPI_HAL\
+            <li>
+            ACPI\
+            <li>
+            IDE\
+            <li>
+            PCIIDE\
+            <li>
+            ISAPNP\
+            <li>
+            LPTENUM\
+            <li>
+            ROOT\ACPI
+            <li>
+            ROOT\DMIO
+            <li>
+            ROOT\SYSTEM
+            <LI>
+            SERENUM\
+            <li>
+            STORAGE\
+            <li>
+            SW\
+            <li>
+            USB\
+            <li>
+                USBSTOR\</li>
+        </ul>
+        <p>If the installation of a device results in the popup of the <strong>'Found New 
+                Device'</strong> dialog then the <strong>&lt;next&gt;</strong> and <strong>&lt;finish&gt;</strong>
+            buttons will automatically be clicked so that no user intervention is required 
+            for device detection to continue. The buttons are identified in the dialog by 
+            looking for controls with particular control ids so hopefully this will work in 
+            all languages. Its only been tested in US english.</p>
+        <P>Note that under XP you can find the device ids of installed devices by setting 
+            the environment variable <strong>DEVMGR_SHOW_DETAILS=1</strong>. Then In Device 
+            Manager the properties for a device should now provide a <STRONG>Details</STRONG>
+            tab that contains additional information about the device. Another way to 
+            obtain the current device ids from XP is to run the HWPnP program but specify 
+            the following parameters:</P>
+        <p>HWPnP -all /logcon</p>
+        <P>The program is called as follows:</P>
+        <pre><strong>
+HWPnP {+all|-all}
+      {+&lt;DeviceID_0&gt;|+&lt;@Class_0&gt;|-&lt;DeviceID_0&gt;|-&lt;@Class_0&gt;|=&lt;DeviceID_0&gt;|=&lt;@Class_0&gt;} ... 
+      {+&lt;DeviceID_N&gt;|+&lt;@Class_N&gt;|-&lt;DeviceID_0&gt;|-&lt;@Class_N&gt;|=&lt;DeviceID_0&gt;|=&lt;@Class_N&gt;} ... 
+      {/a}
+      {/cid}
+      {/d|/d+}
+      {/h}
+      {/hid}
+      {/log|/log+|/logcon}
+      {/p}
+      {/r}
+      {/s}
+      {/u}	
+      </strong></pre>
+        <P>If <STRONG>+all</STRONG> is specified then all devices, which currently do not 
+            have a device driver loaded and for which a device driver is available, will 
+            have an attempt made&nbsp;to load the&nbsp;driver.</P>
+        <P>If &nbsp;<STRONG>-all</STRONG> is specified then all built in device id strings 
+            will be removed and only devices which match device ids specified in program 
+            parameters will have their device drivers loaded. If this parameter is used 
+            then it should preceed any explicit device id parameters.</P>
+        <P>
+            The &nbsp;<strong>&lt;DeviceID_N&gt;</strong> can be the device id or part of 
+            the device ID e.g. ROOT\DMIO.</P>
+        <P>
+            The <b>&lt;@Class_N&gt; </b>is the name of a device class e.g. NET.</P>
+        <P>If &nbsp;<strong>+&lt;DeviceID_N&gt;</strong> is specified then any 
+            device&nbsp;with a device id that starts with the specified string&nbsp;will be 
+            attempted to have its device driver loaded. The device driver will only be 
+            attempted to be loaded if the device status reports that the device is not 
+            currenty running.</P>
+        <P>If &nbsp;<strong>+&lt;@Class_N&gt;</strong> is specified then any 
+            device&nbsp;with a device class that is equal to the specified string&nbsp;will 
+            be attempted to have its device driver loaded. The device driver will only be 
+            attempted to be loaded if the device status reports that the device is not 
+            currenty running.</P>
+        <P>If &nbsp;<strong>=&lt;DeviceID_N&gt;</strong> is specified then any device with 
+            a device id that starts with the specified string will be attempted to have its 
+            device driver loaded regardless of the current status of the device.This option 
+            should be used carefully as most of the system devices require a reboot ( which 
+            obviously in PE will not work ) to start the device driver and in some cause a 
+            machine lockup if any attempt is made&nbsp;to start them.</P>
+        <P>If &nbsp;<strong>=&lt;@Class_N&gt;</strong> is specified then any device with a 
+            device class that is equal to the specified string will be attempted to have 
+            its device driver loaded regardless of the current status of the device.This 
+            option should be used carefully as most of the system devices require a reboot 
+            ( which obviously in PE will not work ) to start the device driver and in some 
+            cause a machine lockup if any attempt is made&nbsp;to start them.</P>
+        <P>If &nbsp;<strong>-&lt;DeviceID_N&gt;</strong> is specified then any device with 
+            a device id that starts with the specified string is excluded from the list of 
+            devices which may have their device driver loaded. Usually this will be used in 
+            conjunction with the +all option but it may also be used to eliminate some of 
+            the built in device id&nbsp;prefixes.</P>
+        <P>If &nbsp;<strong>-&lt;@Class_N&gt;</strong> is specified then any device with a 
+            device class that is equal to the specified string is excluded from the list of 
+            devices which may have their device driver loaded. Usually this will be used in 
+            conjunction with the +all option.</P>
+        <P>So for example if you wanted to disable installation of device ids that started 
+            with ROOT\ACPI or ROOT\DMIO and you wanted to add installation of device ids 
+            that start with ROOT\MEDIA you would call the program&nbsp;by:</P>
+        <P><strong>HWPnP -ROOT\ACPI -ROOT\DMIO +ROOT\MEDIA</strong></P>
+        <P>If you wanted to install all devices except devices of class NET then you would 
+            call the program by:</P>
+        <P><b>HWPnP +all -@NET</b></P>
+        <P>If &nbsp;<strong>/log</strong> is specified then the diagnostic trace 
+            information will be logged to %ramdrv%\HWPnP.log.</P>
+		<P>If &nbsp;<strong>/log+</strong> is specified then the diagnostic trace 
+            information will be appended to %ramdrv%\HWPnP.log.</P>
+        <P>If &nbsp;<strong>/logcon</strong> is specified then the diagnostic tracing will 
+            be logged to a new console. When the hardware scan finishes the program will 
+            wait for user input before closing the console.</P>
+        <P>If&nbsp; <b>/a</b> is specified then the devices will be rescanned until no new 
+            devices are installed. I use the following command for installing new USB 
+            storage devices:</P>
+        <P>&nbsp;&nbsp;&nbsp; <b>HWPnP.exe -all /log /p +STORAGE\VOLUME +USB\ +USBSTOR\ /a /u</b></P>
+        <P>If <strong>/cid</strong> is specified then compatible device 
+		identifiers for a device will be scanned when searching for a device id 
+		match.</P>
+		<P>If &nbsp;<strong>/d</strong> is specified then driver signing will be disabled.</P>
+		<P>If &nbsp;<strong>/d+</strong> is specified then driver signing will 
+		be disabled after installing first device. The registry settings are 
+		ignored unless made after installing one device. If the network is 
+		installed prior to running HWPnP then <b>/d</b> should work.</P>
+        <P>If &nbsp;<strong>/h</strong> is specified then any "Found New Device" dialogs 
+            that appear will be hidden ( they will very briefly appear ).</P>
+		<P>If <strong>/hid</strong> is specified then all device identifiers for 
+		a device will be scanned when searching for a device id match.</P>
+        <P>If &nbsp;<b>/p</b> is specified then a progress dialog box will be displayed 
+            which is very similar to the one displayed by the Sherpya AutoRamResizer 
+            program. It will show the device id of devices as they are enumerated.</P>
+        <P>If &nbsp;<b>/u</b> is specified then any 'unknown devices' will have an attempt 
+            made to load a device driver. This option should be used with care - a lock up 
+            may result. Note that some of the devices require a reboot to become fully 
+            operational ( of course in the context of PE this will have no effect).</P>
+        <P>If <b>&nbsp;/r </b>is specified then the SystemSetupInProgress registry flag 
+            will be cleared before performing the plug and play detection scan. If will be 
+            reset back to 1 after the scan is performed.</P>
+        <P>If &nbsp;<b>/s </b>is specified then setupapi logging to the ram drive will be 
+            enabled prior to hardware detection.</P>
+        <P>Note the load of network adaptors will fail unless netcfgx.dll is registered 
+            first with regsvr32.</P>
+        <P>&nbsp;</P>
+        <P><I>Copyright (c) 2004 Paraglider. All rights reserved.</I><BR>
+        </P>
+        <hr>
+        <i>PE Builder Copyright (c) 2002-2003 Bart Lagerweij. All rights reserved.</i><br>
+    </body>
+</html>

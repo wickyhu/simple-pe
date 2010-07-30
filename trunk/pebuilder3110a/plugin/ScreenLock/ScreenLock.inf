@@ -1,0 +1,36 @@
+; PE Builder v3 plug-in INF file
+; ScreenLock.inf
+; Created by CWorks
+; Last Revision 9/22/06
+
+; History of ScreenLock:  http://www.911cd.net/forums//index.php?showtopic=18154
+
+; HotKeys
+; F9 = Close program
+; F10 = Change password
+; F11 = Enable ScreenLock
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="{CWorks} Screen Lock"
+Enable=1
+help="\"
+Config=SL_Setup.exe
+
+[WinntDirectories]
+a="Programs\ScreenLock",2"
+
+[SourceDisksFiles]
+ScreenSavers\*.scr=2,,4
+Files\ScreenLock.exe=a,,1
+scrnsave.scr=2,,4
+logon.scr=2,,4
+ssmyst.scr=2,,4
+
+[Software.AddReg]
+0x2,"Sherpya\XPEinit\Desktop","ScreenLock","%SystemDrive%\Programs\ScreenLock\ScreenLock.exe"
+0x2,"Sherpya\XPEinit\Startup","ScreenLock","%SystemDrive%\Programs\ScreenLock\ScreenLock.exe"
+0x1,"CWorks\ScreenLock","screensavetimeout","3"
+0x1,"CWorks\ScreenLock","SCRNSAVE.EXE","scrnsave.scr"

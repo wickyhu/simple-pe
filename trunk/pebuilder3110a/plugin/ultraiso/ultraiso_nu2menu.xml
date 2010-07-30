@@ -1,0 +1,11 @@
+<!-- Nu2Menu entry for "UltraISO" -->
+<NU2MENU>
+
+	<MENU ID="Programs">
+		<MITEM TYPE="POPUP" MENUID="UltraISO">UltraISO</MITEM>
+	</MENU>
+
+	<MENU ID="UltraISO">
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetProgramDrive()\Programs\UltraISO\UltraISO.exe))" CMD="RUN" FUNC="@GetProgramDrive()\Programs\UltraISO\UltraISO.exe" PARM="1">UltraISO</MITEM>		
+	</MENU>
+</NU2MENU>

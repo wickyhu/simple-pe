@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>Windows XPE Plugin</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+ <style type="text/css">
+ <--
+  body
+  {
+    margin-top: 0px;
+    margin-left: 50px;
+    background-color: white;
+    color: black;
+    font-family: Georgia, Arial, Verdana, Sans-Serif;
+  }
+
+  a
+  {
+    color: #00aaff;
+    text-decoration:none;
+  }
+
+  a:link { color:#00a9ff; }
+  a:visited { color:#00a9ff; }
+  a:hover { background-color:#eeeeee; }
+  a.free:hover { background-color: transparent; }
+
+  pre
+  {
+    background-color: #f0f0f0;
+    border: 1px solid #000000;
+    padding: 1px 1em 1px 1em;
+  }
+
+  ul
+  {
+   color: #d18b55;
+   list-style: square;
+  }
+-->
+ </style>
+</head>
+<body>
+
+<table border="0" cellpadding="4">
+ <tr>
+   <td><img src="oemlogo.bmp" width="150" height="150" title="HP" alt="HP logo" /></td>
+   <td><h1>Windows XPE</h1>
+ </tr>
+</table>
+
+<h3>Version 1.0.7</h3>
+
+<p><b>Please Note</b>: This plugin will <b>ONLY</b> work with Windows XP SP2 and Windows Server 2003 SP1 and SP2, other Windows versions are not supported.</p>
+<p>Windows XPE is my attempt to make BartPE closer to Windows XP (XP + PE = XPE), it's &quot;self&quot; localized.<br />
+A lot of users contributed tests, code, suggestions and fixes, credits are in inf files.<br />
+<p><em>For license, changelog, bugs and todo look at the <a href="Readme.txt">Readme.txt</a> file</em></p>
+
+<p>To use PeNetCfg for the network configuration, please read instructions in z_xpe-custom.inf comments</p>
+
+<p>Windows XPE Plugin Components:</p>
+<ul>
+ <li>Windows XPE - Main plugin: contains explorer/internet explorer stuff</li>
+ <li>Windows XPE - Crypto module: https support to ie and secure certs</li>
+ <li>Windows XPE - Defaults: default values when non customized</li>
+ <li>Windows XPE - DirectX: DirectX Support</li>
+ <li>Windows XPE - Help System: .chm/.hlp files</li>
+ <li>Windows XPE - MMC: working modules are Disk Manager, Defrag, Hardware Manager, EventLog</li>
+ <li>Windows XPE - PnP &amp; Multimedia: audio/video/directX and media player - USB support</li>
+ <li>Windows XPE - Windows Media Player 9: Windows Media Player 9 and mplayer6 (WMP6)</li>
+ <li>Windows XPE - WMI: it needs some time to create Repository (disabled by default)</li>
+ <li>Windows XPE - Customizations: most of customizable and visual stuff, you should edit this file to change XPE look &amp; feel (rename it first to z_xpe-custom.inf)</li>
+</ul>
+
+<p><b>This plugin needs the ramdisk plugin or a writable %temp% to work.</b></p>
+<p><b>NOTE Important</b>: you should <b>DISABLE</b> <b>Startup Group</b> and <b>PELoader</b>/<b>Nu2Shell</b>
+   plugins if you run XPELogon as the shell (Default configuration, XPE already provides same features).</p>
+
+<p><b>WMI Notice</b>: The WMI plugin creates the WBEM Repository in %temp%\Repository (often a RAM disk), this process is very slow,
+you can speed it up by following this procedure: build an XPE with WMI, then copy the generated Repository directory from winpe %temp% drive into the XPE plugin directory,
+on the next xpe build you will already have Repository directory on the cdrom and xpe will not need to rebuild it at runtime.
+This will also reduce space used in %temp% drive by about 7MB, the computer name will be hardcoded in all the WMI stuff.</p>
+
+<p>In order to benefit of the PnP plugin you need InfCacheBuild that will remove CopyFiles sections from the .inf files, you can use my
+<a href="http://sourceforge.net/project/showfiles.php?group_id=126922&amp;package_id=140771">Build Scripts</a>.<br />
+Create following directories inside XPE plugin: <em>inf</em>, <em>drivers</em>, <em>system</em> and copy there needed files.<br />
+You may want to use <a href="http://sourceforge.net/project/showfiles.php?group_id=126922&amp;package_id=140752">AutoRamResizer</a>
+that resizes the RAM disk at runtime.</p>
+
+<h3>FAQ:</h3>
+<p><b>I have problems accessing Windows XP SP2 shares, how can I fix this?</b><br />
+Merge the included <a href="winpe-xpsp2-fix.reg">reg fix</a> to the target SP2 windows computer, then reboot it.<br />
+Please note this will enable so called <em>Null Sessions</em>, Microsoft has blocked this in SP2<br />
+for security reasons, I don't think this will secure your Windows since sessions with bogus<br />
+username/password will work as Null Sessions before SP2.</p>
+
+<p><b>Can I use Windows XPE with Windows 2003?</b><br />
+Of course, but since it's not my primary working platform, some stuff may not work as expected.<br />
+A quick note on Windows 2003 SP1/SP2, some file type names may not be properly displayed,
+they will appears like %FILE_FOLDER% or similar. The problem is in <em>hivecls.inf</em>, it has two [Strings] sections,
+and pebuilder (since 3.1.3) doesn't support multiple [Strings] sections.<br />
+To fix this, manually edit hivecls.inf file (in i386 of source directory), at the end of the file:</p>
+<pre>
+[Strings]
+ FilePathMSHTA="%SystemRoot%\system32\mshta.exe"
+</pre>
+<p>move <em>FilePathMSHTA</em> in the second [Strings] section, then remove the empty [Strings] section.</p>
+
+<p><b>Setup: XPE + nu2menu + nu2xpe + autoramresizer:</b><br />
+It's very simple just look into xpe-custom.inf and comment out the line (by prefacing it with a semicolon).
+<pre>
+0x1, "Setup", "CmdLine", "XPELogon.exe -r"
+</pre>
+<p>(the -r switch calls xpeinit -r that does RunOnceEx stuff)<br />
+Then enable the following plugins: nu2menu, nu2xpe, ramdisk, autoramresizer (bartpe network stuff if you want network support)</p>
+
+<p><b>My XPE build from an English Windows XP source has some dialogs localized in Slovenian, how can I fix it?</b><br />
+Some old versions of pebuilder have a bug that overwrites resource file with the slovenian one (the last in the file list), upgrade pebuilder<br />
+or uncomment the following entries from you z_xpe-custom.inf</p>
+<pre>
+[SourceDisksFiles.2600]
+; Fix for the "crazy copy" bug (old pebuilder bug)
+xpsp1res.dll=2,,4
+xpsp2res.dll=2,,4
+xpob2res.dll=2,,4
+</pre>
+
+<p><b>Can I use a different shell rather than Explorer.exe (e.g. nu2menu)?</b><br />
+Yes, there is a Registry key to change in xpe-custom.inf:<br />
+<code>
+;  XPELogon Shell to launch, default is Explorer.exe - If you want to use nu2menu as shell DISABLE Startup Group Plugin
+0x2,"Sherpya\XPELogon","Shell","%SystemDrive%\Programs\Nu2menu\nu2menu.exe"
+</code>
+</p>
+
+<p><b>How can I make a program to run on startup / add items to start menu?</b><br />
+You can add programs what will start before explorer.exe, or before explorer.exe but after main dll registration:
+simply add a shortcut in the Startup section of the Start Menu<br />
+To add a program that runs before explorer.exe, add a key in your Software.AddReg section, an example is Autoramresizer or penetcfg,
+for the run order look into xpe-custom.inf<br />
+You can also use xpeinit.exe as a "silent wrapper" like:</p>
+<pre>
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\600","004","||xpeinit.exe net.exe start EventLog"
+</pre>
+<p>This will run the command without showing the console window</p>
+<pre>
+The syntax is: <em>xpeinit [-s] [-f] [-m message] cmdline</em><br />
+where -f means force load also if control key is pressed and -m changes the title on XPELogon window while executing the command
+</pre>
+<p>Shortcut creation is made in the registry so you can create plugins usable with or without XPE.<br />
+Examples are in xpe-custom.inf, directory hierarchies are created automatically, you can also localize names.</p>
+<pre>
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-21761\@shell32.dll,-22019","%SystemRoot%\system32\calc.exe"
+</pre>
+<p>
+This line will add to the Start Menu/Program folder a shortcut to calc.exe, <b>@shell32.dll,-21761</b> becomes <b>Accessories</b> in your language
+and <b>@shell32.dll,-22019</b> becomes <b>Calculator</b> in your language.<br />
+The format is the same used by windows.<br />
+You can find string resources with resource hacker, just use @yourdll,-ordinal, ordinal is taken from showing the details with resource hacker prefixed by a - (minus)</p>
+
+<ul>
+ <li>&quot;Sherpya\XPEinit\StartMenu&quot; to place shortcuts on Start Menu Root</li>
+ <li>&quot;Sherpya\XPEinit\StartUp&quot; is used for StartUp (autorun programs after explorer.exe)</li>
+ <li>&quot;Sherpya\XPEinit\Desktop&quot; to place shortcut on desktop</li>
+ <li>&quot;Sherpya\XPEinit\Programs&quot; to place shortcuts on Start Menu Programs folder</li>
+ <li>&quot;Sherpya\XPEinit\QuickLaunch&quot; to place shortcuts on QuickLaunch</li>
+ <li>&quot;Sherpya\XPEinit\SendTo&quot; to place shortcuts on SendTo Menu</li>
+</ul>
+
+<p>for example:</p>
+<pre>
+0x2,"Sherpya\XPEinit\Programs","Internet\Mozilla FireFox","%SystemDrive%\Programs\Firefox\FireFox.exe"
+</pre>
+
+<p><b>Can I remove/use small arrow on shortcuts?</b><br />
+Yes. Blank and small arrow shortcuts icons are included in xpeinit.exe executable, look at xpe-custom.inf for details</p>
+
+<p><b>Can I run XPE from a Hard Disk?</b><br />
+Copy emptyregdb.dat from system32 to XPE plugin directory.
+Then use my <a href="http://sourceforge.net/project/showfiles.php?group_id=126922&amp;package_id=140771">Build Scripts</a> package
+(Note you must follow the docs to modify the original peinstall script).</p>
+
+<p><b>How to make USB storage media work?</b><br />
+Just plug in the USB storage and XPE should works as normal Windows. There is a drawback, you should add you device ID
+in as registry key or you will need to plug in and unplug the device to make it works.<br />
+You can look in z_xpe-custom.sample:</p>
+<pre>
+; Custom Usb Storage Ids
+; example: eXagerate Usb Key 256MB
+0x3,"ControlSet001\Control\UsbFlags\011701170100","osvc",00,00
+</pre>
+
+<p>This is for my USB storage key, after inserting the device the first time you will see what is the code to add in
+<em>ControlSet001\Control\UsbFlags</em> registry key:</p>
+<pre>
+0x3,"ControlSet001\Control\UsbFlags\XXXXYYYYZZZZ","osvc",00,00
+</pre>
+<p>XXXX is the vendor id, YYYY the product id and ZZZZ the revision number.<br />
+To avoid all of these problems, you can optionally patch XP SP2 <em>usbhub.sys</em> at <em>0xa8ab</em> and changing <em>7c 1c</em> in <em>90 90</em>,
+on w2k3 SP1 the offset is at <em>0xad29</em>, you will need some pe exe editor to update the pe checksum or you'll have problem using it.<br />
+A program that does this kind of operation is <a href="http://www.gorlani.com/publicprj/peks/peks.asp">peks</a>, but it doesn't seem to like w2k3 drivers.<br />
+I'm still looking for a cleaner solution.<br />
+None of this is necessary if the USB device is already plugged in at boot time.</p>
+
+<p><b>I've installed many plugins but I see nothing in my start menu</b><br />
+XPE by defaults only adds entries on start menu for plugins with XPE registry shortcut entries,
+anyway nu2parser converts entries of nu2menu to XPE registry entries. Because nu2parser seams no more updated,
+I've created a similar plugin, called nu2xpe, you can download it <a href="http://sourceforge.net/project/showfiles.php?group_id=126922&amp;package_id=140741">here</a>.
+</p>
+
+<p><b>Note</b>: Updated flash plugin files (also needed if you build w2k3) can be downloaded <a href="http://fpdownload.macromedia.com/get/shockwave/cabs/flash/swflash.cab">here</a><br />
+create flash directory inside the plugin directory and put in the flash OCX file extracted from the cab.</p>
+<p><b>Note</b>: If you are using HTA stuff you may need comdlg32.ocx, you can find it <a href="http://activex.microsoft.com/controls/vb6/comdlg32.cab">here</a>,
+uncompress the cab and put comdlg32.ocx in a directory called <em>system</em> into the XPE plugin main directory.</p>
+<p><b>Note</b>: autorun stuff will be handled using RunOnceEx and wrapping it with xpeinit, look in xpe-custom,
+XPE now uses bartpe.exe to initialize network (look at xpe-custom.inf)<br />
+Don't make name collision in RunOnceEx keys
+or the first key will be overwritten.
+</p>
+
+<p><b>Note</b>: I've received some requests about msado plugin incompabilities, the problem is the msado plugin creates a <em>Registration</em> directory,
+since Registration directory should be read-write and not readonly you should never create it on a read-only media or most of the dll registrations will fail.
+The user will be warned in this case, and I don't want to reply to users having this problem.<br />
+You can force it by adding -x to the command line, this will disable integrity checks.</p>
+
+<h3>Syntax of bundled utilites:</h3>
+
+<p><b>XPEinit.exe</b></p>
+<pre>
+no switches -&gt; command to execute without showing window (proxy mode), holding control key skips the execution
+
+-b sends a broadcast message to all apps to re-read the environment variables
+-l creates shortcuts
+-x fix all wmp path registry entries, it needs one argument, the wmp path, my wmp plugin uses %SystemRoot%\System32
+-y disables unsigned driver warning dialog box
+-p setup ie proxy from xpeinit registry keys
+-z setup refresh
+-h max refresh rate for -z
+-d runoncedel, deletes RunOnceEx keys between 400 and 600
+-s doesn't complain if the launched command fails
+-r processes RunOnceEx keys
+-f force, when running in proxy mode, executes the program, even if the control key is pressed
+-m message to display in the title of window when launching an application in proxy mode
+-w check for WBEM repository in %SystemRoot%\system32\wbem\Repository or build it in %temp%\Repository
+-9 disables 24 hour time limit by killing smss.exe and winlogon.exe (thx TheTruth)
+-6 reboot system (tells XPELogon to reboot the system)
+-0 shutdown system (tells XPELogon to shutdown the system)
+</pre>
+
+<p><b>Extended shortcut registry key syntax, the value field</b></p>
+<pre>
+program_to_launch|program_arguments|icon_file[,n] - n icon index in the icon file
+</pre>
+
+<p><b>XPELogon.exe</b></p>
+<pre>
+-w disable desktop switching (this implies winlogon resource limit)
+-n do not show the progressbar
+-d launch a command line prompt at startup (before any other action), this is used mainly for debug
+-r calls xpeinit -r that does RunOnceEx using internal routine
+-p profiles boot time, displays a message with msec elapsed during boot, the counter starts when XPELogon.exe is launched
+-s only used with -r causes xpeinit to not display an error message when an entry in RunOnceEx fails
+-e enables environment updates when receiving WM_SETTINGCHANGE broadcast messages, beware it can lead to xpelogon crashing
+-h set winlogon shell registry key according to shell selected within XPELogon
+-x skips Registration directory and shell32 locale mismatch integrity checks, use only if sure
+-5 password : generate md5 hash for the given password, the hash will be copied into the clipboard (please use passwords less than 16 characters long)
+</pre>
+
+<p>Microsoft Windows is a registered trademark of Microsoft Corporation, I'm not affiliated in any way with Microsoft Corporation.</p>
+<hr />
+<p>Copyright &copy; 2007 - Gianluigi Tiesi [<a href="mailto:sherpya@netfarm.it">Sherpya</a>]</p>
+</body>
+</html>

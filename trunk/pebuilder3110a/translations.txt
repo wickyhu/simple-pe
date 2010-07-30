@@ -1,0 +1,4 @@
+
+PE Builder v3.1.8 and newer versions support multi language. A few languages are 
+already delivered with PE Builder v3.1.9. For additional language files or 
+information about translating see: http://www.nu2.nu/pebuilder/lang/

@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<!--	
+	If you like this program, please support it by donating some money to Henk de Jong.
+	You can do this here at: http://www.nu2.nu/thanks/henk/
+
+	2004-12-01 (V0.349)
+	New:
+	Shift bitwise left
+	@Shl( ValueToShift, HowManyPositions )
+	
+	Shift bitwise right
+	@Shr( ValueToShift, HowManyPositions )
+
+	@And( ValueToAnd, AndWith )
+
+	Changed:
+	@Or()
+	@Not()
+	
+	Menu item sub node DISABLED is replaced by VISIBILITY. 
+	For backward compatibility the DISABLED node only works when the sub node VISIBILITY does not exist.
+	Do not use the sub node DISABLED anymore!!!!!!
+	VISIBILITY="0" -> Normal
+	VISIBILITY="1" -> Disabled
+	VISIBILITY="2" -> Hidden
+	
+	2004-09-08 (V0.348)
+	New:
+	Get OS version number
+	@GetOSVersion()
+	
+	Get service pack number
+	@GetServicePackNumber()
+
+	2004-07-28 (V0.347b)
+	Fixed SetMenuPos:
+	Menu position when changing screen size when using Parm0/1 R,L / T,B
+	
+	2004-07-26 (V0.347)
+	New:
+	Set menu posistion
+	@SetMenuPos( XPos, YPos  )
+	Parm 0 -> XPos = x position
+	          XPos can also be 'R' for right, 'L' for left or 'C' for center
+	Parm 1 -> YPos = y position
+	          YPos can also be 'T' for top, 'B' for bottom or 'C' for center
+	
+	Example: @SetMenuPos( '100','400' )
+	
+	Example: Set menu position to the top right corner
+	@SetMenuPos( 'R','T' )
+
+	2004-05-27 (V0.346)
+	New:
+	Get Registry Key
+	@GetRegKey( RootKey, SubKey, KeyName, KeyType ) 
+	RootKey can be one of the following:
+	'HKLM' -> HKEY_LOCAL_MACHINE
+	'HKCU' -> HKEY_CURRENT_USER
+	'HKCR' -> HKEY_CLASSES_ROOT
+	'HKU' -> HKEY_USERS
+	'HKCC' -> HKEY_CURRENT_CONFIG
+	
+	KeyType can be one of the following:
+	REG_SZ -> String
+	REG_EXPAND_SZ -> expandable string
+	REG_BINARY -> Binary
+	REG_DWORD -> DWORD
+	
+	Example: Get PE-Builder Version
+	@GetRegKey( 'HKLM', 'SYSTEM\CurrentControlSet\Control\PE Builder', 'Version', 'REG_SZ' )
+
+	2004-03-17 (V0.345)
+	New:
+	@Exit(), function for shutting down nu2menu
+	
+	Added command line tool nu2menumsg for sending messages to nu2menu.
+	Examples nu2menumsg:
+	- nu2menumsg @Exit()
+	  Exits nu2menu, in BartPE you can shut it down.
+	- nu2menumsg @Reload()
+	  Reloads nu2menu
+	- nu2menumsg @SetEnvVar( 'NUMENU',@GetFolderDialog('Select folder','c:\') )
+	  Sets environment variable NU2MENU with a selected folder name
+
+	2003-10-02 (V0.343)
+	New:
+	@ShowRunDialog(), show the default windows run dialog. (thanks to Cyberian)	
+	
+	2003-08-11 (V0.342)
+	Fixed: loading your own Go/Start button. 
+	
+	2003-08-08 (V0.341)
+	New:
+	You can load your own Go/Start button. Fileformat is BMP. The file must be in the same directory as the nu2menu executable.
+	The filename must be "nu2go.bmp"
+	
+	@Ver -> displays version of nu2menu
+	
+	2003-07-22
+	New:
+	@OsBuild -> returns OS build number
+
+	@Exec()	-> executes file
+		Parm 0 -> filename to execute
+		Parm 1 -> show parameter, see PARM attributes when CMD="RUN"
+	
+	@Or( '0','1' ) -> returns 1
+	@Or( '0','0' ) -> returns 0
+	@Or( '1','' ) -> returns 1
+	
+	Changed:
+	Behaviour of @Not function
+	@Not( '1' ) -> returns 0
+	@Not( 'piet' ) -> returns 0
+	@Not( '0' ) -> returns 1
+	@Not( ' ' ) ->return 1
+
+	2003-07-21
+	New:
+	@Reload() Reload menu as a function, returns nothing
+
+	Changed:
+	GetFolderDialog didn't show any folders under WinPE
+	If you do not want an error message when using @GetFolderDialog, you must create the following directory in the systemdrive:
+		documents and settings\default user\desktop
+
+
+	New:
+	2003-07-02
+	The following functions are implemented:	
+	@ChangeDir()		Change directory	
+	@FileExists()		Checks if file exists
+	@GetEnvVar()		Get environment variable
+	@GetFileDialog()	Get file dialog, returns file name
+	@GetFolderDialog()	Get folder dialog, returns folder name
+	@GetHostName()		Returns computer/host name	
+	@GetProgramDir()	Returns the nu2menu.exe's program directory, like "c:\nu2menu"
+	@GetProgramDrive()	Returns the nu2menu.exe's program drive, like "c:"
+	@GetTmpDir()		Returns the path of the directory designated for temporary files
+	@GetUserName()		Returns username
+	@GetVar()		Get global variable
+	@GetWinDir()		Returns the windows directory, like "c:\windows"
+	@Not()			Not, 0->1, 1->0
+	@Null()			Kind of a null device
+	@SetEnvVar()		Set environment variable
+	@SetVar()		Set global variable, so you can use anywhere else in the menu system
+	
+	For now, see nu2menu.xml file for sample implementations
+	All other command-line tokens with %...% are replaced with similar functions
+			
+	**** Command-line tokes and functions are CASE-SENSITIVE ****	
+	These command-line tokens will work in the menu item name and the FUNC-Node	
+	PARM attributes when CMD="RUN"	
+		Number values for "show":
+		0   hide             
+		1   normal           
+		2   showminimized    
+		3   maximize         
+		4   shownoactivate   
+		5   show             
+		6   minimize         
+		7   showminnoactive  
+		8   showna           
+		9   restore          
+		10  showdefault      
+		11  forceminimize
+		Default = 1
+		
+	<MITEM TYPE="ITEM" CMD="HIDEFROMTASKBAR">Hide from taskbar</MITEM>
+	<MITEM TYPE="ITEM" CMD="SHOWINTASKBAR">Show in taskbar</MITEM>
+	<MITEM TYPE="ITEM" CMD="RELOAD">Reload menu</MITEM>
+	
+	Shortcut ALT-M to open nu2menu
+	
+	Changed:
+	The way to start an application:
+	
+	Fixed:
+	2003-06-12
+	Removed uppercasing FUNC attribute
+	2003-06-11
+	Could not read a menu file bigger then 4096 bytes
+-->
+
+<NU2MENU ID="Nu2MenuSystem001"
+   AUTHOR="Henk de Jong"
+   DATE="2004-12-01, 21:12"
+   VERSION="V0.349"
+   COPYRIGHT="(c)2003-2004 Nu2 Productions"
+   REMARK="ALL NODES ARE CASE-SENSITIVE!!!!!">
+
+	<MENU ID="mainmenu">	   						
+		<MITEM TYPE="ITEM" DISABLED="@SetMenuPos( 'L','B' )@Not(@FileExists( @GetWinDir()\system32\notepad.exe ))" CMD="RUN" FUNC="@GetWinDir()\system32\notepad.exe" PARM="1">@GetWinDir()\system32\Notepad</MITEM>		
+		<MITEM TYPE="ITEM" VISIBILITY="@Shl(@Not(@FileExists( @GetWinDir()\system32\notepedd.exe )),'1')" CMD="RUN" FUNC="@GetWinDir()\system32\notepedd.exe" PARM="1">@GetWinDir()\system32\Notepedd</MITEM>
+		
+		<MITEM TYPE="SEPARATOR"></MITEM> 						
+		<MITEM TYPE="POPUP" MENUID="admin">Admin</MITEM>
+		<MITEM TYPE="SEPARATOR"></MITEM> 
+
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@Null( @ChangeDir('c:\temp')@ChangeDir('c:\tmps')@ChangeDir('c:\tmp') )cmd.exe">Cmd</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@Null( @SetEnvVar( 'NUMENU','c:\nu2menu') )cmd.exe">Cmd with set env</MITEM>		
+		<MITEM TYPE="ITEM">Windows dir: @GetWinDir()</MITEM>
+		<MITEM TYPE="ITEM">Program dir: @GetProgramDir()</MITEM>
+		<MITEM TYPE="ITEM">Program drive: @GetProgramDrive()</MITEM>
+		<MITEM TYPE="ITEM">User name: @GetUserName()</MITEM>
+		<MITEM TYPE="ITEM">Host name: @GetHostName()</MITEM>
+		<MITEM TYPE="ITEM">Tmp dir: @GetTmpDir()</MITEM>
+ 		<MITEM TYPE="ITEM">Print function name: @@GetWinDir()</MITEM>
+		<MITEM TYPE="ITEM">Get environment ComSpec: @GetEnvVar( 'ComSpec' )</MITEM>
+		<MITEM TYPE="ITEM">Change dir: @ChangeDir( 'c:\tmp' )</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@GetWinDir()\system32\notepad.exe @GetFileDialog( 'xml',' ','nu2menu file (.xml)|*.xml|All Files (*.*)|*.*||' )">Edit a menu file</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@Null( @ChangeDir(@GetFolderDialog( 'Select directory', 'c:\')))cmd.exe">Get folder with change dir</MITEM>
+		<MITEM TYPE="ITEM" DISABLED="@SetVar( 'PEBuilder', 'V2.0')">@GetVar( 'PEBuilder' )</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@Reload()">Reload as a function</MITEM>
+		<MITEM TYPE="ITEM">And demo: @And( '0','0' )@And( '1','0' )@And( '0','1' )@And( '1','1' )</MITEM>
+		<MITEM TYPE="ITEM">Or demo: @Or( '0','0' )@Or( '1','0' )@Or( '0','1' )@Or( 'piet','0' )@Or( '0','dag' )@Or( '',' ' )</MITEM>
+		<MITEM TYPE="ITEM">Not demo: @Not( '1' )@Not('piet')@Not('0')@Not(' ')</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@Null( @Exec( @GetWinDir()\system32\notepad.exe, 3 )@Exec( 'cmd.exe',1 ) )">Start notepad maximized and cmd.exe</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@ShowRunDialog()">Run...</MITEM>
+
+		<!--
+		<MITEM TYPE="ITEM">@Null( @Exec( 'cmd.exe',1)) This item is executed at startup / reload</MITEM>
+		-->
+		
+		<MITEM TYPE="ITEM" VISIBILITY="0">Example visibility 1 Normal</MITEM>		
+		<MITEM TYPE="ITEM" VISIBILITY="1">Example visibility 1 Disabled</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="2">Example visibility 1 Hidden</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="@Shl('1','1')">Example visibility with @@Shl('1','1')</MITEM>		
+
+		<!--		
+		<MITEM TYPE="ITEM" VISIBILITY="@SetItemVisibility('0')">Example visibility 2 Normal</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="@SetItemVisibility('1')">Example visibility 2 Disabled</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="@SetItemVisibility('2')">Example visibility 2 Hidden</MITEM>
+		-->
+		
+		<MITEM TYPE="ITEM">Example Shl('4','3') = @Shl('4','3')</MITEM>
+		<MITEM TYPE="ITEM">Example Shr('15','2') = @Shr('15','2')</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="1">OS Build number: @OsBuild()</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="1">OS Version number: @GetOSVersion()</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="1">Service Pack number: @GetServicePackNumber()</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="1">Nu2Menu version: @Ver()</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="1">Internet Explorer Search Assistent @GetRegKey( 'HKLM','Software\Microsoft\Internet Explorer\Search','SearchAssistant','REG_SZ')</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="1" CMD="">PE-Builder version: @GetRegKey( 'HKLM', 'SYSTEM\CurrentControlSet\Control\PE Builder', 'Version', 'REG_SZ' )</MITEM>
+
+		<MITEM TYPE="SEPARATOR"></MITEM>	
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@Exit()">Exit Nu2menu with a function</MITEM>	 		
+		<MITEM TYPE="SEPARATOR"></MITEM>	
+		<MITEM TYPE="ITEM" CMD="EXIT">Exit</MITEM>
+	</MENU>	
+
+	<MENU ID="admin">	
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@GetWinDir()\system32\notepad.exe @GetProgramDir()\nu2menu.xml">Edit menu</MITEM>
+		<MITEM TYPE="ITEM" CMD="HIDEFROMTASKBAR">Hide from taskbar</MITEM>
+		<MITEM TYPE="ITEM" CMD="SHOWINTASKBAR">Show in taskbar</MITEM>
+		<MITEM TYPE="ITEM" CMD="RELOAD">Reload menu</MITEM>		
+		<MITEM TYPE="ITEM">Henk</MITEM>		
+	</MENU>
+
+</NU2MENU>

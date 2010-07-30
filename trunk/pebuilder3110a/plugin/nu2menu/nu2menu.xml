@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<NU2MENU>
+	<MENU ID="Startmenu">
+		<MITEM TYPE="POPUP" DISABLED="@SetMenuPos( 'L','B' )0" MENUID="Programs">Programs</MITEM>
+		<MITEM TYPE="POPUP" MENUID="System">System</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@GetEnvVar('ComSpec')">Command Prompt (CMD)</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@ShowRunDialog()">Run...</MITEM>
+		<MITEM TYPE="POPUP" MENUID="About">About</MITEM>
+		<MITEM TYPE="SEPARATOR"></MITEM>
+		<MITEM TYPE="POPUP" VISIBILITY="@Shl(@Not(@FileExists(@GetWinDir()\setupldr.bin)),'1')" MENUID="Shutdown">Shut down</MITEM>
+		<MITEM TYPE="ITEM" VISIBILITY="@Shl(@FileExists(@GetWinDir()\setupldr.bin),'1')" CMD="EXIT">Exit</MITEM>
+	</MENU>
+
+	<MENU ID="Shutdown">
+		<MITEM TYPE="ITEM" VISIBILITY="@Shl(@FileExists(@GetWinDir()\system32\nu2shell.exe),'1')" CMD="EXIT">Restart</MITEM>
+	</MENU>
+
+	<MENU ID="Programs">
+		<MITEM TYPE="POPUP" MENUID="Accessories">Accessories</MITEM>
+		<MITEM TYPE="POPUP" MENUID="System Tools">System Tools</MITEM>
+	</MENU>
+	
+	<MENU ID="Accessories">
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\wordpad.exe))" CMD="RUN" FUNC="@GetWinDir()\system32\wordpad.exe">Wordpad</MITEM>
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\calc.exe))" CMD="RUN" FUNC="@GetWinDir()\system32\calc.exe">Calculator</MITEM>
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\mspaint.exe))" CMD="RUN" FUNC="@GetWinDir()\system32\mspaint.exe">Paint</MITEM>
+	</MENU>
+
+	<MENU ID="System Tools">
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\diskcopy.dll))" CMD="RUN" FUNC="@GetWinDir()\system32\RunDLL32.exe @GetWinDir()\system32\diskcopy.dll,DiskCopyRunDll">Disk copy (floppy)</MITEM>
+	</MENU>
+
+	<MENU ID="System">
+		<MITEM TYPE="POPUP" MENUID="Network">Network</MITEM>
+		<MITEM TYPE="POPUP" MENUID="Storage">Storage</MITEM>
+		<MITEM TYPE="POPUP" MENUID="Display">Display</MITEM>
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\main.cpl))" CMD="RUN" FUNC="rundll32.exe shell32.dll,Control_RunDLL @GetWinDir()\system32\main.cpl">Mouse</MITEM>
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\timedate.cpl))" CMD="RUN" FUNC="rundll32.exe shell32.dll,Control_RunDLL @GetWinDir()\system32\timedate.cpl">Date and Time</MITEM>
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\access.cpl))" CMD="RUN" FUNC="rundll32.exe shell32.dll,Control_RunDLL @GetWinDir()\system32\access.cpl">Accessibility Options</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="taskmgr.exe">Task Manager</MITEM>
+		<MITEM TYPE="POPUP" MENUID="Nu2Menu">Nu2Menu</MITEM>
+	</MENU>
+
+	<MENU ID="Network">
+	</MENU>
+
+	<MENU ID="Storage">
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetWinDir()\system32\diskpart.exe))" CMD="RUN" FUNC="diskpart.exe">DiskPart</MITEM>
+	</MENU>
+
+	<MENU ID="Display">
+		<MITEM TYPE="POPUP" DISABLED="@Not(@FileExists(@GetProgramDrive()\Programs\Nu2Menu\setres.exe))" MENUID="Resolution">Screen Resolution</MITEM>
+	</MENU>
+
+	<MENU ID="Resolution">
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@GetProgramDrive()\Programs\Nu2Menu\setres.exe h640 v480">640x480</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@GetProgramDrive()\Programs\Nu2Menu\setres.exe h800 v600">800x600</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@GetProgramDrive()\Programs\Nu2Menu\setres.exe h1024 v768">1024x768</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@GetProgramDrive()\Programs\Nu2Menu\setres.exe h1280 v1024">1280x1024</MITEM>
+	</MENU>
+
+	<MENU ID="Nu2Menu">
+		<MITEM TYPE="ITEM" CMD="RUN" FUNC="@GetWinDir()\system32\notepad.exe @GetProgramDrive()\Programs\Nu2Menu\nu2menu.xml">Edit menu</MITEM>
+		<MITEM TYPE="ITEM" CMD="RELOAD">Reload menu</MITEM>
+		<MITEM TYPE="SEPARATOR"></MITEM>
+		<MITEM TYPE="ITEM" CMD="HIDEFROMTASKBAR">Hide from taskbar</MITEM>
+		<MITEM TYPE="ITEM" CMD="SHOWINTASKBAR">Show in taskbar</MITEM>
+	</MENU>
+
+	<MENU ID="About">
+		<MITEM TYPE="ITEM">OS: Windows @GetOSVersion(), Service Pack @GetServicePackNumber(), Build @OsBuild()</MITEM>
+		<MITEM TYPE="ITEM">User: @GetUserName() on @GetHostName()</MITEM>
+		<MITEM TYPE="ITEM">Windows directory: @GetWinDir()</MITEM>
+		<MITEM TYPE="ITEM">Temp dir: @GetTmpDir()</MITEM>
+		<MITEM TYPE="ITEM">Get environment ComSpec: @GetEnvVar('ComSpec')</MITEM>
+		<MITEM TYPE="SEPARATOR"></MITEM>
+		<MITEM TYPE="ITEM">PE-Builder version: @GetRegKey( 'HKLM', 'SYSTEM\CurrentControlSet\Control\PE Builder', 'Version', 'REG_SZ' )</MITEM>
+		<MITEM TYPE="ITEM">BartPE and PE Builder are Copyright (c) 2002-2004 Bart Lagerweij.</MITEM>
+		<MITEM TYPE="ITEM">http://www.nu2.nu/pebuilder/</MITEM>
+		<MITEM TYPE="SEPARATOR"></MITEM>
+		<MITEM TYPE="ITEM">Nu2Menu version: @Ver()</MITEM>
+		<MITEM TYPE="ITEM">Program directory: @GetProgramDir()</MITEM>
+		<MITEM TYPE="ITEM">Program drive: @GetProgramDrive()</MITEM>
+	</MENU>
+</NU2MENU>

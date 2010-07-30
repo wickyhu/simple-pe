@@ -1,0 +1,79 @@
+; ramdisk.inf
+; PE Builder v3 plug-in INF
+; Created by Bart Lagerweij
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="RAMDisk [Nu2 Productions]"
+Enable=1
+Help="ramdisk.htm"
+
+[SourceDisksFiles]
+ramdriv.sys=4,,1
+
+[Strings]
+RamDiskDriveLetter="B:"
+;  Approximate
+;    Ramdisk             Hex
+;     Size              Value
+;    32 megs.          0x02000000 (default)
+;    64 megs.          0x04000000
+;    96 megs.          0x06000000
+;    128 megs.         0x08000000
+RamDiskDiskSize="0x02000000"
+
+[Append]
+nu2menu.xml, ramdmenu.xml
+
+[SetupReg.AddReg]
+; Add tmp and temp environment variable...
+; 26-9-2003 14:52 Bart: Removed ending '\'
+0x2, "ControlSet001\Control\Session Manager\Environment", "temp", "%RamDiskDriveLetter%"
+0x2, "ControlSet001\Control\Session Manager\Environment", "tmp", "%RamDiskDriveLetter%"
+; Add ramdrv environment variable...
+0x2, "ControlSet001\Control\Session Manager\Environment", "ramdrv", "%RamDiskDriveLetter%"
+;
+0x1,"ControlSet001\Control\Class\{FFA1C341-4539-11D3-B88D-00C04FAD5172}","Class","RamDisk"
+0x1,"ControlSet001\Control\Class\{FFA1C341-4539-11D3-B88D-00C04FAD5172}","","RAM Disk"
+0x1,"ControlSet001\Control\Class\{FFA1C341-4539-11D3-B88D-00C04FAD5172}\0001","ProviderName","Nu2 Productions"
+0x1,"ControlSet001\Control\Class\{FFA1C341-4539-11D3-B88D-00C04FAD5172}\0001","MatchingDeviceId","ramdriv"
+0x1,"ControlSet001\Control\Class\{FFA1C341-4539-11D3-B88D-00C04FAD5172}\0001","DriverDesc","Ramdisk"
+0x4,"ControlSet001\Services\Ramdriv","Type",0x00000001
+0x4,"ControlSet001\Services\Ramdriv","Start",0x00000003
+0x4,"ControlSet001\Services\Ramdriv","ErrorControl",0x00000001
+0x1,"ControlSet001\Services\Ramdriv","DisplayName","Ramdisk"
+0x1,"ControlSet001\Services\Ramdriv","ImagePath","system32\drivers\ramdriv.sys"
+
+0x4,"ControlSet001\Services\Ramdriv\Parameters","BreakOnEntry",0x00000000
+0x4,"ControlSet001\Services\Ramdriv\Parameters","DebugLevel",0x00000005
+0x4,"ControlSet001\Services\Ramdriv\Parameters","DebugComp",0xffffffff
+
+0x4,"ControlSet001\Services\Ramdriv\Parameters","DiskSize",%RamDiskDiskSize%
+0x1,"ControlSet001\Services\Ramdriv\Parameters","DriveLetter","%RamDiskDriveLetter%"
+
+0x4,"ControlSet001\Services\Ramdriv\Parameters","RootDirEntries",0x00000200
+0x4,"ControlSet001\Services\Ramdriv\Parameters","SectorsPerCluster",0x00000002
+
+0x1,"ControlSet001\Services\Ramdriv\Enum","0","Root\UNKNOWN\9999"
+0x4,"ControlSet001\Services\Ramdriv\Enum","Count",0x00000001
+0x4,"ControlSet001\Services\Ramdriv\Enum","NextInstance",0x00000001
+
+0x4,"ControlSet001\Services\Ramdriv\Parameters","ExcludedNCACHPoolBanks",0x00000001
+0x4,"ControlSet001\Services\Ramdriv\Parameters","ExcludedNPAGEPoolBanks",0x00000000
+
+0x1,"ControlSet001\Enum\Root\UNKNOWN\9999","ClassGUID","{FFA1C341-4539-11D3-B88D-00C04FAD5172}"
+0x1,"ControlSet001\Enum\Root\UNKNOWN\9999","Class","RamDisk"
+0x4,"ControlSet001\Enum\Root\UNKNOWN\9999","ConfigFlags",0x00000004
+0x1,"ControlSet001\Enum\Root\UNKNOWN\9999","Mfg","Nu2 Productions"
+;0x7,"ControlSet001\Enum\Root\UNKNOWN\9999","HardwareID",72,61,6d,64,72,69,76,00,00
+0x7,"ControlSet001\Enum\Root\UNKNOWN\9999","HardwareID","ramdriv"
+0x1,"ControlSet001\Enum\Root\UNKNOWN\9999","Service","Ramdriv"
+0x1,"ControlSet001\Enum\Root\UNKNOWN\9999","DeviceDesc","Ramdisk"
+0x4,"ControlSet001\Enum\Root\UNKNOWN\9999","Capabilities",0x00000000
+0x1,"ControlSet001\Enum\Root\UNKNOWN\9999","Driver","{FFA1C341-4539-11D3-B88D-00C04FAD5172}\0001"
+
+0x4,"ControlSet001\Enum\Root\UNKNOWN\9999\Control","DisableCount",0x00000000
+0x1,"ControlSet001\Enum\Root\UNKNOWN\9999\Control","ActiveService","Ramdriv"
+0x7,"ControlSet001\Enum\Root\UNKNOWN\9999\Control","FilteredConfigVector",00,00,00,00,00,00,00,00,00,00,00,00

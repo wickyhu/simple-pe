@@ -1,0 +1,102 @@
+<html>
+<head></head>
+<body>
+<i>PE Builder v3 help</i>
+<hr>
+<a href="index.htm">Table of contents</a><br>
+<h1>Adding drivers</h1>
+Adding storage and network drivers to BartPE is very easy.
+If you add drivers to the <tt>drivers</tt> folder pebuilder will include them automatically.<br>
+<b>Drivers other than storage and network are currently not supported!</b><br>
+<br>
+You need to copy the Windows XP or Windows 2003 driver files in to the correct location yourself.
+<br>
+Here is where to store drivers:<br>
+<table border="1">
+<tr><th>Type of driver</td><th>location</td></tr>
+<tr><td>Storage drivers</td><td>drivers\SCSIAdapter</td></tr>
+<tr><td>Network drivers</td><td>drivers\Net</td></tr>
+</table>
+<br>
+Example 1:<br>
+Assume you are adding a network driver from broadcom, the NetXtreme BCM57xx.
+That driver comes as a .zip file called <tt>win_xp_2k3_32-7.86.zip</tt>.
+Now you create a new folder &quot;b57xp32&quot; (you can take any name you 
+want) in <tt>drivers\Net</tt> to hold this driver.
+Extract the driver .zip file in this new folder and you are done.<br>
+<br>
+This is how the drivers folder should look like:<br>
+<pre>
+drivers\Net
+drivers\Net\b57xp32
+drivers\Net\b57xp32\win_xp_2k3_32
+drivers\Net\b57xp32\win_xp_2k3_32\b57win32.cat
+drivers\Net\b57xp32\win_xp_2k3_32\b57win32.inf
+drivers\Net\b57xp32\win_xp_2k3_32\b57xp32.sys
+</pre>
+<br>
+Storage drivers are added by pebuilder using their <tt>txtsetup.oem</tt> file.
+As a txtsetup.oem file can hold several drivers, you should edit this file and 
+exclude the drivers you don't want to use from the <tt>[SCSI]</tt> section.<br>
+<br>
+Example 2:<br>
+Assume you are adding a storage driver from adaptec, the Ultra320.
+The driver comes as a self-extractable .exe file called <tt>u320_fms300s4_win.exe</tt>.
+Now you create a new folder &quot;adpu320&quot; (you can take any name you 
+want) in <tt>drivers\SCSIAdapter</tt> to hold this driver.
+Extract the drivers from the self-extractable .exe file in this new folder.
+Open the file <tt>drivers\SCSIAdapter\adpu320\TXTSETUP.OEM</tt> in a text 
+editor and search for the [scsi] section, exclude drivers that are 
+<b>not</b> for Windows XP/2003, for example Windows NT 4.0 or Windows 2000.
+Also exclude drivers that are <b>not</b> compatible with your processor 
+architecture.<br>
+<br>
+Here is a piece of the txtsetup.oem file:<br>
+<pre>
+...
+[scsi]
+#a79xxNT40 = "Adaptec Ultra320 SCSI Cards (Win NT 4.0)"
+#a79xxNT50 = "Adaptec Ultra320 SCSI Cards (Win 2000)"
+a79xxNTIA32 = "Adaptec Ultra320 SCSI Cards (Win XP/Server 2003 IA-32)"
+#a79xxNTIA64 = "Adaptec Ultra320 SCSI Cards (Win XP/Server 2003 IA-64)"
+#a79xxNTAMD64 = "Adaptec Ultra320 SCSI Cards (Win Server 2003 AMD64)"
+...
+</pre>
+Notice that the NT 4.0, Win 2000, IA-64 and AMD64 drivers are excluded by the 
+comment (#) sign.<br>
+<br>
+This is how the drivers folder should look like:<br>
+<pre>
+drivers\SCSIAdapter
+drivers\SCSIAdapter\adpu320
+drivers\SCSIAdapter\Create a folder here and put the storage drivers in it
+drivers\SCSIAdapter\adpu320\MAXIO64K.REG
+drivers\SCSIAdapter\adpu320\README.TXT
+drivers\SCSIAdapter\adpu320\TXTSETUP.OEM
+drivers\SCSIAdapter\adpu320\U320DSK1
+drivers\SCSIAdapter\adpu320\WIN32BIT
+drivers\SCSIAdapter\adpu320\WIN64BIT
+drivers\SCSIAdapter\adpu320\WINNT40
+drivers\SCSIAdapter\adpu320\WIN32BIT\ADPU320.CAT
+drivers\SCSIAdapter\adpu320\WIN32BIT\ADPU320.INF
+drivers\SCSIAdapter\adpu320\WIN32BIT\ADPU320.SYS
+drivers\SCSIAdapter\adpu320\WIN64BIT\AMD64
+drivers\SCSIAdapter\adpu320\WIN64BIT\INTEL64
+drivers\SCSIAdapter\adpu320\WIN64BIT\AMD64\ADPU320.CAT
+drivers\SCSIAdapter\adpu320\WIN64BIT\AMD64\ADPU320.INF
+drivers\SCSIAdapter\adpu320\WIN64BIT\AMD64\ADPU320.SYS
+drivers\SCSIAdapter\adpu320\WIN64BIT\INTEL64\ADPU320.CAT
+drivers\SCSIAdapter\adpu320\WIN64BIT\INTEL64\ADPU320.INF
+drivers\SCSIAdapter\adpu320\WIN64BIT\INTEL64\ADPU320.SYS
+drivers\SCSIAdapter\adpu320\WINNT40\ADPU320.SYS
+drivers\SCSIAdapter\adpu320\WINNT40\HOTP320.REG
+drivers\SCSIAdapter\adpu320\WINNT40\OEMSETUP.INF
+</pre>
+You could remove the NT4 and 64bit folders, but it is not really necessary, 
+because the files are not copied by PE Builder.<br>
+<br>
+<a href="index.htm">Table of contents</a><br>
+<hr>
+<i>PE Builder Copyright (c) 2002-2006 Bart Lagerweij. All rights reserved.</i><br>
+</body>
+</html>

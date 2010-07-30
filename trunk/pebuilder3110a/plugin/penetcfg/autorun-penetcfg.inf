@@ -1,0 +1,11 @@
+; PE Builder v3 plug-in INF file
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="PENETCFG: Automatically start PE Network configurator"
+Enable=1
+
+[SourceDisksFiles]
+autorun0penetcfg.cmd=2,,1

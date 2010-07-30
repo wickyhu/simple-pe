@@ -1,0 +1,172 @@
+; UltraISO.inf
+; PE Builder v3 plugin INF file for UltraISO v8.6.6.2180
+; Plugin by Xtreme
+; Xtremesony_xp@yahoo.com
+; Made For Windows Xpire Rd CD
+; © Windows Xpire Tech Center
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="(Xtreme) UltraISO v8.6.6.2180  -Press CONFIG to Enable-"
+Enable=1
+Help=Help.htm
+config=Get_Files.cmd
+
+[WinntDirectories]
+a="Programs\UltraISO",2
+b="Programs\UltraISO\drivers",2
+c="Programs\UltraISO\lang",2
+
+[SourceDisksFiles]
+files\isoshell.dll=a,,1
+files\ultraiso.chm=a,,1
+files\UltraISO.exe=a,,1
+files\ultraiso.ico=a,,1
+files\ISODrive.sys=b,,1
+files\ISODrv64.sys=b,,1
+files\IsoCmd.exe=b,,1
+
+; Languge file (feel free to remove the language file(s) that you don't wanna)
+files\lang_de.dll=c
+files\lang_fr.dll=c
+files\lang_it.dll=c
+files\lang_es.dll=c
+files\lang_pt.dll=c
+files\lang_nl.dll=c
+files\lang_se.dll=c
+files\lang_pl.dll=c
+files\lang_cz.dll=c
+files\lang_hu.dll=c
+files\lang_ru.dll=c
+files\lang_ua.dll=c
+files\lang_bg.dll=c
+files\lang_tr.dll=c
+files\lang_kr.dll=c
+files\lang_gr.dll=c
+files\lang_yu.dll=c
+files\lang_by.dll=c
+files\lang_he.dll=c
+files\lang_br.dll=c
+files\lang_dk.dll=c
+files\lang_no.dll=c
+files\lang_lv.dll=c
+files\lang_ar.dll=c
+files\lang_si.dll=c
+files\lang_cn.dll=c
+files\lang_tw.dll=c
+files\lang_et.dll=c
+files\lang_sk.dll=c
+files\lang_ct.dll=c
+files\lang_fi.dll=c
+files\lang_mk.dll=c
+files\lang_hr.dll=c
+files\lang_ro.dll=c
+files\lang_lt.dll=c
+files\lang_sr.dll=c
+files\lang_ir.dll=c
+files\lang_jp.dll=c
+
+[Software.AddReg]
+0x2, "Sherpya\XPEinit\Programs","UltraISO\UltraISO","%SystemDrive%\Programs\UltraISO\UltraISO.exe"
+0x2, "Sherpya\XPEinit\Programs","UltraISO\Help","%SystemDrive%\Programs\UltraISO\ultraiso.chm"
+0x1, "Classes\.bin","","binimage"
+0x1, "Classes\.iso","","UltraISO"
+0x1, "Classes\.isz","","UltraISO"
+0x0, "Classes\CLSID\{AD392E40-428C-459F-961E-9B147782D099}\InprocServer32"
+0x0, "Classes\CLSID\{AD392E40-428C-459F-961E-9B147782D099}\ProgID"
+0x0, "Classes\CLSID\{AD392E40-428C-459F-961E-9B147782D099}\Programmable"
+0x0, "Classes\CLSID\{AD392E40-428C-459F-961E-9B147782D099}\TypeLib"
+0x1, "Classes\CLSID\{AD392E40-428C-459F-961E-9B147782D099}\VersionIndependentProgID","","ISOShell.UIContextMenu"
+0x1, "Classes\CLSID\{AD392E40-428C-459F-961E-9B147782D099}\TypeLib","","{1CD46142-F3D3-4E46-87BA-7CC019142F9D}"
+0x1, "Classes\CLSID\{AD392E40-428C-459F-961E-9B147782D099}\ProgID","","ISOShell.UIContextMenu.1"
+0x1, "Classes\CLSID\{AD392E40-428C-459F-961E-9B147782D099}\InprocServer32","","X:\Programs\UltraISO\isoshell.dll"
+0x1, "Classes\CLSID\{AD392E40-428C-459F-961E-9B147782D099}\InprocServer32","ThreadingModel","Apartment"
+0x1, "Classes\CLSID\{AD392E40-428C-459F-961E-9B147782D099}","","UIContextMenu Class"
+0x1, "Classes\Directory\shellex\ContextMenuHandlers\UltraISO","","{AD392E40-428C-459F-961E-9B147782D099}"
+0x1, "Classes\Drive\shellex\ContextMenuHandlers\UltraISO","","{AD392E40-428C-459F-961E-9B147782D099}"
+0x1, "Classes\Folder\shellex\ContextMenuHandlers\UltraISO","","{AD392E40-428C-459F-961E-9B147782D099}"
+0x0, "Classes\Interface\{9653DE66-C5E0-4AEE-ADE5-0197BA68CE2B}\ProxyStubClsid"
+0x0, "Classes\Interface\{9653DE66-C5E0-4AEE-ADE5-0197BA68CE2B}\ProxyStubClsid32"
+0x1, "Classes\Interface\{9653DE66-C5E0-4AEE-ADE5-0197BA68CE2B}\TypeLib","","{1CD46142-F3D3-4E46-87BA-7CC019142F9D}"
+0x1, "Classes\Interface\{9653DE66-C5E0-4AEE-ADE5-0197BA68CE2B}\TypeLib","Version","1.0"
+0x1, "Classes\Interface\{9653DE66-C5E0-4AEE-ADE5-0197BA68CE2B}\ProxyStubClsid32","","{00020424-0000-0000-C000-000000000046}"
+0x1, "Classes\Interface\{9653DE66-C5E0-4AEE-ADE5-0197BA68CE2B}\ProxyStubClsid","","{00020424-0000-0000-C000-000000000046}"
+0x1, "Classes\Interface\{9653DE66-C5E0-4AEE-ADE5-0197BA68CE2B}","","IUIContextMenu"
+0x1, "Classes\TypeLib\{1CD46142-F3D3-4E46-87BA-7CC019142F9D}\1.0\0\win32","","X:\Programs\UltraISO\isoshell.dll"
+0x0, "Classes\TypeLib\{1CD46142-F3D3-4E46-87BA-7CC019142F9D}\1.0\FLAGS"
+0x1, "Classes\TypeLib\{1CD46142-F3D3-4E46-87BA-7CC019142F9D}\1.0\HELPDIR","","X:\Programs\UltraISO\"
+0x1, "Classes\TypeLib\{1CD46142-F3D3-4E46-87BA-7CC019142F9D}\1.0\FLAGS","","0"
+0x1, "Classes\TypeLib\{1CD46142-F3D3-4E46-87BA-7CC019142F9D}\1.0","","ISOShell 1.0 Type Library"
+0x0, "Classes\binimage\DefaultIcon"
+0x1, "Classes\binimage","","BIN File"
+0x1, "Classes\binimage\shell\Convert to ISO\command","","""X:\Programs\UltraISO\UltraISO.exe"" -bin2iso ""%1"""
+0x1, "Classes\binimage\shell\open\command","","""X:\Programs\UltraISO\UltraISO.exe"" ""%1"""
+0x1, "Classes\binimage\shellex\ContextMenuHandlers\ISOShell","","{AD392E40-428C-459F-961E-9B147782D099}"
+0x1, "Classes\binimage\DefaultIcon","","""X:\Programs\UltraISO\UltraISO.exe"",0"
+0x0, "Classes\ISOShell.UIContextMenu\CLSID"
+0x1, "Classes\ISOShell.UIContextMenu\CurVer","","ISOShell.UIContextMenu.1"
+0x1, "Classes\ISOShell.UIContextMenu\CLSID","","{AD392E40-428C-459F-961E-9B147782D099}"
+0x1, "Classes\ISOShell.UIContextMenu","","UIContextMenu Class"
+0x1, "Classes\ISOShell.UIContextMenu.1\CLSID","","{AD392E40-428C-459F-961E-9B147782D099}"
+0x1, "Classes\ISOShell.UIContextMenu.1","","UIContextMenu Class"
+0x0, "Classes\UltraISO\DefaultIcon"
+0x1, "Classes\UltraISO","","UltraISO File"
+0x1, "Classes\UltraISO\shell\open\command","","""X:\Programs\UltraISO\UltraISO.exe"" ""%1"""
+0x1, "Classes\UltraISO\shell\open","","Open with &UltraISO"
+0x1, "Classes\UltraISO\shellex\ContextMenuHandlers\ISOShell","","{AD392E40-428C-459F-961E-9B147782D099}"
+0x1, "Classes\UltraISO\DefaultIcon","","""X:\Programs\UltraISO\UltraISO.exe"",0"
+0x1, "Microsoft\Windows\CurrentVersion\Shell Extensions\Approved","{AD392E40-428C-459F-961E-9B147782D099}","UltraISO"
+0x1, "EasyBoot Systems\UltraISO\5.0","","X:\Programs\UltraISO"
+0x1, "EasyBoot Systems\UltraISO\5.0","Shared","X:\Programs\Common Files\EZB Systems"
+
+[SetupReg.AddReg]
+0x4, "ControlSet001\Enum\Root\LEGACY_ISODRIVE\0000\Control","*NewlyCreated*", 0x00000000
+0x1, "ControlSet001\Enum\Root\LEGACY_ISODRIVE\0000\Control","ActiveService","ISODrive"
+0x1, "ControlSet001\Enum\Root\LEGACY_ISODRIVE\0000","Service","ISODrive"
+0x4, "ControlSet001\Enum\Root\LEGACY_ISODRIVE\0000","Legacy", 0x00000001
+0x4, "ControlSet001\Enum\Root\LEGACY_ISODRIVE\0000","ConfigFlags", 0x00000000
+0x1, "ControlSet001\Enum\Root\LEGACY_ISODRIVE\0000","Class","LegacyDriver"
+0x1, "ControlSet001\Enum\Root\LEGACY_ISODRIVE\0000","ClassGUID","{8ECC055D-047F-11D1-A537-0000F8753ED1}"
+0x1, "ControlSet001\Enum\Root\LEGACY_ISODRIVE\0000","DeviceDesc","ISO DVD/CD-ROM Device Driver"
+0x4, "ControlSet001\Enum\Root\LEGACY_ISODRIVE","NextInstance", 0x00000001
+0x0, "ControlSet001\Services\ISODrive\Parameters"
+0x0, "ControlSet001\Services\ISODrive\Security"
+0x1, "ControlSet001\Services\ISODrive\Enum","0","Root\LEGACY_ISODRIVE\0000"
+0x4, "ControlSet001\Services\ISODrive\Enum","Count", 0x00000001
+0x4, "ControlSet001\Services\ISODrive\Enum","NextInstance", 0x00000001
+0x3, "ControlSet001\Services\ISODrive\Security","Security",\
+  01,00,14,80,90,00,00,00,9C,00,00,00,14,00,00,00,30,00,00,00,02,\
+  00,1C,00,01,00,00,00,02,80,14,00,FF,01,0F,00,01,01,00,00,00,00,00,01,00,00,00,\
+  00,02,00,60,00,04,00,00,00,00,00,14,00,FD,01,02,00,01,01,00,00,00,00,00,05,12,\
+  00,00,00,00,00,18,00,FF,01,0F,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,\
+  00,00,00,14,00,8D,01,02,00,01,01,00,00,00,00,00,05,0B,00,00,00,00,00,18,00,FD,\
+  01,02,00,01,02,00,00,00,00,00,05,20,00,00,00,23,02,00,00,01,01,00,00,00,00,00,\
+  05,12,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00
+0x1, "ControlSet001\Services\ISODrive\Parameters","ExcludeDrives","CDEFGX"
+0x4, "ControlSet001\Services\ISODrive","Type", 0x00000002
+0x4, "ControlSet001\Services\ISODrive","Start", 0x00000001
+0x4, "ControlSet001\Services\ISODrive","ErrorControl", 0x00000000
+0x1, "ControlSet001\Services\ISODrive","ImagePath","\??\X:\Programs\UltraISO\drivers\ISODrive.sys"
+0x1, "ControlSet001\Services\ISODrive","DisplayName","ISO DVD/CD-ROM Device Driver"
+
+[Default.AddReg]
+0x1, "Software\Microsoft\Windows\CurrentVersion\Explorer\MountPoints2\H","BaseClass","Drive"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","","X:\Programs\UltraISO"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","Shared","X:\Programs\Common Files\EZB Systems"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","XPBurn","0"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","ISOFolder","B:\My ISO Files"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","UseSkins","1"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","SoundEffect","1"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","Language","1033"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","Install","1"
+0x1, "Software\Microsoft\Windows\CurrentVersion\Explorer\MountPoints2\H","BaseClass","Drive"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","","X:\Programs\UltraISO"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","Shared","X:\Programs\Common Files\EZB Systems"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","XPBurn","0"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","ISOFolder","B:\My ISO Files"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","UseSkins","1"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","SoundEffect","1"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","Language","1033"
+0x1, "Software\EasyBoot Systems\UltraISO\5.0","Install","1"

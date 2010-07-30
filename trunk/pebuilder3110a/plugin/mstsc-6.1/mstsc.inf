@@ -1,0 +1,31 @@
+; mstsc.inf
+; PE Builder v3 plug-in INF file for Remote Desktop Client 6.1
+
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="Remote Desktop Client 6.1"
+Enable=1
+
+[WinntDirectories]
+a="System32\en-US",1
+
+[SourceDisksFiles]
+wickyhome.rdp=2
+mstsc.exe=2
+mstscax.dll=2
+aaclient.dll=2
+rhttpaa.dll=2
+tsgqec.dll=2
+en-US\mstsc.exe.mui=a
+en-US\mstscax.dll.mui=a
+en-US\aaclient.dll.mui=a
+
+[Software.AddReg]
+0x2,"Sherpya\XPEinit\Desktop","Remote Desktop","%SystemRoot%\System32\mstsc.exe"
+0x2,"Sherpya\XPEinit\Desktop","Connect to Home","%SystemRoot%\System32\mstsc.exe|%SystemRoot%\System32\wickyhome.rdp"
+
+[Append]
+nu2menu.xml, mstsc_nu2menu.xml

@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters]
+"NullSessionPipes"=hex(7):43,00,4f,00,4d,00,4e,00,41,00,50,00,00,00,43,00,4f,\
+  00,4d,00,4e,00,4f,00,44,00,45,00,00,00,53,00,51,00,4c,00,5c,00,51,00,55,00,\
+  45,00,52,00,59,00,00,00,53,00,50,00,4f,00,4f,00,4c,00,53,00,53,00,00,00,4c,\
+  00,4c,00,53,00,52,00,50,00,43,00,00,00,62,00,72,00,6f,00,77,00,73,00,65,00,\
+  72,00,00,00,73,00,72,00,76,00,73,00,76,00,63,00,00,00,00,00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa]
+"RestrictAnonymous"=dword:00000000

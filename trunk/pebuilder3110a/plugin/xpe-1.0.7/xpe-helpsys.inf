@@ -1,0 +1,1348 @@
+; PE Builder v3 plug-in INF file
+; Created by Sherpya
+; requires pebuilder >= 3.0.20
+
+; 6.15.45	HELPCTR.EXE:1832	OPEN	X:\i386\system32\HelpServiceTypeLib.tlb	FILE NOT FOUND	Options: Open  Access: All
+
+; Where are resources?
+; dir -> PCHealth\HelpCtr\System\images
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="[Sherpya] Windows XPE: Help System v1.0.7"
+Help="XPE.htm"
+Enable=1
+
+[Update]
+id=xpe-helpsys
+parent=xpe
+url=http://winpe.sourceforge.net/plugin_check.php
+Version=1.0.7
+
+[WinntDirectories]
+a=PCHealth\HelpCtr\Config
+b=PCHealth\HelpCtr\System
+c=PCHealth\HelpCtr\System\blurbs
+d=PCHealth\HelpCtr\System\css
+e=PCHealth\HelpCtr\System\dialogs
+f=PCHealth\HelpCtr\System\errors
+g=PCHealth\HelpCtr\System\panels
+h=PCHealth\HelpCtr\System\panels\subpanels
+i=PCHealth\HelpCtr\System\scripts
+j=PCHealth\UploadLB\Binaries
+
+; Backward compatibilty
+;139=PCHealth\HelpCtr\Binaries,1
+k=PCHealth\HelpCtr\Binaries
+
+[SourceDisksFiles]
+; WinHelp
+hhctrlui.dll=2
+hhsetup.dll=2
+winhelp.exe=1
+helpctr.exe=2
+winhlp32.exe=2
+
+winhlp32.hlp=21
+winhlp32.cnt=21
+windows.hlp=21,,4
+windows.cnt=21,,4
+
+PCHealth.inf=20
+
+hh.exe=2
+hhctrl.ocx=2
+itss.dll=2
+itircl.dll=2
+ftsrch.dll=2
+shimeng.dll=2
+mslbui.dll=2
+
+bnts.dll=2
+sniffpol.dll=2
+sstub.dll=2
+tshoot.dll=2
+RCBdyctl.dll=2
+
+atrace.dll=2
+racpldlg.dll=2
+safrcdlg.dll=2
+safrdm.dll=2
+safrslv.dll=2
+
+; Binaries in  CHealth\HelpCtr\Binaries
+HCAppRes.dll=k
+HelpCtr.exe=k
+HelpHost.exe=k
+HelpSvc.exe=k
+brpinfo.dll=k
+msconfig.exe=k
+msinfo.dll=k
+pchshell.dll=k
+pchsvc.dll=k
+
+; PCHealth\UploadLB\Binaries
+uploadm.exe=j
+
+; -> Help
+; not on xp home
+system.chm=21,,4
+blurbs.chm=b
+
+; Resources
+; PCHealth\HelpCtr\System
+;Headlines.htm=b
+;HelpCtr.mmf=b
+;HomePage__DESKTOP.htm=b
+;HomePage__SERVER.htm=b
+
+; PCHealth\HelpCtr\System\blurbs
+;about_support.htm=c
+;Favorites.htm=c
+;ftshelp.htm=c
+;History.htm=c
+;Index.htm=c
+;isupport.htm=c
+;keywordhelp.htm=c
+;options.htm=c
+;searchblurb.htm=c
+;searchtips.htm=c
+;tools.htm=c
+
+; PCHealth\HelpCtr\System\css
+;Behaviors.css=d
+;Layout.css=d
+
+; PCHealth\HelpCtr\System\dialogs
+;DlgLib.js=e
+;Print.dlg=e
+
+; PCHealth\HelpCtr\System\errors
+;badurl.htm=f
+;connection.htm=f
+;indexfirstlevel.htm=f
+;notfound.htm=f
+;offline.htm=f
+;redirect.htm=f
+;unreachable.htm=f
+
+; PCHealth\HelpCtr\System\panels
+;AdvSearch.htm=g
+blank.htm=g
+;Context.htm=g
+;firstpage.htm=g
+;HHWrapper.htm=g
+;MiniNavBar.htm=g
+;MiniNavBar.xml=g
+;NavBar.htm=g
+;NavBar.xml=g
+;Options.htm=g
+;RemoteHelp.htm=g
+;ShareHelp.htm=g
+;Topics.htm=g
+
+; PCHealth\HelpCtr\System\panels\subpanels
+;Channels.htm=h
+;Favorites.htm=h
+;History.htm=h
+;Index.htm=h
+;Options.htm=h
+;Search.htm=h
+;Subsite.htm=h
+
+; PCHealth\HelpCtr\System\scripts
+;Common.js=i
+;HomePage__DESKTOP.js=i
+;HomePage__SERVER.js=i
+;wrapperparam.js=i
+
+[SourceDisksFiles.2600]
+; Binaries in  CHealth\HelpCtr\Binaries
+hscsp_w3.cab=k,,4
+pchdt_w3.cab=k,,4
+notiflag.exe=k,,4
+HscUpd.exe=k,,4
+
+; SP2 Addon
+; PCHealth\HelpCtr\Config
+dataspec.xml=a,,4
+
+[SourceDisksFiles.3790]
+; Binaries in  CHealth\HelpCtr\Binaries - e = Enterprise - s = Standard - b = Web (according to sanbarrow)
+pchdt_e3.cab=k,,4
+pchdt_s3.cab=k,,4
+pchdt_b3.cab=k,,4
+
+[SetupReg.AddReg]
+0x4,"ControlSet001\Services\helpsvc","Type",0x20
+0x4,"ControlSet001\Services\helpsvc","Start",0x3
+0x4,"ControlSet001\Services\helpsvc","ErrorControl",0x1
+0x2,"ControlSet001\Services\helpsvc","ImagePath","System32\svchost.exe -k netsvcs"
+0x1,"ControlSet001\Services\helpsvc","DisplayName","Help and Support"
+0x7,"ControlSet001\Services\helpsvc","DependOnService","RPCSS"
+0x7,"ControlSet001\Services\helpsvc","DependOnGroup",
+0x1,"ControlSet001\Services\helpsvc","ObjectName","LocalSystem"
+0x3,"ControlSet001\Services\helpsvc","FailureActions",\
+  80,51,01,00,00,00,00,00,00,00,00,00,03,00,00,00,05,00,03,00,01,00,00,00,64,\
+  00,00,00,01,00,00,00,64,00,00,00,00,00,00,00,64,00,00,00
+0x1,"ControlSet001\Services\helpsvc\Enum","0","Root\LEGACY_HELPSVC\0000"
+0x4,"ControlSet001\Services\helpsvc\Enum","Count",0x1
+0x4,"ControlSet001\Services\helpsvc\Enum","NextInstance",0x1
+0x2,"ControlSet001\Services\helpsvc\Parameters","ServiceDll","pchsvc.dll"
+0x3,"ControlSet001\Services\helpsvc\Security","Security",\
+  01,00,14,80,90,00,00,00,9c,00,00,00,14,00,00,00,30,00,00,00,02,00,1c,00,01,\
+  00,00,00,02,80,14,00,ff,01,0f,00,01,01,00,00,00,00,00,01,00,00,00,00,02,00,\
+  60,00,04,00,00,00,00,00,14,00,fd,01,02,00,01,01,00,00,00,00,00,05,12,00,00,\
+  00,00,00,18,00,ff,01,0f,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,\
+  00,00,14,00,8d,01,02,00,01,01,00,00,00,00,00,05,0b,00,00,00,00,00,18,00,fd,\
+  01,02,00,01,02,00,00,00,00,00,05,20,00,00,00,23,02,00,00,01,01,00,00,00,00,\
+  00,05,12,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00
+
+[Software.AddReg]
+; Help System
+0x1,"Microsoft\Active Setup\Installed Components\{45ea75a0-a269-11d1-b5bf-0000f8051515}",,"Internet Explorer Help"
+0x1,"Microsoft\Active Setup\Installed Components\{45ea75a0-a269-11d1-b5bf-0000f8051515}","ComponentID","HelpCont"
+0x4,"Microsoft\Active Setup\Installed Components\{45ea75a0-a269-11d1-b5bf-0000f8051515}","IsInstalled",0x1
+0x1,"Microsoft\Active Setup\Installed Components\{45ea75a0-a269-11d1-b5bf-0000f8051515}","Locale","*"
+0x1,"Microsoft\Active Setup\Installed Components\{45ea75a0-a269-11d1-b5bf-0000f8051515}","Version","6,0,2800,1106"
+
+0x1,"Classes\.chm",,"chm.file"
+0x1,"Classes\chm.file",,"Compiled HTML Help"
+0x1,"Classes\chm.file\DefaultIcon",,"hh.exe,0"
+0x2,"Classes\chm.file\shell\open\command",,"hh.exe %1"
+0x1,"Classes\hlpfile",,"Help File"
+
+0x1,"Classes\HHCtrl.FileFinder.1\CLSID",,"{ADB880A4-D8FF-11CF-9377-00AA003B7A11}"
+0x1,"Classes\HHCtrl.FileFinder\CLSID",,"{ADB880A4-D8FF-11CF-9377-00AA003B7A11}"
+0x1,"Classes\HHCtrl.SystemSort.666\CLSID",,"{4662DAB0-D393-11D0-9A56-00C04FB68B66}"
+0x1,"Classes\HHCtrl.SystemSort\CLSID",,"{4662DAB0-D393-11D0-9A56-00C04FB68B66}"
+0x1,"Classes\ITIR.EngStemmer.4\CLSID",,"{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}"
+0x1,"Classes\ITIR.EngStemmer\CLSID",,"{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}"
+0x1,"Classes\ITIR.IndexSearch.4\CLSID",,"{4662DAAD-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.IndexSearch\CLSID",,"{4662DAAD-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalCatalog.4\CLSID",,"{4662DAAA-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalCatalog\CLSID",,"{4662DAAA-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalDatabase.4\CLSID",,"{4662DAA9-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalDatabase\CLSID",,"{4662DAA9-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroup.4\CLSID",,"{4662DAAB-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroupArray.4\CLSID",,"{4662DAAC-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroupArray\CLSID",,"{4662DAAC-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroup\CLSID",,"{4662DAAB-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalWordWheel.4\CLSID",,"{4662DAA8-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalWordWheel\CLSID",,"{4662DAA8-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.PropertyList.4\CLSID",,"{4662DAAE-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.PropertyList\CLSID",,"{4662DAAE-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.Query.4\CLSID",,"{4662DAA6-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.Query\CLSID",,"{4662DAA6-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.ResultSet.4\CLSID",,"{4662DAA7-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.ResultSet\CLSID",,"{4662DAA7-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.StdWordBreaker.4\CLSID",,"{4662DAAF-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.StdWordBreaker\CLSID",,"{4662DAAF-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.SystemSort.4\CLSID",,"{4662DAB0-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.SystemSort\CLSID",,"{4662DAB0-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.WordWheelBuild.4\CLSID",,"{4662DAA5-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.WordWheelBuild\CLSID",,"{4662DAA5-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITSProtocol",,"Microsoft InfoTech Protocols for IE 4.0"
+0x1,"Classes\ITSProtocol\CLSID",,"{9D148291-B9C8-11D0-A4CC-0000F80149F6}"
+0x1,"Classes\ITSProtocol\CurVer",,"ITSProtocol1.0"
+0x1,"Classes\Interface\{ADB880A1-D8FF-11CF-9377-00AA003B7A11}",,"IHHCtrl"
+0x1,"Classes\Interface\{ADB880A1-D8FF-11CF-9377-00AA003B7A11}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{ADB880A1-D8FF-11CF-9377-00AA003B7A11}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{ADB880A1-D8FF-11CF-9377-00AA003B7A11}\TypeLib","Version","4.0"
+0x1,"Classes\Interface\{ADB880A1-D8FF-11CF-9377-00AA003B7A11}\TypeLib",,"{ADB880A2-D8FF-11CF-9377-00AA003B7A11}"
+0x1,"Classes\Interface\{ADB880A3-D8FF-11CF-9377-00AA003B7A11}",,"_HHCtrlEvents"
+0x1,"Classes\Interface\{ADB880A3-D8FF-11CF-9377-00AA003B7A11}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{ADB880A3-D8FF-11CF-9377-00AA003B7A11}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{ADB880A3-D8FF-11CF-9377-00AA003B7A11}\TypeLib","Version","4.0"
+0x1,"Classes\Interface\{ADB880A3-D8FF-11CF-9377-00AA003B7A11}\TypeLib",,"{ADB880A2-D8FF-11CF-9377-00AA003B7A11}"
+0x1,"Classes\Internet.HHCtrl",,"HHCtrl Object"
+0x1,"Classes\Internet.HHCtrl.1",,"HHCtrl Object"
+0x1,"Classes\Internet.HHCtrl.1\CLSID",,"{ADB880A6-D8FF-11CF-9377-00AA003B7A11}"
+0x1,"Classes\Internet.HHCtrl\CLSID",,"{ADB880A6-D8FF-11CF-9377-00AA003B7A11}"
+0x1,"Classes\Internet.HHCtrl\CurVer",,"Internet.HHCtrl.1"
+0x1,"Classes\MSFSStore",,"Microsoft InfoTech IStorage for Win32 Files"
+0x1,"Classes\MSFSStore\CLSID",,"{D54EEE56-AAAB-11D0-9E1D-00A0C922E6EC}"
+0x1,"Classes\MSFSStore\CurVer",,"MSFSStore1.0"
+0x1,"Classes\MSITFS",,"Microsoft InfoTech IStorage System"
+0x1,"Classes\MSITFS\CLSID",,"{5D02926A-212E-11D0-9DF9-00A0C922E6EC}"
+0x1,"Classes\MSITFS\CurVer",,"MSITFS1.0"
+0x1,"Classes\MSITStore",,"Microsoft InfoTech Protocol for IE 3.0"
+0x1,"Classes\MSITStore\CLSID",,"{9D148290-B9C8-11D0-A4CC-0000F80149F6}"
+0x1,"Classes\MSITStore\CurVer",,"MSITStore1.0"
+0x1,"Classes\TypeLib\{ADB880A2-D8FF-11CF-9377-00AA003B7A11}\4.0",,"HHCtrl 4.0 Type Library"
+0x1,"Classes\TypeLib\{ADB880A2-D8FF-11CF-9377-00AA003B7A11}\4.0\FLAGS",,"0"
+0x1,"Microsoft\Internet Explorer","MkEnabled","Yes"
+0x1,"Microsoft\Windows\ITStorage\Finders",".chm","{adb880a4-d8ff-11cf-9377-00aa003b7a11}"
+
+0x2,"Classes\PROTOCOLS\Handler\its",,"its: Asychronous Pluggable Protocol Handler"
+0x2,"Classes\PROTOCOLS\Handler\ms-its",,"ms-its: Asychronous Pluggable Protocol Handler"
+0x2,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\ToolboxBitmap32",,"hhctrl.ocx,104"
+0x2,"Classes\CLSID\{D54EEE56-AAAB-11D0-9E1D-00A0C922E6EC}\InprocServer32",,"itss.dll"
+0x2,"Classes\TypeLib\{ADB880A2-D8FF-11CF-9377-00AA003B7A11}\4.0\0\win32",,"hhctrl.ocx"
+0x2,"Classes\TypeLib\{ADB880A2-D8FF-11CF-9377-00AA003B7A11}\4.0\HELPDIR",,"%SystemRoot%\Help"
+
+0x1,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}",,"Help and Support"
+0x1,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}","LocalizedString","@explorer.exe,-7021"
+0x1,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}","InfoTip","@explorer.exe,-7001"
+0x2,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}\DefaultIcon",,"shell32.dll,-24"
+0x2,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}\InProcServer32",,"shdocvw.dll"
+0x1,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}\Instance","CLSID","{3f454f0e-42ae-4d7c-8ea3-328250d6e272}"
+0x1,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}\Instance\InitPropertyBag","CLSID","{13709620-C279-11CE-A49E-444553540000}"
+0x1,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}\Instance\InitPropertyBag","command","@shell32.dll,-12709"
+0x1,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}\Instance\InitPropertyBag","method","Help"
+0x4,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}\ShellFolder","Attributes",0x0
+0x0,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}\shellex\ContextMenuHandlers\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}"
+0x0,"Classes\CLSID\{2559a1f1-21d7-11d4-bdaf-00c04f60b9f0}\shellex\MayChangeDefaultMenu"
+
+; Helpctr.exe
+0x0,"Classes\CLSID\{FC7D9E02-3F9E-11d3-93C0-00C04F72DAF7}\Programmable"
+0x1,"Classes\CLSID\{FC7D9E02-3F9E-11d3-93C0-00C04F72DAF7}",,"Bootstrapper Class"
+0x1,"Classes\CLSID\{FC7D9E02-3F9E-11d3-93C0-00C04F72DAF7}\TypeLib",,"{FC7D9E00-3F9E-11d3-93C0-00C04F72DAF7}"
+0x2,"Classes\CLSID\{FC7D9E02-3F9E-11d3-93C0-00C04F72DAF7}\InprocServer32",,"HelpCtr.exe"
+0x1,"Classes\CLSID\{FC7D9E02-3F9E-11d3-93C0-00C04F72DAF7}\InprocServer32","ThreadingModel","Both"
+
+0x0,"Classes\CLSID\{FC7D9E06-3F9E-11d3-93C0-00C04F72DAF7}\Control"
+0x0,"Classes\CLSID\{FC7D9E06-3F9E-11d3-93C0-00C04F72DAF7}\Programmable"
+0x1,"Classes\CLSID\{FC7D9E06-3F9E-11d3-93C0-00C04F72DAF7}",,"HelpViewerWrapper Class"
+0x1,"Classes\CLSID\{FC7D9E06-3F9E-11d3-93C0-00C04F72DAF7}\MiscStatus",,"0"
+0x1,"Classes\CLSID\{FC7D9E06-3F9E-11d3-93C0-00C04F72DAF7}\MiscStatus\1",,"131473"
+0x1,"Classes\CLSID\{FC7D9E06-3F9E-11d3-93C0-00C04F72DAF7}\TypeLib",,"{FC7D9E00-3F9E-11d3-93C0-00C04F72DAF7}"
+0x1,"Classes\CLSID\{FC7D9E06-3F9E-11d3-93C0-00C04F72DAF7}\Version",,"1.0"
+0x2,"Classes\CLSID\{FC7D9E06-3F9E-11d3-93C0-00C04F72DAF7}\InprocServer32",,"HelpCtr.exe"
+0x1,"Classes\CLSID\{FC7D9E06-3F9E-11d3-93C0-00C04F72DAF7}\InprocServer32","ThreadingModel","Apartment"
+
+0x0,"Classes\CLSID\{FC7D9E08-3F9E-11d3-93C0-00C04F72DAF7}\Control"
+0x0,"Classes\CLSID\{FC7D9E08-3F9E-11d3-93C0-00C04F72DAF7}\Programmable"
+0x1,"Classes\CLSID\{FC7D9E08-3F9E-11d3-93C0-00C04F72DAF7}",,"PCHToolBar Class"
+0x1,"Classes\CLSID\{FC7D9E08-3F9E-11d3-93C0-00C04F72DAF7}\MiscStatus",,"0"
+0x1,"Classes\CLSID\{FC7D9E08-3F9E-11d3-93C0-00C04F72DAF7}\MiscStatus\1",,"131473"
+0x1,"Classes\CLSID\{FC7D9E08-3F9E-11d3-93C0-00C04F72DAF7}\TypeLib",,"{FC7D9E00-3F9E-11d3-93C0-00C04F72DAF7}"
+0x1,"Classes\CLSID\{FC7D9E08-3F9E-11d3-93C0-00C04F72DAF7}\Version",,"1.0"
+0x2,"Classes\CLSID\{FC7D9E08-3F9E-11d3-93C0-00C04F72DAF7}\InprocServer32",,"HelpCtr.exe"
+0x1,"Classes\CLSID\{FC7D9E08-3F9E-11d3-93C0-00C04F72DAF7}\InprocServer32","ThreadingModel","Apartment"
+
+0x0,"Classes\CLSID\{FC7D9E09-3F9E-11d3-93C0-00C04F72DAF7}\Control"
+0x0,"Classes\CLSID\{FC7D9E09-3F9E-11d3-93C0-00C04F72DAF7}\Programmable"
+0x1,"Classes\CLSID\{FC7D9E09-3F9E-11d3-93C0-00C04F72DAF7}",,"PCHProgressBar Class"
+0x1,"Classes\CLSID\{FC7D9E09-3F9E-11d3-93C0-00C04F72DAF7}\MiscStatus",,"0"
+0x1,"Classes\CLSID\{FC7D9E09-3F9E-11d3-93C0-00C04F72DAF7}\MiscStatus\1",,"131473"
+0x1,"Classes\CLSID\{FC7D9E09-3F9E-11d3-93C0-00C04F72DAF7}\TypeLib",,"{FC7D9E00-3F9E-11d3-93C0-00C04F72DAF7}"
+0x1,"Classes\CLSID\{FC7D9E09-3F9E-11d3-93C0-00C04F72DAF7}\Version",,"1.0"
+0x2,"Classes\CLSID\{FC7D9E09-3F9E-11d3-93C0-00C04F72DAF7}\InprocServer32",,"HelpCtr.exe"
+0x1,"Classes\CLSID\{FC7D9E09-3F9E-11d3-93C0-00C04F72DAF7}\InprocServer32","ThreadingModel","Apartment"
+
+0x1,"Classes\HCP",,"Help Center Pluggable Protocol"
+0x1,"Classes\HCP","URL Protocol",
+0x4,"Classes\HCP","EditFlags",0x2
+0x2,"Classes\HCP","FriendlyTypeName","@HCAppRes.dll,-2100"
+0x2,"Classes\HCP\shell\open\command",,"HelpCtr.exe -FromHCP -url "%1""
+
+0x2,"Classes\MsRcIncident","FriendlyTypeName","@RCBdyctl.dll,-150"
+0x4,"Classes\MsRcIncident","EditFlags",0x10000
+0x2,"Classes\MsRcIncident\DefaultIcon",,"HelpCtr.exe"
+0x2,"Classes\MsRcIncident\shell\open\command",,"HelpCtr.exe -Mode "hcp://system/Remote%%20Assistance/RAClientLayout.xml" -url "hcp://system/Remote%%20Assistance/Interaction/Client/rctoolScreen1.htm" -ExtraArgument "IncidentFile=%1""
+
+0x1,"Classes\TypeLib\{FC7D9E00-3F9E-11D3-93C0-00C04F72DAF7}\1.0",,"Help Center UI 1.0 Type Library"
+0x1,"Classes\TypeLib\{FC7D9E00-3F9E-11D3-93C0-00C04F72DAF7}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{FC7D9E00-3F9E-11D3-93C0-00C04F72DAF7}\1.0\0\win32",,"HelpCtr.exe\1"
+0x2,"Classes\TypeLib\{FC7D9E00-3F9E-11D3-93C0-00C04F72DAF7}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+0x1,"Classes\TypeLib\{FC7D9000-3F9E-11D3-93C0-00C04F72DAF7}\1.0",,"Help Center Behaviors 1.0 Type Library"
+0x1,"Classes\TypeLib\{FC7D9000-3F9E-11D3-93C0-00C04F72DAF7}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{FC7D9000-3F9E-11D3-93C0-00C04F72DAF7}\1.0\0\win32",,"HelpCtr.exe\2"
+0x2,"Classes\TypeLib\{FC7D9000-3F9E-11D3-93C0-00C04F72DAF7}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer hhctrl.ocx - [U] SP2
+0x1,"Classes\.its",,"ITS File"
+0x1,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}",,"HHCtrl Object"
+0x0,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\Control"
+0x0,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}"
+0x0,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}"
+0x2,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\InprocServer32",,"hhctrl.ocx"
+0x1,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\MiscStatus",,"0"
+0x1,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\MiscStatus\1",,"131473"
+0x1,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\ProgID",,"Internet.HHCtrl.1"
+0x2,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\ToolboxBitmap32",,"hhctrl.ocx, 104"
+0x1,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\TypeLib",,"{ADB880A2-D8FF-11CF-9377-00AA003B7A11}"
+0x1,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\Version",,"1.0"
+0x1,"Classes\CLSID\{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}\VersionIndependentProgID",,"Internet.HHCtrl"
+0x2,"Classes\CLSID\{ADB880A4-D8FF-11CF-9377-00AA003B7A11}\InprocServer32",,"hhctrl.ocx"
+0x1,"Classes\CLSID\{ADB880A4-D8FF-11CF-9377-00AA003B7A11}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{ADB880A4-D8FF-11CF-9377-00AA003B7A11}\ProgID",,"HHCtrl.FileFinder.1"
+0x1,"Classes\CLSID\{ADB880A4-D8FF-11CF-9377-00AA003B7A11}\VersionIndependentProgID",,"HHCtrl.FileFinder"
+0x1,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}",,"HHCtrl Object"
+0x0,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\Control"
+0x0,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}"
+0x0,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}"
+0x2,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\InprocServer32",,"hhctrl.ocx"
+0x1,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\MiscStatus",,"0"
+0x1,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\MiscStatus\1",,"131473"
+0x2,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\ToolboxBitmap32",,"hhctrl.ocx,104"
+0x1,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\Version",,"1.0"
+0x1,"Classes\CLSID\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}\VersionIndependentProgID",,"Internet.HHCtrl"
+0x1,"Classes\HHCtrl.FileFinder.1\CLSID",,"{ADB880A4-D8FF-11CF-9377-00AA003B7A11}"
+0x1,"Classes\HHCtrl.FileFinder\CLSID",,"{ADB880A4-D8FF-11CF-9377-00AA003B7A11}"
+0x1,"Classes\HHCtrl.SystemSort.666\CLSID",,"{4662DAB0-D393-11D0-9A56-00C04FB68B66}"
+0x1,"Classes\HHCtrl.SystemSort\CLSID",,"{4662DAB0-D393-11D0-9A56-00C04FB68B66}"
+0x1,"Classes\ITIR.EngStemmer.4\CLSID",,"{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}"
+0x1,"Classes\ITIR.EngStemmer\CLSID",,"{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}"
+0x1,"Classes\ITIR.IndexSearch.4\CLSID",,"{4662DAAD-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.IndexSearch\CLSID",,"{4662DAAD-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalCatalog.4\CLSID",,"{4662DAAA-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalCatalog\CLSID",,"{4662DAAA-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalDatabase.4\CLSID",,"{4662DAA9-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalDatabase\CLSID",,"{4662DAA9-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroup.4\CLSID",,"{4662DAAB-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroupArray.4\CLSID",,"{4662DAAC-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroupArray\CLSID",,"{4662DAAC-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroup\CLSID",,"{4662DAAB-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalWordWheel.4\CLSID",,"{4662DAA8-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalWordWheel\CLSID",,"{4662DAA8-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.PropertyList.4\CLSID",,"{4662DAAE-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.PropertyList\CLSID",,"{4662DAAE-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.Query.4\CLSID",,"{4662DAA6-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.Query\CLSID",,"{4662DAA6-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.ResultSet.4\CLSID",,"{4662DAA7-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.ResultSet\CLSID",,"{4662DAA7-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.StdWordBreaker.4\CLSID",,"{4662DAAF-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.StdWordBreaker\CLSID",,"{4662DAAF-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.SystemSort.4\CLSID",,"{4662DAB0-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.SystemSort\CLSID",,"{4662DAB0-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.WordWheelBuild.4\CLSID",,"{4662DAA5-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.WordWheelBuild\CLSID",,"{4662DAA5-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITS FILE",,"Internet Document Set"
+0x2,"Classes\ITS FILE\DefaultIcon",,"itss.dll,0"
+0x1,"Classes\ITS FILE\shell\open\command",,"iexplore.exe -nohome"
+0x1,"Classes\ITSProtocol",,"Microsoft InfoTech Protocols for IE 4.0"
+0x1,"Classes\ITSProtocol\CLSID",,"{9D148291-B9C8-11D0-A4CC-0000F80149F6}"
+0x1,"Classes\ITSProtocol\CurVer",,"ITSProtocol1.0"
+0x1,"Classes\Internet.HHCtrl.1\CLSID",,"{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}"
+0x1,"Classes\Internet.HHCtrl\CLSID",,"{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}"
+0x1,"Classes\MSFSStore",,"Microsoft InfoTech IStorage for Win32 Files"
+0x1,"Classes\MSFSStore\CLSID",,"{D54EEE56-AAAB-11D0-9E1D-00A0C922E6EC}"
+0x1,"Classes\MSFSStore\CurVer",,"MSFSStore1.0"
+0x1,"Classes\MSITFS",,"Microsoft InfoTech IStorage System"
+0x1,"Classes\MSITFS\CLSID",,"{5D02926A-212E-11D0-9DF9-00A0C922E6EC}"
+0x1,"Classes\MSITFS\CurVer",,"MSITFS1.0"
+0x1,"Classes\MSITStore",,"Microsoft InfoTech Protocol for IE 3.0"
+0x1,"Classes\MSITStore\CLSID",,"{9D148290-B9C8-11D0-A4CC-0000F80149F6}"
+0x1,"Classes\MSITStore\CurVer",,"MSITStore1.0"
+0x2,"Classes\TypeLib\{ADB880A2-D8FF-11CF-9377-00AA003B7A11}\4.0\0\win32",,"hhctrl.ocx"
+0x2,"Classes\TypeLib\{ADB880A2-D8FF-11CF-9377-00AA003B7A11}\4.0\HELPDIR",,"%SystemRoot%\Help"
+0x1,"Microsoft\Internet Explorer\ActiveX Compatibility\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}","AlternateCLSID","{41B23C28-488E-4E5C-ACE2-BB0BBABE99E8}"
+0x4,"Microsoft\Internet Explorer\ActiveX Compatibility\{ADB880A6-D8FF-11CF-9377-00AA003B7A11}","Compatibility Flags",0x400
+
+; RegServer itircl.dll - [U] SP2 - Second Pass
+0x1,"Classes\CLSID\{4662DAA5-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAA5-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAA5-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{4662DAA5-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.WordWheelBuild.4"
+0x1,"Classes\CLSID\{4662DAA5-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.WordWheelBuild"
+0x1,"Classes\CLSID\{4662DAA6-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAA6-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAA6-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAA6-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.Query.4"
+0x1,"Classes\CLSID\{4662DAA6-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.Query"
+0x1,"Classes\CLSID\{4662DAA7-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAA7-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAA7-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAA7-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.ResultSet.4"
+0x1,"Classes\CLSID\{4662DAA7-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.ResultSet"
+0x1,"Classes\CLSID\{4662DAA8-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAA8-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAA8-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAA8-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.LocalWordWheel.4"
+0x1,"Classes\CLSID\{4662DAA8-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.LocalWordWheel"
+0x1,"Classes\CLSID\{4662DAA9-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAA9-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAA9-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAA9-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.LocalDatabase.4"
+0x1,"Classes\CLSID\{4662DAA9-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.LocalDatabase"
+0x1,"Classes\CLSID\{4662DAAA-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAAA-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAAA-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAAA-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.LocalCatalog.4"
+0x1,"Classes\CLSID\{4662DAAA-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.LocalCatalog"
+0x1,"Classes\CLSID\{4662DAAB-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAAB-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAAB-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAAB-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.LocalGroup.4"
+0x1,"Classes\CLSID\{4662DAAB-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.LocalGroup"
+0x1,"Classes\CLSID\{4662DAAC-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAAC-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAAC-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAAC-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.LocalGroupArray.4"
+0x1,"Classes\CLSID\{4662DAAC-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.LocalGroupArray"
+0x1,"Classes\CLSID\{4662DAAD-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAAD-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAAD-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAAD-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.IndexSearch.4"
+0x1,"Classes\CLSID\{4662DAAD-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.IndexSearch"
+0x1,"Classes\CLSID\{4662DAAE-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAAE-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAAE-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAAE-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.PropertyList.4"
+0x1,"Classes\CLSID\{4662DAAE-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.PropertyList"
+0x1,"Classes\CLSID\{4662DAAF-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAAF-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAAF-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAAF-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.StdWordBreaker.4"
+0x1,"Classes\CLSID\{4662DAAF-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.StdWordBreaker"
+0x1,"Classes\CLSID\{4662DAB0-D393-11D0-9A56-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{4662DAB0-D393-11D0-9A56-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{4662DAB0-D393-11D0-9A56-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{4662DAB0-D393-11D0-9A56-00C04FB68BF7}\ProgID",,"ITIR.SystemSort.4"
+0x1,"Classes\CLSID\{4662DAB0-D393-11D0-9A56-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.SystemSort"
+0x1,"Classes\CLSID\{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}",,
+0x2,"Classes\CLSID\{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}\InprocServer32",,"itircl.dll"
+0x1,"Classes\CLSID\{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}\ProgID",,"ITIR.EngStemmer.4"
+0x1,"Classes\CLSID\{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}\VersionIndependentProgID",,"ITIR.EngStemmer"
+0x1,"Classes\ITIR.EngStemmer",,
+0x1,"Classes\ITIR.EngStemmer\CLSID",,"{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}"
+0x1,"Classes\ITIR.EngStemmer.4",,
+0x1,"Classes\ITIR.EngStemmer.4\CLSID",,"{8FA0D5A8-DEDF-11D0-9A61-00C04FB68BF7}"
+0x1,"Classes\ITIR.IndexSearch",,
+0x1,"Classes\ITIR.IndexSearch\CLSID",,"{4662DAAD-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.IndexSearch.4",,
+0x1,"Classes\ITIR.IndexSearch.4\CLSID",,"{4662DAAD-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalCatalog",,
+0x1,"Classes\ITIR.LocalCatalog\CLSID",,"{4662DAAA-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalCatalog.4",,
+0x1,"Classes\ITIR.LocalCatalog.4\CLSID",,"{4662DAAA-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalDatabase",,
+0x1,"Classes\ITIR.LocalDatabase\CLSID",,"{4662DAA9-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalDatabase.4",,
+0x1,"Classes\ITIR.LocalDatabase.4\CLSID",,"{4662DAA9-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroup",,
+0x1,"Classes\ITIR.LocalGroup\CLSID",,"{4662DAAB-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroup.4",,
+0x1,"Classes\ITIR.LocalGroup.4\CLSID",,"{4662DAAB-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroupArray",,
+0x1,"Classes\ITIR.LocalGroupArray\CLSID",,"{4662DAAC-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalGroupArray.4",,
+0x1,"Classes\ITIR.LocalGroupArray.4\CLSID",,"{4662DAAC-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalWordWheel",,
+0x1,"Classes\ITIR.LocalWordWheel\CLSID",,"{4662DAA8-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.LocalWordWheel.4",,
+0x1,"Classes\ITIR.LocalWordWheel.4\CLSID",,"{4662DAA8-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.PropertyList",,
+0x1,"Classes\ITIR.PropertyList\CLSID",,"{4662DAAE-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.PropertyList.4",,
+0x1,"Classes\ITIR.PropertyList.4\CLSID",,"{4662DAAE-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.Query",,
+0x1,"Classes\ITIR.Query\CLSID",,"{4662DAA6-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.Query.4",,
+0x1,"Classes\ITIR.Query.4\CLSID",,"{4662DAA6-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.ResultSet",,
+0x1,"Classes\ITIR.ResultSet\CLSID",,"{4662DAA7-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.ResultSet.4",,
+0x1,"Classes\ITIR.ResultSet.4\CLSID",,"{4662DAA7-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.StdWordBreaker",,
+0x1,"Classes\ITIR.StdWordBreaker\CLSID",,"{4662DAAF-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.StdWordBreaker.4",,
+0x1,"Classes\ITIR.StdWordBreaker.4\CLSID",,"{4662DAAF-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.SystemSort",,
+0x1,"Classes\ITIR.SystemSort\CLSID",,"{4662DAB0-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.SystemSort.4",,
+0x1,"Classes\ITIR.SystemSort.4\CLSID",,"{4662DAB0-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.WordWheelBuild",,
+0x1,"Classes\ITIR.WordWheelBuild\CLSID",,"{4662DAA5-D393-11D0-9A56-00C04FB68BF7}"
+0x1,"Classes\ITIR.WordWheelBuild.4",,
+0x1,"Classes\ITIR.WordWheelBuild.4\CLSID",,"{4662DAA5-D393-11D0-9A56-00C04FB68BF7}"
+
+; RegServer rcbdyctl.dll - [U] SP2
+0x1,"Classes\CLSID\{5E7C299F-6EAD-4F6D-AFC0-B6972931517D}",,"smapi Class"
+0x2,"Classes\CLSID\{5E7C299F-6EAD-4F6D-AFC0-B6972931517D}\InprocServer32",,"rcbdyctl.dll"
+0x1,"Classes\CLSID\{5E7C299F-6EAD-4F6D-AFC0-B6972931517D}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{5E7C299F-6EAD-4F6D-AFC0-B6972931517D}\ProgID",,"Rcbdyctl.smapi.1"
+0x0,"Classes\CLSID\{5E7C299F-6EAD-4F6D-AFC0-B6972931517D}\Programmable"
+0x1,"Classes\CLSID\{5E7C299F-6EAD-4F6D-AFC0-B6972931517D}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\CLSID\{5E7C299F-6EAD-4F6D-AFC0-B6972931517D}\VersionIndependentProgID",,"Rcbdyctl.smapi"
+0x1,"Classes\CLSID\{BFB3EC07-A552-4f57-9CC5-06B02205C566}",,"Setting Class"
+0x2,"Classes\CLSID\{BFB3EC07-A552-4f57-9CC5-06B02205C566}\InprocServer32",,"rcbdyctl.dll"
+0x1,"Classes\CLSID\{BFB3EC07-A552-4f57-9CC5-06B02205C566}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{BFB3EC07-A552-4f57-9CC5-06B02205C566}\ProgID",,"Rcbdyctl.Setting.1"
+0x0,"Classes\CLSID\{BFB3EC07-A552-4f57-9CC5-06B02205C566}\Programmable"
+0x1,"Classes\CLSID\{BFB3EC07-A552-4f57-9CC5-06B02205C566}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\CLSID\{BFB3EC07-A552-4f57-9CC5-06B02205C566}\VersionIndependentProgID",,"Rcbdyctl.Setting"
+0x1,"Classes\CLSID\{C2AEF40E-BE1F-4bae-A3D7-8F7531213DE8}",,"Display Class"
+0x2,"Classes\CLSID\{C2AEF40E-BE1F-4bae-A3D7-8F7531213DE8}\InprocServer32",,"rcbdyctl.dll"
+0x1,"Classes\CLSID\{C2AEF40E-BE1F-4bae-A3D7-8F7531213DE8}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{C2AEF40E-BE1F-4bae-A3D7-8F7531213DE8}\ProgID",,"RcBdyCtl.Display.1"
+0x0,"Classes\CLSID\{C2AEF40E-BE1F-4bae-A3D7-8F7531213DE8}\Programmable"
+0x1,"Classes\CLSID\{C2AEF40E-BE1F-4bae-A3D7-8F7531213DE8}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\CLSID\{C2AEF40E-BE1F-4bae-A3D7-8F7531213DE8}\VersionIndependentProgID",,"RcBdyCtl.Display"
+0x1,"Classes\CLSID\{a93bf5a1-443d-48fe-921a-244d3afa7ed4}",,"IMSession Class"
+0x2,"Classes\CLSID\{a93bf5a1-443d-48fe-921a-244d3afa7ed4}\InprocServer32",,"rcbdyctl.dll"
+0x1,"Classes\CLSID\{a93bf5a1-443d-48fe-921a-244d3afa7ed4}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{a93bf5a1-443d-48fe-921a-244d3afa7ed4}\ProgID",,"RcBdyCtl.IMSession.1"
+0x0,"Classes\CLSID\{a93bf5a1-443d-48fe-921a-244d3afa7ed4}\Programmable"
+0x1,"Classes\CLSID\{a93bf5a1-443d-48fe-921a-244d3afa7ed4}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\CLSID\{a93bf5a1-443d-48fe-921a-244d3afa7ed4}\VersionIndependentProgID",,"RcBdyCtl.IMSession"
+0x1,"Classes\CLSID\{f0a45e65-84a6-4543-baf7-491d38de8e8b}",,"Connection Class"
+0x2,"Classes\CLSID\{f0a45e65-84a6-4543-baf7-491d38de8e8b}\InprocServer32",,"rcbdyctl.dll"
+0x1,"Classes\CLSID\{f0a45e65-84a6-4543-baf7-491d38de8e8b}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{f0a45e65-84a6-4543-baf7-491d38de8e8b}\ProgID",,"RcBdyCtl.Connection.1"
+0x0,"Classes\CLSID\{f0a45e65-84a6-4543-baf7-491d38de8e8b}\Programmable"
+0x1,"Classes\CLSID\{f0a45e65-84a6-4543-baf7-491d38de8e8b}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\CLSID\{f0a45e65-84a6-4543-baf7-491d38de8e8b}\VersionIndependentProgID",,"RcBdyCtl.Connection"
+0x1,"Classes\Interface\{0108A95E-B23E-4372-841B-8153FD529A6E}",,"IConnection"
+0x1,"Classes\Interface\{0108A95E-B23E-4372-841B-8153FD529A6E}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{0108A95E-B23E-4372-841B-8153FD529A6E}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{0108A95E-B23E-4372-841B-8153FD529A6E}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\Interface\{0108A95E-B23E-4372-841B-8153FD529A6E}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{11685FCA-2787-4235-ACE5-AA92AF5DD900}",,"Ismapi"
+0x1,"Classes\Interface\{11685FCA-2787-4235-ACE5-AA92AF5DD900}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{11685FCA-2787-4235-ACE5-AA92AF5DD900}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{11685FCA-2787-4235-ACE5-AA92AF5DD900}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\Interface\{11685FCA-2787-4235-ACE5-AA92AF5DD900}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{22FF2143-D949-47ED-B912-AADE1E3B67F3}",,"ISetting"
+0x1,"Classes\Interface\{22FF2143-D949-47ED-B912-AADE1E3B67F3}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{22FF2143-D949-47ED-B912-AADE1E3B67F3}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{22FF2143-D949-47ED-B912-AADE1E3B67F3}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\Interface\{22FF2143-D949-47ED-B912-AADE1E3B67F3}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{42D7CAFC-0167-4941-A5D8-9FD7F104C41A}",,"IMsgrSession"
+0x1,"Classes\Interface\{42D7CAFC-0167-4941-A5D8-9FD7F104C41A}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{42D7CAFC-0167-4941-A5D8-9FD7F104C41A}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{42D7CAFC-0167-4941-A5D8-9FD7F104C41A}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\Interface\{42D7CAFC-0167-4941-A5D8-9FD7F104C41A}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{5049BF87-9BA1-4B8E-8FEC-5AD21D9C63AC}",,"IRecipients"
+0x1,"Classes\Interface\{5049BF87-9BA1-4B8E-8FEC-5AD21D9C63AC}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{5049BF87-9BA1-4B8E-8FEC-5AD21D9C63AC}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{5049BF87-9BA1-4B8E-8FEC-5AD21D9C63AC}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\Interface\{5049BF87-9BA1-4B8E-8FEC-5AD21D9C63AC}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{6A5ED548-6DFD-4C7B-B377-526899D148B1}",,"IRecipient"
+0x1,"Classes\Interface\{6A5ED548-6DFD-4C7B-B377-526899D148B1}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{6A5ED548-6DFD-4C7B-B377-526899D148B1}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{6A5ED548-6DFD-4C7B-B377-526899D148B1}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\Interface\{6A5ED548-6DFD-4C7B-B377-526899D148B1}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{954DC5AB-4F3B-493B-AF10-30FF50A38143}",,"IDisplay"
+0x1,"Classes\Interface\{954DC5AB-4F3B-493B-AF10-30FF50A38143}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{954DC5AB-4F3B-493B-AF10-30FF50A38143}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{954DC5AB-4F3B-493B-AF10-30FF50A38143}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\Interface\{954DC5AB-4F3B-493B-AF10-30FF50A38143}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{F3D16DE6-045B-48CC-87AC-8AB75974685D}",,"IIMSession"
+0x1,"Classes\Interface\{F3D16DE6-045B-48CC-87AC-8AB75974685D}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{F3D16DE6-045B-48CC-87AC-8AB75974685D}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{F3D16DE6-045B-48CC-87AC-8AB75974685D}\TypeLib",,"{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}"
+0x1,"Classes\Interface\{F3D16DE6-045B-48CC-87AC-8AB75974685D}\TypeLib","Version","1.0"
+0x1,"Classes\RcBdyCtl.Connection",,"Connection Class"
+0x1,"Classes\RcBdyCtl.Connection.1",,"Connection Class"
+0x1,"Classes\RcBdyCtl.Connection.1\CLSID",,"{f0a45e65-84a6-4543-baf7-491d38de8e8b}"
+0x1,"Classes\RcBdyCtl.Connection\CLSID",,"{f0a45e65-84a6-4543-baf7-491d38de8e8b}"
+0x1,"Classes\RcBdyCtl.Connection\CurVer",,"RcBdyCtl.Connection.1"
+0x1,"Classes\RcBdyCtl.Display",,"Display Class"
+0x1,"Classes\RcBdyCtl.Display.1",,"Display Class"
+0x1,"Classes\RcBdyCtl.Display.1\CLSID",,"{C2AEF40E-BE1F-4bae-A3D7-8F7531213DE8}"
+0x1,"Classes\RcBdyCtl.Display\CLSID",,"{C2AEF40E-BE1F-4bae-A3D7-8F7531213DE8}"
+0x1,"Classes\RcBdyCtl.Display\CurVer",,"RcBdyCtl.Display.1"
+0x1,"Classes\RcBdyCtl.IMSession",,"IMSession Class"
+0x1,"Classes\RcBdyCtl.IMSession.1",,"IMSession Class"
+0x1,"Classes\RcBdyCtl.IMSession.1\CLSID",,"{a93bf5a1-443d-48fe-921a-244d3afa7ed4}"
+0x1,"Classes\RcBdyCtl.IMSession\CLSID",,"{a93bf5a1-443d-48fe-921a-244d3afa7ed4}"
+0x1,"Classes\RcBdyCtl.IMSession\CurVer",,"RcBdyCtl.IMSession.1"
+0x1,"Classes\Rcbdyctl.Setting",,"Setting Class"
+0x1,"Classes\Rcbdyctl.Setting.1",,"Setting Class"
+0x1,"Classes\Rcbdyctl.Setting.1\CLSID",,"{BFB3EC07-A552-4f57-9CC5-06B02205C566}"
+0x1,"Classes\Rcbdyctl.Setting\CLSID",,"{BFB3EC07-A552-4f57-9CC5-06B02205C566}"
+0x1,"Classes\Rcbdyctl.Setting\CurVer",,"Rcbdyctl.Setting.1"
+0x1,"Classes\Rcbdyctl.smapi",,"smapi Class"
+0x1,"Classes\Rcbdyctl.smapi.1",,"smapi Class"
+0x1,"Classes\Rcbdyctl.smapi.1\CLSID",,"{5E7C299F-6EAD-4F6D-AFC0-B6972931517D}"
+0x1,"Classes\Rcbdyctl.smapi\CLSID",,"{5E7C299F-6EAD-4F6D-AFC0-B6972931517D}"
+0x1,"Classes\Rcbdyctl.smapi\CurVer",,"Rcbdyctl.smapi.1"
+0x1,"Classes\TypeLib\{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}\1.0",,"rcbdyctl 1.0 Type Library"
+0x2,"Classes\TypeLib\{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}\1.0\0\win32",,"rcbdyctl.dll"
+0x1,"Classes\TypeLib\{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{D149C2B1-25BB-4D8C-9684-2696FDA4AF60}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer brpinfo.dll - [U] SP2
+0x1,"Classes\CLSID\{F25BC7B7-C60D-4FB9-AAE4-3CA0F6C7038A}",,"BugRepSysInfo Class"
+0x2,"Classes\CLSID\{F25BC7B7-C60D-4FB9-AAE4-3CA0F6C7038A}\InprocServer32",,"brpinfo.dll"
+0x1,"Classes\CLSID\{F25BC7B7-C60D-4FB9-AAE4-3CA0F6C7038A}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{F25BC7B7-C60D-4FB9-AAE4-3CA0F6C7038A}\ProgID",,"PCHealth.BugRepSysInfo.1"
+0x0,"Classes\CLSID\{F25BC7B7-C60D-4FB9-AAE4-3CA0F6C7038A}\Programmable"
+0x1,"Classes\CLSID\{F25BC7B7-C60D-4FB9-AAE4-3CA0F6C7038A}\TypeLib",,"{CA9F6CB1-47F1-4874-90CB-C674E9A86495}"
+0x1,"Classes\CLSID\{F25BC7B7-C60D-4FB9-AAE4-3CA0F6C7038A}\VersionIndependentProgID",,"PCHealth.BugRepSysInfo"
+0x1,"Classes\Interface\{30DAD827-DCA7-4E7E-A41E-EA5A8115BE4A}",,"IBugRepSysInfo"
+0x1,"Classes\Interface\{30DAD827-DCA7-4E7E-A41E-EA5A8115BE4A}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{30DAD827-DCA7-4E7E-A41E-EA5A8115BE4A}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{30DAD827-DCA7-4E7E-A41E-EA5A8115BE4A}\TypeLib",,"{CA9F6CB1-47F1-4874-90CB-C674E9A86495}"
+0x1,"Classes\Interface\{30DAD827-DCA7-4E7E-A41E-EA5A8115BE4A}\TypeLib","Version","1.0"
+0x1,"Classes\PCHealth.BugRepSysInfo",,"BugRepSysInfo Class"
+0x1,"Classes\PCHealth.BugRepSysInfo.1",,"BugRepSysInfo Class"
+0x1,"Classes\PCHealth.BugRepSysInfo.1\CLSID",,"{F25BC7B7-C60D-4FB9-AAE4-3CA0F6C7038A}"
+0x1,"Classes\PCHealth.BugRepSysInfo\CLSID",,"{F25BC7B7-C60D-4FB9-AAE4-3CA0F6C7038A}"
+0x1,"Classes\PCHealth.BugRepSysInfo\CurVer",,"PCHealth.BugRepSysInfo.1"
+0x1,"Classes\TypeLib\{CA9F6CB1-47F1-4874-90CB-C674E9A86495}\1.0",,"brp_sysinfo 1.0 Type Library"
+0x2,"Classes\TypeLib\{CA9F6CB1-47F1-4874-90CB-C674E9A86495}\1.0\0\win32",,"brpinfo.dll"
+0x1,"Classes\TypeLib\{CA9F6CB1-47F1-4874-90CB-C674E9A86495}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{CA9F6CB1-47F1-4874-90CB-C674E9A86495}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer msinfo.dll - [U] SP2
+0x1,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}",,"System Information"
+0x0,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\Control"
+0x2,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\InprocServer32",,"msinfo.dll"
+0x1,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\InprocServer32","ThreadingModel","Apartment"
+0x0,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\Insertable"
+0x1,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\MiscStatus",,"0"
+0x1,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\MiscStatus\1",,"131473"
+0x1,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\ProgID",,"Msinfo32.MSInfo.1"
+0x0,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\Programmable"
+0x2,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\ToolboxBitmap32",,"msinfo.dll,102"
+0x1,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\TypeLib",,"{7AC18319-0739-4377-8984-848573D519A5}"
+0x1,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\Version",,"1.0"
+0x1,"Classes\CLSID\{273380E8-1438-4B2C-95B0-713284FBC302}\VersionIndependentProgID",,"Msinfo32.MSInfo"
+0x1,"Classes\CLSID\{4ECB650F-4630-41D3-AC9A-C8F926FC5907}",,"MSPID Class"
+0x2,"Classes\CLSID\{4ECB650F-4630-41D3-AC9A-C8F926FC5907}\InprocServer32",,"msinfo.dll"
+0x1,"Classes\CLSID\{4ECB650F-4630-41D3-AC9A-C8F926FC5907}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{4ECB650F-4630-41D3-AC9A-C8F926FC5907}\ProgID",,"MSPIDInfo.MSPID.1"
+0x0,"Classes\CLSID\{4ECB650F-4630-41D3-AC9A-C8F926FC5907}\Programmable"
+0x1,"Classes\CLSID\{4ECB650F-4630-41D3-AC9A-C8F926FC5907}\TypeLib",,"{246E5F49-035B-4962-B353-6861193396FB}"
+0x1,"Classes\CLSID\{4ECB650F-4630-41D3-AC9A-C8F926FC5907}\VersionIndependentProgID",,"MSPIDInfo.MSPID"
+0x1,"Classes\CLSID\{A0F93E27-F05D-4153-A151-F3720369A4C7}",,"WhqlObj Class"
+0x2,"Classes\CLSID\{A0F93E27-F05D-4153-A151-F3720369A4C7}\InprocServer32",,"msinfo.dll"
+0x1,"Classes\CLSID\{A0F93E27-F05D-4153-A151-F3720369A4C7}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{A0F93E27-F05D-4153-A151-F3720369A4C7}\ProgID",,"WhqlPro.WhqlObj.1"
+0x0,"Classes\CLSID\{A0F93E27-F05D-4153-A151-F3720369A4C7}\Programmable"
+0x1,"Classes\CLSID\{A0F93E27-F05D-4153-A151-F3720369A4C7}\TypeLib",,"{273380E8-1438-4B2C-95B0-713284FBC302}"
+0x1,"Classes\CLSID\{A0F93E27-F05D-4153-A151-F3720369A4C7}\VersionIndependentProgID",,"WhqlPro.WhqlObj"
+0x1,"Classes\Interface\{045C352A-C665-4862-B6F4-21B148BE642B}",,"IWhqlObj"
+0x1,"Classes\Interface\{045C352A-C665-4862-B6F4-21B148BE642B}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{045C352A-C665-4862-B6F4-21B148BE642B}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{045C352A-C665-4862-B6F4-21B148BE642B}\TypeLib",,"{7AC18319-0739-4377-8984-848573D519A5}"
+0x1,"Classes\Interface\{045C352A-C665-4862-B6F4-21B148BE642B}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{2A930152-AE13-4659-A011-36377D5FC438}",,"IMSInfo"
+0x1,"Classes\Interface\{2A930152-AE13-4659-A011-36377D5FC438}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{2A930152-AE13-4659-A011-36377D5FC438}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{2A930152-AE13-4659-A011-36377D5FC438}\TypeLib",,"{7AC18319-0739-4377-8984-848573D519A5}"
+0x1,"Classes\Interface\{2A930152-AE13-4659-A011-36377D5FC438}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{CA785AEF-EA86-46E6-BE6F-9EE6CABBFA67}",,"IMSPID"
+0x1,"Classes\Interface\{CA785AEF-EA86-46E6-BE6F-9EE6CABBFA67}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{CA785AEF-EA86-46E6-BE6F-9EE6CABBFA67}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{CA785AEF-EA86-46E6-BE6F-9EE6CABBFA67}\TypeLib",,"{7AC18319-0739-4377-8984-848573D519A5}"
+0x1,"Classes\Interface\{CA785AEF-EA86-46E6-BE6F-9EE6CABBFA67}\TypeLib","Version","1.0"
+0x1,"Classes\MSPIDInfo.MSPID",,"MSPID Class"
+0x1,"Classes\MSPIDInfo.MSPID.1",,"MSPID Class"
+0x1,"Classes\MSPIDInfo.MSPID.1\CLSID",,"{4ECB650F-4630-41D3-AC9A-C8F926FC5907}"
+0x1,"Classes\MSPIDInfo.MSPID\CLSID",,"{4ECB650F-4630-41D3-AC9A-C8F926FC5907}"
+0x1,"Classes\MSPIDInfo.MSPID\CurVer",,"MSPIDInfo.MSPID.1"
+0x1,"Classes\Msinfo32.MSInfo",,"System Information"
+0x1,"Classes\Msinfo32.MSInfo.1",,"System Information"
+0x1,"Classes\Msinfo32.MSInfo.1\CLSID",,"{273380E8-1438-4B2C-95B0-713284FBC302}"
+0x1,"Classes\Msinfo32.MSInfo\CLSID",,"{273380E8-1438-4B2C-95B0-713284FBC302}"
+0x1,"Classes\Msinfo32.MSInfo\CurVer",,"Msinfo32.MSInfo.1"
+0x1,"Classes\TypeLib\{7AC18319-0739-4377-8984-848573D519A5}\1.0",,"msinfo32 1.0 Type Library"
+0x2,"Classes\TypeLib\{7AC18319-0739-4377-8984-848573D519A5}\1.0\0\win32",,"msinfo.dll"
+0x1,"Classes\TypeLib\{7AC18319-0739-4377-8984-848573D519A5}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{7AC18319-0739-4377-8984-848573D519A5}\1.0\HELPDIR",,"%SystemRoot%\Help"
+0x1,"Classes\WhqlPro.WhqlObj",,"WhqlObj Class"
+0x1,"Classes\WhqlPro.WhqlObj.1",,"WhqlObj Class"
+0x1,"Classes\WhqlPro.WhqlObj.1\CLSID",,"{A0F93E27-F05D-4153-A151-F3720369A4C7}"
+0x1,"Classes\WhqlPro.WhqlObj\CLSID",,"{A0F93E27-F05D-4153-A151-F3720369A4C7}"
+0x1,"Classes\WhqlPro.WhqlObj\CurVer",,"WhqlPro.WhqlObj.1"
+0x2,"Classes\msinfo.document","FriendlyTypeName","@msinfo.dll,-391"
+
+; RegServer sniffpol.dll - [U] SP2
+0x1,"Classes\CLSID\{23D1AE30-8023-11D3-8D47-00C04F949D33}",,"PPServerClass Class"
+0x2,"Classes\CLSID\{23D1AE30-8023-11D3-8D47-00C04F949D33}\InprocServer32",,"sniffpol.dll"
+0x1,"Classes\CLSID\{23D1AE30-8023-11D3-8D47-00C04F949D33}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{23D1AE30-8023-11D3-8D47-00C04F949D33}\ProgID",,"PPServer.PPServerClass.1"
+0x0,"Classes\CLSID\{23D1AE30-8023-11D3-8D47-00C04F949D33}\Programmable"
+0x1,"Classes\CLSID\{23D1AE30-8023-11D3-8D47-00C04F949D33}\TypeLib",,"{23D1AE21-8023-11D3-8D47-00C04F949D33}"
+0x1,"Classes\CLSID\{23D1AE30-8023-11D3-8D47-00C04F949D33}\VersionIndependentProgID",,"PPServer.PPServerClass"
+0x1,"Classes\Interface\{23D1AE2F-8023-11D3-8D47-00C04F949D33}",,"IPPServerClass"
+0x1,"Classes\Interface\{23D1AE2F-8023-11D3-8D47-00C04F949D33}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{23D1AE2F-8023-11D3-8D47-00C04F949D33}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{23D1AE2F-8023-11D3-8D47-00C04F949D33}\TypeLib",,"{23D1AE21-8023-11D3-8D47-00C04F949D33}"
+0x1,"Classes\Interface\{23D1AE2F-8023-11D3-8D47-00C04F949D33}\TypeLib","Version","1.0"
+0x1,"Classes\PPServer.PPServerClass",,"PPServerClass Class"
+0x1,"Classes\PPServer.PPServerClass.1",,"PPServerClass Class"
+0x1,"Classes\PPServer.PPServerClass.1\CLSID",,"{23D1AE30-8023-11D3-8D47-00C04F949D33}"
+0x1,"Classes\PPServer.PPServerClass\CLSID",,"{23D1AE30-8023-11D3-8D47-00C04F949D33}"
+0x1,"Classes\PPServer.PPServerClass\CurVer",,"PPServer.PPServerClass.1"
+0x1,"Classes\TypeLib\{23D1AE21-8023-11D3-8D47-00C04F949D33}\1.0",,"PPServer 1.0 Type Library"
+0x2,"Classes\TypeLib\{23D1AE21-8023-11D3-8D47-00C04F949D33}\1.0\0\win32",,"sniffpol.dll"
+0x1,"Classes\TypeLib\{23D1AE21-8023-11D3-8D47-00C04F949D33}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{23D1AE21-8023-11D3-8D47-00C04F949D33}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer sstub.dll - [U] SP2
+0x1,"Classes\CLSID\{26D19E50-819E-11D3-8D49-00C04F949D33}",,"SniffStub Class"
+0x2,"Classes\CLSID\{26D19E50-819E-11D3-8D49-00C04F949D33}\InprocServer32",,"sstub.dll"
+0x1,"Classes\CLSID\{26D19E50-819E-11D3-8D49-00C04F949D33}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{26D19E50-819E-11D3-8D49-00C04F949D33}\ProgID",,"SStub.SniffStub.1"
+0x0,"Classes\CLSID\{26D19E50-819E-11D3-8D49-00C04F949D33}\Programmable"
+0x1,"Classes\CLSID\{26D19E50-819E-11D3-8D49-00C04F949D33}\TypeLib",,"{26D19E41-819E-11D3-8D49-00C04F949D33}"
+0x1,"Classes\CLSID\{26D19E50-819E-11D3-8D49-00C04F949D33}\VersionIndependentProgID",,"SStub.SniffStub"
+0x1,"Classes\Interface\{26D19E4F-819E-11D3-8D49-00C04F949D33}",,"ISniffStub"
+0x1,"Classes\Interface\{26D19E4F-819E-11D3-8D49-00C04F949D33}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{26D19E4F-819E-11D3-8D49-00C04F949D33}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{26D19E4F-819E-11D3-8D49-00C04F949D33}\TypeLib",,"{26D19E41-819E-11D3-8D49-00C04F949D33}"
+0x1,"Classes\Interface\{26D19E4F-819E-11D3-8D49-00C04F949D33}\TypeLib","Version","1.0"
+0x1,"Classes\SStub.SniffStub",,"SniffStub Class"
+0x1,"Classes\SStub.SniffStub.1",,"SniffStub Class"
+0x1,"Classes\SStub.SniffStub.1\CLSID",,"{26D19E50-819E-11D3-8D49-00C04F949D33}"
+0x1,"Classes\SStub.SniffStub\CLSID",,"{26D19E50-819E-11D3-8D49-00C04F949D33}"
+0x1,"Classes\SStub.SniffStub\CurVer",,"SStub.SniffStub.1"
+0x1,"Classes\TypeLib\{26D19E41-819E-11D3-8D49-00C04F949D33}\1.0",,"SStub 1.0 Type Library"
+0x2,"Classes\TypeLib\{26D19E41-819E-11D3-8D49-00C04F949D33}\1.0\0\win32",,"sstub.dll"
+0x1,"Classes\TypeLib\{26D19E41-819E-11D3-8D49-00C04F949D33}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{26D19E41-819E-11D3-8D49-00C04F949D33}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer tshoot.dll - [U] SP2
+0x1,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}",,"TSHOOTCtrl Class"
+0x0,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\Control"
+0x2,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\InprocServer32",,"tshoot.dll"
+0x1,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\InprocServer32","ThreadingModel","Apartment"
+0x0,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\Insertable"
+0x1,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\MiscStatus",,"0"
+0x1,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\MiscStatus\1",,"132497"
+0x1,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\ProgID",,"Microsoft.TSHOOTCtrl.3.1"
+0x0,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\Programmable"
+0x2,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\ToolboxBitmap32",,"tshoot.dll,101"
+0x1,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\TypeLib",,"{37536092-0A44-11d3-854B-004005506310}"
+0x1,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\Version",,"3.1"
+0x1,"Classes\CLSID\{37536094-0A44-11d3-854B-004005506310}\VersionIndependentProgID",,"Microsoft.TSHOOTCtrl"
+0x1,"Classes\Interface\{4B106872-DD36-11D0-8B44-00A024DD9EFF}",,"ITSHOOTCtrl"
+0x1,"Classes\Interface\{4B106872-DD36-11D0-8B44-00A024DD9EFF}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{4B106872-DD36-11D0-8B44-00A024DD9EFF}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{4B106872-DD36-11D0-8B44-00A024DD9EFF}\TypeLib",,"{37536092-0A44-11D3-854B-004005506310}"
+0x1,"Classes\Interface\{4B106872-DD36-11D0-8B44-00A024DD9EFF}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{4B106873-DD36-11D0-8B44-00A024DD9EFF}",,"_ITSHOOTCtrlEvents"
+0x1,"Classes\Interface\{4B106873-DD36-11D0-8B44-00A024DD9EFF}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{4B106873-DD36-11D0-8B44-00A024DD9EFF}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{4B106873-DD36-11D0-8B44-00A024DD9EFF}\TypeLib",,"{37536092-0A44-11D3-854B-004005506310}"
+0x1,"Classes\Interface\{4B106873-DD36-11D0-8B44-00A024DD9EFF}\TypeLib","Version","1.0"
+0x1,"Classes\Microsoft.TSHOOTCtrl",,"TSHOOTCtrl Class"
+0x1,"Classes\Microsoft.TSHOOTCtrl.3.1",,"TSHOOTCtrl Class"
+0x1,"Classes\Microsoft.TSHOOTCtrl.3.1\CLSID",,"{37536094-0A44-11d3-854B-004005506310}"
+0x1,"Classes\Microsoft.TSHOOTCtrl\CLSID",,"{37536094-0A44-11d3-854B-004005506310}"
+0x1,"Classes\Microsoft.TSHOOTCtrl\CurVer",,"Microsoft.TSHOOTCtrl.3.1"
+0x1,"Classes\TypeLib\{37536092-0A44-11D3-854B-004005506310}\1.0",,"TSHOOT 3.1 Type Library"
+0x2,"Classes\TypeLib\{37536092-0A44-11D3-854B-004005506310}\1.0\0\win32",,"tshoot.dll"
+0x1,"Classes\TypeLib\{37536092-0A44-11D3-854B-004005506310}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{37536092-0A44-11D3-854B-004005506310}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer itss.dll - [U] SP2 - No Second Pass
+0x1,"Classes\.its",,"ITS File"
+0x1,"Classes\CLSID\{5D02926A-212E-11D0-9DF9-00A0C922E6EC}",,"Microsoft InfoTech IStorage System"
+0x2,"Classes\CLSID\{5D02926A-212E-11D0-9DF9-00A0C922E6EC}\InprocServer32",,"itss.dll"
+0x1,"Classes\CLSID\{5D02926A-212E-11D0-9DF9-00A0C922E6EC}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{5D02926A-212E-11D0-9DF9-00A0C922E6EC}\NotInsertable"
+0x1,"Classes\CLSID\{5D02926A-212E-11D0-9DF9-00A0C922E6EC}\ProgID",,"MSITFS1.0"
+0x1,"Classes\CLSID\{5D02926A-212E-11D0-9DF9-00A0C922E6EC}\VersionIndependentProgID",,"MSITFS"
+0x1,"Classes\CLSID\{9D148290-B9C8-11D0-A4CC-0000F80149F6}",,"Microsoft InfoTech Protocol for IE 3.0"
+0x2,"Classes\CLSID\{9D148290-B9C8-11D0-A4CC-0000F80149F6}\InprocServer32",,"itss.dll"
+0x1,"Classes\CLSID\{9D148290-B9C8-11D0-A4CC-0000F80149F6}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{9D148290-B9C8-11D0-A4CC-0000F80149F6}\NotInsertable"
+0x1,"Classes\CLSID\{9D148290-B9C8-11D0-A4CC-0000F80149F6}\ProgID",,"MSITFS1.0"
+0x1,"Classes\CLSID\{9D148290-B9C8-11D0-A4CC-0000F80149F6}\VersionIndependentProgID",,"MSITFS"
+0x1,"Classes\CLSID\{9D148291-B9C8-11D0-A4CC-0000F80149F6}",,"Microsoft InfoTech Protocols for IE 4.0"
+0x2,"Classes\CLSID\{9D148291-B9C8-11D0-A4CC-0000F80149F6}\InprocServer32",,"itss.dll"
+0x1,"Classes\CLSID\{9D148291-B9C8-11D0-A4CC-0000F80149F6}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{9D148291-B9C8-11D0-A4CC-0000F80149F6}\NotInsertable"
+0x1,"Classes\CLSID\{9D148291-B9C8-11D0-A4CC-0000F80149F6}\ProgID",,"MSITFS1.0"
+0x1,"Classes\CLSID\{9D148291-B9C8-11D0-A4CC-0000F80149F6}\VersionIndependentProgID",,"MSITFS"
+0x1,"Classes\CLSID\{D54EEE56-AAAB-11D0-9E1D-00A0C922E6EC}",,"Microsoft InfoTech IStorage for Win32 Files"
+0x2,"Classes\CLSID\{D54EEE56-AAAB-11D0-9E1D-00A0C922E6EC}\InprocServer32",,"itss.dll"
+0x1,"Classes\CLSID\{D54EEE56-AAAB-11D0-9E1D-00A0C922E6EC}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{D54EEE56-AAAB-11D0-9E1D-00A0C922E6EC}\NotInsertable"
+0x1,"Classes\CLSID\{D54EEE56-AAAB-11D0-9E1D-00A0C922E6EC}\ProgID",,"MSITFS1.0"
+0x1,"Classes\CLSID\{D54EEE56-AAAB-11D0-9E1D-00A0C922E6EC}\VersionIndependentProgID",,"MSITFS"
+0x1,"Classes\ITS FILE",,"Internet Document Set"
+0x2,"Classes\ITS FILE\DefaultIcon",,"itss.dll,0"
+0x1,"Classes\ITS FILE\shell\open\command",,"iexplore.exe -nohome"
+0x1,"Classes\ITSProtocol",,"Microsoft InfoTech Protocols for IE 4.0"
+0x1,"Classes\ITSProtocol\CLSID",,"{9D148291-B9C8-11D0-A4CC-0000F80149F6}"
+0x1,"Classes\ITSProtocol\CurVer",,"ITSProtocol1.0"
+0x1,"Classes\MSFSStore",,"Microsoft InfoTech IStorage for Win32 Files"
+0x1,"Classes\MSFSStore\CLSID",,"{D54EEE56-AAAB-11D0-9E1D-00A0C922E6EC}"
+0x1,"Classes\MSFSStore\CurVer",,"MSFSStore1.0"
+0x1,"Classes\MSITFS",,"Microsoft InfoTech IStorage System"
+0x1,"Classes\MSITFS\CLSID",,"{5D02926A-212E-11D0-9DF9-00A0C922E6EC}"
+0x1,"Classes\MSITFS\CurVer",,"MSITFS1.0"
+0x1,"Classes\MSITStore",,"Microsoft InfoTech Protocol for IE 3.0"
+0x1,"Classes\MSITStore\CLSID",,"{9D148290-B9C8-11D0-A4CC-0000F80149F6}"
+0x1,"Classes\MSITStore\CurVer",,"MSITStore1.0"
+0x1,"Classes\PROTOCOLS\Handler\its",,"its: Asychronous Pluggable Protocol Handler"
+0x1,"Classes\PROTOCOLS\Handler\its","CLSID","{9D148291-B9C8-11D0-A4CC-0000F80149F6}"
+0x1,"Classes\PROTOCOLS\Handler\ms-its",,"ms-its: Asychronous Pluggable Protocol Handler"
+0x1,"Classes\PROTOCOLS\Handler\ms-its","CLSID","{9D148291-B9C8-11D0-A4CC-0000F80149F6}"
+0x1,"Classes\PROTOCOLS\Name-Space Handler\mk",,"NameSpace Filter for MK:@MSITStore:..."
+0x1,"Classes\PROTOCOLS\Name-Space Handler\mk\*","CLSID","{9D148291-B9C8-11D0-A4CC-0000F80149F6}"
+
+; RegServer safrslv.dll - [U] SP2
+0x1,"Classes\CLSID\{A55737AB-5B26-4A21-99B7-6D0C606F515E}",,"SessionResolver Class"
+0x2,"Classes\CLSID\{A55737AB-5B26-4A21-99B7-6D0C606F515E}\InprocServer32",,"safrslv.dll"
+0x1,"Classes\CLSID\{A55737AB-5B26-4A21-99B7-6D0C606F515E}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{A55737AB-5B26-4A21-99B7-6D0C606F515E}\ProgID",,"SAFSessionResolver.SessionResolver.1"
+0x0,"Classes\CLSID\{A55737AB-5B26-4A21-99B7-6D0C606F515E}\Programmable"
+0x1,"Classes\CLSID\{A55737AB-5B26-4A21-99B7-6D0C606F515E}\TypeLib",,"{087EAABE-39BA-47C2-AB77-A93009A70F0A}"
+0x1,"Classes\CLSID\{A55737AB-5B26-4A21-99B7-6D0C606F515E}\VersionIndependentProgID",,"SAFSessionResolver.SessionResolver"
+0x1,"Classes\Interface\{A39442C2-10A5-4805-BE54-5E6BA334DC29}",,"ISAFRemoteDesktopCallback"
+0x1,"Classes\Interface\{A39442C2-10A5-4805-BE54-5E6BA334DC29}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{A39442C2-10A5-4805-BE54-5E6BA334DC29}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{A39442C2-10A5-4805-BE54-5E6BA334DC29}\TypeLib",,"{087EAABE-39BA-47C2-AB77-A93009A70F0A}"
+0x1,"Classes\Interface\{A39442C2-10A5-4805-BE54-5E6BA334DC29}\TypeLib","Version","1.0"
+0x1,"Classes\SAFSessionResolver.SessionResolver",,"SessionResolver Class"
+0x1,"Classes\SAFSessionResolver.SessionResolver.1",,"SessionResolver Class"
+0x1,"Classes\SAFSessionResolver.SessionResolver.1\CLSID",,"{A55737AB-5B26-4A21-99B7-6D0C606F515E}"
+0x1,"Classes\SAFSessionResolver.SessionResolver\CLSID",,"{A55737AB-5B26-4A21-99B7-6D0C606F515E}"
+0x1,"Classes\SAFSessionResolver.SessionResolver\CurVer",,"SAFSessionResolver.SessionResolver.1"
+0x1,"Classes\TypeLib\{087EAABE-39BA-47C2-AB77-A93009A70F0A}\1.0",,"SAFSessionResolver 1.0 Type Library"
+0x2,"Classes\TypeLib\{087EAABE-39BA-47C2-AB77-A93009A70F0A}\1.0\0\win32",,"safrslv.dll"
+0x1,"Classes\TypeLib\{087EAABE-39BA-47C2-AB77-A93009A70F0A}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{087EAABE-39BA-47C2-AB77-A93009A70F0A}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer safrdm.dll - [U] SP2
+0x1,"Classes\CLSID\{04F34B7F-0241-455A-9DCD-25471E111409}",,"SAFRemoteDesktopManager Class"
+0x2,"Classes\CLSID\{04F34B7F-0241-455A-9DCD-25471E111409}\InprocServer32",,"safrdm.dll"
+0x1,"Classes\CLSID\{04F34B7F-0241-455A-9DCD-25471E111409}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{04F34B7F-0241-455A-9DCD-25471E111409}\ProgID",,"ISAFrdm.SAFRemoteDesktopManager.1"
+0x0,"Classes\CLSID\{04F34B7F-0241-455A-9DCD-25471E111409}\Programmable"
+0x1,"Classes\CLSID\{04F34B7F-0241-455A-9DCD-25471E111409}\TypeLib",,"{2607D38D-2EA5-4F41-81DD-F96A31E6DE1B}"
+0x1,"Classes\CLSID\{04F34B7F-0241-455A-9DCD-25471E111409}\VersionIndependentProgID",,"ISAFrdm.SAFRemoteDesktopManager"
+0x1,"Classes\ISAFrdm.SAFRemoteDesktopManager",,"SAFRemoteDesktopManager Class"
+0x1,"Classes\ISAFrdm.SAFRemoteDesktopManager.1",,"SAFRemoteDesktopManager Class"
+0x1,"Classes\ISAFrdm.SAFRemoteDesktopManager.1\CLSID",,"{04F34B7F-0241-455A-9DCD-25471E111409}"
+0x1,"Classes\ISAFrdm.SAFRemoteDesktopManager\CLSID",,"{04F34B7F-0241-455A-9DCD-25471E111409}"
+0x1,"Classes\ISAFrdm.SAFRemoteDesktopManager\CurVer",,"ISAFrdm.SAFRemoteDesktopManager.1"
+0x1,"Classes\Interface\{26934FF8-F0B6-4E10-8661-23D47F4C69C5}",,"ISAFRemoteDesktopManager"
+0x1,"Classes\Interface\{26934FF8-F0B6-4E10-8661-23D47F4C69C5}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{26934FF8-F0B6-4E10-8661-23D47F4C69C5}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{26934FF8-F0B6-4E10-8661-23D47F4C69C5}\TypeLib",,"{2607D38D-2EA5-4F41-81DD-F96A31E6DE1B}"
+0x1,"Classes\Interface\{26934FF8-F0B6-4E10-8661-23D47F4C69C5}\TypeLib","Version","1.0"
+0x1,"Classes\TypeLib\{2607D38D-2EA5-4F41-81DD-F96A31E6DE1B}\1.0",,"ISAFrdm 1.0 Type Library"
+0x2,"Classes\TypeLib\{2607D38D-2EA5-4F41-81DD-F96A31E6DE1B}\1.0\0\win32",,"safrdm.dll"
+0x1,"Classes\TypeLib\{2607D38D-2EA5-4F41-81DD-F96A31E6DE1B}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{2607D38D-2EA5-4F41-81DD-F96A31E6DE1B}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer safrcdlg.dll - [U] SP2
+0x1,"Classes\CLSID\{5F889CE8-3B09-4CFF-B70A-83730CC00627}",,"FileOpen Class"
+0x2,"Classes\CLSID\{5F889CE8-3B09-4CFF-B70A-83730CC00627}\InprocServer32",,"safrcdlg.dll"
+0x1,"Classes\CLSID\{5F889CE8-3B09-4CFF-B70A-83730CC00627}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{5F889CE8-3B09-4CFF-B70A-83730CC00627}\ProgID",,"SAFRCFileDlg.FileOpen.1"
+0x0,"Classes\CLSID\{5F889CE8-3B09-4CFF-B70A-83730CC00627}\Programmable"
+0x1,"Classes\CLSID\{5F889CE8-3B09-4CFF-B70A-83730CC00627}\TypeLib",,"{DBEB2F21-60F6-4690-AB98-E512B476809F}"
+0x1,"Classes\CLSID\{5F889CE8-3B09-4CFF-B70A-83730CC00627}\VersionIndependentProgID",,"SAFRCFileDlg.FileOpen"
+0x1,"Classes\CLSID\{81D2F0F2-5671-411f-9F31-8823E9A444DB}",,"RASetting Class"
+0x2,"Classes\CLSID\{81D2F0F2-5671-411f-9F31-8823E9A444DB}\InprocServer32",,"safrcdlg.dll"
+0x1,"Classes\CLSID\{81D2F0F2-5671-411f-9F31-8823E9A444DB}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{81D2F0F2-5671-411f-9F31-8823E9A444DB}\ProgID",,"SAFRCFileDlg.RASetting.1"
+0x0,"Classes\CLSID\{81D2F0F2-5671-411f-9F31-8823E9A444DB}\Programmable"
+0x1,"Classes\CLSID\{81D2F0F2-5671-411f-9F31-8823E9A444DB}\TypeLib",,"{DBEB2F21-60F6-4690-AB98-E512B476809F}"
+0x1,"Classes\CLSID\{81D2F0F2-5671-411f-9F31-8823E9A444DB}\VersionIndependentProgID",,"SAFRCFileDlg.RASetting"
+0x1,"Classes\CLSID\{E7220659-8771-4CF3-8F29-BCDFFA7848C9}",,"Panic Class"
+0x2,"Classes\CLSID\{E7220659-8771-4CF3-8F29-BCDFFA7848C9}\InprocServer32",,"safrcdlg.dll"
+0x1,"Classes\CLSID\{E7220659-8771-4CF3-8F29-BCDFFA7848C9}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{E7220659-8771-4CF3-8F29-BCDFFA7848C9}\ProgID",,"SAFRCFileDlg.Panic.1"
+0x0,"Classes\CLSID\{E7220659-8771-4CF3-8F29-BCDFFA7848C9}\Programmable"
+0x1,"Classes\CLSID\{E7220659-8771-4CF3-8F29-BCDFFA7848C9}\TypeLib",,"{DBEB2F21-60F6-4690-AB98-E512B476809F}"
+0x1,"Classes\CLSID\{E7220659-8771-4CF3-8F29-BCDFFA7848C9}\VersionIndependentProgID",,"SAFRCFileDlg.Panic"
+0x1,"Classes\CLSID\{F9A4D260-0342-4672-8007-0882F75DAFC7}",,"FileSave Class"
+0x2,"Classes\CLSID\{F9A4D260-0342-4672-8007-0882F75DAFC7}\InprocServer32",,"safrcdlg.dll"
+0x1,"Classes\CLSID\{F9A4D260-0342-4672-8007-0882F75DAFC7}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{F9A4D260-0342-4672-8007-0882F75DAFC7}\ProgID",,"SAFRCFileDlg.FileSave.1"
+0x0,"Classes\CLSID\{F9A4D260-0342-4672-8007-0882F75DAFC7}\Programmable"
+0x1,"Classes\CLSID\{F9A4D260-0342-4672-8007-0882F75DAFC7}\TypeLib",,"{DBEB2F21-60F6-4690-AB98-E512B476809F}"
+0x1,"Classes\CLSID\{F9A4D260-0342-4672-8007-0882F75DAFC7}\VersionIndependentProgID",,"SAFRCFileDlg.FileSave"
+0x1,"Classes\Interface\{2AC10A96-17A1-4B08-8EF0-5988F3979F18}",,"IFileSave"
+0x1,"Classes\Interface\{2AC10A96-17A1-4B08-8EF0-5988F3979F18}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{2AC10A96-17A1-4B08-8EF0-5988F3979F18}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{2AC10A96-17A1-4B08-8EF0-5988F3979F18}\TypeLib",,"{DBEB2F21-60F6-4690-AB98-E512B476809F}"
+0x1,"Classes\Interface\{2AC10A96-17A1-4B08-8EF0-5988F3979F18}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{3A1AAF00-BDD5-456B-9E69-9F02F06FDF76}",,"IPanic"
+0x1,"Classes\Interface\{3A1AAF00-BDD5-456B-9E69-9F02F06FDF76}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{3A1AAF00-BDD5-456B-9E69-9F02F06FDF76}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{3A1AAF00-BDD5-456B-9E69-9F02F06FDF76}\TypeLib",,"{DBEB2F21-60F6-4690-AB98-E512B476809F}"
+0x1,"Classes\Interface\{3A1AAF00-BDD5-456B-9E69-9F02F06FDF76}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{9E57A474-0A04-4B89-9D27-1981B26C970D}",,"IRASetting"
+0x1,"Classes\Interface\{9E57A474-0A04-4B89-9D27-1981B26C970D}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{9E57A474-0A04-4B89-9D27-1981B26C970D}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{9E57A474-0A04-4B89-9D27-1981B26C970D}\TypeLib",,"{DBEB2F21-60F6-4690-AB98-E512B476809F}"
+0x1,"Classes\Interface\{9E57A474-0A04-4B89-9D27-1981B26C970D}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{C9F9C23C-1A16-4A31-B53B-A81B334DFBE0}",,"IFileOpen"
+0x1,"Classes\Interface\{C9F9C23C-1A16-4A31-B53B-A81B334DFBE0}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{C9F9C23C-1A16-4A31-B53B-A81B334DFBE0}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{C9F9C23C-1A16-4A31-B53B-A81B334DFBE0}\TypeLib",,"{DBEB2F21-60F6-4690-AB98-E512B476809F}"
+0x1,"Classes\Interface\{C9F9C23C-1A16-4A31-B53B-A81B334DFBE0}\TypeLib","Version","1.0"
+0x1,"Classes\SAFRCFileDlg.FileOpen",,"FileOpen Class"
+0x1,"Classes\SAFRCFileDlg.FileOpen.1",,"FileOpen Class"
+0x1,"Classes\SAFRCFileDlg.FileOpen.1\CLSID",,"{5F889CE8-3B09-4CFF-B70A-83730CC00627}"
+0x1,"Classes\SAFRCFileDlg.FileOpen\CLSID",,"{5F889CE8-3B09-4CFF-B70A-83730CC00627}"
+0x1,"Classes\SAFRCFileDlg.FileOpen\CurVer",,"SAFRCFileDlg.FileOpen.1"
+0x1,"Classes\SAFRCFileDlg.FileSave",,"FileSave Class"
+0x1,"Classes\SAFRCFileDlg.FileSave.1",,"FileSave Class"
+0x1,"Classes\SAFRCFileDlg.FileSave.1\CLSID",,"{F9A4D260-0342-4672-8007-0882F75DAFC7}"
+0x1,"Classes\SAFRCFileDlg.FileSave\CLSID",,"{F9A4D260-0342-4672-8007-0882F75DAFC7}"
+0x1,"Classes\SAFRCFileDlg.FileSave\CurVer",,"SAFRCFileDlg.FileSave.1"
+0x1,"Classes\SAFRCFileDlg.Panic",,"Panic Class"
+0x1,"Classes\SAFRCFileDlg.Panic.1",,"Panic Class"
+0x1,"Classes\SAFRCFileDlg.Panic.1\CLSID",,"{E7220659-8771-4CF3-8F29-BCDFFA7848C9}"
+0x1,"Classes\SAFRCFileDlg.Panic\CLSID",,"{E7220659-8771-4CF3-8F29-BCDFFA7848C9}"
+0x1,"Classes\SAFRCFileDlg.Panic\CurVer",,"SAFRCFileDlg.Panic.1"
+0x1,"Classes\SAFRCFileDlg.RASetting",,"RASetting Class"
+0x1,"Classes\SAFRCFileDlg.RASetting.1",,"RASetting Class"
+0x1,"Classes\SAFRCFileDlg.RASetting.1\CLSID",,"{81D2F0F2-5671-411f-9F31-8823E9A444DB}"
+0x1,"Classes\SAFRCFileDlg.RASetting\CLSID",,"{81D2F0F2-5671-411f-9F31-8823E9A444DB}"
+0x1,"Classes\SAFRCFileDlg.RASetting\CurVer",,"SAFRCFileDlg.RASetting.1"
+0x1,"Classes\TypeLib\{DBEB2F21-60F6-4690-AB98-E512B476809F}\1.0",,"SAFRCFileDlg 1.0 Type Library"
+0x2,"Classes\TypeLib\{DBEB2F21-60F6-4690-AB98-E512B476809F}\1.0\0\win32",,"safrcdlg.dll"
+0x1,"Classes\TypeLib\{DBEB2F21-60F6-4690-AB98-E512B476809F}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{DBEB2F21-60F6-4690-AB98-E512B476809F}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer racpldlg.dll - [U] SP2
+0x1,"Classes\CLSID\{4D317113-C6EC-406A-9C61-20E891BC37F7}",,"RASettingProperty Class"
+0x2,"Classes\CLSID\{4D317113-C6EC-406A-9C61-20E891BC37F7}\InprocServer32",,"racpldlg.dll"
+0x1,"Classes\CLSID\{4D317113-C6EC-406A-9C61-20E891BC37F7}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{4D317113-C6EC-406A-9C61-20E891BC37F7}\ProgID",,"RACplDlg.RASettingProperty.1"
+0x0,"Classes\CLSID\{4D317113-C6EC-406A-9C61-20E891BC37F7}\Programmable"
+0x1,"Classes\CLSID\{4D317113-C6EC-406A-9C61-20E891BC37F7}\TypeLib",,"{5190C4AF-AB0F-4235-B12F-D5A8FA3F854B}"
+0x1,"Classes\CLSID\{4D317113-C6EC-406A-9C61-20E891BC37F7}\VersionIndependentProgID",,"RACplDlg.RASettingProperty"
+0x1,"Classes\CLSID\{4fadcfea-0971-4575-a368-a2de9d2ed07d}",,"RAEventLog Class"
+0x2,"Classes\CLSID\{4fadcfea-0971-4575-a368-a2de9d2ed07d}\InprocServer32",,"racpldlg.dll"
+0x1,"Classes\CLSID\{4fadcfea-0971-4575-a368-a2de9d2ed07d}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{4fadcfea-0971-4575-a368-a2de9d2ed07d}\ProgID",,"RACplDlg.RAEventLog.1"
+0x0,"Classes\CLSID\{4fadcfea-0971-4575-a368-a2de9d2ed07d}\Programmable"
+0x1,"Classes\CLSID\{4fadcfea-0971-4575-a368-a2de9d2ed07d}\TypeLib",,"{5190C4AF-AB0F-4235-B12F-D5A8FA3F854B}"
+0x1,"Classes\CLSID\{4fadcfea-0971-4575-a368-a2de9d2ed07d}\VersionIndependentProgID",,"RACplDlg.RAEventLog"
+0x1,"Classes\CLSID\{70FF37C0-F39A-4B26-AE5E-638EF296D490}",,"RARegSetting Class"
+0x2,"Classes\CLSID\{70FF37C0-F39A-4B26-AE5E-638EF296D490}\InprocServer32",,"racpldlg.dll"
+0x1,"Classes\CLSID\{70FF37C0-F39A-4B26-AE5E-638EF296D490}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{70FF37C0-F39A-4B26-AE5E-638EF296D490}\ProgID",,"RACplDlg.RARegSetting.1"
+0x0,"Classes\CLSID\{70FF37C0-F39A-4B26-AE5E-638EF296D490}\Programmable"
+0x1,"Classes\CLSID\{70FF37C0-F39A-4B26-AE5E-638EF296D490}\TypeLib",,"{5190C4AF-AB0F-4235-B12F-D5A8FA3F854B}"
+0x1,"Classes\CLSID\{70FF37C0-F39A-4B26-AE5E-638EF296D490}\VersionIndependentProgID",,"RACplDlg.RARegSetting"
+0x1,"Classes\Interface\{08C8B592-FDD0-423C-9FD2-7D8C055EC5B3}",,"IRASettingProperty"
+0x1,"Classes\Interface\{08C8B592-FDD0-423C-9FD2-7D8C055EC5B3}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{08C8B592-FDD0-423C-9FD2-7D8C055EC5B3}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{08C8B592-FDD0-423C-9FD2-7D8C055EC5B3}\TypeLib",,"{5190C4AF-AB0F-4235-B12F-D5A8FA3F854B}"
+0x1,"Classes\Interface\{08C8B592-FDD0-423C-9FD2-7D8C055EC5B3}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{0AE5FE86-C02A-4214-B985-357ABA40F085}",,"IRAEventLog"
+0x1,"Classes\Interface\{0AE5FE86-C02A-4214-B985-357ABA40F085}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{0AE5FE86-C02A-4214-B985-357ABA40F085}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{0AE5FE86-C02A-4214-B985-357ABA40F085}\TypeLib",,"{5190C4AF-AB0F-4235-B12F-D5A8FA3F854B}"
+0x1,"Classes\Interface\{0AE5FE86-C02A-4214-B985-357ABA40F085}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{2464AA8D-7099-4C22-925C-81A4EB1FCFFE}",,"IRARegSetting"
+0x1,"Classes\Interface\{2464AA8D-7099-4C22-925C-81A4EB1FCFFE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{2464AA8D-7099-4C22-925C-81A4EB1FCFFE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{2464AA8D-7099-4C22-925C-81A4EB1FCFFE}\TypeLib",,"{5190C4AF-AB0F-4235-B12F-D5A8FA3F854B}"
+0x1,"Classes\Interface\{2464AA8D-7099-4C22-925C-81A4EB1FCFFE}\TypeLib","Version","1.0"
+0x1,"Classes\RACplDlg.RAEventLog",,"RAEventLog Class"
+0x1,"Classes\RACplDlg.RAEventLog.1",,"RAEventLog Class"
+0x1,"Classes\RACplDlg.RAEventLog.1\CLSID",,"{4fadcfea-0971-4575-a368-a2de9d2ed07d}"
+0x1,"Classes\RACplDlg.RAEventLog\CLSID",,"{4fadcfea-0971-4575-a368-a2de9d2ed07d}"
+0x1,"Classes\RACplDlg.RAEventLog\CurVer",,"RACplDlg.RAEventLog.1"
+0x1,"Classes\RACplDlg.RARegSetting",,"RARegSetting Class"
+0x1,"Classes\RACplDlg.RARegSetting.1",,"RARegSetting Class"
+0x1,"Classes\RACplDlg.RARegSetting.1\CLSID",,"{70FF37C0-F39A-4B26-AE5E-638EF296D490}"
+0x1,"Classes\RACplDlg.RARegSetting\CLSID",,"{70FF37C0-F39A-4B26-AE5E-638EF296D490}"
+0x1,"Classes\RACplDlg.RARegSetting\CurVer",,"RACplDlg.RARegSetting.1"
+0x1,"Classes\RACplDlg.RASettingProperty",,"RASettingProperty Class"
+0x1,"Classes\RACplDlg.RASettingProperty.1",,"RASettingProperty Class"
+0x1,"Classes\RACplDlg.RASettingProperty.1\CLSID",,"{4D317113-C6EC-406A-9C61-20E891BC37F7}"
+0x1,"Classes\RACplDlg.RASettingProperty\CLSID",,"{4D317113-C6EC-406A-9C61-20E891BC37F7}"
+0x1,"Classes\RACplDlg.RASettingProperty\CurVer",,"RACplDlg.RASettingProperty.1"
+0x1,"Classes\TypeLib\{5190C4AF-AB0F-4235-B12F-D5A8FA3F854B}\1.0",,"RAssistance 1.0 Type Library"
+0x2,"Classes\TypeLib\{5190C4AF-AB0F-4235-B12F-D5A8FA3F854B}\1.0\0\win32",,"racpldlg.dll"
+0x1,"Classes\TypeLib\{5190C4AF-AB0F-4235-B12F-D5A8FA3F854B}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{5190C4AF-AB0F-4235-B12F-D5A8FA3F854B}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; UploadM.exe /regserver /svchost netsvcs
+0x1,"Classes\AppID\UploadM.EXE","AppID","{8E82AD01-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\AppID\{8E82AD01-D1A3-11D2-9374-00C04F72DAF7}",,"Microsoft Upload Manager"
+0x1,"Classes\AppID\{8E82AD01-D1A3-11D2-9374-00C04F72DAF7}","LocalServer32","UploadM.exe"
+0x1,"Classes\AppID\{8E82AD01-D1A3-11D2-9374-00C04F72DAF7}","LocalService","uploadmgr"
+0x1,"Classes\CLSID\{8E82AD02-D1A3-11D2-9374-00C04F72DAF7}",,"Help and Support Services: Upload Manager"
+0x1,"Classes\CLSID\{8E82AD02-D1A3-11D2-9374-00C04F72DAF7}","AppID","{8E82AD01-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\CLSID\{8E82AD02-D1A3-11D2-9374-00C04F72DAF7}","ThreadingModel","Both"
+0x1,"Classes\CLSID\{8E82AD03-D1A3-11D2-9374-00C04F72DAF7}",,"Help and Support Services: Connection State"
+0x1,"Classes\CLSID\{8E82AD03-D1A3-11D2-9374-00C04F72DAF7}","AppID","{8E82AD01-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\CLSID\{8E82AD03-D1A3-11D2-9374-00C04F72DAF7}","ThreadingModel","Both"
+0x1,"Classes\Interface\{8E82AD10-D1A3-11D2-9374-00C04F72DAF7}",,"IMPCUploadJob"
+0x1,"Classes\Interface\{8E82AD10-D1A3-11D2-9374-00C04F72DAF7}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8E82AD10-D1A3-11D2-9374-00C04F72DAF7}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8E82AD10-D1A3-11D2-9374-00C04F72DAF7}\TypeLib",,"{8E82AD00-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\Interface\{8E82AD10-D1A3-11D2-9374-00C04F72DAF7}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{8E82AD12-D1A3-11D2-9374-00C04F72DAF7}",,"DMPCUploadEvents"
+0x1,"Classes\Interface\{8E82AD12-D1A3-11D2-9374-00C04F72DAF7}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8E82AD12-D1A3-11D2-9374-00C04F72DAF7}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8E82AD12-D1A3-11D2-9374-00C04F72DAF7}\TypeLib",,"{8E82AD00-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\Interface\{8E82AD12-D1A3-11D2-9374-00C04F72DAF7}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{8E82AD13-D1A3-11D2-9374-00C04F72DAF7}",,"IMPCUpload"
+0x1,"Classes\Interface\{8E82AD13-D1A3-11D2-9374-00C04F72DAF7}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8E82AD13-D1A3-11D2-9374-00C04F72DAF7}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8E82AD13-D1A3-11D2-9374-00C04F72DAF7}\TypeLib",,"{8E82AD00-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\Interface\{8E82AD13-D1A3-11D2-9374-00C04F72DAF7}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{8E82AD14-D1A3-11D2-9374-00C04F72DAF7}",,"IMPCConnection"
+0x1,"Classes\Interface\{8E82AD14-D1A3-11D2-9374-00C04F72DAF7}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8E82AD14-D1A3-11D2-9374-00C04F72DAF7}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8E82AD14-D1A3-11D2-9374-00C04F72DAF7}\TypeLib",,"{8E82AD00-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\Interface\{8E82AD14-D1A3-11D2-9374-00C04F72DAF7}\TypeLib","Version","1.0"
+0x1,"Classes\TypeLib\{8E82AD00-D1A3-11D2-9374-00C04F72DAF7}\1.0",,"UploadManager 1.0 Type Library"
+0x2,"Classes\TypeLib\{8E82AD00-D1A3-11D2-9374-00C04F72DAF7}\1.0\0\win32",,"%SystemRoot%\PCHealth\UploadLB\Binaries\UploadM.exe"
+0x1,"Classes\TypeLib\{8E82AD00-D1A3-11D2-9374-00C04F72DAF7}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{8E82AD00-D1A3-11D2-9374-00C04F72DAF7}\1.0\HELPDIR",,"%SystemRoot%\Help"
+0x1,"Classes\UploadManager.MPCConnection",,"MPCConnection Class"
+0x1,"Classes\UploadManager.MPCConnection.1",,"MPCConnection Class"
+0x1,"Classes\UploadManager.MPCConnection.1\CLSID",,"{8E82AD03-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\UploadManager.MPCConnection\CLSID",,"{8E82AD03-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\UploadManager.MPCConnection\CurVer",,"UploadManager.MPCConnection.1"
+0x1,"Classes\UploadManager.MPCUpload",,"MPCUpload Class"
+0x1,"Classes\UploadManager.MPCUpload.1",,"MPCUpload Class"
+0x1,"Classes\UploadManager.MPCUpload.1\CLSID",,"{8E82AD02-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\UploadManager.MPCUpload\CLSID",,"{8E82AD02-D1A3-11D2-9374-00C04F72DAF7}"
+0x1,"Classes\UploadManager.MPCUpload\CurVer",,"UploadManager.MPCUpload.1"
+
+; HelpSvc.exe /svchost netsvcs /regserver /install
+0x1,"Classes\AppID\HelpSvc.exe","AppID","{833E4001-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\AppID\{833E4001-AFF7-4AC3-AAC2-9F24C1457BCE}",,"Microsoft Help and Support Services"
+0x3,"Classes\AppID\{833E4001-AFF7-4AC3-AAC2-9F24C1457BCE}","AccessPermission",\
+  01,00,04,80,6c,00,00,00,88,00,00,00,00,00,00,00,14,00,00,00,02,00,58,00,03,\
+  00,00,00,00,00,24,00,07,00,00,00,01,05,00,00,00,00,00,05,15,00,00,00,f5,36,\
+  45,49,20,dd,73,39,43,17,0a,32,e8,03,00,00,00,00,14,00,03,00,00,00,01,01,00,\
+  00,00,00,00,01,00,00,00,00,00,00,18,00,07,00,00,00,01,02,00,00,00,00,00,05,\
+  20,00,00,00,20,02,00,00,01,05,00,00,00,00,00,05,15,00,00,00,f5,36,45,49,20,\
+  dd,73,39,43,17,0a,32,e8,03,00,00,01,05,00,00,00,00,00,05,15,00,00,00,f5,36,\
+  45,49,20,dd,73,39,43,17,0a,32,e8,03,00,00
+0x3,"Classes\AppID\{833E4001-AFF7-4AC3-AAC2-9F24C1457BCE}","LaunchPermission",\
+  01,00,04,80,6c,00,00,00,88,00,00,00,00,00,00,00,14,00,00,00,02,00,58,00,03,\
+  00,00,00,00,00,24,00,1f,00,00,00,01,05,00,00,00,00,00,05,15,00,00,00,f5,36,\
+  45,49,20,dd,73,39,43,17,0a,32,e8,03,00,00,00,00,14,00,0b,00,00,00,01,01,00,\
+  00,00,00,00,01,00,00,00,00,00,00,18,00,1f,00,00,00,01,02,00,00,00,00,00,05,\
+  20,00,00,00,20,02,00,00,01,05,00,00,00,00,00,05,15,00,00,00,f5,36,45,49,20,\
+  dd,73,39,43,17,0a,32,e8,03,00,00,01,05,00,00,00,00,00,05,15,00,00,00,f5,36,\
+  45,49,20,dd,73,39,43,17,0a,32,e8,03,00,00
+0x1,"Classes\AppID\{833E4001-AFF7-4AC3-AAC2-9F24C1457BCE}","LocalServer32","HelpSvc.exe"
+0x1,"Classes\AppID\{833E4001-AFF7-4AC3-AAC2-9F24C1457BCE}","LocalService","helpsvc"
+0x1,"Classes\CLSID\{833E4010-AFF7-4AC3-AAC2-9F24C1457BCE}",,"Help and Support Services: Service"
+0x1,"Classes\CLSID\{833E4010-AFF7-4AC3-AAC2-9F24C1457BCE}","AppID","{833E4001-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\CLSID\{833E4010-AFF7-4AC3-AAC2-9F24C1457BCE}","ThreadingModel","Both"
+0x1,"Classes\CLSID\{833E4012-AFF7-4AC3-AAC2-9F24C1457BCE}",,"Help and Support Services: Package Updater"
+0x1,"Classes\CLSID\{833E4012-AFF7-4AC3-AAC2-9F24C1457BCE}","AppID","{833E4001-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\CLSID\{833E4012-AFF7-4AC3-AAC2-9F24C1457BCE}","ThreadingModel","Both"
+0x1,"Classes\HCU.PCHUpdate",,"PCHUpdate Class"
+0x1,"Classes\HCU.PCHUpdate.1",,"PCHUpdate Class"
+0x1,"Classes\HCU.PCHUpdate.1\CLSID",,"{833E4012-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\HCU.PCHUpdate\CLSID",,"{833E4012-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\HCU.PCHUpdate\CurVer",,"HCU.PCHUpdate.1"
+0x1,"Classes\Interface\{74932280-7AB6-4670-9704-128DEF4932EC}",,"IPCHSEParamItem"
+0x1,"Classes\Interface\{74932280-7AB6-4670-9704-128DEF4932EC}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{74932280-7AB6-4670-9704-128DEF4932EC}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{74932280-7AB6-4670-9704-128DEF4932EC}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{74932280-7AB6-4670-9704-128DEF4932EC}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{7FA141A6-DE45-421A-B029-1E7F18C25B2F}",,"ISAFIcfWhiteList"
+0x1,"Classes\Interface\{7FA141A6-DE45-421A-B029-1E7F18C25B2F}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{7FA141A6-DE45-421A-B029-1E7F18C25B2F}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{7FA141A6-DE45-421A-B029-1E7F18C25B2F}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{7FA141A6-DE45-421A-B029-1E7F18C25B2F}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4070-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHVersionItem"
+0x1,"Classes\Interface\{833E4070-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4070-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4070-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4070-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4071-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHUpdate"
+0x1,"Classes\Interface\{833E4071-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4071-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4071-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4071-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4100-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHCollection"
+0x1,"Classes\Interface\{833E4100-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4100-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4100-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4100-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4101-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHUtility"
+0x1,"Classes\Interface\{833E4101-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4101-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4101-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4101-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4108-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHUserSettings"
+0x1,"Classes\Interface\{833E4108-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4108-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4108-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4108-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4110-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHQueryResult"
+0x1,"Classes\Interface\{833E4110-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4110-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4110-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4110-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4111-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHTaxonomyDatabase"
+0x1,"Classes\Interface\{833E4111-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4111-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4111-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4111-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4112-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHSetOfHelpTopics"
+0x1,"Classes\Interface\{833E4112-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4112-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4112-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4112-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4113-AFF7-4AC3-AAC2-9F24C1457BCE}",,"DPCHSetOfHelpTopicsEvents"
+0x1,"Classes\Interface\{833E4113-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4113-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4113-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4113-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4130-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHSecurity"
+0x1,"Classes\Interface\{833E4130-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4130-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4130-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4130-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4131-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHSecurityDescriptor"
+0x1,"Classes\Interface\{833E4131-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4131-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4131-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4131-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4132-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHAccessControlList"
+0x1,"Classes\Interface\{833E4132-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4132-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4132-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4132-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4133-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHAccessControlEntry"
+0x1,"Classes\Interface\{833E4133-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4133-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4133-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4133-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4160-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHSEManager"
+0x1,"Classes\Interface\{833E4160-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4160-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4160-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4160-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4161-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHSEWrapperItem"
+0x1,"Classes\Interface\{833E4161-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4161-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4161-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4161-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4162-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHSEResultItem"
+0x1,"Classes\Interface\{833E4162-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4162-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4162-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4162-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4163-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHSEManagerInternal"
+0x1,"Classes\Interface\{833E4163-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4163-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4163-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4163-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4164-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHSEWrapperInternal"
+0x1,"Classes\Interface\{833E4164-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4164-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4164-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4164-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4165-AFF7-4AC3-AAC2-9F24C1457BCE}",,"DPCHSEMgrEvents"
+0x1,"Classes\Interface\{833E4165-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4165-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4165-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4165-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4180-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFReg"
+0x1,"Classes\Interface\{833E4180-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4180-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4180-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4180-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4181-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFChannel"
+0x1,"Classes\Interface\{833E4181-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4181-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4181-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4181-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4182-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFIncidentItem"
+0x1,"Classes\Interface\{833E4182-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4182-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4182-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4182-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4183-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFIncident"
+0x1,"Classes\Interface\{833E4183-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4183-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4183-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4183-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4190-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFDataCollection"
+0x1,"Classes\Interface\{833E4190-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4190-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4190-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4190-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4191-AFF7-4AC3-AAC2-9F24C1457BCE}",,"DSAFDataCollectionEvents"
+0x1,"Classes\Interface\{833E4191-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4191-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4191-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4191-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4192-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFDataCollectionReport"
+0x1,"Classes\Interface\{833E4192-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4192-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4192-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4192-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E41A0-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFCabinet"
+0x1,"Classes\Interface\{833E41A0-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41A0-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41A0-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E41A0-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E41A1-AFF7-4AC3-AAC2-9F24C1457BCE}",,"DSAFCabinetEvents"
+0x1,"Classes\Interface\{833E41A1-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41A1-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41A1-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E41A1-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E41A8-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFEncrypt"
+0x1,"Classes\Interface\{833E41A8-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41A8-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41A8-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E41A8-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E41A9-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFUser"
+0x1,"Classes\Interface\{833E41A9-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41A9-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41A9-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E41A9-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E41AA-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFSession"
+0x1,"Classes\Interface\{833E41AA-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41AA-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41AA-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E41AA-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E41AB-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFRemoteConnectionData"
+0x1,"Classes\Interface\{833E41AB-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41AB-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41AB-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E41AB-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E41AC-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFRemoteDesktopConnection"
+0x1,"Classes\Interface\{833E41AC-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41AC-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41AC-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E41AC-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E41B0-AFF7-4AC3-AAC2-9F24C1457BCE}",,"ISAFChannelNotifyIncident"
+0x1,"Classes\Interface\{833E41B0-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41B0-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E41B0-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E41B0-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4200-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHService"
+0x1,"Classes\Interface\{833E4200-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4200-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4200-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4200-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4201-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHRemoteHelpContents"
+0x1,"Classes\Interface\{833E4201-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4201-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4201-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4201-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4280-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHSlaveProcess"
+0x1,"Classes\Interface\{833E4280-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4280-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4280-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4280-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4281-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHActiveScript"
+0x1,"Classes\Interface\{833E4281-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4281-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4281-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4281-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{833E4282-AFF7-4AC3-AAC2-9F24C1457BCE}",,"IPCHActiveScriptSite"
+0x1,"Classes\Interface\{833E4282-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4282-AFF7-4AC3-AAC2-9F24C1457BCE}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{833E4282-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib",,"{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\Interface\{833E4282-AFF7-4AC3-AAC2-9F24C1457BCE}\TypeLib","Version","1.0"
+0x1,"Classes\PCH.HelpService",,"PCHService Class"
+0x1,"Classes\PCH.HelpService.1",,"PCHService Class"
+0x1,"Classes\PCH.HelpService.1\CLSID",,"{833E4010-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\PCH.HelpService\CLSID",,"{833E4010-AFF7-4AC3-AAC2-9F24C1457BCE}"
+0x1,"Classes\PCH.HelpService\CurVer",,"PCH.HelpService"
+0x1,"Classes\TypeLib\{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}\1.0",,"Help Service 1.0 Type Library"
+0x2,"Classes\TypeLib\{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}\1.0\0\win32",,"HelpSvc.exe"
+0x1,"Classes\TypeLib\{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{833E4000-AFF7-4AC3-AAC2-9F24C1457BCE}\1.0\HELPDIR",,"%SystemRoot%\Help"

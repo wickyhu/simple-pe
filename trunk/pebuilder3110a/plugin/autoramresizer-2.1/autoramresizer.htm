@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>QSoft Auto Ramdisk Resizer</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+ <style type="text/css">
+ <--
+  body
+  {
+    margin-top: 0px;
+    margin-left: 50px;
+    background-color: white;
+    color: black;
+    font-family: Georgia, Arial, Verdana, Sans-Serif;
+  }
+
+  a
+  {
+    color: #00aaff;
+    text-decoration:none;
+  }
+
+  a:link { color:#00a9ff; }
+  a:visited { color:#00a9ff; }
+  a:hover { background-color:#eeeeee; }
+  a.free:hover { background-color: transparent; }
+
+  pre
+  {
+    background-color: #f0f0f0;
+    border: 1px solid #000000;
+    padding: 1px 1em 1px 1em;
+  }
+
+  ul
+  {
+   color: #d18b55;
+   list-style: square;
+  }
+-->
+ </style>
+</head>
+<body>
+
+<h3>QSoft Auto Ramdisk Resizer v2.1</h3>
+<hr />
+<p>AutoRamDisk resizer: base concept by Sergio Neddi, C-Native port by Sherpya, you need also Ramdisk plugin active since this does only the resizing</p>
+
+<p>Version history</p>
+<ul>
+ <li>Version 2.1: Revert back to 64mb instead of leave no ramdisk when the driver doesn't give us requested size</li>
+ <li>Version 2.0: Partial rewrite, added support for Ramdisk Driver version 5.3.x.x</li>
+ <li>Version 1.9: Added a check for Ramdrv variable existence, also now by default it doesn't cleanup the ramdrive, you need to specify -w cmdline option</li>
+ <li>Version 1.8: Made a cycle to wait the ramdisk driver since it's not always ready expecially in xp sp2</li>
+ <li>Version 1.7: Made -d option decimal also tweaked some messages since they are too fast to be showed, corrected a bug when calculating min_free</li>
+ <li>Version 1.6: AutoRamResizer accepts -f command to force resize to a value that leave at least the memory specified</li>
+ <li>Version 1.5: AutoRamResizer now accepts -d command to specify the divisor of physical mem, it defaults to 3, you can also specify dialog position, modify values in autoramresizer.inf</li>
+ <li>Version 1.4: there is no need anymore for devcon, AutoramResizer disables/enables ramdisk driver without external programs,
+     Also changed the algo now it resizes ramdisk to 1/3 of physical free memory</li>
+ <li>Version 1.3: added cmdline switches: <code>AutoramResizer [-l min] [-h max]</code> to make an lower/upper limit, size should be passed in mb</li>
+</ul>
+<p>To format the ramdrive with NTFS compressed filesystem after the resize, uncomment the reg key in autoramresizer.inf</p>
+<pre>
+Usage:
+AutoRamResizer.exe [-w] [-d n] [-l min] [-h max] [-f minfree]
+
+-w wipe ramdrive before processing it
+-d divisor - the divisor (decimal) for physical ram to calculate new size, defaults to 3, must be > 1
+-l minimum - the minimum ram size to set, defaults to 4mb
+-h maximum - the maximum ram size to set, defaults to physical memory / divisor
+-f minfree - the minimum free memory after the resize
+
+-l -h -f options accept megabytes as arguments
+
+AutoRamResizer.exe -l xx, without other options can be used to force a specific size
+
+</pre>
+
+<p><b>Note</b>: If you are not using xpe but another explorer plugin, you should change this line:</p>
+<pre>
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\100","100","||xpeinit.exe -f -m AutoRamResizer AutoRamResizer.exe -h 64 -f 64"
+</pre>
+<p>with this:</p>
+<pre>
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\100","100","||AutoRamResizer.exe -h 64 -f 64"
+</pre>
+<hr />
+<p>Copyright &copy; 2007 - Gianluigi Tiesi [<a href="mailto:sherpya@netfarm.it">Sherpya</a>]</p>
+</body>
+</html>
