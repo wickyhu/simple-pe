@@ -1,0 +1,52 @@
+; ramdisk.inf
+; PE Builder v3 plug-in INF file for ramdisk
+; Original Ramdrive Plugin Created by Rich / Christiaan / Bart
+; AutoRamSize concept by Sergio Neddi
+; C-Native Port of AutoRamSizer by Sherpya
+; From v1.1 ramdisk plugin is needed this plugin does only autoresize
+
+[Version]
+Signature="$Windows NT$"
+
+[PEBuilder]
+Name="[Sherpya] QSoft RAMDisk AutoResizer v2.1"
+Enable=1
+Help="autoramresizer.htm"
+
+[Update]
+id=autoramresizer
+depends=ramdisk
+url=http://winpe.sourceforge.net/plugin_check.php
+Version=2.1
+
+[SourceDisksFiles]
+autorun1-ramdisk.cmd=2,,1
+AutoRamResizer.exe=2,,1
+
+[SetupReg.AddReg]
+; Version 5.2.x.x
+0x1,"ControlSet001\Control\Class\{FFA1C341-4539-11D3-B88D-00C04FAD5172}","Icon","-9"
+; Version 5.3.x.x
+0x1,"ControlSet001\Control\Class\{FFB1C341-4539-11D3-B88D-00C04FAD5172}","Icon","-9"
+
+[Software.AddReg]
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\100","100","||xpeinit.exe -f -m AutoRamResizer AutoRamResizer.exe -h 96 -f 96"
+
+; if not using xpe use this line instead
+;0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\100","100","||AutoRamResizer.exe -h 64 -f 64"
+
+; Other options
+
+; To clean ramdrive before restarting the driver
+;0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\100","100","||xpeinit.exe -f -m AutoRamResizer AutoRamResizer.exe -w -h 64 -f 64"
+
+; Uncomment this line to format the ramdisk using NTFS compressed filesystem 
+;0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\100","200","||xpeinit.exe -f -m ""Formatting ramdisk using NTFS"" cmd.exe /c format %ramdrv% /FS:NTFS /V:RAMDisk /Q /C /x /FORCE"
+
+; Dialog Position, you must specify both XPos and YPos or none (default to screen center)
+;0x4,"Sherpya\AutoRamResizer","XPos",0x124
+;0x4,"Sherpya\AutoRamResizer","YPos",0x23a
+
+
+
+

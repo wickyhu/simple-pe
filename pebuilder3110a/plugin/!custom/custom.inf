@@ -1,0 +1,58 @@
+; PE Builder v3 plug-in INF file
+; Created by Bart Lagerweij
+; http://www.nu2.nu/pebuilder/
+;
+; Use this file to customize some personal settings
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="Customize"
+Enable=1
+Help="custom.htm"
+
+[Default.AddReg]
+; Set the wallpaper...
+; 0x2, "Control Panel\desktop", "WallPaper", "%systemroot%\system32\mywall.bmp"
+
+; menu delay -- default is 400
+0x1,"Control Panel\Desktop", "MenuShowDelay","50"
+
+; set numlock on
+; 0x1,"Control Panel\Keyboard","InitialKeyboardIndicators","2"
+
+; no places bar -- remove bar with shortcuts like:
+; my recent documents, desktop, my documents, my computer, my network places
+0x4, "Software\Microsoft\Windows\CurrentVersion\Policies\comdlg32", "NoPlacesBar", "0x1"
+
+[SetupReg.AddReg]
+; WheelMouse Detection
+0x4, "ControlSet001\Services\i8042prt\Parameters","EnableWheelDetection",0x00000002
+
+; Disable timezone...
+;0x4, "ControlSet001\Control\TimeZoneInformation", "ActiveTimeBias", 0x0
+;0x4, "ControlSet001\Control\TimeZoneInformation", "Bias", 0x0
+;0x4, "ControlSet001\Control\TimeZoneInformation", "DaylightBias", 0x0
+;0x1, "ControlSet001\Control\TimeZoneInformation", "DaylightName", "Local time"
+;0x3, "ControlSet001\Control\TimeZoneInformation", "DaylightStart", \
+;	00,00,03,00,05,00,02,00,00,00,00,00,00,00,00,00
+;0x4, "ControlSet001\Control\TimeZoneInformation", "StandardBias", 0x0
+;0x1, "ControlSet001\Control\TimeZoneInformation", "StandardName", "Local time"
+;0x3, "ControlSet001\Control\TimeZoneInformation", "StandardStart", \
+;	00,00,0A,00,05,00,03,00,00,00,00,00,00,00,00,00
+
+0x4, "ControlSet001\Control\TimeZoneInformation", "ActiveTimeBias", 0xfffffe20
+0x4, "ControlSet001\Control\TimeZoneInformation", "Bias", 0xfffffe20
+0x4, "ControlSet001\Control\TimeZoneInformation", "DaylightBias", 0xFFFFFFC4
+0x1, "ControlSet001\Control\TimeZoneInformation", "DaylightName", "(GMT+08:00)Beijing, Chongqing, Hong Kong, Urumqi"
+0x3, "ControlSet001\Control\TimeZoneInformation", "DaylightStart",\
+	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+0x4, "ControlSet001\Control\TimeZoneInformation", "StandardBias", 0x0
+0x1, "ControlSet001\Control\TimeZoneInformation", "StandardName", "(GMT+08:00)Beijing, Chongqing, Hong Kong, Urumqi"
+0x3, "ControlSet001\Control\TimeZoneInformation", "StandardStart",\
+	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+
+[SetValue]
+; Set the boot message
+; "txtsetup.sif", "SetupData", "loaderprompt", """Booting..."""

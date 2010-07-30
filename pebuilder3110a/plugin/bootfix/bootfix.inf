@@ -1,0 +1,14 @@
+; bootfix.inf
+; PE Builder v3 plug-in INF file for adding bootfix.bin
+; Created by Bart Lagerweij
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="Boot Fix (Enabling ""Press any key to boot from CD"")"
+Enable=0
+Help="bootfix.htm"
+
+[SourceDisksFiles]
+bootfix.bin=1

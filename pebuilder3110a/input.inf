@@ -1,0 +1,27 @@
+[LicenseAgreed]
+PE Builder-3.1.10a=1
+G:\i386\eula.txt=1
+[input]
+NoUpperCase=0
+verbose=0
+ISOduplicatesonce=0
+skipfiles=0
+verify=1
+skipregistry=0
+buildiso=1
+burncd=0
+eject=0
+blankcdrw=1
+useAbsoluteOutput=0
+burnusing=0
+customdir=
+isofile=D:\Work\PE\pebuilder3110a\pebuilder.iso
+outdir=BartPE
+fulloutdir=D:\Work\PE\pebuilder3110a\BartPE
+source=G:\
+volumeid=
+device=
+langfile=
+pluginColumns=62,330,330
+CleanIsoAfterBurn=0
+CleanOutputAfterBurn=0

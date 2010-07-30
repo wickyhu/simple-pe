@@ -1,0 +1,19 @@
+; RealAlt.inf
+; PE Builder v3 plugin INF file for Real Alternative
+; Plugin by Xtreme
+; Xtremesony_xp@yahoo.com
+; Made For Windows Xpire Rd CD
+; © Windows Xpire Tech Center
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="(Xtremee) Real Alternative Codecs v1.5.2.0  -Press CONFIG to Enable-"
+Enable=1
+Help=Help.htm
+config=Get_Files.cmd
+
+
+[SourceDisksFiles]
+"please run autoHelp to configure your plugin"=a,,1 

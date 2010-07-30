@@ -1,0 +1,27 @@
+; ultravnc.inf
+; PE Builder v3 plug-in INF file
+; Created by Bart Lagerweij
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="UltraVNC"
+Enable=0
+Help="ultravnc.htm"
+
+[WinntDirectories]
+a="Programs\ultravnc",2
+
+[SourceDisksFiles]
+ultravnc.cmd=a,,1
+vncsettings.reg=a,,1
+files\VNCHooks_Settings.reg=a,,4
+files\*.exe=a,,1
+files\*.dll=a,,1
+files\*.key=a,,4
+files\*.dsm=a,,4
+files\*.txt=a,,4
+
+[Append]
+nu2menu.xml, ultravnc_nu2menu.xml

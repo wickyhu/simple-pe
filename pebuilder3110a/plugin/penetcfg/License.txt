@@ -1,0 +1,81 @@
+PE Network Configurator (PENetCfg) End-User License Agreement
+Copyright (c) 2003-2004 by Pierre Mounir (TheTruth).
+All rights reserved.
+
+_____________________________________________________
+LICENSE AGREEMENT
+
+YOUR USE OF THIS SOFTWARE ("PENetCfg") INDICATES YOUR ACCEPTANCE 
+OF THIS LICENSE AGREEMENT AND WARRANTY.
+
+_____________________________________________________
+WARRANTY
+
+In no event the author shall be liable for any damages 
+whatsoever including direct, indirect, incidental, 
+consequential, loss of business profits or special 
+damages, even if the author have been advised of the 
+possibility of such damages.
+
+This includes, but is not limited to, merchantibility 
+and fitness for a particular function. the entire risk 
+related to the software performance or quality is 
+assumed by the user.
+
+_____________________________________________________
+LICENSING AND DISTRIBUTION
+
+PENetCfg is free software. You can use it without charge.
+
+You may copy this software as you wish, and 
+give exact copies of the original version to anyone, and 
+distribute it via electronic means provided that:
+
+(a) PENetCfg is not modified in any way.
+
+(b) You maintain the copyright notice on all copies of PENetCfg.
+
+(c) You should not charge or request donations for any such copies.
+
+(d) You should not distribute PENetCfg with other products without 
+the author's permission.
+
+_____________________________________________________
+CONFIDENTIAL PROPERTY
+
+PENetCfg is confidential property of the 
+author, Pierre Mounir (TheTruth).
+ 
+Reverse engineering (decompiling) or disassembling of PENetCfg
+is strictly prohibited.
+
+Changing PENetCfg, the distribution form (archive) or any other 
+part of the software in any way is strictly prohibited.
+
+_____________________________________________________
+TRADEMARKS
+
+All brand names and product names used are trademarks
+or trade names of their respective holders.
+
+All references, logos, images, names, products, 
+software and hardware are or may be copyrights or 
+trademarks of their respective companies. 
+
+No infringment is intended.
+
+_____________________________________________________
+IMPORTANT
+
+If you do not agree with the terms of this license 
+you have to remove the software from your storage 
+devices and do not use the software.
+
+
+Thanks for your understanding.
+
+Contact:
+
+Author:	Pierre Mounir (TheTruth)
+Web Site: http://www.geocities.com/pierremounir/
+E-mail:	pierremounir@yahoo.com

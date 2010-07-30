@@ -1,0 +1,233 @@
+;--------------------------------------------------------------------------------------------------
+;
+;	sonyhc2kdisk.inf
+;		11/05/2001
+;
+;--------------------------------------------------------------------------------------------------
+[Version]
+LayoutFile		=Layout.inf, Layout1.inf, Layout2.inf
+signature		="$CHICAGO$"
+Class			=Image
+ClassGUID		={6bdd1fc6-810f-11d0-bec7-08002be2092f}
+Provider		=%DriverProvider%
+DriverVer		= 11/05/2001,1.0.0.53
+CatalogFile.nt	=sonyhc.cat
+
+[ControlFlags]
+; All PnP devices should be excluded from manual AddDevice Applet list
+ExcludeFromSelect=*
+
+[Manufacturer]
+%TheMfg%=Models
+
+[SourceDisksNames]
+1002 = ,,,
+1003 = ,,,
+
+[SourceDisksFiles.x86]
+sonyhcb.sys		=1002
+sonyhcc.sys		=1002
+sonyhcs.sys		=1002
+sonyhcy.dll		=1003
+
+[DestinationDirs]
+SONYHC_V.CopyDrivers.NT	= 10,system32\drivers
+SONYHC_V.CopyDLL		= 11
+
+[Models]
+; DisplayName								Section				DeviceID
+;---------------------------------------	----------------	-----------------------
+%USB\VID_054C&PID_0045&MI_00.DeviceDesc%	= SONYHC_V.Device,	USB\VID_054C&PID_0045&MI_00
+
+;------------------------------------------------------------------------------
+;
+;	INF DDInstall Section for win2k
+;
+;------------------------------------------------------------------------------
+[SONYHC_V.Device.NT]
+Include		= ks.inf, kscaptur.inf, ksfilter.inf
+Needs		= KS.Registration, KSCAPTUR.Registration.NT, MSPCLOCK.NT
+AddReg		= SONYHC_V.AddReg.NT, SensorType.AddReg
+;opyFiles	= SONYHC_V.CopyDrivers.NT, SONYHC_V.CopyDLL
+;pdateInis	= SONYHC_V.Links
+
+;------------------------------------------------------------------------------
+;
+;	INF AddReg Directive	for win2k
+;
+;------------------------------------------------------------------------------
+[SONYHC_V.AddReg.NT]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,sonyhcs.sys
+
+HKR,,OkToHibernate,3,01
+;HKR,,DontSuspendIfStreamsAreRunning,3,01
+;HKR,,PageOutWhenUnopened,3,00
+;HKR,,PowerDownWhenUnopened,3,00
+
+
+;------------------------------------------------------------------------------
+;
+;	INF AddReg Directive	for Sensor Type
+;
+;------------------------------------------------------------------------------
+[SensorType.AddReg]
+HKLM,Software\%DriverProvider%\%DriverName%,SensorType,			0x10001,06,00,00,00
+
+HKLM,Software\%DriverProvider%\%DriverName%,SonyFlags,			0x10001,08,00,00,00	;*	c1
+;HKLM,Software\%DriverProvider%\%DriverName%,IsoBandwidth,		0x10001,80,03,00,00	;ff,03
+HKLM,Software\%DriverProvider%\%DriverName%,BufferDepth,		0x10001,3F,00,00,00	;*	14
+HKLM,Software\%DriverProvider%\%DriverName%,SF,				0x10001,24,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,FixSF,			0x10001,00,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,Banding,			0x10001,00,00,00,00	;*	01
+HKLM,Software\%DriverProvider%\%DriverName%,RgbMapping,			0x10001,22,04,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,Huffman,			0x10001,01,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,BigDelta,			0x10001,08,00,00,00 ;	08
+HKLM,Software\%DriverProvider%\%DriverName%,SmallDelta,			0x10001,01,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,CPUfactor,			0x10001,64,00,00,00	;*	3c -> 44
+HKLM,Software\%DriverProvider%\%DriverName%,MpegTable,			0x10001,00,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,LumaSF,			0x10001,24,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,ChromaSF,			0x10001,24,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,SFMin,			0x10001,04,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,SFMax,			0x10001,80,00,00,00	;*	ff
+HKLM,Software\%DriverProvider%\%DriverName%,VCOn,			0x10001,01,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,LongHeader,			0x10001,01,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,USBHeaderAligned,		0x10001,01,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,NewHandshakeBit,		0x10001,01,00,00,00	;*	00
+HKLM,Software\%DriverProvider%\%DriverName%,SimbeSupport,		0x10001,01,00,00,00
+
+HKLM,Software\%DriverProvider%\%DriverName%,HCropStart,			0x10001,00,00,00,00	;*	04
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart,			0x10001,08,00,00,00	;*	02
+HKLM,Software\%DriverProvider%\%DriverName%,Reg07E,			0x10001,2f,00,00,00
+
+HKLM,Software\%DriverProvider%\%DriverName%,SaveProp,			0x10001,00,00,00,00	;*	01
+HKLM,Software\%DriverProvider%\%DriverName%,LoadProp,			0x10001,00,00,00,00	;*	01
+HKLM,Software\%DriverProvider%\%DriverName%,Reg00C,			0x10001,80,80,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,QMOffset,			0x10001,04,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,QMK,			0x10001,02,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,QMAlpha,			0x10001,01,00,00,00
+
+HKLM,Software\%DriverProvider%\%DriverName%,STIApp,			0x10001,00,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,FieldPolarity,		0x10001,02,00,00,00
+
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart00,		0x10001,08,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart01,		0x10001,00,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart02,		0x10001,04,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart03,		0x10001,00,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart04,		0x10001,08,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart05,		0x10001,00,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart06,		0x10001,04,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart07,		0x10001,00,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart08,		0x10001,08,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart09,		0x10001,00,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart10,		0x10001,04,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart11,		0x10001,00,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart12,		0x10001,08,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart13,		0x10001,00,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart14,		0x10001,04,00,00,00
+HKLM,Software\%DriverProvider%\%DriverName%,VCropStart15,		0x10001,00,00,00,00
+
+;for TEST
+HKLM,Software\%DriverProvider%\%DriverName%,UseSDRAM,			0x10001,02,00,00,00
+
+;------------------------------------------------------------------------------
+;
+;	INF DDInstall.Interfaces Section fot win2k
+;
+;------------------------------------------------------------------------------
+[SONYHC_V.Device.NT.Interfaces]
+AddInterface=%KSCATEGORY_CAPTURE%,"GLOBAL",VideoCapture,
+
+[VideoCapture]
+AddReg=VideoCapture.AddReg
+
+[VideoCapture.AddReg]
+HKR,,CLSID,,%ProxyVCap.CLSID%
+;for GraphEdit of DirectShow
+HKR,,FriendlyName,,%FDeviceName%
+
+HKR,PinFactory\0\Interfaces\{C6E13343-30AC-11d0-A18C-00A0C9118956},,,{C6E13343-30AC-11d0-A18C-00A0C9118956}
+
+;------------------------------------------------------------------------------
+;
+;	INF AddService Directive only for win2k
+;
+;------------------------------------------------------------------------------
+[SONYHC_V.Device.NT.Services]
+AddService = sonyhcb,0x00000002,sonyhcb.ServiceInstall
+AddService = sonyhcs,0x00000002,sonyhcs.ServiceInstall
+
+[sonyhcb.ServiceInstall]
+DisplayName		= %BaseDriverName%
+ServiceType		= %SERVICE_KERNEL_DRIVER%
+StartType		= %SERVICE_BOOT_START%
+ErrorControl	= %SERVICE_ERROR_NORMAL%
+ServiceBinary	= %12%\sonyhcb.sys
+LoadOrderGroup	= ExtendedBase
+
+[sonyhcs.ServiceInstall]
+DisplayName		= %StreamDriverName%
+ServiceType		= %SERVICE_KERNEL_DRIVER%
+StartType		= %SERVICE_DEMAND_START%
+ErrorControl	= %SERVICE_ERROR_NORMAL%
+ServiceBinary	= %12%\sonyhcs.sys
+LoadOrderGroup	= ExtendedBase
+
+
+[SONYHC_V.CopyDrivers.NT]
+sonyhcb.sys
+sonyhcc.sys
+sonyhcs.sys
+
+[SONYHC_V.CopyDLL]
+msyuv.dll
+sonyhcy.dll
+
+[SONYHC_V.Links]
+system.ini, drivers32,,"VIDC.UYVY=msyuv.dll"
+system.ini, drivers32,,"VIDC.YUY2=sonyhcy.dll"
+
+
+[Strings]
+
+;------------------------------------------------------------------------------
+;
+; Non-Localizable
+;
+;------------------------------------------------------------------------------
+ProxyVCap.CLSID		="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSCATEGORY_CAPTURE	="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+
+;service type
+SERVICE_KERNEL_DRIVER	=1
+
+;load type
+SERVICE_BOOT_START		=0
+SERVICE_SYSTEM_START	=1
+SERVICE_AUTO_START		=2
+SERVICE_DEMAND_START	=3
+
+;error type
+SERVICE_ERROR_IGNORE	=0
+SERVICE_ERROR_NORMAL	=1
+SERVICE_ERROR_SEVERE	=2
+SERVICE_ERROR_CRITICAL	=3
+
+
+;------------------------------------------------------------------------------
+;
+; Localizable
+;
+;------------------------------------------------------------------------------
+DriverProvider	="SONY PVC"
+DiskDesc		="SONY PVC"
+DriverName		="Sony Digital Imaging"
+TheMfg			="SONY PVC"
+
+;FriendlyName
+FDeviceName			= "Sony Digital Imaging Video"
+BaseDriverName		= "Sony Digital Imaging Base"
+StreamDriverName	= "Sony Digital Imaging Video"
+
+USB\VID_054C&PID_0045&MI_00.DeviceDesc="Sony Digital Imaging Video"
+

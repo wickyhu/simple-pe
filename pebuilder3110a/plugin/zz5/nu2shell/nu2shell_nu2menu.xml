@@ -1,0 +1,6 @@
+<NU2MENU>
+	<MENU ID="Shutdown">
+		<MITEM TYPE="ITEM" CMD="RUN" VISIBILITY="@Shl(@Not(@FileExists(@GetWinDir()\system32\nu2shell.exe)),'1')" FUNC="@GetWinDir()\system32\nu2shell.exe -r">Restart</MITEM>
+		<MITEM TYPE="ITEM" CMD="RUN" VISIBILITY="@Shl(@Not(@FileExists(@GetWinDir()\system32\nu2shell.exe)),'1')" FUNC="@GetWinDir()\system32\nu2shell.exe -s">Shut down</MITEM>
+	</MENU>
+</NU2MENU>

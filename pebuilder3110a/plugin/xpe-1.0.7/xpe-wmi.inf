@@ -1,0 +1,2068 @@
+; PE Builder v3 plug-in INF file
+; Created by Sherpya
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="[Sherpya] Windows XPE: WMI v1.0.7"
+Help="XPE.htm"
+Enable=0
+
+[Update]
+id=xpe-wmi
+parent=xpe
+url=http://winpe.sourceforge.net/plugin_check.php
+Version=1.0.7
+
+[WinntDirectories]
+a=system32\wbem\snmp,1
+b=system32\wbem\mof,1
+c=system32\wbem\AutoRecover,1
+d=system32\wbem\Repository,1
+e=system32\wbem\Repository\FS,1
+
+[Software.AddReg]
+; Check for Wbem repository in %SystemRoot%\system32\wbem\Repository or build it in %temp%\Repository
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\910","100","||xpeinit.exe -w"
+
+; WMI Repository - Don't use dynamic Repository in your production builds, xpe startup will be slow as hell
+[SourceDisksFiles.2600]
+Repository\$WinMgmt.CFG=d,,4
+Repository\FS\*=e,,4
+
+; WMI Repository for W2k3
+[SourceDisksFiles.3790]
+Repository-w2k3\$WinMgmt.CFG=d,,4
+Repository-w2k3\FS\*=e,,4
+
+[SourceDisksFiles]
+;firewall.cpl=2,,4
+acpi.sys=1
+
+; inf
+wbemoc.inf=20
+
+; System32
+cmprops.dll=2
+licwmi.dll=2
+tasklist.exe=2,,4
+perfts.dll=2
+pdh.dll=2
+
+mmfutil.dll=2
+servdeps.dll=2
+wmimgmt.msc=2
+; FIXME
+; ncobjapi.dll=2
+
+; System32\wbem
+wbemcore.dll=35
+esscli.dll=35
+fastprox.dll=35
+
+; Not in XP Home
+csv.xsl=35,,4
+hform.xsl=35,,4
+htable.xsl=35,,4
+mof.xsl=35,,4
+policman.dll=35,,4
+rawxml.xsl=35,,4
+textvalu.xsl=35,textvaluelist.xsl,4
+wbemads.dll=35,,4
+wbemads.tlb=35,,4
+wmic.exe=35,,4
+xml.xsl=35,,4
+xslmap.xml=35,xsl-mappings.xml,4
+cli.mof=35,,4
+cliegali.mfl=35,cliegaliases.mfl,4
+cliegali.mof=35,cliegaliases.mof,4
+policman.mfl=35,,4
+policman.mof=35,,4
+evtgprov.dll=35,CmdEvTgProv.dll,4
+evtgprov.mof=35,CmdEvTgProv.mof,4
+
+cimwin32.dll=35
+dsprov.dll=35
+framedyn.dll=35
+krnlprov.dll=35
+mofcomp.exe=35
+mofd.dll=35
+msiprov.dll=35
+ncprov.dll=35
+ntevt.dll=35
+
+provthrd.dll=35
+repdrvfs.dll=35
+scrcons.exe=35
+smtpcons.dll=35
+stdprov.dll=35
+unsecapp.exe=35
+viewprov.dll=35
+wbemcntl.dll=35
+wbemcomn.dll=35
+wbemcons.dll=35
+wbemdisp.dll=35
+wbemdisp.tlb=35
+wbemess.dll=35
+wbemprox.dll=35
+wbemsvc.dll=35
+wbemtest.exe=35
+wbemupgd.dll=35
+winmgmt.exe=35
+winmgmtr.dll=35
+wmiadap.exe=35
+wmiapres.dll=35
+wmiaprpl.dll=35
+wmiapsrv.exe=35
+wmicookr.dll=35
+wmidcprv.dll=35
+wmipcima.dll=35
+wmipdskq.dll=35
+wmipicmp.dll=35
+wmipiprt.dll=35
+wmipjobj.dll=35
+wmiprov.dll=35
+wmiprvsd.dll=35
+wmiprvse.exe=35
+wmipsess.dll=35
+wmisvc.dll=35
+wmitimep.dll=35
+wmiutils.dll=35
+
+;
+cimwin32.mfl=35
+cimwin32.mof=35
+dsprov.mfl=35
+dsprov.mof=35
+krnlprov.mfl=35
+krnlprov.mof=35
+licwmi.mfl=35
+licwmi.mof=35
+msi.mfl=35
+msi.mof=35
+ncprov.mfl=35
+ncprov.mof=35
+ntevt.mfl=35
+ntevt.mof=35
+regevent.mfl=35
+regevent.mof=35
+scm.mof=35
+scrcons.mfl=35
+scrcons.mof=35
+secrcw32.mfl=35
+secrcw32.mof=35
+smtpcons.mfl=35
+smtpcons.mof=35
+subscrpt.mof=35
+system.mof=35
+wbemcons.mfl=35
+wbemcons.mof=35
+wmi.mfl=35
+wmi.mof=35
+wmipcima.mfl=35
+wmipcima.mof=35
+wmipdskq.mfl=35
+wmipdskq.mof=35
+wmipicmp.mfl=35
+wmipicmp.mof=35
+wmipiprt.mfl=35
+wmipiprt.mof=35
+wmipjobj.mfl=35
+wmipjobj.mof=35
+wmipsess.mfl=35
+wmipsess.mof=35
+wmitimep.mfl=35
+wmitimep.mof=35
+
+; wbemsnmp.inf
+;snmpcl.dll=35
+;snmpincl.dll=35
+;snmpreg.mof=35
+;snmpsmir.dll=35
+;snmpsmir.mof=35
+;snmpstup.dll=35
+;snmpthrd.dll=35
+
+;wsnmp32.dll=2
+
+tscfgwmi.dll=2
+tscfgwmi.mof=35
+tscfgwmi.mfl=35
+evntrprv.dll=35
+evntrprv.mof=35
+; moved to xpe.inf
+hnetcfg.mof=35
+whqlprov.mof=35
+ieinfo5.mof=35
+
+; System32\wbem\xml
+cim20.dtd=110
+wmi20.dtd=110
+wmi2xml.dll=110
+
+; System32\wbem\snmp
+;smi2smir.exe=a
+;smierrsm.dll=a
+;smierrsy.dll=a
+;smimsgif.dll=a
+
+; 1.0.1
+cfgbkend.dll=2
+drprov.dll=2
+logoff.exe=2
+msg.exe=2
+qappsrv.exe=2
+qprocess.exe=2
+qwinsta.exe=2
+rdchost.dll=2
+rdpcfgex.dll=2
+rdpclip.exe=2
+rdpdd.dll=2
+rdpdr.sys=4
+rdpsnd.dll=2
+rdpwd.sys=4
+rdpwsx.dll=2
+rdsaddin.exe=2
+regini.exe=2
+remotepg.dll=2
+reset.exe=2
+rwinsta.exe=2
+shadow.exe=2
+tdpipe.sys=4
+tdtcp.sys=4
+termdd.sys=4
+tscon.exe=2
+tscupgrd.exe=2
+tsdiscon.exe=2
+tskill.exe=2
+tslabels.h=2
+tslabels.ini=2
+tsoc.inf=20
+tsshutdn.exe=2
+usrlogon.cmd=2
+; Not in xp home
+wmiscmgr.dll=2,,4
+
+[SourceDisksFiles.2600]
+; XP Only files
+htblsort.xsl=35,htable-sortby.xsl,4
+texttbl.xsl=35,texttable.xsl,4
+texttblw.xsl=35,texttablewsys.xsl,4
+wmicmoff.xsl=35,wmiclimofformat.xsl,4
+wmictfmt.xsl=35,wmiclitableformat.xsl,4
+wmictfns.xsl=35,wmiclitableformatnosys.xsl,4
+wmicvalu.xsl=35,wmiclivalueformat.xsl,4
+sr.mof=35
+dgnet.mof=35
+
+; 1.0.1
+cdmodem.dll=2
+
+; 1.0.4 moved from SourceDisksFiles, xp only
+; fconprov.{mfl,mof} not included in list
+; tmplprov.{mfl,mof} not included in list
+; trnsprov.{mfl,mof} not included in list
+; updprov.{mfl,mof} not included in list
+fconprov.mfl=35
+fconprov.mof=35
+fevprov.mfl=35
+fevprov.mof=35
+fwdprov.dll=35
+tmplprov.dll=35
+tmplprov.mfl=35
+tmplprov.mof=35
+trnsprov.dll=35
+trnsprov.mfl=35
+trnsprov.mof=35
+updprov.dll=35
+updprov.mfl=35
+updprov.mof=35
+wmimsg.dll=35
+
+[SourceDisksFiles.3790]
+; 1.0.4 - W2k3 Only
+cluswmi.dll=35
+cluswmi.mof=35
+nlbmprov.mof=35
+replprov.dll=35
+replprov.mof=35
+rsop.mfl=35
+rsop.mof=35
+scersop.mof=35
+vds.mfl=35
+vds.mof=35
+vdswmi.dll=35
+vss.mfl=35
+vss.mof=35
+vsswmi.dll=35
+wlbsprov.dll=35
+wlbsctrl.dll=35
+wlbsprov.mof=35
+wmipdfs.dll=35
+wmipdfs.mfl=35
+wmipdfs.mfl=35
+wmipdfs.mof=35
+wmipdfs.mof=35
+
+[SetupReg.AddReg]
+; Terminal Service - Wbem Part
+;0x1,"ControlSet001\Services\TermService\Performance","Close","CloseTSObject"
+;0x4,"ControlSet001\Services\TermService\Performance","Collect Timeout",0x3e8
+;0x1,"ControlSet001\Services\TermService\Performance","Collect","CollectTSObjectData"
+;0x4,"ControlSet001\Services\TermService\Performance","Open Timeout",0x3e8
+;0x1,"ControlSet001\Services\TermService\Performance","Open","OpenTSObject"
+;0x1,"ControlSet001\Services\TermService\Performance","Library","perfts.dll"
+;0x4,"ControlSet001\Services\TermService\Performance","Last Counter",0x886
+;0x4,"ControlSet001\Services\TermService\Performance","Last Help",0x887
+;0x4,"ControlSet001\Services\TermService\Performance","First Counter",0x806
+;0x4,"ControlSet001\Services\TermService\Performance","First Help",0x807
+;0x1,"ControlSet001\Services\TermService\Performance","Object List","2054 2176 2054 2176"
+;0x3,"ControlSet001\Services\TermService\Performance","Library Validation Code",00,50,41,b2,03,32,c1,01,00,30,00,00,00,00,00,00
+;0x3,"ControlSet001\Services\TermService\Performance","WbemAdapFileSignature",69,01,61,a7,b2,11,c5,d8,b2,37,e1,b6,e4,94,01,ab
+;0x3,"ControlSet001\Services\TermService\Performance","WbemAdapFileTime",00,50,41,b2,03,32,c1,01
+;0x4,"ControlSet001\Services\TermService\Performance","WbemAdapFileSize",0x3000
+;0x4,"ControlSet001\Services\TermService\Performance","WbemAdapStatus",0x0
+
+; RegServer wmisvc.dll - [N] SP2 - No Second Pass
+; WinMgmt Service
+0x7,"ControlSet001\Services\winmgmt","DependOnService","RPCSS","EventLog"
+0x1,"ControlSet001\Services\winmgmt","Description","Windows Management and Instrumentation"
+0x1,"ControlSet001\Services\winmgmt","DisplayName","WMI Service"
+0x4,"ControlSet001\Services\winmgmt","ErrorControl",0x0
+0x3,"ControlSet001\Services\winmgmt","FailureActions",\
+  80,51,01,00,00,00,00,00,00,00,00,00,02,00,00,00,63,00,61,00,01,00,00,00,60,\
+  ea,00,00,01,00,00,00,60,ea,00,00
+0x1,"ControlSet001\Services\winmgmt","ImagePath","System32\svchost.exe -k netsvcs"
+0x1,"ControlSet001\Services\winmgmt","ObjectName","LocalSystem"
+0x4,"ControlSet001\Services\winmgmt","Start",0x2
+0x4,"ControlSet001\Services\winmgmt","Type",0x20
+0x2,"ControlSet001\Services\winmgmt\Parameters","ServiceDll","WMIsvc.dll"
+0x1,"ControlSet001\Services\winmgmt\Parameters","ServiceMain","ServiceMain"
+
+; Legacy WinMgmt
+0x1,"ControlSet001\Enum\Root\LEGACY_WINMGMT\0000","Service","winmgmt"
+0x4,"ControlSet001\Enum\Root\LEGACY_WINMGMT\0000","Legacy",0x1
+0x4,"ControlSet001\Enum\Root\LEGACY_WINMGMT\0000","ConfigFlags",0x0
+0x1,"ControlSet001\Enum\Root\LEGACY_WINMGMT\0000","Class","LegacyDriver"
+0x1,"ControlSet001\Enum\Root\LEGACY_WINMGMT\0000","ClassGUID","{8ECC055D-047F-11D1-A537-0000F8753ED1}"
+0x1,"ControlSet001\Enum\Root\LEGACY_WINMGMT\0000","DeviceDesc","Windows Management Instrumentation"
+0x1,"ControlSet001\Enum\Root\LEGACY_WINMGMT\0000\Control","ActiveService","winmgmt"
+0x4,"ControlSet001\Enum\Root\LEGACY_WINMGMT","NextInstance",0x1
+
+; Wmi Service
+;0x1,"ControlSet001\Services\Wmi","Description","Provides systems management information to and from drivers."
+;0x1,"ControlSet001\Services\Wmi","DisplayName","Windows Management Instrumentation Driver Extensions"
+;0x4,"ControlSet001\Services\Wmi","ErrorControl",0x1
+;0x2,"ControlSet001\Services\Wmi","ImagePath","System32\svchost.exe -k netsvcs"
+;0x1,"ControlSet001\Services\Wmi","ObjectName","LocalSystem"
+;0x4,"ControlSet001\Services\Wmi","Start",0x3
+;0x4,"ControlSet001\Services\Wmi","Type",0x20
+;0x2,"ControlSet001\Services\Wmi\Parameters","ServiceDll","advapi32.dll"
+;0x1,"ControlSet001\Services\Wmi\Parameters","ServiceMain","WdmWmiServiceMain"
+;0x3,"ControlSet001\Services\Wmi\Security","Security",\
+;  01,00,14,80,90,00,00,00,9c,00,00,00,14,00,00,00,30,00,00,00,02,00,1c,00,01,\
+;  00,00,00,02,80,14,00,ff,01,0f,00,01,01,00,00,00,00,00,01,00,00,00,00,02,00,\
+;  60,00,04,00,00,00,00,00,14,00,fd,01,02,00,01,01,00,00,00,00,00,05,12,00,00,\
+;  00,00,00,18,00,ff,01,0f,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,\
+;  00,00,14,00,8d,01,02,00,01,01,00,00,00,00,00,05,0b,00,00,00,00,00,18,00,fd,\
+;  01,02,00,01,02,00,00,00,00,00,05,20,00,00,00,23,02,00,00,01,01,00,00,00,00,\
+;  00,05,12,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00
+
+; WmiApRpl Service
+;0x2,"ControlSet001\Services\WmiApRpl\Performance","Library","System32\wbem\wmiaprpl.dll"
+;0x1,"ControlSet001\Services\WmiApRpl\Performance","Open","WmiOpenPerfData"
+;0x1,"ControlSet001\Services\WmiApRpl\Performance","Collect","WmiCollectPerfData"
+;0x1,"ControlSet001\Services\WmiApRpl\Performance","Close","WmiClosePerfData"
+;0x4,"ControlSet001\Services\WmiApRpl\Performance","Last Counter",0x8ec
+;0x4,"ControlSet001\Services\WmiApRpl\Performance","Last Help",0x8ed
+;0x4,"ControlSet001\Services\WmiApRpl\Performance","First Counter",0x8e0
+;0x4,"ControlSet001\Services\WmiApRpl\Performance","First Help",0x8e1
+;0x1,"ControlSet001\Services\WmiApRpl\Performance","Object List","2272 2278"
+
+; WmiApSrv Service
+;0x4,"ControlSet001\Services\WmiApSrv","Type",0x10
+;0x4,"ControlSet001\Services\WmiApSrv","Start",0x3
+;0x4,"ControlSet001\Services\WmiApSrv","ErrorControl",0x1
+;0x2,"ControlSet001\Services\WmiApSrv","ImagePath","System32\wbem\wmiapsrv.exe"
+;0x1,"ControlSet001\Services\WmiApSrv","DisplayName","WMI Performance Adapter"
+;0x7,"ControlSet001\Services\WmiApSrv","DependOnService","RPCSS"
+;0x7,"ControlSet001\Services\WmiApSrv","DependOnGroup",
+;0x1,"ControlSet001\Services\WmiApSrv","ObjectName","LocalSystem"
+;0x1,"ControlSet001\Services\WmiApSrv","Description","Provides performance library information from WMI HiPerf providers."
+;0x3,"ControlSet001\Services\WmiApSrv\Security","Security",\
+;  01,00,14,80,90,00,00,00,9c,00,00,00,14,00,00,00,30,00,00,00,02,00,1c,00,01,\
+;  00,00,00,02,80,14,00,ff,01,0f,00,01,01,00,00,00,00,00,01,00,00,00,00,02,00,\
+;  60,00,04,00,00,00,00,00,14,00,fd,01,02,00,01,01,00,00,00,00,00,05,12,00,00,\
+;  00,00,00,18,00,ff,01,0f,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,\
+;  00,00,14,00,8d,01,02,00,01,01,00,00,00,00,00,05,0b,00,00,00,00,00,18,00,fd,\
+;  01,02,00,01,02,00,00,00,00,00,05,20,00,00,00,23,02,00,00,01,01,00,00,00,00,\
+;  00,05,12,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00
+
+; Legacy WmiApSrv
+;0x1,"ControlSet001\Enum\Root\LEGACY_WMIAPSRV\0000","Service","WmiApSrv"
+;0x4,"ControlSet001\Enum\Root\LEGACY_WMIAPSRV\0000","Legacy",0x1
+;0x4,"ControlSet001\Enum\Root\LEGACY_WMIAPSRV\0000","ConfigFlags",0x0
+;0x1,"ControlSet001\Enum\Root\LEGACY_WMIAPSRV\0000","Class","LegacyDriver"
+;0x1,"ControlSet001\Enum\Root\LEGACY_WMIAPSRV\0000","ClassGUID","{8ECC055D-047F-11D1-A537-0000F8753ED1}"
+;0x1,"ControlSet001\Enum\Root\LEGACY_WMIAPSRV\0000","DeviceDesc","WMI Performance Adapter"
+;0x4,"ControlSet001\Enum\Root\LEGACY_WMIAPSRV","NextInstance",0x1
+
+; EventLog
+0x2,"ControlSet001\Services\Eventlog\Application\WMIAdapter","EventMessageFile","%SystemRoot%\system32\WBEM\WMIApRes.dll"
+0x4,"ControlSet001\Services\Eventlog\Application\WMIAdapter","TypesSupported",0x7
+
+[Software.AddReg.2600]
+0x1,"Microsoft\WBEM","Build","2600.0000"
+;0x1,"Microsoft\WBEM","SNMP Build","2600.0000"
+0x7,"Microsoft\WBEM\CIMOM","Autorecover MOFs",\
+  "%SystemRoot%\system32\WBEM\cimwin32.mof",\
+  "%SystemRoot%\system32\WBEM\cimwin32.mfl",\
+  "%SystemRoot%\system32\WBEM\system.mof",\
+  "%SystemRoot%\system32\WBEM\wmipcima.mof",\
+  "%SystemRoot%\system32\WBEM\wmipcima.mfl",\
+  "%SystemRoot%\system32\WBEM\regevent.mof",\
+  "%SystemRoot%\system32\WBEM\regevent.mfl",\
+  "%SystemRoot%\system32\WBEM\ntevt.mof",\
+  "%SystemRoot%\system32\WBEM\ntevt.mfl",\
+  "%SystemRoot%\system32\WBEM\secrcw32.mof",\
+  "%SystemRoot%\system32\WBEM\secrcw32.mfl",\
+  "%SystemRoot%\system32\WBEM\dsprov.mof",\
+  "%SystemRoot%\system32\WBEM\dsprov.mfl",\
+  "%SystemRoot%\system32\WBEM\msi.mof",\
+  "%SystemRoot%\system32\WBEM\msi.mfl",\
+  "%SystemRoot%\system32\WBEM\policman.mof",\
+  "%SystemRoot%\system32\WBEM\policman.mfl",\
+  "%SystemRoot%\system32\WBEM\subscrpt.mof",\
+  "%SystemRoot%\system32\WBEM\wmi.mof",\
+  "%SystemRoot%\system32\WBEM\wmi.mfl",\
+  "%SystemRoot%\system32\WBEM\scm.mof",\
+  "%SystemRoot%\system32\WBEM\fevprov.mof",\
+  "%SystemRoot%\system32\WBEM\fevprov.mfl",\
+  "%SystemRoot%\system32\WBEM\wmitimep.mof",\
+  "%SystemRoot%\system32\WBEM\wmitimep.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipdskq.mof",\
+  "%SystemRoot%\system32\WBEM\wmipdskq.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipicmp.mof",\
+  "%SystemRoot%\system32\WBEM\wmipicmp.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipiprt.mof",\
+  "%SystemRoot%\system32\WBEM\wmipiprt.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipjobj.mof",\
+  "%SystemRoot%\system32\WBEM\wmipjobj.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipsess.mof",\
+  "%SystemRoot%\system32\WBEM\wmipsess.mfl",\
+  "%SystemRoot%\system32\WBEM\krnlprov.mof",\
+  "%SystemRoot%\system32\WBEM\krnlprov.mfl",\
+  "%SystemRoot%\system32\WBEM\cli.mof",\
+  "%SystemRoot%\system32\WBEM\tscfgwmi.mof",\
+  "%SystemRoot%\system32\WBEM\tscfgwmi.mfl",\
+  "%SystemRoot%\system32\WBEM\licwmi.mof",\
+  "%SystemRoot%\system32\WBEM\licwmi.mfl",\
+  "%SystemRoot%\system32\WBEM\evntrprv.mof",\
+  "%SystemRoot%\system32\WBEM\hnetcfg.mof",\
+  "%SystemRoot%\system32\WBEM\sr.mof",\
+  "%SystemRoot%\system32\WBEM\CmdEvTgProv.mof",\
+  "%SystemRoot%\system32\WBEM\dgnet.mof",\
+  "%SystemRoot%\system32\WBEM\whqlprov.mof",\
+  "%SystemRoot%\system32\WBEM\ieinfo5.mof",\
+  "%SystemRoot%\system32\WBEM\licwmi.mof"
+
+[Software.AddReg.3790]
+0x1,"Microsoft\WBEM","Build","3790.0000"
+;0x1,"Microsoft\WBEM","SNMP Build","3790.0000"
+0x7,"Microsoft\WBEM\CIMOM","Autorecover MOFs",\
+  "%SystemRoot%\system32\WBEM\cimwin32.mof",\
+  "%SystemRoot%\system32\WBEM\cimwin32.mfl",\
+  "%SystemRoot%\system32\WBEM\system.mof",\
+  "%SystemRoot%\system32\WBEM\wmipcima.mof",\
+  "%SystemRoot%\system32\WBEM\wmipcima.mfl",\
+  "%SystemRoot%\system32\WBEM\regevent.mof",\
+  "%SystemRoot%\system32\WBEM\regevent.mfl",\
+  "%SystemRoot%\system32\WBEM\ntevt.mof",\
+  "%SystemRoot%\system32\WBEM\ntevt.mfl",\
+  "%SystemRoot%\system32\WBEM\secrcw32.mof",\
+  "%SystemRoot%\system32\WBEM\secrcw32.mfl",\
+  "%SystemRoot%\system32\WBEM\dsprov.mof",\
+  "%SystemRoot%\system32\WBEM\dsprov.mfl",\
+  "%SystemRoot%\system32\WBEM\policman.mof",\
+  "%SystemRoot%\system32\WBEM\policman.mfl",\
+  "%SystemRoot%\system32\WBEM\subscrpt.mof",\
+  "%SystemRoot%\system32\WBEM\evntrprv.mof",\
+  "%SystemRoot%\system32\WBEM\wmi.mof",\
+  "%SystemRoot%\system32\WBEM\wmi.mfl",\
+  "%SystemRoot%\system32\WBEM\scm.mof",\
+  "%SystemRoot%\system32\WBEM\wmitimep.mof",\
+  "%SystemRoot%\system32\WBEM\wmitimep.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipdfs.mof",\
+  "%SystemRoot%\system32\WBEM\wmipdfs.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipdskq.mof",\
+  "%SystemRoot%\system32\WBEM\wmipdskq.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipicmp.mof",\
+  "%SystemRoot%\system32\WBEM\wmipicmp.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipiprt.mof",\
+  "%SystemRoot%\system32\WBEM\wmipiprt.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipjobj.mof",\
+  "%SystemRoot%\system32\WBEM\wmipjobj.mfl",\
+  "%SystemRoot%\system32\WBEM\wmipsess.mof",\
+  "%SystemRoot%\system32\WBEM\wmipsess.mfl",\
+  "%SystemRoot%\system32\WBEM\krnlprov.mof",\
+  "%SystemRoot%\system32\WBEM\krnlprov.mfl",\
+  "%SystemRoot%\system32\WBEM\cli.mof",\
+  "%SystemRoot%\system32\WBEM\tscfgwmi.mof",\
+  "%SystemRoot%\system32\WBEM\tscfgwmi.mfl",\
+  "%SystemRoot%\system32\WBEM\licwmi.mof",\
+  "%SystemRoot%\system32\WBEM\licwmi.mfl",\
+  "%SystemRoot%\system32\WBEM\ClusWMI.mof",\
+  "%SystemRoot%\system32\WBEM\wlbsprov.mof",\
+  "%SystemRoot%\system32\WBEM\hnetcfg.mof",\
+  "%SystemRoot%\system32\WBEM\nlbmprov.mof",\
+  "%SystemRoot%\system32\WBEM\CmdEvTgProv.mof",\
+  "%SystemRoot%\system32\WBEM\whqlprov.mof",\
+  "%SystemRoot%\system32\WBEM\ieinfo5.mof",\
+  "%SystemRoot%\system32\WBEM\vds.mof",\
+  "%SystemRoot%\system32\WBEM\vds.mfl",\
+  "%SystemRoot%\system32\WBEM\vss.mof",\
+  "%SystemRoot%\system32\WBEM\vss.mfl",\
+  "%SystemRoot%\system32\WBEM\rsop.mof",\
+  "%SystemRoot%\system32\WBEM\rsop.mfl",\
+  "%SystemRoot%\system32\WBEM\scersop.mof",\
+  "%SystemRoot%\system32\WBEM\replprov.mof"
+
+[Software.AddReg]
+; Moved from xpe-pnp.inf
+;0x1,"Microsoft\Windows NT\CurrentVersion\Drivers32\Terminal Server\RDP","wave","rdpsnd.dll"
+;0x4,"Microsoft\Windows NT\CurrentVersion\Drivers32\Terminal Server\RDP","MaxBandwidth",0x56b9
+;0x1,"Microsoft\Windows NT\CurrentVersion\Drivers32\Terminal Server\RDP","wavemapper","msacm32.drv"
+;0x4,"Microsoft\Windows NT\CurrentVersion\Drivers32\Terminal Server\RDP","EnableMP3Codec",0x1
+;0x1,"Microsoft\Windows NT\CurrentVersion\Drivers32\Terminal Server\RDP","midimapper","midimap.dll"
+
+; RegServer cmprops.dll - [U] SP2 - Second Pass
+0x1,"Classes\CLSID\{A1B9E020-3226-11D2-883E-00104B2AFB46}",,"CMSnapin Description"
+0x2,"Classes\CLSID\{A1B9E020-3226-11D2-883E-00104B2AFB46}\InprocServer32",,"cmprops.dll"
+0x1,"Classes\CLSID\{A1B9E020-3226-11D2-883E-00104B2AFB46}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{A1B9E020-3226-11D2-883E-00104B2AFB46}\ProgID",,"CMSnapinAbout.1"
+0x1,"Classes\CLSID\{A1B9E020-3226-11D2-883E-00104B2AFB46}\VersionIndependentProgID",,"CMSnapinAbout.1"
+0x1,"Classes\CMSnapinAbout.1",,"CMSnapin Description"
+0x1,"Classes\CMSnapinAbout.1\CLSID",,"{A1B9E020-3226-11D2-883E-00104B2AFB46}"
+
+; -> Not SP2
+0x1,"Classes\CLSID\{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}",,"CMSnapin Class"
+0x1,"Classes\CLSID\{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}\InprocServer32","ThreadingModel","Apartment"
+0x2,"Classes\CLSID\{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}\InprocServer32",,"cmprops.dll"
+0x1,"Classes\CLSID\{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}\ProgID",,"CMSnapin.CMSnapin.1"
+0x1,"Classes\CLSID\{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}\TypeLib",,"{A1B9E012-3226-11D2-883E-00104B2AFB46}"
+0x1,"Classes\CLSID\{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}\VersionIndependentProgID",,"CMSnapin.CMSnapin"
+0x1,"Classes\CMSnapin.CMSnapin",,"CMSnapin Class"
+0x1,"Classes\CMSnapin.CMSnapin.1",,"CMSnapin Class"
+0x1,"Classes\CMSnapin.CMSnapin.1\CLSID",,"{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}"
+0x1,"Classes\CMSnapin.CMSnapin\CLSID",,"{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}"
+0x1,"Classes\CMSnapin.CMSnapin\CurVer",,"CMSnapin.CMSnapin.1"
+0x1,"Classes\CMSnapinAbout.1",,"CMSnapin Description"
+0x1,"Classes\CMSnapinAbout.1\CLSID",,"{A1B9E020-3226-11D2-883E-00104B2AFB46}"
+0x1,"Classes\TypeLib\{A1B9E012-3226-11D2-883E-00104B2AFB46}\1.0",,"CMProps 1.0 Type Library"
+0x2,"Classes\TypeLib\{A1B9E012-3226-11D2-883E-00104B2AFB46}\1.0\0\win32",,"cmprops.dll"
+0x1,"Classes\TypeLib\{A1B9E012-3226-11D2-883E-00104B2AFB46}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{A1B9E012-3226-11D2-883E-00104B2AFB46}\1.0\HELPDIR",,"%SystemRoot%\Help"
+0x1,"Microsoft\MMC\NodeTypes\{476e6446-aaff-11d0-b944-00c04fd8d5b0}\Extensions\PropertySheet","{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}","System Properties"
+0x1,"Microsoft\MMC\SnapIns\{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}",,"CMSnapin"
+0x1,"Microsoft\MMC\SnapIns\{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}","About","{A1B9E020-3226-11D2-883E-00104B2AFB46}"
+0x2,"Microsoft\MMC\SnapIns\{0F3621F1-23C6-11D1-AD97-00AA00B88E5A}","NameStringIndirect","@cmprops.dll,-1"
+
+; RegServer servdeps.dll - [U] SP2 - Second Pass
+0x1,"Classes\CLSID\{A1B9E04A-3226-11D2-883E-00104B2AFB46}",,"SDSnapin Description"
+0x2,"Classes\CLSID\{A1B9E04A-3226-11D2-883E-00104B2AFB46}\InprocServer32",,"servdeps.dll"
+0x1,"Classes\CLSID\{A1B9E04A-3226-11D2-883E-00104B2AFB46}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{A1B9E04A-3226-11D2-883E-00104B2AFB46}\ProgID",,"SDSnapinAbout.1"
+0x1,"Classes\CLSID\{A1B9E04A-3226-11D2-883E-00104B2AFB46}\VersionIndependentProgID",,"SDSnapinAbout.1"
+0x1,"Classes\SDSnapinAbout.1",,"SDSnapin Description"
+0x1,"Classes\SDSnapinAbout.1\CLSID",,"{A1B9E04A-3226-11D2-883E-00104B2AFB46}"
+
+; -> Not from SP2
+0x1,"Classes\CLSID\{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}",,"SDSnapin Class"
+0x1,"Classes\CLSID\{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}\InprocServer32","ThreadingModel","Apartment"
+0x2,"Classes\CLSID\{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}\InprocServer32",,"servdeps.dll"
+0x1,"Classes\CLSID\{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}\ProgID",,"SDSnapin.SDSnapin.1"
+0x1,"Classes\CLSID\{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}\TypeLib",,"{A1B9E03C-3226-11D2-883E-00104B2AFB46}"
+0x1,"Classes\CLSID\{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}\VersionIndependentProgID",,"SDSnapin.SDSnapin"
+0x1,"Classes\SDSnapin.SDSnapin.1",,"Service Dependencies Class"
+0x1,"Classes\SDSnapin.SDSnapin.1\CLSID",,"{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}"
+0x1,"Classes\SDSnapin.SDSnapin",,"Service Dependencies Class"
+0x1,"Classes\SDSnapin.SDSnapin\CLSID",,"{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}"
+0x1,"Classes\SDSnapin.SDSnapin\CurVer",,"SDSnapin.SDSnapin.1"
+0x1,"Classes\SDSnapinAbout.1",,"SDSnapin Description"
+0x1,"Classes\SDSnapinAbout.1\CLSID",,"{A1B9E04A-3226-11D2-883E-00104B2AFB46}"
+0x1,"Classes\TypeLib\{A1B9E03C-3226-11D2-883E-00104B2AFB46}\1.0",,"ServDeps 1.0 Type Library"
+0x2,"Classes\TypeLib\{A1B9E03C-3226-11D2-883E-00104B2AFB46}\1.0\0\win32",,"servdeps.dll"
+0x1,"Classes\TypeLib\{A1B9E03C-3226-11D2-883E-00104B2AFB46}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{A1B9E03C-3226-11D2-883E-00104B2AFB46}\1.0\HELPDIR",,"%SystemRoot%\Help"
+0x1,"Microsoft\MMC\NodeTypes\{4e410f16-abc1-11d0-b944-00c04fd8d5b0}\Extensions\PropertySheet","{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}","Service Dependencies"
+0x1,"Microsoft\MMC\SnapIns\{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}","About","{A1B9E04A-3226-11D2-883E-00104B2AFB46}"
+0x2,"Microsoft\MMC\SnapIns\{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}","NameStringIndirect","@servdeps.dll,-1"
+0x1,"Microsoft\MMC\SnapIns\{BD95BA60-2E26-AAD1-AD99-00AA00B8E05A}",,"Service Deps"
+
+; RegServer wbemcntl.dll - [U] SP2 - Second Pass
+0x1,"Classes\CLSID\{5C659258-E236-11D2-8899-00104B2AFB46}",,"Allows configuration and control of the Windows Management Instrumentation (WMI) service."
+0x2,"Classes\CLSID\{5C659258-E236-11D2-8899-00104B2AFB46}\InprocServer32",,"wbemcntl.dll"
+0x1,"Classes\CLSID\{5C659258-E236-11D2-8899-00104B2AFB46}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{5C659258-E236-11D2-8899-00104B2AFB46}\ProgID",,"WMISnapinAbout.1"
+0x1,"Classes\CLSID\{5C659258-E236-11D2-8899-00104B2AFB46}\VersionIndependentProgID",,"WMISnapinAbout.1"
+0x1,"Classes\WMISnapinAbout.1",,"Allows configuration and control of the Windows Management Instrumentation (WMI) service."
+0x1,"Classes\WMISnapinAbout.1\CLSID",,"{5C659258-E236-11D2-8899-00104B2AFB46}"
+0x1,"Classes\CLSID\{5C659257-E236-11D2-8899-00104B2AFB46}",,"WMISnapin Class"
+0x2,"Classes\CLSID\{5C659257-E236-11D2-8899-00104B2AFB46}\InprocServer32",,"wbemcntl.dll"
+0x1,"Classes\CLSID\{5C659257-E236-11D2-8899-00104B2AFB46}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{5C659257-E236-11D2-8899-00104B2AFB46}\ProgID",,"WMICntl.WMISnapin.1"
+0x1,"Classes\CLSID\{5C659257-E236-11D2-8899-00104B2AFB46}\TypeLib",,"{5C65924B-E236-11D2-8899-00104B2AFB46}"
+0x1,"Classes\CLSID\{5C659257-E236-11D2-8899-00104B2AFB46}\VersionIndependentProgID",,"WMICntl.WMISnapin"
+0x1,"Classes\TypeLib\{5C65924B-E236-11D2-8899-00104B2AFB46}\1.0",,"WMICntl 1.0 Type Library"
+0x2,"Classes\TypeLib\{5C65924B-E236-11D2-8899-00104B2AFB46}\1.0\0\win32",,"wbemcntl.dll"
+0x1,"Classes\TypeLib\{5C65924B-E236-11D2-8899-00104B2AFB46}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{5C65924B-E236-11D2-8899-00104B2AFB46}\1.0\HELPDIR",,"%SystemRoot%\Help"
+0x1,"Microsoft\MMC\SnapIns\{5C659257-E236-11D2-8899-00104B2AFB46}",,"WMI Control"
+
+; WMI MMC SnapIn
+0x1,"Classes\WMICntl.WMISnapin.1",,"WMISnapin Class"
+0x1,"Classes\WMICntl.WMISnapin.1\CLSID",,"{5C659257-E236-11D2-8899-00104B2AFB46}"
+0x1,"Classes\WMICntl.WMISnapin",,"WMISnapin Class"
+0x1,"Classes\WMICntl.WMISnapin\CLSID",,"{5C659257-E236-11D2-8899-00104B2AFB46}"
+0x1,"Classes\WMICntl.WMISnapin\CurVer",,"WMICntl.WMISnapin.1"
+0x1,"Classes\WMISnapinAbout.1",,"Windows WMI"
+0x1,"Classes\WMISnapinAbout.1\CLSID",,"{5C659258-E236-11D2-8899-00104B2AFB46}"
+0x1,"Microsoft\MMC\NodeTypes\{476e6449-aaff-11d0-b944-00c04fd8d5b0}\Extensions\NameSpace","{5C659257-E236-11D2-8899-00104B2AFB46}","WMI Control"
+0x0,"Microsoft\MMC\NodeTypes\{5C659259-E236-11D2-8899-00104B2AFB46}"
+0x1,"Microsoft\MMC\SnapIns\{5C659257-E236-11D2-8899-00104B2AFB46}","About","{5C659258-E236-11D2-8899-00104B2AFB46}"
+0x2,"Microsoft\MMC\SnapIns\{5C659257-E236-11D2-8899-00104B2AFB46}","NameStringIndirect","@wbemcntl.dll,-143"
+0x0,"Microsoft\MMC\SnapIns\{5C659257-E236-11D2-8899-00104B2AFB46}\NodeTypes\{5C659259-E236-11D2-8899-00104B2AFB46}"
+0x0,"Microsoft\MMC\SnapIns\{5C659257-E236-11D2-8899-00104B2AFB46}\StandAlone"
+
+; WMI Core
+0x4,"Microsoft\WBEM\CIMOM\ADAP","NoShell",0x1
+;0x2,"Microsoft\WBEM","Installation Directory","%SystemRoot%\system32\WBEM"
+;0x2,"Microsoft\WBEM","MOF Self-Install Directory","%SystemRoot%\system32\WBEM\MOF"
+;0x2,"Microsoft\WBEM\CIMOM","Working Directory","%SystemRoot%\system32\WBEM"
+;0x4,"Microsoft\WBEM\CIMOM","ADAPDelay",0xf0
+;0x1,"Microsoft\WBEM\CIMOM","Default Repository Driver","{7998dc37-d3fe-487c-a60a-7701fcc70cc6}"
+;0x1,"Microsoft\WBEM\CIMOM","EnableEvents","1"
+0x2,"Microsoft\WBEM\CIMOM","Repository Directory","%SystemRoot%\system32\wbem\Repository"
+0x1,"Microsoft\WBEM\CIMOM","Logging","1"
+0x2,"Microsoft\WBEM\CIMOM","Logging Directory","%temp%\Logs"
+;0x1,"Microsoft\WBEM\CIMOM","TimeOutMs","3000"
+0x1,"Microsoft\WBEM\CIMOM","WMISetup","0"
+0x1,"Microsoft\WBEM\CIMOM","Log File Max Size","65536"
+0x1,"Microsoft\WBEM\CIMOM","SetupDate","XXX"
+0x1,"Microsoft\WBEM\CIMOM","SetupTime","XXX"
+0x4,"Microsoft\WBEM\CIMOM","Unchecked Task Count",0x32
+;0x4,"Microsoft\WBEM\CIMOM","ProcessID",0x474
+0x4,"Microsoft\WBEM\CIMOM","ThrottleDrege",0x1
+0x4,"Microsoft\WBEM\CIMOM","LodCtrDelay",0x3c
+0x4,"Microsoft\WBEM\CIMOM","TimeToFullDredge",0xffffffff
+0x4,"Microsoft\WBEM\CIMOM","TimeToTerminateAdap",0x927c0
+0x4,"Microsoft\WBEM\CIMOM","ArbTaskMaxSleep",0x493e0
+0x4,"Microsoft\WBEM\CIMOM","ArbSystemHighThreshold1",0x5a
+0x4,"Microsoft\WBEM\CIMOM","ArbSystemHighThreshold1Mult",0x2
+0x4,"Microsoft\WBEM\CIMOM","ArbSystemHighThreshold2",0x5f
+0x4,"Microsoft\WBEM\CIMOM","ArbSystemHighThreshold2Mult",0x3
+0x4,"Microsoft\WBEM\CIMOM","ArbSystemHighThreshold3",0x62
+0x4,"Microsoft\WBEM\CIMOM","ArbSystemHighThreshold3Mult",0x4
+0x1,"Microsoft\WBEM\CIMOM","Low Threshold On Client Objects (B)","10000000"
+0x1,"Microsoft\WBEM\CIMOM","High Threshold On Client Objects (B)","20000000"
+0x1,"Microsoft\WBEM\CIMOM","Max Wait On Client Objects (ms)","60000"
+0x1,"Microsoft\WBEM\CIMOM","Build","Aug 28 2002 21:52:30"
+;0x4,"Microsoft\WBEM\CIMOM","Max Class Cache Size",0x4c4b40
+0x4,"Microsoft\WBEM\CIMOM","Max Class Cache Size",0x0
+0x4,"Microsoft\WBEM\CIMOM","Max Class Cache Item Age (ms)",0x2710
+0x4,"Microsoft\WBEM\CIMOM","NextAutoRecoverFile",0xffffffff
+;0x1,"Microsoft\WBEM\CIMOM","Backup Interval Threshold","30"
+0x1,"Microsoft\WBEM\CIMOM","Max Async Result Queue Size","1"
+0x4,"Microsoft\WBEM\CIMOM","Max Tasks",0x1388
+0x1,"Microsoft\WBEM\CIMOM","Autorecover MOFs timestamp","127119820505308992"
+0x1,"Microsoft\WBEM\CIMOM","Low Threshold On Events (B)","10000000"
+0x1,"Microsoft\WBEM\CIMOM","High Threshold On Events (B)","20000000"
+0x1,"Microsoft\WBEM\CIMOM","Max Wait On Events (ms)","2000"
+0x4,"Microsoft\WBEM\CIMOM","Merger Throttling Threshold",0xa
+0x4,"Microsoft\WBEM\CIMOM","Merger Release Threshold",0x5
+0x4,"Microsoft\WBEM\CIMOM","Merger Batching Threshold",0x20000
+0x3,"Microsoft\WBEM\CIMOM","List of event-active namespaces",\
+  2f,00,2f,00,2e,00,2f,00,72,00,6f,00,6f,00,74,00,2f,00,73,00,75,00,62,00,73,\
+  00,63,00,72,00,69,00,70,00,74,00,69,00,6f,00,6e,00,00,00,00,00
+0x4,"Microsoft\WBEM\CIMOM","ADAPPerflibTimeout",0x3c
+0x3,"Microsoft\WBEM\CIMOM","LastFullDredgeTimestamp",80,b8,de,ce,5e,7d,c3,01
+;0x7,"Microsoft\WBEM\CIMOM","KnownSvcs","Fax","MSDTC","PerfDisk","PerfNet","PerfOS","PerfProc","PSched","RemoteAccess","RSVP","TapiSrv","Tcpip","TermService"
+;0x1,"Microsoft\WBEM\CIMOM","MOF Self-Install Directory","mof"
+0x4,"Microsoft\WBEM\CIMOM","Maps Upgraded",0x1
+0x4,"Microsoft\WBEM\CIMOM","LocalizationUpgraded",0x1
+;0x4,"Microsoft\WBEM\CIMOM","Requires Encrypted Connection",0x0
+
+;0x4,"Microsoft\WBEM\FWD","AllowUnauthenticatedEvents",0x1
+0x0,"Microsoft\WBEM\ESS\//./root/CIMV2\SCM Event Provider"
+0x0,"Microsoft\WBEM\ESS\//./root/WMI\WMIEventProv"
+0x0,"Microsoft\WBEM\ESS\//./root/subscription"
+
+;0x4,"Microsoft\WBEM\PROVIDERS\Logging","Logging",0x1
+;0x4,"Microsoft\WBEM\PROVIDERS\Logging\NTEVT","Level",0xff
+;0x2,"Microsoft\WBEM\PROVIDERS\Logging\NTEVT","File","%temp%\Logs\NTEVT.log"
+;0x4,"Microsoft\WBEM\PROVIDERS\Logging\NTEVT","MaxFileSize",0xffff
+;0x1,"Microsoft\WBEM\PROVIDERS\Logging\NTEVT","Type","File"
+;0x4,"Microsoft\WBEM\PROVIDERS\Logging\WBEMSNMP","Level",0x0
+;0x2,"Microsoft\WBEM\PROVIDERS\Logging\WBEMSNMP","File","%temp%\Logs\WBEMSNMP.log"
+;0x4,"Microsoft\WBEM\PROVIDERS\Logging\WBEMSNMP","MaxFileSize",0xffff
+;0x1,"Microsoft\WBEM\PROVIDERS\Logging\WBEMSNMP","Type","File"
+;0x4,"Microsoft\WBEM\PROVIDERS\Performance","Performance Refresh",0x0
+0x4,"Microsoft\WBEM\PROVIDERS\Performance","Performance Refresh",0x1
+0x4,"Microsoft\WBEM\PROVIDERS\Performance","Performance Refreshed",0x0
+;0x3,"Microsoft\WBEM\PROVIDERS\Performance","Performance Data",0x0
+0x1,"Microsoft\WBEM\Scripting","Default Namespace","root\cimv2"
+0x4,"Microsoft\WBEM\Scripting","Default Impersonation Level",0x3
+
+0x1,"Microsoft\WBEM\TRANSPORTS\Address Resolution Modules\{A1044801-8F7E-11D1-9E7C-00C04FC324A8}","Name","WBEM Local Address Resolution Module"
+0x7,"Microsoft\WBEM\TRANSPORTS\Address Resolution Modules\{A1044801-8F7E-11D1-9E7C-00C04FC324A8}","Supported Address Types","{A1044803-8F7E-11D1-"
+0x1,"Microsoft\WBEM\TRANSPORTS\Address Resolution Modules\{A1044801-8F7E-11D1-9E7C-00C04FC324A8}","Display Name","{A1044802-8F7E-11D1-9E7C-00C04FC324A8}"
+0x7,"Microsoft\WBEM\TRANSPORTS\Address Resolution Modules","Stack Order","{A1044801-8F7E-11D1-9E7C-00C04FC324A8}"
+0x1,"Microsoft\WBEM\TRANSPORTS\AddressTypes\{A1044803-8F7E-11D1-9E7C-00C04FC324A8}","Description","Local Machine"
+0x1,"Microsoft\WBEM\TRANSPORTS\AddressTypes\{A1044803-8F7E-11D1-9E7C-00C04FC324A8}","Display Name","{A1044804-8F7E-11D1-9E7C-00C04FC324A8}"
+0x1,"Microsoft\WBEM\TRANSPORTS\Decoupled\Server","CreationTime","20041015020915.600000+000"
+0x3,"Microsoft\WBEM\TRANSPORTS\Decoupled\Server","MarshaledProxy",\
+  4d,45,4f,57,01,00,00,00,00,00,00,00,00,00,00,00,c0,00,00,00,00,00,00,46,00,\
+  00,00,00,00,00,00,00,70,4f,1e,06,f2,32,2e,15,f1,6c,8a,3c,94,61,9b,f9,09,50,\
+  00,00,04,04,00,00,84,b4,14,d5,e2,0f,b0,2e,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00
+0x4,"Microsoft\WBEM\TRANSPORTS\Decoupled\Server","ProcessIdentifier",0x404
+0x1,"Microsoft\WBEM\TRANSPORTS\Network Transport Modules\{F7CE2E13-8C90-11D1-9E7B-00C04FC324A8}","Name","WBEM DCOM Transport V1"
+0x4,"Microsoft\WBEM\TRANSPORTS\Network Transport Modules\{F7CE2E13-8C90-11D1-9E7B-00C04FC324A8}","Independent",0x1
+0x1,"Microsoft\WBEM\TRANSPORTS\Network Transport Modules\{F7CE2E13-8C90-11D1-9E7B-00C04FC324A8}","Display Name","{A2F7D6C1-8DCD-11D1-9E7C-00C04FC324A8}"
+0x7,"Microsoft\WBEM\TRANSPORTS\Network Transport Modules","Stack Order","{F7CE2E13-8C90-11D1-9E7B-00C04FC324A8}"
+
+0x2,"Microsoft\WBEM\TextSource\1","TextSourceDLL","%SystemRoot%\System32\wbem\xml\wmi2xml.dll"
+0x2,"Microsoft\WBEM\TextSource\2","TextSourceDLL","%SystemRoot%\System32\wbem\xml\wmi2xml.dll"
+
+0x1,"Microsoft\WBEM\xml\Decoders","1.0","41388E26-F847-4A9D-96C0-9A847DBA4CFE}"
+0x1,"Microsoft\WBEM\xml\Decoders","2.0","41388E26-F847-4A9D-96C0-9A847DBA4CFE}"
+0x1,"Microsoft\WBEM\xml\Encoders","1.0","610037EC-CE06-11D3-93FC-00805F853771"
+0x1,"Microsoft\WBEM\xml\Encoders","2.0","610037EC-CE06-11D3-93FC-00805F853771"
+
+; RegServer snmpsmir.dll - [U] SP2 (WbemSNMP) - No SecondPass
+;0x1,"Classes\CLSID\{5009AB90-F9EE-11CF-AEC1-00AA00BDD7D1}",,"Microsoft WBEM SNMP Module Information Repository"
+;0x2,"Classes\CLSID\{5009AB90-F9EE-11CF-AEC1-00AA00BDD7D1}\InprocServer32",,"snmpsmir.dll"
+;0x1,"Classes\CLSID\{5009AB90-F9EE-11CF-AEC1-00AA00BDD7D1}\InprocServer32","ThreadingModel","Both"
+;0x0,"Classes\CLSID\{5009AB90-F9EE-11CF-AEC1-00AA00BDD7D1}\NotInsertable"
+;0x1,"Classes\CLSID\{5009AB92-F9EE-11CF-AEC1-00AA00BDD7D1}",,"Microsoft WBEM SNMP Module Information Repository"
+;0x2,"Classes\CLSID\{5009AB92-F9EE-11CF-AEC1-00AA00BDD7D1}\InprocServer32",,"snmpsmir.dll"
+;0x1,"Classes\CLSID\{5009AB92-F9EE-11CF-AEC1-00AA00BDD7D1}\InprocServer32","ThreadingModel","Both"
+;0x0,"Classes\CLSID\{5009AB92-F9EE-11CF-AEC1-00AA00BDD7D1}\NotInsertable"
+;0x1,"Classes\CLSID\{5009AB94-F9EE-11CF-AEC1-00AA00BDD7D1}",,"Microsoft WBEM SNMP Module Information Repository"
+;0x2,"Classes\CLSID\{5009AB94-F9EE-11CF-AEC1-00AA00BDD7D1}\InprocServer32",,"snmpsmir.dll"
+;0x1,"Classes\CLSID\{5009AB94-F9EE-11CF-AEC1-00AA00BDD7D1}\InprocServer32","ThreadingModel","Both"
+;0x0,"Classes\CLSID\{5009AB94-F9EE-11CF-AEC1-00AA00BDD7D1}\NotInsertable"
+;0x1,"Classes\CLSID\{5009AB9B-F9EE-11CF-AEC1-00AA00BDD7D1}",,"Microsoft WBEM SNMP Module Information Repository"
+;0x2,"Classes\CLSID\{5009AB9B-F9EE-11CF-AEC1-00AA00BDD7D1}\InprocServer32",,"snmpsmir.dll"
+;0x1,"Classes\CLSID\{5009AB9B-F9EE-11CF-AEC1-00AA00BDD7D1}\InprocServer32","ThreadingModel","Both"
+;0x0,"Classes\CLSID\{5009AB9B-F9EE-11CF-AEC1-00AA00BDD7D1}\NotInsertable"
+;0x1,"Classes\CLSID\{B11B26AC-A791-11D0-AAEA-00A024E8AD1C}",,"Microsoft WBEM SNMP Module Information Repository"
+;0x2,"Classes\CLSID\{B11B26AC-A791-11D0-AAEA-00A024E8AD1C}\InprocServer32",,"snmpsmir.dll"
+;0x1,"Classes\CLSID\{B11B26AC-A791-11D0-AAEA-00A024E8AD1C}\InprocServer32","ThreadingModel","Both"
+;0x0,"Classes\CLSID\{B11B26AC-A791-11D0-AAEA-00A024E8AD1C}\NotInsertable"
+;0x1,"Classes\CLSID\{B11B26AE-A791-11D0-AAEA-00A024E8AD1C}",,"Microsoft WBEM SNMP Module Information Repository"
+;0x2,"Classes\CLSID\{B11B26AE-A791-11D0-AAEA-00A024E8AD1C}\InprocServer32",,"snmpsmir.dll"
+;0x1,"Classes\CLSID\{B11B26AE-A791-11D0-AAEA-00A024E8AD1C}\InprocServer32","ThreadingModel","Both"
+;0x0,"Classes\CLSID\{B11B26AE-A791-11D0-AAEA-00A024E8AD1C}\NotInsertable"
+
+; RegServer cimwin32.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{3DD82D10-E6F1-11D2-B139-00105A1F77A1}",,"WMI instrumentation: Win32_PowerManagementEvent"
+0x2,"Classes\CLSID\{3DD82D10-E6F1-11D2-B139-00105A1F77A1}\InprocServer32",,"cimwin32.dll"
+0x1,"Classes\CLSID\{3DD82D10-E6F1-11D2-B139-00105A1F77A1}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{D31B6A3F-9350-40DE-A3FC-A7EDEB9B7C63}",,"WMI instrumentation: Win32_SystemConfigurationChangeEvent"
+0x2,"Classes\CLSID\{D31B6A3F-9350-40DE-A3FC-A7EDEB9B7C63}\InprocServer32",,"cimwin32.dll"
+0x1,"Classes\CLSID\{D31B6A3F-9350-40DE-A3FC-A7EDEB9B7C63}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{D63A5850-8F16-11CF-9F47-00AA00BF345C}",,"WBEM Framework Instance Provider"
+0x2,"Classes\CLSID\{D63A5850-8F16-11CF-9F47-00AA00BF345C}\InprocServer32",,"cimwin32.dll"
+0x1,"Classes\CLSID\{D63A5850-8F16-11CF-9F47-00AA00BF345C}\InprocServer32","ThreadingModel","Both"
+
+; RegServer dsprov.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{1EF94880-01A8-11D2-A90B-00AA00BF3363}",,"Microsoft NT DS Class Provider for WBEM"
+0x2,"Classes\CLSID\{1EF94880-01A8-11D2-A90B-00AA00BF3363}\InprocServer32",,"dsprov.dll"
+0x1,"Classes\CLSID\{1EF94880-01A8-11D2-A90B-00AA00BF3363}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{33831ED4-42B8-11D2-93AD-00805F853771}",,"Microsoft NT DS Class Associations Provider for WBEM"
+0x2,"Classes\CLSID\{33831ED4-42B8-11D2-93AD-00805F853771}\InprocServer32",,"dsprov.dll"
+0x1,"Classes\CLSID\{33831ED4-42B8-11D2-93AD-00805F853771}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{AA527A40-4D9A-11D2-93AD-00805F853771}",,"Microsoft NT DS Instance Provider for WBEM"
+0x2,"Classes\CLSID\{AA527A40-4D9A-11D2-93AD-00805F853771}\InprocServer32",,"dsprov.dll"
+0x1,"Classes\CLSID\{AA527A40-4D9A-11D2-93AD-00805F853771}\InprocServer32","ThreadingModel","Both"
+
+; RegServer esscli.dll - [U] SP2 - Second Pass
+0x1,"Classes\CLSID\{6c19be35-7500-11d1-ad94-00c04fd8fdff}",,"Microsoft WBEM Event filter marshaling proxy"
+0x0,"Classes\CLSID\{6c19be35-7500-11d1-ad94-00c04fd8fdff}\Implemented Categories\{00000003-0000-0000-C000-000000000046}"
+0x2,"Classes\CLSID\{6c19be35-7500-11d1-ad94-00c04fd8fdff}\InprocServer32",,"esscli.dll"
+0x1,"Classes\CLSID\{6c19be35-7500-11d1-ad94-00c04fd8fdff}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{DC923725-0FDD-45E1-AE74-EA09182E739B}",,"Microsoft WBEM Wbem Token Cache"
+0x2,"Classes\CLSID\{DC923725-0FDD-45E1-AE74-EA09182E739B}\InprocServer32",,"esscli.dll"
+0x1,"Classes\CLSID\{DC923725-0FDD-45E1-AE74-EA09182E739B}\InprocServer32","ThreadingModel","Both"
+
+; RegServer fastprox.dll - [U] SP2 - Second Pass
+0x1,"Classes\CLSID\{1108BE51-F58A-4CDA-BB99-7A0227D11D5E}",,"Microsoft WBEM _IWmiCallSec Call Security Factory"
+0x2,"Classes\CLSID\{1108BE51-F58A-4CDA-BB99-7A0227D11D5E}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{1108BE51-F58A-4CDA-BB99-7A0227D11D5E}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{1B1CAD8C-2DAB-11D2-B604-00104B703EFD}",,"Microsoft WBEM (non)Standard Marshaling for IEnumWbemClassObject"
+0x2,"Classes\CLSID\{1B1CAD8C-2DAB-11D2-B604-00104B703EFD}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{1B1CAD8C-2DAB-11D2-B604-00104B703EFD}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{29B5828C-CAB9-11D2-B35C-00105A1F8177}",,"Microsoft WBEM (non)Standard Marshaling for IWbemUnboundObjectSink"
+0x2,"Classes\CLSID\{29B5828C-CAB9-11D2-B35C-00105A1F8177}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{29B5828C-CAB9-11D2-B35C-00105A1F8177}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{4590F812-1D3A-11D0-891F-00AA004B2E24}",,"Microsoft WBEM WbemClassObject Marshalling proxy"
+0x0,"Classes\CLSID\{4590F812-1D3A-11D0-891F-00AA004B2E24}\Implemented Categories\{00000003-0000-0000-C000-000000000046}"
+0x2,"Classes\CLSID\{4590F812-1D3A-11D0-891F-00AA004B2E24}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{4590F812-1D3A-11D0-891F-00AA004B2E24}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{5839FCA9-774D-42A1-ACDA-D6A79037F57F}",,"Microsoft WBEM _WbemFetchRefresherMgr Proxy Helper"
+0x2,"Classes\CLSID\{5839FCA9-774D-42A1-ACDA-D6A79037F57F}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{5839FCA9-774D-42A1-ACDA-D6A79037F57F}\InprocServer32","ThreadingModel","Free"
+0x1,"Classes\CLSID\{674B6698-EE92-11D0-AD71-00C04FD8FDFF}",,"Microsoft WBEM Call Context"
+0x0,"Classes\CLSID\{674B6698-EE92-11D0-AD71-00C04FD8FDFF}\Implemented Categories\{00000003-0000-0000-C000-000000000046}"
+0x2,"Classes\CLSID\{674B6698-EE92-11D0-AD71-00C04FD8FDFF}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{674B6698-EE92-11D0-AD71-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{7016F8FA-CCDA-11D2-B35C-00105A1F8177}",,"Microsoft WBEM (non)Standard Marshaling for IWbemMultiTarget"
+0x2,"Classes\CLSID\{7016F8FA-CCDA-11D2-B35C-00105A1F8177}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{7016F8FA-CCDA-11D2-B35C-00105A1F8177}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{71285C44-1DC0-11D2-B5FB-00104B703EFD}",,"Microsoft WBEM (non)Standard Marshaling for IWbemObjectSink"
+0x2,"Classes\CLSID\{71285C44-1DC0-11D2-B5FB-00104B703EFD}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{71285C44-1DC0-11D2-B5FB-00104B703EFD}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{78103FB7-AED7-4066-8BCD-30BB27B02331}",,"Microsoft WBEM WMI Object Factory"
+0x2,"Classes\CLSID\{78103FB7-AED7-4066-8BCD-30BB27B02331}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{78103FB7-AED7-4066-8BCD-30BB27B02331}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{8D1C559D-84F0-4BB3-A7D5-56A7435A9BA6}",,"Microsoft WBEM WMI Object Factory"
+0x2,"Classes\CLSID\{8D1C559D-84F0-4BB3-A7D5-56A7435A9BA6}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{8D1C559D-84F0-4BB3-A7D5-56A7435A9BA6}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{9A653086-174F-11D2-B5F9-00104B703EFD}",,"Microsoft WBEM WBEM Class Object"
+0x2,"Classes\CLSID\{9A653086-174F-11D2-B5F9-00104B703EFD}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{9A653086-174F-11D2-B5F9-00104B703EFD}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{C71566F2-561E-11D1-AD87-00C04FD8FDFF}",,"Microsoft WBEM Universal Refresher"
+0x2,"Classes\CLSID\{C71566F2-561E-11D1-AD87-00C04FD8FDFF}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{C71566F2-561E-11D1-AD87-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{CC9072AB-C000-49D8-A5AA-00266C8DBB9B}",,"Microsoft WBEM _IWbemEnumMarshaling Enumerator Helper"
+0x2,"Classes\CLSID\{CC9072AB-C000-49D8-A5AA-00266C8DBB9B}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{CC9072AB-C000-49D8-A5AA-00266C8DBB9B}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{CD1ABFC8-6C5E-4A8D-B90B-2A3B153B886D}",,"Microsoft WBEM _IWbemConfigureRefreshingSvc Configure Refreshing Services Factory"
+0x2,"Classes\CLSID\{CD1ABFC8-6C5E-4A8D-B90B-2A3B153B886D}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{CD1ABFC8-6C5E-4A8D-B90B-2A3B153B886D}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{D68AF00A-29CB-43FA-8504-CE99A996D9EA}",,"Microsoft WBEM (non)Standard Marshaling for IWbemServices"
+0x2,"Classes\CLSID\{D68AF00A-29CB-43FA-8504-CE99A996D9EA}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{D68AF00A-29CB-43FA-8504-CE99A996D9EA}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{DCF33DF4-B510-439F-832A-16B6B514F2A7}",,"Microsoft WBEM _IWbemRefresherMgr Refresher Cache Factory"
+0x2,"Classes\CLSID\{DCF33DF4-B510-439F-832A-16B6B514F2A7}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{DCF33DF4-B510-439F-832A-16B6B514F2A7}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\Interface\{027947E1-D731-11CE-A357-000000000001}",,"IEnumWbemClassObject"
+0x1,"Classes\Interface\{027947E1-D731-11CE-A357-000000000001}\NumMethods",,"5"
+0x1,"Classes\Interface\{027947E1-D731-11CE-A357-000000000001}\ProxyStubClsid32",,"{1B1CAD8C-2DAB-11D2-B604-00104B703EFD}"
+0x1,"Classes\Interface\{755F9DA6-7508-11D1-AD94-00C04FD8FDFF}",,"IWbemMultiTarget"
+0x1,"Classes\Interface\{755F9DA6-7508-11D1-AD94-00C04FD8FDFF}\NumMethods",,"5"
+0x1,"Classes\Interface\{755F9DA6-7508-11D1-AD94-00C04FD8FDFF}\ProxyStubClsid32",,"{7016F8FA-CCDA-11D2-B35C-00105A1F8177}"
+0x1,"Classes\Interface\{7C857801-7381-11CF-884D-00AA004B2E24}",,"IWbemObjectSink"
+0x1,"Classes\Interface\{7C857801-7381-11CF-884D-00AA004B2E24}\NumMethods",,"5"
+0x1,"Classes\Interface\{7C857801-7381-11CF-884D-00AA004B2E24}\ProxyStubClsid32",,"{71285C44-1DC0-11D2-B5FB-00104B703EFD}"
+0x1,"Classes\Interface\{9556DC99-828C-11CF-A37E-00AA003240C7}",,"IWbemServices"
+0x1,"Classes\Interface\{9556DC99-828C-11CF-A37E-00AA003240C7}\NumMethods",,"40"
+0x1,"Classes\Interface\{9556DC99-828C-11CF-A37E-00AA003240C7}\ProxyStubClsid32",,"{D68AF00A-29CB-43FA-8504-CE99A996D9EA}"
+0x1,"Classes\Interface\{E246107B-B06E-11D0-AD61-00C04FD8FDFF}",,"IWbemUnboundObjectSink"
+0x1,"Classes\Interface\{E246107B-B06E-11D0-AD61-00C04FD8FDFF}\NumMethods",,"4"
+0x1,"Classes\Interface\{E246107B-B06E-11D0-AD61-00C04FD8FDFF}\ProxyStubClsid32",,"{29B5828C-CAB9-11D2-B35C-00105A1F8177}"
+
+; RegServer krnlprov.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{9877D8A7-FDA1-43F9-AEEA-F90747EA66B0}",,"KernelTraceProvider Class"
+0x2,"Classes\CLSID\{9877D8A7-FDA1-43F9-AEEA-F90747EA66B0}\InprocServer32",,"krnlprov.dll"
+0x1,"Classes\CLSID\{9877D8A7-FDA1-43F9-AEEA-F90747EA66B0}\InprocServer32","ThreadingModel","Free"
+0x1,"Classes\CLSID\{9877D8A7-FDA1-43F9-AEEA-F90747EA66B0}\ProgID",,"Krnlprov.KernelTraceProvider.1"
+0x1,"Classes\CLSID\{9877D8A7-FDA1-43F9-AEEA-F90747EA66B0}\TypeLib",,"{6B100E1A-1385-4D1F-A02E-6E705A76BB6C}"
+0x1,"Classes\CLSID\{9877D8A7-FDA1-43F9-AEEA-F90747EA66B0}\VersionIndependentProgID",,"Krnlprov.KernelTraceProvider"
+0x1,"Classes\Krnlprov.KernelTraceProvider",,"KernelTraceProvider Class"
+0x1,"Classes\Krnlprov.KernelTraceProvider.1",,"KernelTraceProvider Class"
+0x1,"Classes\Krnlprov.KernelTraceProvider.1\CLSID",,"{9877D8A7-FDA1-43F9-AEEA-F90747EA66B0}"
+0x1,"Classes\Krnlprov.KernelTraceProvider\CLSID",,"{9877D8A7-FDA1-43F9-AEEA-F90747EA66B0}"
+0x1,"Classes\Krnlprov.KernelTraceProvider\CurVer",,"Krnlprov.KernelTraceProvider.1"
+0x1,"Classes\TypeLib\{6B100E1A-1385-4D1F-A02E-6E705A76BB6C}\1.0",,"krnlprov 1.0 Type Library"
+0x2,"Classes\TypeLib\{6B100E1A-1385-4D1F-A02E-6E705A76BB6C}\1.0\0\win32",,"krnlprov.dll"
+0x1,"Classes\TypeLib\{6B100E1A-1385-4D1F-A02E-6E705A76BB6C}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{6B100E1A-1385-4D1F-A02E-6E705A76BB6C}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer licwmi.dll - [U] SP2 - Second Pass
+0x1,"Classes\CLSID\{A2B6D807-EE1E-40F6-BDF4-B4D6F552783E}",,"WBEM WIN32_COMPUTERSYSTEMWINDOWSPRODUCTACTIVATIONSETTING Provider"
+0x2,"Classes\CLSID\{A2B6D807-EE1E-40F6-BDF4-B4D6F552783E}\InprocServer32",,"licwmi.dll"
+0x1,"Classes\CLSID\{A2B6D807-EE1E-40F6-BDF4-B4D6F552783E}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{AF134D0A-6706-4ACD-BA76-D0A852474C99}",,"WBEM WIN32_PROXY Provider"
+0x2,"Classes\CLSID\{AF134D0A-6706-4ACD-BA76-D0A852474C99}\InprocServer32",,"licwmi.dll"
+0x1,"Classes\CLSID\{AF134D0A-6706-4ACD-BA76-D0A852474C99}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{EA231B91-099E-4D02-9EE7-73976D6A085F}",,"WBEM WIN32_WINDOWSPRODUCTACTIVATION Provider"
+0x2,"Classes\CLSID\{EA231B91-099E-4D02-9EE7-73976D6A085F}\InprocServer32",,"licwmi.dll"
+0x1,"Classes\CLSID\{EA231B91-099E-4D02-9EE7-73976D6A085F}\InprocServer32","ThreadingModel","Apartment"
+
+; RegServer mmfutil.dll - [U] SP2 No Output - No Second Pass
+0x1,"Classes\TypeLib\{94F6FF32-37C3-11D2-8840-00104B2AFB46}\1.0",,"MMFUtil 1.0 Type Library"
+0x2,"Classes\TypeLib\{94F6FF32-37C3-11D2-8840-00104B2AFB46}\1.0\0\win32",,"mmfutil.dll"
+0x1,"Classes\TypeLib\{94F6FF32-37C3-11D2-8840-00104B2AFB46}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{94F6FF32-37C3-11D2-8840-00104B2AFB46}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer mofd.dll - [U] SP2 - Second Pass
+0x1,"Classes\CLSID\{6DAF9757-2E37-11D2-AEC9-00C04FB68820}",,"MOF Compiler"
+0x2,"Classes\CLSID\{6DAF9757-2E37-11D2-AEC9-00C04FB68820}\InprocServer32",,"mofd.dll"
+0x1,"Classes\CLSID\{6DAF9757-2E37-11D2-AEC9-00C04FB68820}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{C10B4771-4DA0-11D2-A2F5-00C04F86FB7D}",,"Winmgmt MOF Compiler"
+0x2,"Classes\CLSID\{C10B4771-4DA0-11D2-A2F5-00C04F86FB7D}\InprocServer32",,"mofd.dll"
+0x1,"Classes\CLSID\{C10B4771-4DA0-11D2-A2F5-00C04F86FB7D}\InprocServer32","ThreadingModel","Both"
+0x3,"Classes\AppID\{D215781D-019E-4FA0-903D-0CDCDE13A4F5}","AccessPermission",\
+  01,00,04,80,48,00,00,00,54,00,00,00,00,00,00,00,14,00,00,00,02,00,34,00,02,\
+  00,00,00,01,00,18,00,01,00,00,00,01,02,00,00,00,00,00,05,20,00,00,00,21,02,\
+  00,00,00,00,14,00,01,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00,01,01,00,\
+  00,00,00,00,05,12,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00
+0x1,"Classes\AppID\{D215781D-019E-4FA0-903D-0CDCDE13A4F5}","DllSurrogate",
+0x3,"Classes\AppID\{D215781D-019E-4FA0-903D-0CDCDE13A4F5}","LaunchPermission",\
+  01,00,04,80,48,00,00,00,54,00,00,00,00,00,00,00,14,00,00,00,02,00,34,00,02,\
+  00,00,00,01,00,18,00,01,00,00,00,01,02,00,00,00,00,00,05,20,00,00,00,21,02,\
+  00,00,00,00,14,00,01,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00,01,01,00,\
+  00,00,00,00,05,12,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00
+0x1,"Classes\CLSID\{D215781D-019E-4FA0-903D-0CDCDE13A4F5}",,"Winmgmt MOF Compiler OOP"
+0x1,"Classes\CLSID\{D215781D-019E-4FA0-903D-0CDCDE13A4F5}","AppID","{D215781D-019E-4FA0-903D-0CDCDE13A4F5}"
+0x2,"Classes\CLSID\{D215781D-019E-4FA0-903D-0CDCDE13A4F5}\InProcServer32",,"mofd.dll"
+0x1,"Classes\CLSID\{D215781D-019E-4FA0-903D-0CDCDE13A4F5}\InProcServer32","ThreadingModel","Both"
+
+; RegServer msiprov.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{BE0A9830-2B8B-11D1-A949-0060181EBBAD}",,"WMI MSI Provider"
+0x2,"Classes\CLSID\{BE0A9830-2B8B-11D1-A949-0060181EBBAD}\InprocServer32",,"msiprov.dll"
+0x1,"Classes\CLSID\{BE0A9830-2B8B-11D1-A949-0060181EBBAD}\InprocServer32","ThreadingModel","Both"
+
+; RegServer ncprov.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{29F06F0C-FB7F-44A5-83CD-D41705D5C525}",,"NCProvider Class"
+0x2,"Classes\CLSID\{29F06F0C-FB7F-44A5-83CD-D41705D5C525}\InprocServer32",,"ncprov.dll"
+0x1,"Classes\CLSID\{29F06F0C-FB7F-44A5-83CD-D41705D5C525}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{29F06F0C-FB7F-44A5-83CD-D41705D5C525}\ProgID",,"NCProv.NCProvider.1"
+0x1,"Classes\CLSID\{29F06F0C-FB7F-44A5-83CD-D41705D5C525}\TypeLib",,"{5F099F16-6A6E-4BBC-8BD8-98F3221D58C4}"
+0x1,"Classes\CLSID\{29F06F0C-FB7F-44A5-83CD-D41705D5C525}\VersionIndependentProgID",,"NCProv.NCProvider"
+0x1,"Classes\NCProv.NCProvider",,"NCProvider Class"
+0x1,"Classes\NCProv.NCProvider.1",,"NCProvider Class"
+0x1,"Classes\NCProv.NCProvider.1\CLSID",,"{29F06F0C-FB7F-44A5-83CD-D41705D5C525}"
+0x1,"Classes\NCProv.NCProvider\CLSID",,"{29F06F0C-FB7F-44A5-83CD-D41705D5C525}"
+0x1,"Classes\NCProv.NCProvider\CurVer",,"NCProv.NCProvider.1"
+0x1,"Classes\TypeLib\{5F099F16-6A6E-4BBC-8BD8-98F3221D58C4}\1.0",,"NCProv 1.0 Type Library"
+0x2,"Classes\TypeLib\{5F099F16-6A6E-4BBC-8BD8-98F3221D58C4}\1.0\0\win32",,"ncprov.dll"
+0x1,"Classes\TypeLib\{5F099F16-6A6E-4BBC-8BD8-98F3221D58C4}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{5F099F16-6A6E-4BBC-8BD8-98F3221D58C4}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer ntevt.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{F55C5B4C-517D-11D1-AB57-00C04FD9159E}",,"Microsoft WBEM NT Eventlog Event Provider"
+0x2,"Classes\CLSID\{F55C5B4C-517D-11D1-AB57-00C04FD9159E}\InprocServer32",,"ntevt.dll"
+0x1,"Classes\CLSID\{F55C5B4C-517D-11D1-AB57-00C04FD9159E}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{F55C5B4C-517D-11D1-AB57-00C04FD9159E}\NotInsertable"
+0x1,"Classes\CLSID\{F55C5B4C-517D-11D1-AB57-00C04FD9159E}\ProgID",,"WBEM.NT.EVENTLOG.EVENT.PROVIDER.0"
+0x1,"Classes\CLSID\{F55C5B4C-517D-11D1-AB57-00C04FD9159E}\VersionIndependentProgID",,"WBEM.NT.EVENTLOG.EVENT.PROVIDER"
+0x1,"Classes\CLSID\{FD4F53E0-65DC-11D1-AB64-00C04FD9159E}",,"Microsoft WBEM NT Eventlog Instance Provider"
+0x2,"Classes\CLSID\{FD4F53E0-65DC-11D1-AB64-00C04FD9159E}\InprocServer32",,"ntevt.dll"
+0x1,"Classes\CLSID\{FD4F53E0-65DC-11D1-AB64-00C04FD9159E}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{FD4F53E0-65DC-11D1-AB64-00C04FD9159E}\NotInsertable"
+0x1,"Classes\CLSID\{FD4F53E0-65DC-11D1-AB64-00C04FD9159E}\ProgID",,"WBEM.NT.EVENTLOG.INSTANCE.PROVIDER.0"
+0x1,"Classes\CLSID\{FD4F53E0-65DC-11D1-AB64-00C04FD9159E}\VersionIndependentProgID",,"WBEM.NT.EVENTLOG.INSTANCE.PROVIDER"
+
+; RegServer policman.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{69D76D1B-B12E-4913-8F48-671B90195A2B}",,"Microsoft WBEM WMI Policy Status Provider"
+0x2,"Classes\CLSID\{69D76D1B-B12E-4913-8F48-671B90195A2B}\InprocServer32",,"policman.dll"
+0x1,"Classes\CLSID\{69D76D1B-B12E-4913-8F48-671B90195A2B}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{AAEAE72F-0328-4763-8ECB-23422EDE2DB5}",,"Microsoft WBEM WMI Policy SOM Provider"
+0x2,"Classes\CLSID\{AAEAE72F-0328-4763-8ECB-23422EDE2DB5}\InprocServer32",,"policman.dll"
+0x1,"Classes\CLSID\{AAEAE72F-0328-4763-8ECB-23422EDE2DB5}\InprocServer32","ThreadingModel","Both"
+
+; RegServer repdrvfs.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{7998DC37-D3FE-487C-A60A-7701FCC70CC6}",,"Microsoft WBEM A51 Repository"
+0x2,"Classes\CLSID\{7998DC37-D3FE-487C-A60A-7701FCC70CC6}\InprocServer32",,"repdrvfs.dll"
+0x1,"Classes\CLSID\{7998DC37-D3FE-487C-A60A-7701FCC70CC6}\InprocServer32","ThreadingModel","Both"
+
+; RegServer smtpcons.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{C7A3A54B-0250-11D3-9CD1-00105A1F4801}",,"Microsoft WBEM SMTP Event Consumer Provider"
+0x2,"Classes\CLSID\{C7A3A54B-0250-11D3-9CD1-00105A1F4801}\InprocServer32",,"smtpcons.dll"
+0x1,"Classes\CLSID\{C7A3A54B-0250-11D3-9CD1-00105A1F4801}\InprocServer32","ThreadingModel","Both"
+
+; RegServer stdprov.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{72967901-68EC-11D0-B729-00AA0062CBB7}",,"WBEM Registry Property Provider"
+0x2,"Classes\CLSID\{72967901-68EC-11D0-B729-00AA0062CBB7}\InprocServer32",,"stdprov.dll"
+0x1,"Classes\CLSID\{72967901-68EC-11D0-B729-00AA0062CBB7}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{72967903-68EC-11D0-B729-00AA0062CBB7}",,"WBEM PerfMon Property Provider"
+0x2,"Classes\CLSID\{72967903-68EC-11D0-B729-00AA0062CBB7}\InprocServer32",,"stdprov.dll"
+0x1,"Classes\CLSID\{72967903-68EC-11D0-B729-00AA0062CBB7}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{F00B4404-F8F1-11CE-A5B6-00AA00680C3F}",,"WBEM PerfMon Instance Provider"
+0x2,"Classes\CLSID\{F00B4404-F8F1-11CE-A5B6-00AA00680C3F}\InprocServer32",,"stdprov.dll"
+0x1,"Classes\CLSID\{F00B4404-F8F1-11CE-A5B6-00AA00680C3F}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{FA77A74E-E109-11D0-AD6E-00C04FD8FDFF}",,"WBEM Registry Event Provider"
+0x2,"Classes\CLSID\{FA77A74E-E109-11D0-AD6E-00C04FD8FDFF}\InprocServer32",,"stdprov.dll"
+0x1,"Classes\CLSID\{FA77A74E-E109-11D0-AD6E-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{FE9AF5C0-D3B6-11CE-A5B6-00AA00680C3F}",,"WBEM Registry Instance Provider"
+0x2,"Classes\CLSID\{FE9AF5C0-D3B6-11CE-A5B6-00AA00680C3F}\InprocServer32",,"stdprov.dll"
+0x1,"Classes\CLSID\{FE9AF5C0-D3B6-11CE-A5B6-00AA00680C3F}\InprocServer32","ThreadingModel","Both"
+
+; RegServer viewprov.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{AA70DDF4-E11C-11D1-ABB0-00C04FD9159E}",,"Microsoft WBEM View Provider"
+0x2,"Classes\CLSID\{AA70DDF4-E11C-11D1-ABB0-00C04FD9159E}\InprocServer32",,"viewprov.dll"
+0x1,"Classes\CLSID\{AA70DDF4-E11C-11D1-ABB0-00C04FD9159E}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{AA70DDF4-E11C-11D1-ABB0-00C04FD9159E}\NotInsertable"
+0x1,"Classes\CLSID\{AA70DDF4-E11C-11D1-ABB0-00C04FD9159E}\ProgID",,"WBEM.VIEW.PROVIDER.0"
+0x1,"Classes\CLSID\{AA70DDF4-E11C-11D1-ABB0-00C04FD9159E}\VersionIndependentProgID",,"WBEM.VIEW.PROVIDER"
+
+; RegServer wbemads.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{F0975AFE-5C7F-11D2-8B74-00104B2AFB41}",,"WMI ADSI Extension"
+0x2,"Classes\CLSID\{F0975AFE-5C7F-11D2-8B74-00104B2AFB41}\InprocServer32",,"wbemads.dll"
+0x1,"Classes\CLSID\{F0975AFE-5C7F-11D2-8B74-00104B2AFB41}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{F0975AFE-5C7F-11D2-8B74-00104B2AFB41}\TypeLib",,"{E503D000-5C7F-11D2-8B74-00104B2AFB41}"
+0x1,"Classes\CLSID\{F0975AFE-5C7F-11D2-8B74-00104B2AFB41}\Version",,"1.0"
+0x1,"Classes\TypeLib\{E503D000-5C7F-11D2-8B74-00104B2AFB41}\1.0",,"WMI ADSI Extension Type Library"
+0x2,"Classes\TypeLib\{E503D000-5C7F-11D2-8B74-00104B2AFB41}\1.0\0\win32",,"wbemads.tlb"
+0x1,"Classes\TypeLib\{E503D000-5C7F-11D2-8B74-00104B2AFB41}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{E503D000-5C7F-11D2-8B74-00104B2AFB41}\1.0\HELPDIR",,"%SystemRoot%\Help"
+0x7,"Microsoft\ADs\Providers\LDAP\Extensions\Computer\{F0975AFE-5C7F-11D2-8B74-00104B2AFB41}","Interfaces","{adc1f06e-5c7e-11d2-8b74-00104b2afb41}"
+
+; RegServer wbemcons.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{266C72D4-62E8-11D1-AD89-00C04FD8FDFF}",,"Microsoft WBEM Log File Event Consumer Provider"
+0x2,"Classes\CLSID\{266C72D4-62E8-11D1-AD89-00C04FD8FDFF}\InprocServer32",,"wbemcons.dll"
+0x1,"Classes\CLSID\{266C72D4-62E8-11D1-AD89-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{266C72E5-62E8-11D1-AD89-00C04FD8FDFF}",,"Microsoft WBEM Command Line Event Consumer Provider"
+0x2,"Classes\CLSID\{266C72E5-62E8-11D1-AD89-00C04FD8FDFF}\InprocServer32",,"wbemcons.dll"
+0x1,"Classes\CLSID\{266C72E5-62E8-11D1-AD89-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{266C72E6-62E8-11D1-AD89-00C04FD8FDFF}",,"Microsoft WBEM NT Event Log Event Consumer Provider"
+0x2,"Classes\CLSID\{266C72E6-62E8-11D1-AD89-00C04FD8FDFF}\InprocServer32",,"wbemcons.dll"
+0x1,"Classes\CLSID\{266C72E6-62E8-11D1-AD89-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wbemcore.dll - [U] SP2 - Second Pass
+0x1,"Classes\CLSID\{1860E246-E924-4F73-B2C5-93E0577E3AA1}",,
+0x2,"Classes\CLSID\{1860E246-E924-4F73-B2C5-93E0577E3AA1}\InprocServer32",,"wbemcore.dll"
+0x1,"Classes\CLSID\{1860E246-E924-4F73-B2C5-93E0577E3AA1}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{1F0BC6AD-46D4-488B-BE1F-047FC7505E60}",,
+0x2,"Classes\CLSID\{1F0BC6AD-46D4-488B-BE1F-047FC7505E60}\InprocServer32",,"wbemcore.dll"
+0x1,"Classes\CLSID\{1F0BC6AD-46D4-488B-BE1F-047FC7505E60}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{4FA18276-912A-11D1-AD9B-00C04FD8FDFF}",,
+0x2,"Classes\CLSID\{4FA18276-912A-11D1-AD9B-00C04FD8FDFF}\InprocServer32",,"wbemcore.dll"
+0x1,"Classes\CLSID\{4FA18276-912A-11D1-AD9B-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{6543D242-A80B-44A3-B828-95C1EC452423}",,
+0x2,"Classes\CLSID\{6543D242-A80B-44A3-B828-95C1EC452423}\InprocServer32",,"wbemcore.dll"
+0x1,"Classes\CLSID\{6543D242-A80B-44A3-B828-95C1EC452423}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{A83EF168-CA8D-11D2-B33D-00104BCC4B4A}",,
+0x2,"Classes\CLSID\{A83EF168-CA8D-11D2-B33D-00104BCC4B4A}\InprocServer32",,"wbemcore.dll"
+0x1,"Classes\CLSID\{A83EF168-CA8D-11D2-B33D-00104BCC4B4A}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{ED999FF5-223A-4052-8ECE-0B10C8DBAA39}",,
+0x2,"Classes\CLSID\{ED999FF5-223A-4052-8ECE-0B10C8DBAA39}\InprocServer32",,"wbemcore.dll"
+0x1,"Classes\CLSID\{ED999FF5-223A-4052-8ECE-0B10C8DBAA39}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wbemdisp.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{172BDDF8-CEEA-11D1-8B05-00600806D9B6}",,"Wbem Scripting Object Path"
+0x2,"Classes\CLSID\{172BDDF8-CEEA-11D1-8B05-00600806D9B6}\InProcServer32",,"wbemdisp.dll"
+0x1,"Classes\CLSID\{172BDDF8-CEEA-11D1-8B05-00600806D9B6}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{172BDDF8-CEEA-11D1-8B05-00600806D9B6}\ProgID",,"WINMGMTS.1"
+0x0,"Classes\CLSID\{172BDDF8-CEEA-11D1-8B05-00600806D9B6}\Programmable"
+0x1,"Classes\CLSID\{172BDDF8-CEEA-11D1-8B05-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\CLSID\{172BDDF8-CEEA-11D1-8B05-00600806D9B6}\Version",,"1.0"
+0x1,"Classes\CLSID\{172BDDF8-CEEA-11D1-8B05-00600806D9B6}\VersionIndependentProgID",,"WINMGMTS"
+0x1,"Classes\CLSID\{47DFBE54-CF76-11D3-B38F-00105A1F473A}",,"WBEM Scripting DateTime"
+0x2,"Classes\CLSID\{47DFBE54-CF76-11D3-B38F-00105A1F473A}\InProcServer32",,"wbemdisp.dll"
+0x1,"Classes\CLSID\{47DFBE54-CF76-11D3-B38F-00105A1F473A}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{47DFBE54-CF76-11D3-B38F-00105A1F473A}\ProgID",,"WbemScripting.SWbemDateTime.1"
+0x0,"Classes\CLSID\{47DFBE54-CF76-11D3-B38F-00105A1F473A}\Programmable"
+0x1,"Classes\CLSID\{47DFBE54-CF76-11D3-B38F-00105A1F473A}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\CLSID\{47DFBE54-CF76-11D3-B38F-00105A1F473A}\Version",,"1.0"
+0x1,"Classes\CLSID\{47DFBE54-CF76-11D3-B38F-00105A1F473A}\VersionIndependentProgID",,"WbemScripting.SWbemDateTime"
+0x1,"Classes\CLSID\{5791BC26-CE9C-11D1-97BF-0000F81E849C}",,"WBEM Scripting Object Path"
+0x2,"Classes\CLSID\{5791BC26-CE9C-11D1-97BF-0000F81E849C}\InProcServer32",,"wbemdisp.dll"
+0x1,"Classes\CLSID\{5791BC26-CE9C-11D1-97BF-0000F81E849C}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{5791BC26-CE9C-11D1-97BF-0000F81E849C}\ProgID",,"WbemScripting.SWbemObjectPath.1"
+0x0,"Classes\CLSID\{5791BC26-CE9C-11D1-97BF-0000F81E849C}\Programmable"
+0x1,"Classes\CLSID\{5791BC26-CE9C-11D1-97BF-0000F81E849C}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\CLSID\{5791BC26-CE9C-11D1-97BF-0000F81E849C}\Version",,"1.0"
+0x1,"Classes\CLSID\{5791BC26-CE9C-11D1-97BF-0000F81E849C}\VersionIndependentProgID",,"WbemScripting.SWbemObjectPath"
+0x1,"Classes\CLSID\{75718C9A-F029-11D1-A1AC-00C04FB6C223}",,"WBEM Scripting Sink"
+0x2,"Classes\CLSID\{75718C9A-F029-11D1-A1AC-00C04FB6C223}\InProcServer32",,"wbemdisp.dll"
+0x1,"Classes\CLSID\{75718C9A-F029-11D1-A1AC-00C04FB6C223}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{75718C9A-F029-11D1-A1AC-00C04FB6C223}\ProgID",,"WbemScripting.SWbemSink.1"
+0x0,"Classes\CLSID\{75718C9A-F029-11D1-A1AC-00C04FB6C223}\Programmable"
+0x1,"Classes\CLSID\{75718C9A-F029-11D1-A1AC-00C04FB6C223}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\CLSID\{75718C9A-F029-11D1-A1AC-00C04FB6C223}\Version",,"1.0"
+0x1,"Classes\CLSID\{75718C9A-F029-11D1-A1AC-00C04FB6C223}\VersionIndependentProgID",,"WbemScripting.SWbemSink"
+0x1,"Classes\CLSID\{76A64158-CB41-11D1-8B02-00600806D9B6}",,"WBEM Scripting Locator"
+0x2,"Classes\CLSID\{76A64158-CB41-11D1-8B02-00600806D9B6}\InProcServer32",,"wbemdisp.dll"
+0x1,"Classes\CLSID\{76A64158-CB41-11D1-8B02-00600806D9B6}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{76A64158-CB41-11D1-8B02-00600806D9B6}\ProgID",,"WbemScripting.SWbemLocator.1"
+0x0,"Classes\CLSID\{76A64158-CB41-11D1-8B02-00600806D9B6}\Programmable"
+0x1,"Classes\CLSID\{76A64158-CB41-11D1-8B02-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\CLSID\{76A64158-CB41-11D1-8B02-00600806D9B6}\Version",,"1.0"
+0x1,"Classes\CLSID\{76A64158-CB41-11D1-8B02-00600806D9B6}\VersionIndependentProgID",,"WbemScripting.SWbemLocator"
+0x1,"Classes\CLSID\{9AED384E-CE8B-11D1-8B05-00600806D9B6}",,"WBEM Scripting Named Value Collection"
+0x2,"Classes\CLSID\{9AED384E-CE8B-11D1-8B05-00600806D9B6}\InProcServer32",,"wbemdisp.dll"
+0x1,"Classes\CLSID\{9AED384E-CE8B-11D1-8B05-00600806D9B6}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{9AED384E-CE8B-11D1-8B05-00600806D9B6}\ProgID",,"WbemScripting.SWbemNamedValueSet.1"
+0x0,"Classes\CLSID\{9AED384E-CE8B-11D1-8B05-00600806D9B6}\Programmable"
+0x1,"Classes\CLSID\{9AED384E-CE8B-11D1-8B05-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\CLSID\{9AED384E-CE8B-11D1-8B05-00600806D9B6}\Version",,"1.0"
+0x1,"Classes\CLSID\{9AED384E-CE8B-11D1-8B05-00600806D9B6}\VersionIndependentProgID",,"WbemScripting.SWbemNamedValueSet"
+0x1,"Classes\CLSID\{C2FEEEAC-CFCD-11D1-8B05-00600806D9B6}",,"Wbem Scripting Last Error"
+0x2,"Classes\CLSID\{C2FEEEAC-CFCD-11D1-8B05-00600806D9B6}\InProcServer32",,"wbemdisp.dll"
+0x1,"Classes\CLSID\{C2FEEEAC-CFCD-11D1-8B05-00600806D9B6}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{C2FEEEAC-CFCD-11D1-8B05-00600806D9B6}\ProgID",,"WbemScripting.SWbemLastError.1"
+0x0,"Classes\CLSID\{C2FEEEAC-CFCD-11D1-8B05-00600806D9B6}\Programmable"
+0x1,"Classes\CLSID\{C2FEEEAC-CFCD-11D1-8B05-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\CLSID\{C2FEEEAC-CFCD-11D1-8B05-00600806D9B6}\Version",,"1.0"
+0x1,"Classes\CLSID\{C2FEEEAC-CFCD-11D1-8B05-00600806D9B6}\VersionIndependentProgID",,"WbemScripting.SWbemLastError"
+0x1,"Classes\CLSID\{D269BF5C-D9C1-11D3-B38F-00105A1F473A}",,"WBEM Scripting Refresher"
+0x2,"Classes\CLSID\{D269BF5C-D9C1-11D3-B38F-00105A1F473A}\InProcServer32",,"wbemdisp.dll"
+0x1,"Classes\CLSID\{D269BF5C-D9C1-11D3-B38F-00105A1F473A}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{D269BF5C-D9C1-11D3-B38F-00105A1F473A}\ProgID",,"WbemScripting.SWbemRefresher.1"
+0x0,"Classes\CLSID\{D269BF5C-D9C1-11D3-B38F-00105A1F473A}\Programmable"
+0x1,"Classes\CLSID\{D269BF5C-D9C1-11D3-B38F-00105A1F473A}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\CLSID\{D269BF5C-D9C1-11D3-B38F-00105A1F473A}\Version",,"1.0"
+0x1,"Classes\CLSID\{D269BF5C-D9C1-11D3-B38F-00105A1F473A}\VersionIndependentProgID",,"WbemScripting.SWbemRefresher"
+0x1,"Classes\Interface\{14D8250E-D9C2-11D3-B38F-00105A1F473A}",,"ISWbemRefresher"
+0x1,"Classes\Interface\{14D8250E-D9C2-11D3-B38F-00105A1F473A}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{14D8250E-D9C2-11D3-B38F-00105A1F473A}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{14D8250E-D9C2-11D3-B38F-00105A1F473A}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{14D8250E-D9C2-11D3-B38F-00105A1F473A}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{1A388F98-D4BA-11D1-8B09-00600806D9B6}",,"ISWbemProperty"
+0x1,"Classes\Interface\{1A388F98-D4BA-11D1-8B09-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{1A388F98-D4BA-11D1-8B09-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{1A388F98-D4BA-11D1-8B09-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{1A388F98-D4BA-11D1-8B09-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{269AD56A-8A67-4129-BC8C-0506DCFE9880}",,"ISWbemObjectEx"
+0x1,"Classes\Interface\{269AD56A-8A67-4129-BC8C-0506DCFE9880}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{269AD56A-8A67-4129-BC8C-0506DCFE9880}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{269AD56A-8A67-4129-BC8C-0506DCFE9880}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{269AD56A-8A67-4129-BC8C-0506DCFE9880}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{26EE67BD-5804-11D2-8B4A-00600806D9B6}",,"ISWbemPrivilege"
+0x1,"Classes\Interface\{26EE67BD-5804-11D2-8B4A-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{26EE67BD-5804-11D2-8B4A-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{26EE67BD-5804-11D2-8B4A-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{26EE67BD-5804-11D2-8B4A-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{26EE67BF-5804-11D2-8B4A-00600806D9B6}",,"ISWbemPrivilegeSet"
+0x1,"Classes\Interface\{26EE67BF-5804-11D2-8B4A-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{26EE67BF-5804-11D2-8B4A-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{26EE67BF-5804-11D2-8B4A-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{26EE67BF-5804-11D2-8B4A-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{27D54D92-0EBE-11D2-8B22-00600806D9B6}",,"ISWbemEventSource"
+0x1,"Classes\Interface\{27D54D92-0EBE-11D2-8B22-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{27D54D92-0EBE-11D2-8B22-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{27D54D92-0EBE-11D2-8B22-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{27D54D92-0EBE-11D2-8B22-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{422E8E90-D955-11D1-8B09-00600806D9B6}",,"ISWbemMethod"
+0x1,"Classes\Interface\{422E8E90-D955-11D1-8B09-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{422E8E90-D955-11D1-8B09-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{422E8E90-D955-11D1-8B09-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{422E8E90-D955-11D1-8B09-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{5791BC27-CE9C-11D1-97BF-0000F81E849C}",,"ISWbemObjectPath"
+0x1,"Classes\Interface\{5791BC27-CE9C-11D1-97BF-0000F81E849C}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{5791BC27-CE9C-11D1-97BF-0000F81E849C}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{5791BC27-CE9C-11D1-97BF-0000F81E849C}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{5791BC27-CE9C-11D1-97BF-0000F81E849C}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{5AD4BF92-DAAB-11D3-B38F-00105A1F473A}",,"ISWbemRefreshableItem"
+0x1,"Classes\Interface\{5AD4BF92-DAAB-11D3-B38F-00105A1F473A}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{5AD4BF92-DAAB-11D3-B38F-00105A1F473A}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{5AD4BF92-DAAB-11D3-B38F-00105A1F473A}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{5AD4BF92-DAAB-11D3-B38F-00105A1F473A}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{5E97458A-CF77-11D3-B38F-00105A1F473A}",,"ISWbemDateTime"
+0x1,"Classes\Interface\{5E97458A-CF77-11D3-B38F-00105A1F473A}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{5E97458A-CF77-11D3-B38F-00105A1F473A}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{5E97458A-CF77-11D3-B38F-00105A1F473A}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{5E97458A-CF77-11D3-B38F-00105A1F473A}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{75718C9F-F029-11D1-A1AC-00C04FB6C223}",,"ISWbemSink"
+0x1,"Classes\Interface\{75718C9F-F029-11D1-A1AC-00C04FB6C223}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{75718C9F-F029-11D1-A1AC-00C04FB6C223}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{75718C9F-F029-11D1-A1AC-00C04FB6C223}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{75718C9F-F029-11D1-A1AC-00C04FB6C223}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{75718CA0-F029-11D1-A1AC-00C04FB6C223}",,"ISWbemSinkEvents"
+0x1,"Classes\Interface\{75718CA0-F029-11D1-A1AC-00C04FB6C223}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{75718CA0-F029-11D1-A1AC-00C04FB6C223}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{75718CA0-F029-11D1-A1AC-00C04FB6C223}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{75718CA0-F029-11D1-A1AC-00C04FB6C223}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{76A6415A-CB41-11D1-8B02-00600806D9B6}",,"ISWbemObject"
+0x1,"Classes\Interface\{76A6415A-CB41-11D1-8B02-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{76A6415A-CB41-11D1-8B02-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{76A6415A-CB41-11D1-8B02-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{76A6415A-CB41-11D1-8B02-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{76A6415B-CB41-11D1-8B02-00600806D9B6}",,"ISWbemLocator"
+0x1,"Classes\Interface\{76A6415B-CB41-11D1-8B02-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{76A6415B-CB41-11D1-8B02-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{76A6415B-CB41-11D1-8B02-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{76A6415B-CB41-11D1-8B02-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{76A6415C-CB41-11D1-8B02-00600806D9B6}",,"ISWbemServices"
+0x1,"Classes\Interface\{76A6415C-CB41-11D1-8B02-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{76A6415C-CB41-11D1-8B02-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{76A6415C-CB41-11D1-8B02-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{76A6415C-CB41-11D1-8B02-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{76A6415F-CB41-11D1-8B02-00600806D9B6}",,"ISWbemObjectSet"
+0x1,"Classes\Interface\{76A6415F-CB41-11D1-8B02-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{76A6415F-CB41-11D1-8B02-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{76A6415F-CB41-11D1-8B02-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{76A6415F-CB41-11D1-8B02-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{76A64164-CB41-11D1-8B02-00600806D9B6}",,"ISWbemNamedValue"
+0x1,"Classes\Interface\{76A64164-CB41-11D1-8B02-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{76A64164-CB41-11D1-8B02-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{76A64164-CB41-11D1-8B02-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{76A64164-CB41-11D1-8B02-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{79B05932-D3B7-11D1-8B06-00600806D9B6}",,"ISWbemQualifier"
+0x1,"Classes\Interface\{79B05932-D3B7-11D1-8B06-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{79B05932-D3B7-11D1-8B06-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{79B05932-D3B7-11D1-8B06-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{79B05932-D3B7-11D1-8B06-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{9B16ED16-D3DF-11D1-8B08-00600806D9B6}",,"ISWbemQualifierSet"
+0x1,"Classes\Interface\{9B16ED16-D3DF-11D1-8B08-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{9B16ED16-D3DF-11D1-8B08-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{9B16ED16-D3DF-11D1-8B08-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{9B16ED16-D3DF-11D1-8B08-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{B54D66E6-2287-11D2-8B33-00600806D9B6}",,"ISWbemSecurity"
+0x1,"Classes\Interface\{B54D66E6-2287-11D2-8B33-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{B54D66E6-2287-11D2-8B33-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{B54D66E6-2287-11D2-8B33-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{B54D66E6-2287-11D2-8B33-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{C93BA292-D955-11D1-8B09-00600806D9B6}",,"ISWbemMethodSet"
+0x1,"Classes\Interface\{C93BA292-D955-11D1-8B09-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{C93BA292-D955-11D1-8B09-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{C93BA292-D955-11D1-8B09-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{C93BA292-D955-11D1-8B09-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{CF2376EA-CE8C-11D1-8B05-00600806D9B6}",,"ISWbemNamedValueSet"
+0x1,"Classes\Interface\{CF2376EA-CE8C-11D1-8B05-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{CF2376EA-CE8C-11D1-8B05-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{CF2376EA-CE8C-11D1-8B05-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{CF2376EA-CE8C-11D1-8B05-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{D2F68443-85DC-427E-91D8-366554CC754C}",,"ISWbemServicesEx"
+0x1,"Classes\Interface\{D2F68443-85DC-427E-91D8-366554CC754C}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{D2F68443-85DC-427E-91D8-366554CC754C}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{D2F68443-85DC-427E-91D8-366554CC754C}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{D2F68443-85DC-427E-91D8-366554CC754C}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{D962DB84-D4BB-11D1-8B09-00600806D9B6}",,"ISWbemLastError"
+0x1,"Classes\Interface\{D962DB84-D4BB-11D1-8B09-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{D962DB84-D4BB-11D1-8B09-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{D962DB84-D4BB-11D1-8B09-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{D962DB84-D4BB-11D1-8B09-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\Interface\{DEA0A7B2-D4BA-11D1-8B09-00600806D9B6}",,"ISWbemPropertySet"
+0x1,"Classes\Interface\{DEA0A7B2-D4BA-11D1-8B09-00600806D9B6}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{DEA0A7B2-D4BA-11D1-8B09-00600806D9B6}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{DEA0A7B2-D4BA-11D1-8B09-00600806D9B6}\TypeLib",,"{565783C6-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\Interface\{DEA0A7B2-D4BA-11D1-8B09-00600806D9B6}\TypeLib","Version","1.2"
+0x1,"Classes\TypeLib\{565783C6-CB41-11D1-8B02-00600806D9B6}\1.2",,"Microsoft WMI Scripting V1.2 Library"
+0x2,"Classes\TypeLib\{565783C6-CB41-11D1-8B02-00600806D9B6}\1.2\0\win32",,"wbemdisp.TLB"
+0x1,"Classes\TypeLib\{565783C6-CB41-11D1-8B02-00600806D9B6}\1.2\FLAGS",,"0"
+0x2,"Classes\TypeLib\{565783C6-CB41-11D1-8B02-00600806D9B6}\1.2\HELPDIR",,"%SystemRoot%\Help"
+0x1,"Classes\WINMGMTS",,"Wbem Scripting Object Path"
+0x1,"Classes\WINMGMTS.1",,"Wbem Object Path 1.0"
+0x1,"Classes\WINMGMTS.1\CLSID",,"{172BDDF8-CEEA-11D1-8B05-00600806D9B6}"
+0x1,"Classes\WINMGMTS\CLSID",,"{172BDDF8-CEEA-11D1-8B05-00600806D9B6}"
+0x1,"Classes\WINMGMTS\CurVer",,"WINMGMTS.1"
+0x1,"Classes\WbemScripting.SWbemDateTime",,"WBEM Scripting DateTime"
+0x1,"Classes\WbemScripting.SWbemDateTime.1",,"WBEM Scripting DateTime 1.0"
+0x1,"Classes\WbemScripting.SWbemDateTime.1\CLSID",,"{47DFBE54-CF76-11D3-B38F-00105A1F473A}"
+0x1,"Classes\WbemScripting.SWbemDateTime\CLSID",,"{47DFBE54-CF76-11D3-B38F-00105A1F473A}"
+0x1,"Classes\WbemScripting.SWbemDateTime\CurVer",,"WbemScripting.SWbemDateTime.1"
+0x1,"Classes\WbemScripting.SWbemLastError",,"Wbem Scripting Last Error"
+0x1,"Classes\WbemScripting.SWbemLastError.1",,"Wbem Last Error 1.0"
+0x1,"Classes\WbemScripting.SWbemLastError.1\CLSID",,"{C2FEEEAC-CFCD-11D1-8B05-00600806D9B6}"
+0x1,"Classes\WbemScripting.SWbemLastError\CLSID",,"{C2FEEEAC-CFCD-11D1-8B05-00600806D9B6}"
+0x1,"Classes\WbemScripting.SWbemLastError\CurVer",,"WbemScripting.SWbemLastError.1"
+0x1,"Classes\WbemScripting.SWbemLocator",,"WBEM Scripting Locator"
+0x1,"Classes\WbemScripting.SWbemLocator.1",,"WBEM Scripting Locator 1.0"
+0x1,"Classes\WbemScripting.SWbemLocator.1\CLSID",,"{76A64158-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\WbemScripting.SWbemLocator\CLSID",,"{76A64158-CB41-11D1-8B02-00600806D9B6}"
+0x1,"Classes\WbemScripting.SWbemLocator\CurVer",,"WbemScripting.SWbemLocator.1"
+0x1,"Classes\WbemScripting.SWbemNamedValueSet",,"WBEM Scripting Named Value Collection"
+0x1,"Classes\WbemScripting.SWbemNamedValueSet.1",,"WBEM Scripting Named Value Collection 1.0"
+0x1,"Classes\WbemScripting.SWbemNamedValueSet.1\CLSID",,"{9AED384E-CE8B-11D1-8B05-00600806D9B6}"
+0x1,"Classes\WbemScripting.SWbemNamedValueSet\CLSID",,"{9AED384E-CE8B-11D1-8B05-00600806D9B6}"
+0x1,"Classes\WbemScripting.SWbemNamedValueSet\CurVer",,"WbemScripting.SWbemNamedValueSet.1"
+0x1,"Classes\WbemScripting.SWbemObjectPath",,"WBEM Scripting Object Path"
+0x1,"Classes\WbemScripting.SWbemObjectPath.1",,"WBEM Scripting Object Path 1.0"
+0x1,"Classes\WbemScripting.SWbemObjectPath.1\CLSID",,"{5791BC26-CE9C-11D1-97BF-0000F81E849C}"
+0x1,"Classes\WbemScripting.SWbemObjectPath\CLSID",,"{5791BC26-CE9C-11D1-97BF-0000F81E849C}"
+0x1,"Classes\WbemScripting.SWbemObjectPath\CurVer",,"WbemScripting.SWbemObjectPath.1"
+0x1,"Classes\WbemScripting.SWbemRefresher",,"WBEM Scripting Refresher"
+0x1,"Classes\WbemScripting.SWbemRefresher.1",,"WBEM Scripting Refresher 1.0"
+0x1,"Classes\WbemScripting.SWbemRefresher.1\CLSID",,"{D269BF5C-D9C1-11D3-B38F-00105A1F473A}"
+0x1,"Classes\WbemScripting.SWbemRefresher\CLSID",,"{D269BF5C-D9C1-11D3-B38F-00105A1F473A}"
+0x1,"Classes\WbemScripting.SWbemRefresher\CurVer",,"WbemScripting.SWbemRefresher.1"
+0x1,"Classes\WbemScripting.SWbemSink",,"WBEM Scripting Sink"
+0x1,"Classes\WbemScripting.SWbemSink.1",,"WBEM Scripting Sink 1.0"
+0x1,"Classes\WbemScripting.SWbemSink.1\CLSID",,"{75718C9A-F029-11D1-A1AC-00C04FB6C223}"
+0x1,"Classes\WbemScripting.SWbemSink\CLSID",,"{75718C9A-F029-11D1-A1AC-00C04FB6C223}"
+0x1,"Classes\WbemScripting.SWbemSink\CurVer",,"WbemScripting.SWbemSink.1"
+
+; RegServer wbemess.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{5D08B586-343A-11D0-AD46-00C04FD8FDFF}",,"Microsoft WBEM Event Subsystem"
+0x2,"Classes\CLSID\{5D08B586-343A-11D0-AD46-00C04FD8FDFF}\InprocServer32",,"wbemess.dll"
+0x1,"Classes\CLSID\{5D08B586-343A-11D0-AD46-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{F3130CDB-AA52-4C3A-AB32-85FFC23AF9C1}",,"Microsoft WBEM New Event Subsystem"
+0x2,"Classes\CLSID\{F3130CDB-AA52-4C3A-AB32-85FFC23AF9C1}\InprocServer32",,"wbemess.dll"
+0x1,"Classes\CLSID\{F3130CDB-AA52-4C3A-AB32-85FFC23AF9C1}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wbemprox.dll - [U] SP2 - Second Pass
+0x1,"Classes\WBEMComLocator",,"WBEM Locator"
+0x1,"Classes\WBEMComLocator\CLSID",,"{4590F811-1D3A-11D0-891F-00AA004B2E24}"
+0x1,"Classes\CLSID\{443E7B79-DE31-11D2-B340-00104BCC4B4A}",,
+0x2,"Classes\CLSID\{443E7B79-DE31-11D2-B340-00104BCC4B4A}\InprocServer32",,"wbemprox.dll"
+0x1,"Classes\CLSID\{443E7B79-DE31-11D2-B340-00104BCC4B4A}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{4590F811-1D3A-11D0-891F-00AA004B2E24}",,"WBEM Locator"
+0x2,"Classes\CLSID\{4590F811-1D3A-11D0-891F-00AA004B2E24}\InprocServer32",,"wbemprox.dll"
+0x1,"Classes\CLSID\{4590F811-1D3A-11D0-891F-00AA004B2E24}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{CB8555CC-9128-11D1-AD9B-00C04FD8FDFF}",,
+0x2,"Classes\CLSID\{CB8555CC-9128-11D1-AD9B-00C04FD8FDFF}\InprocServer32",,"wbemprox.dll"
+0x1,"Classes\CLSID\{CB8555CC-9128-11D1-AD9B-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{CD184336-9128-11D1-AD9B-00C04FD8FDFF}",,
+0x2,"Classes\CLSID\{CD184336-9128-11D1-AD9B-00C04FD8FDFF}\InprocServer32",,"wbemprox.dll"
+0x1,"Classes\CLSID\{CD184336-9128-11D1-AD9B-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wbemsvc.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{7C857801-7381-11CF-884D-00AA004B2E24}",,"PSFactoryBuffer"
+0x2,"Classes\CLSID\{7C857801-7381-11CF-884D-00AA004B2E24}\InProcServer32",,"wbemsvc.dll"
+0x1,"Classes\CLSID\{7C857801-7381-11CF-884D-00AA004B2E24}\InProcServer32","ThreadingModel","Both"
+0x1,"Classes\Interface\{04963311-C399-408E-AD51-05D01506EED0}",,"_IWmiObjectSinkSecurity"
+0x1,"Classes\Interface\{04963311-C399-408E-AD51-05D01506EED0}\NumMethods",,"4"
+0x1,"Classes\Interface\{04963311-C399-408E-AD51-05D01506EED0}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{06413D98-405C-4A5A-8D6F-19B8B7C6ACF7}",,"_IWmiProviderFactoryInitialize"
+0x1,"Classes\Interface\{06413D98-405C-4A5A-8D6F-19B8B7C6ACF7}\NumMethods",,"4"
+0x1,"Classes\Interface\{06413D98-405C-4A5A-8D6F-19B8B7C6ACF7}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{07435309-D440-41B7-83F3-EB82DB6C622F}",,"_IWmiProviderHost"
+0x1,"Classes\Interface\{07435309-D440-41B7-83F3-EB82DB6C622F}\NumMethods",,"5"
+0x1,"Classes\Interface\{07435309-D440-41B7-83F3-EB82DB6C622F}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{0FC8C622-1728-4149-A57F-AD19D0970710}",,"Internal_IWmiProviderConfiguration"
+0x1,"Classes\Interface\{0FC8C622-1728-4149-A57F-AD19D0970710}\NumMethods",,"10"
+0x1,"Classes\Interface\{0FC8C622-1728-4149-A57F-AD19D0970710}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{11CAA957-4E80-474E-A819-7FD72148ADA9}",,"Internal_IWbemPropertyProvider"
+0x1,"Classes\Interface\{11CAA957-4E80-474E-A819-7FD72148ADA9}\NumMethods",,"5"
+0x1,"Classes\Interface\{11CAA957-4E80-474E-A819-7FD72148ADA9}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{1BE41571-91DD-11D1-AEB2-00C04FB68820}",,"IWbemProviderInitSink"
+0x1,"Classes\Interface\{1BE41571-91DD-11D1-AEB2-00C04FB68820}\NumMethods",,"4"
+0x1,"Classes\Interface\{1BE41571-91DD-11D1-AEB2-00C04FB68820}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{1BE41572-91DD-11D1-AEB2-00C04FB68820}",,"IWbemProviderInit"
+0x1,"Classes\Interface\{1BE41572-91DD-11D1-AEB2-00C04FB68820}\NumMethods",,"4"
+0x1,"Classes\Interface\{1BE41572-91DD-11D1-AEB2-00C04FB68820}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{1C1C45EE-4395-11D2-B60B-00104B703EFD}",,"IWbemFetchSmartEnum"
+0x1,"Classes\Interface\{1C1C45EE-4395-11D2-B60B-00104B703EFD}\NumMethods",,"4"
+0x1,"Classes\Interface\{1C1C45EE-4395-11D2-B60B-00104B703EFD}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{1CFABA8C-1523-11D1-AD79-00C04FD8FDFF}",,"IUnsecuredApartment"
+0x1,"Classes\Interface\{1CFABA8C-1523-11D1-AD79-00C04FD8FDFF}\NumMethods",,"4"
+0x1,"Classes\Interface\{1CFABA8C-1523-11D1-AD79-00C04FD8FDFF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{21CD80A2-B305-4F37-9D4C-4534A8D9B568}",,"_IWmiProviderFactory"
+0x1,"Classes\Interface\{21CD80A2-B305-4F37-9D4C-4534A8D9B568}\NumMethods",,"8"
+0x1,"Classes\Interface\{21CD80A2-B305-4F37-9D4C-4534A8D9B568}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{25411283-46FC-4326-8DF2-FF5D34B2DFEF}",,"_IWbemConfigureRefreshingSvcs"
+0x1,"Classes\Interface\{25411283-46FC-4326-8DF2-FF5D34B2DFEF}\NumMethods",,"4"
+0x1,"Classes\Interface\{25411283-46FC-4326-8DF2-FF5D34B2DFEF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{2A504CA2-CA90-4731-87BC-6E99CA2019AF}",,"_IWmiProvSSSink"
+0x1,"Classes\Interface\{2A504CA2-CA90-4731-87BC-6E99CA2019AF}\NumMethods",,"4"
+0x1,"Classes\Interface\{2A504CA2-CA90-4731-87BC-6E99CA2019AF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{2B322B6E-A9DF-44E3-97BF-259E3583FDA4}",,"Internal_IWbemProviderIdentity"
+0x1,"Classes\Interface\{2B322B6E-A9DF-44E3-97BF-259E3583FDA4}\NumMethods",,"4"
+0x1,"Classes\Interface\{2B322B6E-A9DF-44E3-97BF-259E3583FDA4}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{2C9273E0-1DC3-11D3-B364-00105A1F8177}",,"IWbemRefreshingServices"
+0x1,"Classes\Interface\{2C9273E0-1DC3-11D3-B364-00105A1F8177}\NumMethods",,"9"
+0x1,"Classes\Interface\{2C9273E0-1DC3-11D3-B364-00105A1F8177}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{2DB9FA90-9973-46CF-B310-9865B644699D}",,"Internal_IWbemObjectSink"
+0x1,"Classes\Interface\{2DB9FA90-9973-46CF-B310-9865B644699D}\NumMethods",,"5"
+0x1,"Classes\Interface\{2DB9FA90-9973-46CF-B310-9865B644699D}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{31739D04-3471-4CF4-9A7C-57A44AE71956}",,"IWbemUnsecuredApartment"
+0x1,"Classes\Interface\{31739D04-3471-4CF4-9A7C-57A44AE71956}\NumMethods",,"5"
+0x1,"Classes\Interface\{31739D04-3471-4CF4-9A7C-57A44AE71956}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{37196B38-CCCF-11D2-B35C-00105A1F8177}",,"IWbemSmartMultiTarget"
+0x1,"Classes\Interface\{37196B38-CCCF-11D2-B35C-00105A1F8177}\NumMethods",,"4"
+0x1,"Classes\Interface\{37196B38-CCCF-11D2-B35C-00105A1F8177}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{37196B39-CCCF-11D2-B35C-00105A1F8177}",,"IWbemFetchSmartMultiTarget"
+0x1,"Classes\Interface\{37196B39-CCCF-11D2-B35C-00105A1F8177}\NumMethods",,"4"
+0x1,"Classes\Interface\{37196B39-CCCF-11D2-B35C-00105A1F8177}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{3AE0080A-7E3A-4366-BF89-0FEEDC931659}",,"IWbemEventSink"
+0x1,"Classes\Interface\{3AE0080A-7E3A-4366-BF89-0FEEDC931659}\NumMethods",,"9"
+0x1,"Classes\Interface\{3AE0080A-7E3A-4366-BF89-0FEEDC931659}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{41AA40E6-2FBA-4E80-ADE9-34306567206D}",,"_IWmiProviderSubsystemRegistrar"
+0x1,"Classes\Interface\{41AA40E6-2FBA-4E80-ADE9-34306567206D}\NumMethods",,"5"
+0x1,"Classes\Interface\{41AA40E6-2FBA-4E80-ADE9-34306567206D}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{423EC01E-2E35-11D2-B604-00104B703EFD}",,"IWbemWCOSmartEnum"
+0x1,"Classes\Interface\{423EC01E-2E35-11D2-B604-00104B703EFD}\NumMethods",,"4"
+0x1,"Classes\Interface\{423EC01E-2E35-11D2-B604-00104B703EFD}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{44ACA675-E8FC-11D0-A07C-00C04FB68820}",,"IWbemCallResult"
+0x1,"Classes\Interface\{44ACA675-E8FC-11D0-A07C-00C04FB68820}\NumMethods",,"7"
+0x1,"Classes\Interface\{44ACA675-E8FC-11D0-A07C-00C04FB68820}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{484E3ECE-1F81-4591-B9D4-943BA13B609D}",,"_IWmiProviderLoad"
+0x1,"Classes\Interface\{484E3ECE-1F81-4591-B9D4-943BA13B609D}\NumMethods",,"5"
+0x1,"Classes\Interface\{484E3ECE-1F81-4591-B9D4-943BA13B609D}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{48FF3109-A366-4B56-B340-01FAE758BA64}",,"_IWmiProviderAbnormalShutdown"
+0x1,"Classes\Interface\{48FF3109-A366-4B56-B340-01FAE758BA64}\NumMethods",,"4"
+0x1,"Classes\Interface\{48FF3109-A366-4B56-B340-01FAE758BA64}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{541679AB-2E5F-11D3-B34E-00104BCC4B4A}",,"IWbemLoginHelper"
+0x1,"Classes\Interface\{541679AB-2E5F-11D3-B34E-00104BCC4B4A}\NumMethods",,"4"
+0x1,"Classes\Interface\{541679AB-2E5F-11D3-B34E-00104BCC4B4A}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{580ACAF8-FA1C-11D0-AD72-00C04FD8FDFF}",,"IWbemEventProviderQuerySink"
+0x1,"Classes\Interface\{580ACAF8-FA1C-11D0-AD72-00C04FD8FDFF}\NumMethods",,"5"
+0x1,"Classes\Interface\{580ACAF8-FA1C-11D0-AD72-00C04FD8FDFF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{5FBA5051-3124-4112-B723-46BFBAF1D622}",,"_IWmiProviderInitialize"
+0x1,"Classes\Interface\{5FBA5051-3124-4112-B723-46BFBAF1D622}\NumMethods",,"11"
+0x1,"Classes\Interface\{5FBA5051-3124-4112-B723-46BFBAF1D622}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{60E512D4-C47B-11D2-B338-00105A1F4AAF}",,"IWbemFilterProxy"
+0x1,"Classes\Interface\{60E512D4-C47B-11D2-B338-00105A1F4AAF}\NumMethods",,"13"
+0x1,"Classes\Interface\{60E512D4-C47B-11D2-B338-00105A1F4AAF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{631F7D96-D993-11D2-B339-00105A1F4AAF}",,"IWbemEventProviderSecurity"
+0x1,"Classes\Interface\{631F7D96-D993-11D2-B339-00105A1F4AAF}\NumMethods",,"4"
+0x1,"Classes\Interface\{631F7D96-D993-11D2-B339-00105A1F4AAF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{631F7D97-D993-11D2-B339-00105A1F4AAF}",,"IWbemProviderIdentity"
+0x1,"Classes\Interface\{631F7D97-D993-11D2-B339-00105A1F4AAF}\NumMethods",,"4"
+0x1,"Classes\Interface\{631F7D97-D993-11D2-B339-00105A1F4AAF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{6919DD07-1637-4611-A8A7-C16FAC5B2D53}",,"Internal_IWbemProviderInit"
+0x1,"Classes\Interface\{6919DD07-1637-4611-A8A7-C16FAC5B2D53}\NumMethods",,"4"
+0x1,"Classes\Interface\{6919DD07-1637-4611-A8A7-C16FAC5B2D53}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{6963B029-B969-40AA-9180-2B2F84075973}",,"_IWbemFetchRefresherMgr"
+0x1,"Classes\Interface\{6963B029-B969-40AA-9180-2B2F84075973}\NumMethods",,"6"
+0x1,"Classes\Interface\{6963B029-B969-40AA-9180-2B2F84075973}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{6B3FC272-BF37-4968-933A-6DF9222A2607}",,"_IWmiProviderConfiguration"
+0x1,"Classes\Interface\{6B3FC272-BF37-4968-933A-6DF9222A2607}\NumMethods",,"10"
+0x1,"Classes\Interface\{6B3FC272-BF37-4968-933A-6DF9222A2607}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{6C19BE32-7500-11D1-AD94-00C04FD8FDFF}",,"IWbemMetaData"
+0x1,"Classes\Interface\{6C19BE32-7500-11D1-AD94-00C04FD8FDFF}\NumMethods",,"4"
+0x1,"Classes\Interface\{6C19BE32-7500-11D1-AD94-00C04FD8FDFF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{6C19BE34-7500-11D1-AD94-00C04FD8FDFF}",,"IWbemFilterStub"
+0x1,"Classes\Interface\{6C19BE34-7500-11D1-AD94-00C04FD8FDFF}\NumMethods",,"5"
+0x1,"Classes\Interface\{6C19BE34-7500-11D1-AD94-00C04FD8FDFF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{755F9DA7-7508-11D1-AD94-00C04FD8FDFF}",,"IWbemEventProviderRequirements"
+0x1,"Classes\Interface\{755F9DA7-7508-11D1-AD94-00C04FD8FDFF}\NumMethods",,"4"
+0x1,"Classes\Interface\{755F9DA7-7508-11D1-AD94-00C04FD8FDFF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{854D745C-6742-42C0-8BB9-01EC466B6E87}",,"Internal_IWbemEventConsumerProvider"
+0x1,"Classes\Interface\{854D745C-6742-42C0-8BB9-01EC466B6E87}\NumMethods",,"4"
+0x1,"Classes\Interface\{854D745C-6742-42C0-8BB9-01EC466B6E87}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{88F3781C-6902-4647-9A6B-A74F450AF861}",,"Internal_IWbemEventConsumerProviderEx"
+0x1,"Classes\Interface\{88F3781C-6902-4647-9A6B-A74F450AF861}\NumMethods",,"5"
+0x1,"Classes\Interface\{88F3781C-6902-4647-9A6B-A74F450AF861}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{8A0DC377-A9D3-41CB-BD69-AE1FDAF2DC68}",,"Internal_IWbemEventProviderQuerySink"
+0x1,"Classes\Interface\{8A0DC377-A9D3-41CB-BD69-AE1FDAF2DC68}\NumMethods",,"5"
+0x1,"Classes\Interface\{8A0DC377-A9D3-41CB-BD69-AE1FDAF2DC68}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{92B9503D-19C3-4181-9F42-57FFC1A4BF37}",,"IWinmgmtMofCompilerOOP"
+0x1,"Classes\Interface\{92B9503D-19C3-4181-9F42-57FFC1A4BF37}\NumMethods",,"5"
+0x1,"Classes\Interface\{92B9503D-19C3-4181-9F42-57FFC1A4BF37}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{A210BFE9-C9F7-4919-B114-0D98B3D5341E}",,"Internal_IWbemUnboundObjectSink"
+0x1,"Classes\Interface\{A210BFE9-C9F7-4919-B114-0D98B3D5341E}\NumMethods",,"4"
+0x1,"Classes\Interface\{A210BFE9-C9F7-4919-B114-0D98B3D5341E}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{A359DEC5-E813-4834-8A2A-BA7F1D777D76}",,"IWbemBackupRestoreEx"
+0x1,"Classes\Interface\{A359DEC5-E813-4834-8A2A-BA7F1D777D76}\NumMethods",,"7"
+0x1,"Classes\Interface\{A359DEC5-E813-4834-8A2A-BA7F1D777D76}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{AC9EA02A-2C8A-4ACD-B562-D7E8EBEE8E8E}",,"Internal_IEnumWbemClassObject"
+0x1,"Classes\Interface\{AC9EA02A-2C8A-4ACD-B562-D7E8EBEE8E8E}\NumMethods",,"8"
+0x1,"Classes\Interface\{AC9EA02A-2C8A-4ACD-B562-D7E8EBEE8E8E}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{B1B55910-8BA0-47A5-A16E-2B733B1D987C}",,"_IWmiProviderStack"
+0x1,"Classes\Interface\{B1B55910-8BA0-47A5-A16E-2B733B1D987C}\NumMethods",,"4"
+0x1,"Classes\Interface\{B1B55910-8BA0-47A5-A16E-2B733B1D987C}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{B60EF4F1-A411-462B-B51E-477CBDBB90B4}",,"_IWbemRefresherMgr"
+0x1,"Classes\Interface\{B60EF4F1-A411-462B-B51E-477CBDBB90B4}\NumMethods",,"8"
+0x1,"Classes\Interface\{B60EF4F1-A411-462B-B51E-477CBDBB90B4}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{B7B31DF9-D515-11D3-A11C-00105A1F515A}",,"IWbemShutdown"
+0x1,"Classes\Interface\{B7B31DF9-D515-11D3-A11C-00105A1F515A}\NumMethods",,"4"
+0x1,"Classes\Interface\{B7B31DF9-D515-11D3-A11C-00105A1F515A}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{BAC6B661-167E-4957-AD77-286AB256585E}",,"_IWmiDynamicPropertyResolver"
+0x1,"Classes\Interface\{BAC6B661-167E-4957-AD77-286AB256585E}\NumMethods",,"5"
+0x1,"Classes\Interface\{BAC6B661-167E-4957-AD77-286AB256585E}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{C49E32C7-BC8B-11D2-85D4-00105A1F8304}",,"IWbemBackupRestore"
+0x1,"Classes\Interface\{C49E32C7-BC8B-11D2-85D4-00105A1F8304}\NumMethods",,"5"
+0x1,"Classes\Interface\{C49E32C7-BC8B-11D2-85D4-00105A1F8304}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{CE61E841-65BC-11D0-B6BD-00AA003240C7}",,"IWbemPropertyProvider"
+0x1,"Classes\Interface\{CE61E841-65BC-11D0-B6BD-00AA003240C7}\NumMethods",,"5"
+0x1,"Classes\Interface\{CE61E841-65BC-11D0-B6BD-00AA003240C7}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{D4781CD6-E5D3-44DF-AD94-930EFE48A887}",,"IWbemLoginClientID"
+0x1,"Classes\Interface\{D4781CD6-E5D3-44DF-AD94-930EFE48A887}\NumMethods",,"4"
+0x1,"Classes\Interface\{D4781CD6-E5D3-44DF-AD94-930EFE48A887}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{D8EC9CB1-B135-4F10-8B1B-C7188BB0D186}",,"IWbemConnectorLogin"
+0x1,"Classes\Interface\{D8EC9CB1-B135-4F10-8B1B-C7188BB0D186}\NumMethods",,"4"
+0x1,"Classes\Interface\{D8EC9CB1-B135-4F10-8B1B-C7188BB0D186}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{DF2373F5-EFB2-475C-AD58-3102D61967D4}",,"Internal_IWbemEventProviderSecurity"
+0x1,"Classes\Interface\{DF2373F5-EFB2-475C-AD58-3102D61967D4}\NumMethods",,"4"
+0x1,"Classes\Interface\{DF2373F5-EFB2-475C-AD58-3102D61967D4}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{E245105B-B06E-11D0-AD61-00C04FD8FDFF}",,"IWbemEventProvider"
+0x1,"Classes\Interface\{E245105B-B06E-11D0-AD61-00C04FD8FDFF}\NumMethods",,"4"
+0x1,"Classes\Interface\{E245105B-B06E-11D0-AD61-00C04FD8FDFF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{E246107A-B06E-11D0-AD61-00C04FD8FDFF}",,"IWbemEventConsumerProvider"
+0x1,"Classes\Interface\{E246107A-B06E-11D0-AD61-00C04FD8FDFF}\NumMethods",,"4"
+0x1,"Classes\Interface\{E246107A-B06E-11D0-AD61-00C04FD8FDFF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{E8107BDF-BAAF-4C7C-BB5F-9D732E8D8F07}",,"_IWmiProvSS"
+0x1,"Classes\Interface\{E8107BDF-BAAF-4C7C-BB5F-9D732E8D8F07}\NumMethods",,"8"
+0x1,"Classes\Interface\{E8107BDF-BAAF-4C7C-BB5F-9D732E8D8F07}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{EB658B8A-7A64-4DDC-9B8D-A92610DB0206}",,"_IWmiProviderQuota"
+0x1,"Classes\Interface\{EB658B8A-7A64-4DDC-9B8D-A92610DB0206}\NumMethods",,"4"
+0x1,"Classes\Interface\{EB658B8A-7A64-4DDC-9B8D-A92610DB0206}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{F0E4EDDE-475A-498A-93D7-D4347F68A8F3}",,"_IWmiProviderCache"
+0x1,"Classes\Interface\{F0E4EDDE-475A-498A-93D7-D4347F68A8F3}\NumMethods",,"5"
+0x1,"Classes\Interface\{F0E4EDDE-475A-498A-93D7-D4347F68A8F3}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{F1E9C5B2-F59B-11D2-B362-00105A1F8177}",,"IWbemRemoteRefresher"
+0x1,"Classes\Interface\{F1E9C5B2-F59B-11D2-B362-00105A1F8177}\NumMethods",,"6"
+0x1,"Classes\Interface\{F1E9C5B2-F59B-11D2-B362-00105A1F8177}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{F309AD18-D86A-11D0-A075-00C04FB68820}",,"IWbemLevel1Login"
+0x1,"Classes\Interface\{F309AD18-D86A-11D0-A075-00C04FB68820}\NumMethods",,"7"
+0x1,"Classes\Interface\{F309AD18-D86A-11D0-A075-00C04FB68820}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{F50A28CF-5C9C-4F7E-9D80-E25E16E18C59}",,"Internal_IWbemServices"
+0x1,"Classes\Interface\{F50A28CF-5C9C-4F7E-9D80-E25E16E18C59}\NumMethods",,"26"
+0x1,"Classes\Interface\{F50A28CF-5C9C-4F7E-9D80-E25E16E18C59}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{FD450835-CF1B-4C87-9FD2-5E0D42FDE081}",,"Internal_IWbemEventProvider"
+0x1,"Classes\Interface\{FD450835-CF1B-4C87-9FD2-5E0D42FDE081}\NumMethods",,"4"
+0x1,"Classes\Interface\{FD450835-CF1B-4C87-9FD2-5E0D42FDE081}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{FEC1B0AC-5808-4033-A915-C0185934581E}",,"_IWmiProviderSite"
+0x1,"Classes\Interface\{FEC1B0AC-5808-4033-A915-C0185934581E}\NumMethods",,"5"
+0x1,"Classes\Interface\{FEC1B0AC-5808-4033-A915-C0185934581E}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+
+; RegServer wmi2xml.dll - [U] SP2 No Ouput - No Second Pass
+0x1,"Classes\CLSID\{610037EC-CE06-11D3-93FC-00805F853771}",,"WMI TO XML Helper"
+0x1,"Classes\CLSID\{610037EC-CE06-11D3-93FC-00805F853771}\InprocServer32","ThreadingModel","Both"
+0x2,"Classes\CLSID\{610037EC-CE06-11D3-93FC-00805F853771}\InprocServer32",,"%SystemRoot%\System32\wbem\xml\wmi2xml.dll"
+
+; RegServer wmicookr.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{B0A2AB46-F612-4469-BEC4-7AB038BC476C}",,"WMI High Performance Cooker"
+0x2,"Classes\CLSID\{B0A2AB46-F612-4469-BEC4-7AB038BC476C}\InprocServer32",,"wmicookr.dll"
+0x1,"Classes\CLSID\{B0A2AB46-F612-4469-BEC4-7AB038BC476C}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmidcprv.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{4CFC7932-0F9D-4BEF-9C32-8EA2A6B56FCB}",,"Microsoft WMI Provider Subsystem Decoupled Registrar"
+0x2,"Classes\CLSID\{4CFC7932-0F9D-4BEF-9C32-8EA2A6B56FCB}\InprocServer32",,"wmidcprv.dll"
+0x1,"Classes\CLSID\{4CFC7932-0F9D-4BEF-9C32-8EA2A6B56FCB}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{4CFC7932-0F9D-4BEF-9C32-8EA2A6B56FCB}\NotInsertable"
+0x1,"Classes\CLSID\{F5F75737-2843-4F22-933D-C76A97CDA62F}",,"Microsoft WMI Provider Subsystem Decoupled Basic Event Provider"
+0x2,"Classes\CLSID\{F5F75737-2843-4F22-933D-C76A97CDA62F}\InprocServer32",,"wmidcprv.dll"
+0x1,"Classes\CLSID\{F5F75737-2843-4F22-933D-C76A97CDA62F}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{F5F75737-2843-4F22-933D-C76A97CDA62F}\NotInsertable"
+
+; RegServer wmipcima.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{04788120-12C2-498D-83C1-A7D92E677AC6}",,"WBEM Framework Instance Provider CIMA"
+0x2,"Classes\CLSID\{04788120-12C2-498D-83C1-A7D92E677AC6}\InprocServer32",,"wmipcima.dll"
+0x1,"Classes\CLSID\{04788120-12C2-498D-83C1-A7D92E677AC6}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{A3E41207-BE04-492A-AFF0-19E880FF7545}",,"WMI instrumentation: Win32_ComputerShutdownEvent"
+0x2,"Classes\CLSID\{A3E41207-BE04-492A-AFF0-19E880FF7545}\InprocServer32",,"wmipcima.dll"
+0x1,"Classes\CLSID\{A3E41207-BE04-492A-AFF0-19E880FF7545}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{E2CBCB87-9C07-4523-A78F-061499C83987}",,"WMI instrumentation: Win32_VolumeChangeEvent"
+0x2,"Classes\CLSID\{E2CBCB87-9C07-4523-A78F-061499C83987}\InprocServer32",,"wmipcima.dll"
+0x1,"Classes\CLSID\{E2CBCB87-9C07-4523-A78F-061499C83987}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmipdskq.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{4AF3F4A4-06C8-4B79-A523-633CC65CE297}",,"WBEM Disk Quota Volume Provider"
+0x2,"Classes\CLSID\{4AF3F4A4-06C8-4B79-A523-633CC65CE297}\InprocServer32",,"wmipdskq.dll"
+0x1,"Classes\CLSID\{4AF3F4A4-06C8-4B79-A523-633CC65CE297}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmipicmp.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{734AC5AE-68E1-4FB5-B8DA-1D92F7FC6661}",,"WBEM Ping Provider"
+0x2,"Classes\CLSID\{734AC5AE-68E1-4FB5-B8DA-1D92F7FC6661}\InprocServer32",,"wmipicmp.dll"
+0x1,"Classes\CLSID\{734AC5AE-68E1-4FB5-B8DA-1D92F7FC6661}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmipiprt.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{23B77E99-5C2D-482D-A795-62CA3AE5B673}",,"WBEM IP Route Provider"
+0x2,"Classes\CLSID\{23B77E99-5C2D-482D-A795-62CA3AE5B673}\InprocServer32",,"wmipiprt.dll"
+0x1,"Classes\CLSID\{23B77E99-5C2D-482D-A795-62CA3AE5B673}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{6D7A4B0E-66D5-4AC3-A7ED-0189E8CF5E77}",,"WBEM IP Route Event Provider"
+0x2,"Classes\CLSID\{6D7A4B0E-66D5-4AC3-A7ED-0189E8CF5E77}\InprocServer32",,"wmipiprt.dll"
+0x1,"Classes\CLSID\{6D7A4B0E-66D5-4AC3-A7ED-0189E8CF5E77}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmipjobj.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{6515834D-6125-4878-A3A3-6B0A73B809A2}",,"Win32_JobObjectLimitInfo Component"
+0x2,"Classes\CLSID\{6515834D-6125-4878-A3A3-6B0A73B809A2}\InprocServer32",,"wmipjobj.dll"
+0x1,"Classes\CLSID\{6515834D-6125-4878-A3A3-6B0A73B809A2}\InprocServer32","ThreadingModel","Free"
+0x1,"Classes\CLSID\{6515834D-6125-4878-A3A3-6B0A73B809A2}\ProgID",,"JobObjLimitInfoProv.JobObjLimitInfoProv.1"
+0x1,"Classes\CLSID\{6515834D-6125-4878-A3A3-6B0A73B809A2}\VersionIndependentProgID",,"JobObjLimitInfoProv.JobObjLimitInfoProv"
+0x1,"Classes\CLSID\{7FB1D98A-F895-4761-8DC2-774969C84D10}",,"Win32_JobObject Provider Component"
+0x2,"Classes\CLSID\{7FB1D98A-F895-4761-8DC2-774969C84D10}\InprocServer32",,"wmipjobj.dll"
+0x1,"Classes\CLSID\{7FB1D98A-F895-4761-8DC2-774969C84D10}\InprocServer32","ThreadingModel","Free"
+0x1,"Classes\CLSID\{7FB1D98A-F895-4761-8DC2-774969C84D10}\ProgID",,"JobObjectProv.JobObjectProv.1"
+0x1,"Classes\CLSID\{7FB1D98A-F895-4761-8DC2-774969C84D10}\VersionIndependentProgID",,"JobObjectProv.JobObjectProv"
+0x1,"Classes\CLSID\{AB40A5C1-804B-40BD-9DFE-A640691C6956}",,"Win32_JobObjectSecLimitInfo Component"
+0x2,"Classes\CLSID\{AB40A5C1-804B-40BD-9DFE-A640691C6956}\InprocServer32",,"wmipjobj.dll"
+0x1,"Classes\CLSID\{AB40A5C1-804B-40BD-9DFE-A640691C6956}\InprocServer32","ThreadingModel","Free"
+0x1,"Classes\CLSID\{AB40A5C1-804B-40BD-9DFE-A640691C6956}\ProgID",,"JobObjSecLimitInfoProv.JobObjSecLimitInfoProv.1"
+0x1,"Classes\CLSID\{AB40A5C1-804B-40BD-9DFE-A640691C6956}\VersionIndependentProgID",,"JobObjSecLimitInfoProv.JobObjSecLimitInfoProv"
+0x1,"Classes\CLSID\{C0AA9D93-2EF5-47FB-960C-F90FC644B48E}",,"Win32_JobObjectIOAccountingInfo Component"
+0x2,"Classes\CLSID\{C0AA9D93-2EF5-47FB-960C-F90FC644B48E}\InprocServer32",,"wmipjobj.dll"
+0x1,"Classes\CLSID\{C0AA9D93-2EF5-47FB-960C-F90FC644B48E}\InprocServer32","ThreadingModel","Free"
+0x1,"Classes\CLSID\{C0AA9D93-2EF5-47FB-960C-F90FC644B48E}\ProgID",,"JobObjIOActgInfoProv.JobObjIOActgInfoProv.1"
+0x1,"Classes\CLSID\{C0AA9D93-2EF5-47FB-960C-F90FC644B48E}\VersionIndependentProgID",,"JobObjIOActgInfoProv.JobObjIOActgInfoProv"
+0x1,"Classes\JobObjIOActgInfoProv.JobObjIOActgInfoProv",,"Win32_JobObjectIOAccountingInfo Component"
+0x1,"Classes\JobObjIOActgInfoProv.JobObjIOActgInfoProv.1",,"Win32_JobObjectIOAccountingInfo Component"
+0x1,"Classes\JobObjIOActgInfoProv.JobObjIOActgInfoProv.1\CLSID",,"{C0AA9D93-2EF5-47FB-960C-F90FC644B48E}"
+0x1,"Classes\JobObjIOActgInfoProv.JobObjIOActgInfoProv\CLSID",,"{C0AA9D93-2EF5-47FB-960C-F90FC644B48E}"
+0x1,"Classes\JobObjIOActgInfoProv.JobObjIOActgInfoProv\CurVer",,"JobObjIOActgInfoProv.JobObjIOActgInfoProv.1"
+0x1,"Classes\JobObjLimitInfoProv.JobObjLimitInfoProv",,"Win32_JobObjectLimitInfo Component"
+0x1,"Classes\JobObjLimitInfoProv.JobObjLimitInfoProv.1",,"Win32_JobObjectLimitInfo Component"
+0x1,"Classes\JobObjLimitInfoProv.JobObjLimitInfoProv.1\CLSID",,"{6515834D-6125-4878-A3A3-6B0A73B809A2}"
+0x1,"Classes\JobObjLimitInfoProv.JobObjLimitInfoProv\CLSID",,"{6515834D-6125-4878-A3A3-6B0A73B809A2}"
+0x1,"Classes\JobObjLimitInfoProv.JobObjLimitInfoProv\CurVer",,"JobObjLimitInfoProv.JobObjLimitInfoProv.1"
+0x1,"Classes\JobObjSecLimitInfoProv.JobObjSecLimitInfoProv",,"Win32_JobObjectSecLimitInfo Component"
+0x1,"Classes\JobObjSecLimitInfoProv.JobObjSecLimitInfoProv.1",,"Win32_JobObjectSecLimitInfo Component"
+0x1,"Classes\JobObjSecLimitInfoProv.JobObjSecLimitInfoProv.1\CLSID",,"{AB40A5C1-804B-40BD-9DFE-A640691C6956}"
+0x1,"Classes\JobObjSecLimitInfoProv.JobObjSecLimitInfoProv\CLSID",,"{AB40A5C1-804B-40BD-9DFE-A640691C6956}"
+0x1,"Classes\JobObjSecLimitInfoProv.JobObjSecLimitInfoProv\CurVer",,"JobObjSecLimitInfoProv.JobObjSecLimitInfoProv.1"
+0x1,"Classes\JobObjectProv.JobObjectProv",,"Win32_JobObject Provider Component"
+0x1,"Classes\JobObjectProv.JobObjectProv.1",,"Win32_JobObject Provider Component"
+0x1,"Classes\JobObjectProv.JobObjectProv.1\CLSID",,"{7FB1D98A-F895-4761-8DC2-774969C84D10}"
+0x1,"Classes\JobObjectProv.JobObjectProv\CLSID",,"{7FB1D98A-F895-4761-8DC2-774969C84D10}"
+0x1,"Classes\JobObjectProv.JobObjectProv\CurVer",,"JobObjectProv.JobObjectProv.1"
+
+; RegServer wmiprov.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{0725C3CB-FEFB-11D0-99F9-00C04FC2F8EC}",,"WDM Event Provider"
+0x2,"Classes\CLSID\{0725C3CB-FEFB-11D0-99F9-00C04FC2F8EC}\InprocServer32",,"wmiprov.dll"
+0x1,"Classes\CLSID\{0725C3CB-FEFB-11D0-99F9-00C04FC2F8EC}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{35B78F79-B973-48C8-A045-CAEC732A35D5}",,"WDM HiPerf Provider"
+0x2,"Classes\CLSID\{35B78F79-B973-48C8-A045-CAEC732A35D5}\InprocServer32",,"wmiprov.dll"
+0x1,"Classes\CLSID\{35B78F79-B973-48C8-A045-CAEC732A35D5}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{D2D588B5-D081-11D0-99E0-00C04FC2F8EC}",,"WDM Instance Provider"
+0x2,"Classes\CLSID\{D2D588B5-D081-11D0-99E0-00C04FC2F8EC}\InprocServer32",,"wmiprov.dll"
+0x1,"Classes\CLSID\{D2D588B5-D081-11D0-99E0-00C04FC2F8EC}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmipsess.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{6E78DAD9-E187-4D6E-BA63-760256D6F405}",,"Microsoft Session And Connection Provider"
+0x2,"Classes\CLSID\{6E78DAD9-E187-4D6E-BA63-760256D6F405}\InprocServer32",,"wmipsess.dll"
+0x1,"Classes\CLSID\{6E78DAD9-E187-4D6E-BA63-760256D6F405}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmitimep.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{C4819C8D-9AB8-4B2F-B8AE-C77DABF553D5}",,"Microsoft WBEM Current Time Provider"
+0x2,"Classes\CLSID\{C4819C8D-9AB8-4B2F-B8AE-C77DABF553D5}\InprocServer32",,"wmitimep.dll"
+0x1,"Classes\CLSID\{C4819C8D-9AB8-4B2F-B8AE-C77DABF553D5}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmiutils.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{CF4CC405-E2C5-4DDD-B3CE-5E7582D8C9FA}",,"WbemDefaultPathParser"
+0x2,"Classes\CLSID\{CF4CC405-E2C5-4DDD-B3CE-5E7582D8C9FA}\InprocServer32",,"wmiutils.dll"
+0x1,"Classes\CLSID\{CF4CC405-E2C5-4DDD-B3CE-5E7582D8C9FA}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{EAC8A024-21E2-4523-AD73-A71A0AA2F56A}",,"WbemQuery"
+0x2,"Classes\CLSID\{EAC8A024-21E2-4523-AD73-A71A0AA2F56A}\InprocServer32",,"wmiutils.dll"
+0x1,"Classes\CLSID\{EAC8A024-21E2-4523-AD73-A71A0AA2F56A}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{EB87E1BD-3233-11D2-AEC9-00C04FB68820}",,"WbemStatusCode"
+0x2,"Classes\CLSID\{EB87E1BD-3233-11D2-AEC9-00C04FB68820}\InprocServer32",,"wmiutils.dll"
+0x1,"Classes\CLSID\{EB87E1BD-3233-11D2-AEC9-00C04FB68820}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmisvc.dll - [N] SP2 -> no output - No Second Pass
+0x1,"Classes\CLSID\{8BC3F05E-D86B-11D0-A075-00C04FB68820}",,"Windows Management and Instrumentation"
+0x1,"Classes\CLSID\{8BC3F05E-D86B-11D0-A075-00C04FB68820}","AppId","{8BC3F05E-D86B-11D0-A075-00C04FB68820}"
+0x1,"Classes\CLSID\{8BC3F05E-D86B-11D0-A075-00C04FB68820}","LocalService","winmgmt"
+0x1,"Classes\CLSID\{C49E32C6-BC8B-11D2-85D4-00105A1F8304}",,"Windows Management Instrumentation Backup and Recovery"
+0x1,"Classes\CLSID\{C49E32C6-BC8B-11D2-85D4-00105A1F8304}","AppId","{8BC3F05E-D86B-11D0-A075-00C04FB68820}"
+0x1,"Classes\CLSID\{C49E32C6-BC8B-11D2-85D4-00105A1F8304}","LocalService","winmgmt"
+0x1,"Classes\AppID\{8BC3F05E-D86B-11D0-A075-00C04FB68820}",,"Windows Management and Instrumentation"
+0x3,"Classes\AppID\{8BC3F05E-D86B-11D0-A075-00C04FB68820}","LaunchPermission",\
+  01,00,04,80,94,00,00,00,a4,00,00,00,00,00,00,00,14,00,00,00,02,00,80,00,01,\
+  00,00,00,00,00,14,00,01,00,00,00,01,01,00,00,00,00,00,01,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,01,02,\
+  00,00,00,00,00,05,20,00,00,00,20,02,00,00,01,02,00,00,00,00,00,05,20,00,00,\
+  00,20,02,00,00
+0x1,"Classes\AppID\{8BC3F05E-D86B-11D0-A075-00C04FB68820}","LocalService","winmgmt"
+0x1,"Classes\AppID\winmgmt","AppID","{8BC3F05E-D86B-11D0-A075-00C04FB68820}"
+
+; 1.0.1
+; RegServer wmiscmgr.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{D86A8E9B-F53F-45AD-8C49-0A0A5230DE28}",,"WMIFilterManager Class"
+0x2,"Classes\CLSID\{D86A8E9B-F53F-45AD-8C49-0A0A5230DE28}\InprocServer32",,"wmiscmgr.dll"
+0x1,"Classes\CLSID\{D86A8E9B-F53F-45AD-8C49-0A0A5230DE28}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{D86A8E9B-F53F-45AD-8C49-0A0A5230DE28}\ProgID",,"SchemaManager.WMIFilterManager.1"
+0x0,"Classes\CLSID\{D86A8E9B-F53F-45AD-8C49-0A0A5230DE28}\Programmable"
+0x1,"Classes\CLSID\{D86A8E9B-F53F-45AD-8C49-0A0A5230DE28}\TypeLib",,"{1856AD2E-6F53-4EA2-B76D-B6D7FA07C391}"
+0x1,"Classes\CLSID\{D86A8E9B-F53F-45AD-8C49-0A0A5230DE28}\VersionIndependentProgID",,"SchemaManager.WMIFilterManager"
+0x1,"Classes\Interface\{64DCCA00-14A6-473C-9006-5AB79DC68491}",,"IWMIFilterManager"
+0x1,"Classes\Interface\{64DCCA00-14A6-473C-9006-5AB79DC68491}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{64DCCA00-14A6-473C-9006-5AB79DC68491}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{64DCCA00-14A6-473C-9006-5AB79DC68491}\TypeLib",,"{1856AD2E-6F53-4EA2-B76D-B6D7FA07C391}"
+0x1,"Classes\Interface\{64DCCA00-14A6-473C-9006-5AB79DC68491}\TypeLib","Version","1.0"
+0x1,"Classes\SchemaManager.WMIFilterManager",,"WMIFilterManager Class"
+0x1,"Classes\SchemaManager.WMIFilterManager.1",,"WMIFilterManager Class"
+0x1,"Classes\SchemaManager.WMIFilterManager.1\CLSID",,"{D86A8E9B-F53F-45AD-8C49-0A0A5230DE28}"
+0x1,"Classes\SchemaManager.WMIFilterManager\CLSID",,"{D86A8E9B-F53F-45AD-8C49-0A0A5230DE28}"
+0x1,"Classes\SchemaManager.WMIFilterManager\CurVer",,"SchemaManager.WMIFilterManager.1"
+0x1,"Classes\TypeLib\{1856AD2E-6F53-4EA2-B76D-B6D7FA07C391}\1.0",,"SchemaManager 1.0 Type Library"
+0x2,"Classes\TypeLib\{1856AD2E-6F53-4EA2-B76D-B6D7FA07C391}\1.0\0\win32",,"wmiscmgr.dll"
+0x1,"Classes\TypeLib\{1856AD2E-6F53-4EA2-B76D-B6D7FA07C391}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{1856AD2E-6F53-4EA2-B76D-B6D7FA07C391}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer rdchost.dll - [U] SP2 - No Second Pass
+; Remote Desktop Client - (wmi???)
+0x1,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}",,"RemoteDesktopClientHost Class"
+0x0,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\Control"
+0x2,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\InprocServer32",,"rdchost.dll"
+0x1,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\InprocServer32","ThreadingModel","Apartment"
+0x0,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\Insertable"
+0x1,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\MiscStatus",,"0"
+0x1,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\MiscStatus\1",,"131473"
+0x1,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\ProgID",,"RDCHost.RemoteDesktopClientHost.1"
+0x0,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\Programmable"
+0x2,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\ToolboxBitmap32",,"rdchost.dll,101"
+0x1,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\Version",,"1.0"
+0x1,"Classes\CLSID\{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}\VersionIndependentProgID",,"RDCHost.RemoteDesktopClientHost"
+0x1,"Classes\CLSID\{B90D0115-3AEA-45D3-801E-93913008D49E}",,"RemoteDesktopClient Class"
+0x2,"Classes\CLSID\{B90D0115-3AEA-45D3-801E-93913008D49E}\InprocServer32",,"rdchost.dll"
+0x1,"Classes\CLSID\{B90D0115-3AEA-45D3-801E-93913008D49E}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{B90D0115-3AEA-45D3-801E-93913008D49E}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\CLSID\{B90D0115-3AEA-45D3-801E-93913008D49E}\Version",,"1.0"
+0x1,"Classes\CLSID\{F137E241-0092-4575-976A-D3E33980BB26}",,"TSRDPRemoteDesktopClient Class"
+0x2,"Classes\CLSID\{F137E241-0092-4575-976A-D3E33980BB26}\InprocServer32",,"rdchost.dll"
+0x1,"Classes\CLSID\{F137E241-0092-4575-976A-D3E33980BB26}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{F137E241-0092-4575-976A-D3E33980BB26}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\CLSID\{F137E241-0092-4575-976A-D3E33980BB26}\Version",,"1.0"
+0x1,"Classes\Interface\{327A98F6-B337-43B0-A3DE-408B46E6C4CE}",,"_ISAFRemoteDesktopClientEvents"
+0x1,"Classes\Interface\{327A98F6-B337-43B0-A3DE-408B46E6C4CE}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{327A98F6-B337-43B0-A3DE-408B46E6C4CE}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{327A98F6-B337-43B0-A3DE-408B46E6C4CE}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\Interface\{327A98F6-B337-43B0-A3DE-408B46E6C4CE}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{59AE79BC-9721-42DF-9396-9D98E7F7A396}",,"_ISAFRemoteDesktopDataChannelEvents"
+0x1,"Classes\Interface\{59AE79BC-9721-42DF-9396-9D98E7F7A396}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{59AE79BC-9721-42DF-9396-9D98E7F7A396}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{59AE79BC-9721-42DF-9396-9D98E7F7A396}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\Interface\{59AE79BC-9721-42DF-9396-9D98E7F7A396}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{5C7A32EF-1C77-4F35-8FBA-729DD2DE7222}",,"ISAFRemoteDesktopTestExtension"
+0x1,"Classes\Interface\{5C7A32EF-1C77-4F35-8FBA-729DD2DE7222}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{5C7A32EF-1C77-4F35-8FBA-729DD2DE7222}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{5C7A32EF-1C77-4F35-8FBA-729DD2DE7222}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\Interface\{5C7A32EF-1C77-4F35-8FBA-729DD2DE7222}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{64976FAE-B108-4095-8E59-5874E00E562A}",,"ISAFRemoteDesktopDataChannel"
+0x1,"Classes\Interface\{64976FAE-B108-4095-8E59-5874E00E562A}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{64976FAE-B108-4095-8E59-5874E00E562A}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{64976FAE-B108-4095-8E59-5874E00E562A}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\Interface\{64976FAE-B108-4095-8E59-5874E00E562A}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{69DE5BF3-5EB9-4158-81DA-6FD662BBDDDD}",,"ISAFRemoteDesktopClientHost"
+0x1,"Classes\Interface\{69DE5BF3-5EB9-4158-81DA-6FD662BBDDDD}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{69DE5BF3-5EB9-4158-81DA-6FD662BBDDDD}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{69DE5BF3-5EB9-4158-81DA-6FD662BBDDDD}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\Interface\{69DE5BF3-5EB9-4158-81DA-6FD662BBDDDD}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{85C037E5-743F-4938-936B-A8DB95430391}",,"_IDataChannelIOEvents"
+0x1,"Classes\Interface\{85C037E5-743F-4938-936B-A8DB95430391}\ProxyStubClsid",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{85C037E5-743F-4938-936B-A8DB95430391}\ProxyStubClsid32",,"{00020420-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{85C037E5-743F-4938-936B-A8DB95430391}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\Interface\{85C037E5-743F-4938-936B-A8DB95430391}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{8AA5F108-2918-435C-88AA-DE0AFEE51440}",,"ISAFRemoteDesktopClient"
+0x1,"Classes\Interface\{8AA5F108-2918-435C-88AA-DE0AFEE51440}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8AA5F108-2918-435C-88AA-DE0AFEE51440}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8AA5F108-2918-435C-88AA-DE0AFEE51440}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\Interface\{8AA5F108-2918-435C-88AA-DE0AFEE51440}\TypeLib","Version","1.0"
+0x1,"Classes\Interface\{8E6E0954-33CE-4945-ACF7-6728D23B2067}",,"ISAFRemoteDesktopChannelMgr"
+0x1,"Classes\Interface\{8E6E0954-33CE-4945-ACF7-6728D23B2067}\ProxyStubClsid",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8E6E0954-33CE-4945-ACF7-6728D23B2067}\ProxyStubClsid32",,"{00020424-0000-0000-C000-000000000046}"
+0x1,"Classes\Interface\{8E6E0954-33CE-4945-ACF7-6728D23B2067}\TypeLib",,"{97917068-BB0B-4DDA-8067-B1A00C890F44}"
+0x1,"Classes\Interface\{8E6E0954-33CE-4945-ACF7-6728D23B2067}\TypeLib","Version","1.0"
+0x1,"Classes\RDCHost.RemoteDesktopClientHost",,"RemoteDesktopClientHost Class"
+0x1,"Classes\RDCHost.RemoteDesktopClientHost.1",,"RemoteDesktopClientHost Class"
+0x1,"Classes\RDCHost.RemoteDesktopClientHost.1\CLSID",,"{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}"
+0x1,"Classes\RDCHost.RemoteDesktopClientHost\CLSID",,"{299BE050-E83E-4DB7-A7DA-D86FDEBFE6D0}"
+0x1,"Classes\RDCHost.RemoteDesktopClientHost\CurVer",,"RDCHost.RemoteDesktopClientHost.1"
+0x1,"Classes\TypeLib\{97917068-BB0B-4DDA-8067-B1A00C890F44}\1.0",,"RDCClientHost 1.0 Type Library"
+0x2,"Classes\TypeLib\{97917068-BB0B-4DDA-8067-B1A00C890F44}\1.0\0\win32",,"rdchost.dll"
+0x1,"Classes\TypeLib\{97917068-BB0B-4DDA-8067-B1A00C890F44}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{97917068-BB0B-4DDA-8067-B1A00C890F44}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer cfgbkend.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{BB0D7187-3C44-11D2-BB98-3078302C2030}",,"CfgComp Class"
+0x2,"Classes\CLSID\{BB0D7187-3C44-11D2-BB98-3078302C2030}\InprocServer32",,"cfgbkend.dll"
+0x1,"Classes\CLSID\{BB0D7187-3C44-11D2-BB98-3078302C2030}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{BB0D7187-3C44-11D2-BB98-3078302C2030}\ProgID",,"CfgComp.CfgComp.1"
+0x1,"Classes\CLSID\{BB0D7187-3C44-11D2-BB98-3078302C2030}\VersionIndependentProgID",,"CfgComp.CfgComp"
+0x1,"Classes\CfgComp.CfgComp",,"CfgComp Class"
+0x1,"Classes\CfgComp.CfgComp.1",,"CfgComp Class"
+0x1,"Classes\CfgComp.CfgComp.1\CLSID",,"{BB0D7187-3C44-11D2-BB98-3078302C2030}"
+0x1,"Classes\CfgComp.CfgComp\CurVer",,"CfgComp.CfgComp.1"
+
+; RegServer remotepg.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{F0152790-D56E-4445-850E-4F3117DB740C}",,"Remote Sessions CPL Extension"
+0x2,"Classes\CLSID\{F0152790-D56E-4445-850E-4F3117DB740C}\InprocServer32",,"remotepg.dll"
+0x1,"Classes\CLSID\{F0152790-D56E-4445-850E-4F3117DB740C}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Microsoft\Windows\CurrentVersion\Controls Folder\System\shellex\PropertySheetHandlers\Remote Sessions CPL Extension",,"{F0152790-D56E-4445-850E-4F3117DB740C}"
+0x1,"Microsoft\Windows\CurrentVersion\Shell Extensions\Approved","{F0152790-D56E-4445-850E-4F3117DB740C}","Remote Sessions CPL Extension"
+
+; RegServer tscfgwmi.dll - [U] SP2 - Second Pass
+0x1,"Classes\CLSID\{39524FB7-028F-4035-8C2B-8E65D2B17E67}",,"WBEM WIN32_TSSESSIONDIRECTORY Provider"
+0x2,"Classes\CLSID\{39524FB7-028F-4035-8C2B-8E65D2B17E67}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{39524FB7-028F-4035-8C2B-8E65D2B17E67}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{4C8A0917-F587-4ECF-9C89-48147528F4E1}",,"WBEM WIN32_TSGENERALSETTING Provider"
+0x2,"Classes\CLSID\{4C8A0917-F587-4ECF-9C89-48147528F4E1}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{4C8A0917-F587-4ECF-9C89-48147528F4E1}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{647BD8C2-658B-4ECA-ABC7-FC5C0BF1704D}",,"WBEM WIN32_TSCLIENTSETTING Provider"
+0x2,"Classes\CLSID\{647BD8C2-658B-4ECA-ABC7-FC5C0BF1704D}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{647BD8C2-658B-4ECA-ABC7-FC5C0BF1704D}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{6BD6AECA-AFB0-45B7-BAC4-F292EC0F3F41}",,"WBEM Win32_TERMINALSERVICESETTING Provider"
+0x2,"Classes\CLSID\{6BD6AECA-AFB0-45B7-BAC4-F292EC0F3F41}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{6BD6AECA-AFB0-45B7-BAC4-F292EC0F3F41}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{74628299-57EC-4F12-BA1C-08B477BF447A}",,"WBEM WIN32_TERMINAL Provider"
+0x2,"Classes\CLSID\{74628299-57EC-4F12-BA1C-08B477BF447A}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{74628299-57EC-4F12-BA1C-08B477BF447A}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{7757BA9B-7986-4866-B53F-A31E89FCBA15}",,"WBEM WIN32_TSNETWORKADAPTERLISTSETTING Provider"
+0x2,"Classes\CLSID\{7757BA9B-7986-4866-B53F-A31E89FCBA15}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{7757BA9B-7986-4866-B53F-A31E89FCBA15}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{7970614A-BD82-439E-A828-CC96F8E91428}",,"WBEM WIN32_TERMINALSERVICE Provider"
+0x2,"Classes\CLSID\{7970614A-BD82-439E-A828-CC96F8E91428}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{7970614A-BD82-439E-A828-CC96F8E91428}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{9A17DFD1-34FA-4D61-B9BB-3A1097E7FADF}",,"WBEM WIN32_TSENVIRONMENTSETTING Provider"
+0x2,"Classes\CLSID\{9A17DFD1-34FA-4D61-B9BB-3A1097E7FADF}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{9A17DFD1-34FA-4D61-B9BB-3A1097E7FADF}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{B490264C-8D8F-40FD-B1BE-CD69AD779EC1}",,"WBEM WIN32_TERMINALSERVICETOSETTING Provider"
+0x2,"Classes\CLSID\{B490264C-8D8F-40FD-B1BE-CD69AD779EC1}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{B490264C-8D8F-40FD-B1BE-CD69AD779EC1}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{BA4EAC04-AFCE-441A-A4F0-C4A97545425A}",,"WBEM WIN32_TERMINALTERMINALSETTING Provider"
+0x2,"Classes\CLSID\{BA4EAC04-AFCE-441A-A4F0-C4A97545425A}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{BA4EAC04-AFCE-441A-A4F0-C4A97545425A}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{BDF9E8B8-6C66-4E45-BA15-E050393DD079}",,"WBEM WIN32_TSACCOUNT Provider"
+0x2,"Classes\CLSID\{BDF9E8B8-6C66-4E45-BA15-E050393DD079}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{BDF9E8B8-6C66-4E45-BA15-E050393DD079}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{BE9B3133-250B-44A5-A278-C532B7B7FF76}",,"WBEM WIN32_TSSESSIONSETTING Provider"
+0x2,"Classes\CLSID\{BE9B3133-250B-44A5-A278-C532B7B7FF76}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{BE9B3133-250B-44A5-A278-C532B7B7FF76}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{C41FF872-07B1-4926-819B-8C94E6B1FBB9}",,"WBEM WIN32_TSLOGONSETTING Provider"
+0x2,"Classes\CLSID\{C41FF872-07B1-4926-819B-8C94E6B1FBB9}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{C41FF872-07B1-4926-819B-8C94E6B1FBB9}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{CCBA37FC-982B-433B-8AC2-455E616A8559}",,"WBEM WIN32_TSSESSIONDIRECTORYSETTING Provider"
+0x2,"Classes\CLSID\{CCBA37FC-982B-433B-8AC2-455E616A8559}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{CCBA37FC-982B-433B-8AC2-455E616A8559}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{D25E0260-AAB7-48CB-A192-4D73D2FD375F}",,"WBEM WIN32_TSNETWORKADAPTERSETTING Provider"
+0x2,"Classes\CLSID\{D25E0260-AAB7-48CB-A192-4D73D2FD375F}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{D25E0260-AAB7-48CB-A192-4D73D2FD375F}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{DBD71B6B-F717-4A61-A914-2337BC50B0D6}",,"WBEM WIN32_TSREMOTECONTROLSETTING Provider"
+0x2,"Classes\CLSID\{DBD71B6B-F717-4A61-A914-2337BC50B0D6}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{DBD71B6B-F717-4A61-A914-2337BC50B0D6}\InprocServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{FA06375D-F0A4-4A47-AD8D-148595F1E0B8}",,"WBEM WIN32_TSPERMISSIONSSETTING Provider"
+0x2,"Classes\CLSID\{FA06375D-F0A4-4A47-AD8D-148595F1E0B8}\InprocServer32",,"tscfgwmi.dll"
+0x1,"Classes\CLSID\{FA06375D-F0A4-4A47-AD8D-148595F1E0B8}\InprocServer32","ThreadingModel","Apartment"
+
+; RegServer CmdEvTgProv.dll - [U] SP2 - No Second Pass
+0x1,"Classes\AppID\{797EF3B3-127B-4283-8096-1E8084BF67A6}",,"Command line Trigger Consumer"
+0x1,"Classes\AppID\{797EF3B3-127B-4283-8096-1E8084BF67A6}","RunAs","Interactive User"
+0x1,"Classes\CLSID\{797EF3B3-127B-4283-8096-1E8084BF67A6}",,"Command line Trigger Consumer"
+0x2,"Classes\CLSID\{797EF3B3-127B-4283-8096-1E8084BF67A6}\InprocServer32",,"CmdEvTgProv.dll"
+0x1,"Classes\CLSID\{797EF3B3-127B-4283-8096-1E8084BF67A6}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmiprvsd.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{4DE225BF-CF59-4CFC-85F7-68B90F185355}",,"Microsoft WMI Provider Subsystem"
+0x2,"Classes\CLSID\{4DE225BF-CF59-4CFC-85F7-68B90F185355}\InprocServer32",,"wmiprvsd.dll"
+0x1,"Classes\CLSID\{4DE225BF-CF59-4CFC-85F7-68B90F185355}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{4DE225BF-CF59-4CFC-85F7-68B90F185355}\NotInsertable"
+0x1,"Classes\CLSID\{7F598975-37E0-4A67-A992-116680F0CEDA}",,"Microsoft WMI Provider Subsystem Self Instrumentation"
+0x2,"Classes\CLSID\{7F598975-37E0-4A67-A992-116680F0CEDA}\InprocServer32",,"wmiprvsd.dll"
+0x1,"Classes\CLSID\{7F598975-37E0-4A67-A992-116680F0CEDA}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{7F598975-37E0-4A67-A992-116680F0CEDA}\NotInsertable"
+0x1,"Classes\CLSID\{8BEBCE8B-1AF0-4323-8B4D-36994567CAE1}",,"Microsoft WMI Provider Subsystem InProc Factory"
+0x2,"Classes\CLSID\{8BEBCE8B-1AF0-4323-8B4D-36994567CAE1}\InprocServer32",,"wmiprvsd.dll"
+0x1,"Classes\CLSID\{8BEBCE8B-1AF0-4323-8B4D-36994567CAE1}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{8BEBCE8B-1AF0-4323-8B4D-36994567CAE1}\NotInsertable"
+0x1,"Classes\CLSID\{F5A55D36-8750-432C-AB52-AD49A016EABC}",,"Microsoft WMI Provider Subsystem Binding Factory"
+0x2,"Classes\CLSID\{F5A55D36-8750-432C-AB52-AD49A016EABC}\InprocServer32",,"wmiprvsd.dll"
+0x1,"Classes\CLSID\{F5A55D36-8750-432C-AB52-AD49A016EABC}\InprocServer32","ThreadingModel","Both"
+0x0,"Classes\CLSID\{F5A55D36-8750-432C-AB52-AD49A016EABC}\NotInsertable"
+
+; RegServer snmpincl.dll - [U] SP2 - No Second Pass
+;0x1,"Classes\CLSID\{19C813AC-FEE7-11D0-AB22-00C04FD9159E}",,"Microsoft WBEM SNMP Event Provider"
+;0x2,"Classes\CLSID\{19C813AC-FEE7-11D0-AB22-00C04FD9159E}\InprocServer32",,"snmpincl.dll"
+;0x1,"Classes\CLSID\{19C813AC-FEE7-11D0-AB22-00C04FD9159E}\InprocServer32","ThreadingModel","Both"
+;0x0,"Classes\CLSID\{19C813AC-FEE7-11D0-AB22-00C04FD9159E}\NotInsertable"
+;0x1,"Classes\CLSID\{1F517A23-B29C-11CF-8C8D-00AA00A4086C}",,"Microsoft WBEM SNMP Instance Provider"
+;0x2,"Classes\CLSID\{1F517A23-B29C-11CF-8C8D-00AA00A4086C}\InprocServer32",,"snmpincl.dll"
+;0x1,"Classes\CLSID\{1F517A23-B29C-11CF-8C8D-00AA00A4086C}\InprocServer32","ThreadingModel","Both"
+;0x0,"Classes\CLSID\{1F517A23-B29C-11CF-8C8D-00AA00A4086C}\NotInsertable"
+;0x1,"Classes\CLSID\{70426720-F78F-11CF-9151-00AA00A4086C}",,"Microsoft WBEM SNMP Class Provider"
+;0x2,"Classes\CLSID\{70426720-F78F-11CF-9151-00AA00A4086C}\InprocServer32",,"snmpincl.dll"
+;0x1,"Classes\CLSID\{70426720-F78F-11CF-9151-00AA00A4086C}\InprocServer32","ThreadingModel","Both"
+;0x0,"Classes\CLSID\{70426720-F78F-11CF-9151-00AA00A4086C}\NotInsertable"
+;0x1,"Classes\CLSID\{9D5BED16-0765-11D1-AB2C-00C04FD9159E}",,"Microsoft WBEM SNMP Event Provider"
+;0x2,"Classes\CLSID\{9D5BED16-0765-11D1-AB2C-00C04FD9159E}\InprocServer32",,"snmpincl.dll"
+;0x1,"Classes\CLSID\{9D5BED16-0765-11D1-AB2C-00C04FD9159E}\InprocServer32","ThreadingModel","Both"
+;0x0,"Classes\CLSID\{9D5BED16-0765-11D1-AB2C-00C04FD9159E}\NotInsertable"
+
+; RegServer evntrprv.dll - [U] SP2
+0x1,"Classes\CLSID\{9a5dd473-d410-11d1-b829-00c04f94c7c3}",,"Event Trace Logger Provider"
+0x2,"Classes\CLSID\{9a5dd473-d410-11d1-b829-00c04f94c7c3}\InprocServer32",,"evntrprv.dll"
+0x1,"Classes\CLSID\{9a5dd473-d410-11d1-b829-00c04f94c7c3}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{f95e1664-7979-44f2-a040-496e7f500043}",,"System Log Provider"
+0x2,"Classes\CLSID\{f95e1664-7979-44f2-a040-496e7f500043}\InprocServer32",,"evntrprv.dll"
+0x1,"Classes\CLSID\{f95e1664-7979-44f2-a040-496e7f500043}\InprocServer32","ThreadingModel","Both"
+
+; WBEM - TODO sort
+0x1,"Classes\WBEMComConnection",,"WBEM Connection"
+0x1,"Classes\WBEMComConnection\CLSID",,"SOFTWARE\CLASSES\WBEMComConnection"
+0x1,"Classes\WBEMComLocator",,"WBEM Locator"
+0x1,"Classes\WBEMComLocator\CLSID",,"SOFTWARE\CLASSES\WBEMComLocator"
+
+0x1,"Classes\CLSID\{73E709EA-5D93-4B2E-BBB0-99B7938DA9E4}","AppId","{73E709EA-5D93-4B2E-BBB0-99B7938DA9E4}"
+0x1,"Classes\CLSID\{73E709EA-5D93-4B2E-BBB0-99B7938DA9E4}",,"Microsoft WMI Provider Subsystem Host"
+0x2,"Classes\CLSID\{73E709EA-5D93-4B2E-BBB0-99B7938DA9E4}\LocalServer32",,"wmiprvse.exe"
+0x1,"Classes\CLSID\{73E709EA-5D93-4B2E-BBB0-99B7938DA9E4}\LocalServer32","ThreadingModel","Both"
+
+0x1,"Classes\Interface\{1999CB72-C88D-40A3-A5AA-35EAED377E61}",,"_IWmiContext"
+0x1,"Classes\Interface\{1999CB72-C88D-40A3-A5AA-35EAED377E61}\NumMethods",,"5"
+0x1,"Classes\Interface\{1999CB72-C88D-40A3-A5AA-35EAED377E61}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{E7174AED-B55B-42F9-B322-D79F49921012}",,"_IWmiProviderAssociatorsHelper"
+0x1,"Classes\Interface\{E7174AED-B55B-42F9-B322-D79F49921012}\NumMethods",,"4"
+0x1,"Classes\Interface\{E7174AED-B55B-42F9-B322-D79F49921012}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+
+0x1,"Classes\CLSID\{266C72E7-62E8-11D1-AD89-00C04FD8FDFF}",,"Microsoft WBEM Active Scripting Event Consumer Provider"
+0x2,"Classes\CLSID\{266C72E7-62E8-11D1-AD89-00C04FD8FDFF}\LocalServer32",,"scrcons.exe"
+0x1,"Classes\CLSID\{266C72E7-62E8-11D1-AD89-00C04FD8FDFF}\LocalServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{49BD2028-1523-11D1-AD79-00C04FD8FDFF}",,"Microsoft WBEM Unsecured Apartment"
+0x2,"Classes\CLSID\{49BD2028-1523-11D1-AD79-00C04FD8FDFF}\LocalServer32",,"unsecapp.exe"
+0x1,"Classes\CLSID\{49BD2028-1523-11D1-AD79-00C04FD8FDFF}\LocalServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{4C6055D8-84B9-4111-A7D3-6623894EEDB3}",,"WBEM Connection"
+0x2,"Classes\CLSID\{4C6055D8-84B9-4111-A7D3-6623894EEDB3}\InprocServer32",,"wbemprox.dll"
+0x1,"Classes\CLSID\{4C6055D8-84B9-4111-A7D3-6623894EEDB3}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{76A94DE3-7C26-44F5-8E98-C5AEA48186CB}",,"WBEM NT5 Base Perf Provider"
+0x2,"Classes\CLSID\{76A94DE3-7C26-44F5-8E98-C5AEA48186CB}\InprocServer32",,"wbemperf.dll"
+0x1,"Classes\CLSID\{76A94DE3-7C26-44F5-8E98-C5AEA48186CB}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{7A0227F6-7108-11D1-AD90-00C04FD8FDFF}",,"Microsoft WBEM Uninitialized WbemClassObject for transports"
+0x2,"Classes\CLSID\{7A0227F6-7108-11D1-AD90-00C04FD8FDFF}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{7A0227F6-7108-11D1-AD90-00C04FD8FDFF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{A1044801-8F7E-11D1-9E7C-00C04FC324A8}",,"WBEM Local Address Resolution Module"
+0x2,"Classes\CLSID\{A1044801-8F7E-11D1-9E7C-00C04FC324A8}\InprocServer32",,"wbemprox.dll"
+0x1,"Classes\CLSID\{A1044801-8F7E-11D1-9E7C-00C04FC324A8}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{D71EE747-F455-4804-9DF6-2ED81025F2C1}",,"Microsoft WBEM (non)Standard Marshaling for IWbemComBinding"
+0x2,"Classes\CLSID\{D71EE747-F455-4804-9DF6-2ED81025F2C1}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{D71EE747-F455-4804-9DF6-2ED81025F2C1}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{ED51D12E-511F-4999-8DCD-C2BAC91BE86E}",,"Microsoft WBEM IWbemComBinding Factory"
+0x2,"Classes\CLSID\{ED51D12E-511F-4999-8DCD-C2BAC91BE86E}\InprocServer32",,"fastprox.dll"
+0x1,"Classes\CLSID\{ED51D12E-511F-4999-8DCD-C2BAC91BE86E}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{FF37A93C-C28E-11D1-AEB6-00C04FB68820}",,"WBEM NT5 Base Perf Provider"
+0x2,"Classes\CLSID\{FF37A93C-C28E-11D1-AEB6-00C04FB68820}\InprocServer32",,"wbemperf.dll"
+0x1,"Classes\CLSID\{FF37A93C-C28E-11D1-AEB6-00C04FB68820}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\Interface\{17CF534A-D8A3-4AD0-AC92-5E3D01717151}",,"IWbemEventConsumerProviderEx"
+0x1,"Classes\Interface\{17CF534A-D8A3-4AD0-AC92-5E3D01717151}\NumMethods",,"5"
+0x1,"Classes\Interface\{17CF534A-D8A3-4AD0-AC92-5E3D01717151}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{6468FE15-412D-11D3-B350-00104BCC4B4A}",,"IWbemCreateSecondaryStub"
+0x1,"Classes\Interface\{6468FE15-412D-11D3-B350-00104BCC4B4A}\NumMethods",,"4"
+0x1,"Classes\Interface\{6468FE15-412D-11D3-B350-00104BCC4B4A}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{6468FE15-412D-11D3-B350-00104BCC4B4A}",,"IWbemCreateSecondaryStub"
+0x1,"Classes\Interface\{6468FE15-412D-11D3-B350-00104BCC4B4A}\NumMethods",,"4"
+0x1,"Classes\Interface\{6468FE15-412D-11D3-B350-00104BCC4B4A}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{6D54E7AD-7583-4D53-BC14-CE2678F73DB3}",,"IWbemServicesEx"
+0x1,"Classes\Interface\{6D54E7AD-7583-4D53-BC14-CE2678F73DB3}\NumMethods",,"40"
+0x1,"Classes\Interface\{6D54E7AD-7583-4D53-BC14-CE2678F73DB3}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{755F9DA6-7508-11D1-AD94-00C04FD8FDFF}",,"IWbemMultiTarget"
+0x1,"Classes\Interface\{755F9DA6-7508-11D1-AD94-00C04FD8FDFF}\NumMethods",,"5"
+0x1,"Classes\Interface\{755F9DA6-7508-11D1-AD94-00C04FD8FDFF}\ProxyStubClsid32",,"{7016F8FA-CCDA-11D2-B35C-00105A1F8177}"
+0x1,"Classes\Interface\{7C857801-7381-11CF-884D-00AA004B2E24}",,"IWbemObjectSink"
+0x1,"Classes\Interface\{7C857801-7381-11CF-884D-00AA004B2E24}\NumMethods",,"5"
+0x1,"Classes\Interface\{7C857801-7381-11CF-884D-00AA004B2E24}\ProxyStubClsid32",,"{71285C44-1DC0-11D2-B5FB-00104B703EFD}"
+0x1,"Classes\Interface\{9556DC99-828C-11CF-A37E-00AA003240C7}",,"IWbemServices"
+0x1,"Classes\Interface\{9556DC99-828C-11CF-A37E-00AA003240C7}\NumMethods",,"26"
+0x1,"Classes\Interface\{9556DC99-828C-11CF-A37E-00AA003240C7}\NumMethods",,"40"
+0x1,"Classes\Interface\{9556DC99-828C-11CF-A37E-00AA003240C7}\ProxyStubClsid32",,"{D68AF00A-29CB-43FA-8504-CE99A996D9EA}"
+0x1,"Classes\Interface\{974CAB5F-D7FD-4C52-958F-E3D94D6CB505}",,"IWbemComBinding"
+0x1,"Classes\Interface\{974CAB5F-D7FD-4C52-958F-E3D94D6CB505}\NumMethods",,"3"
+0x1,"Classes\Interface\{974CAB5F-D7FD-4C52-958F-E3D94D6CB505}\ProxyStubClsid32",,"{D71EE747-F455-4804-9DF6-2ED81025F2C1}"
+0x1,"Classes\Interface\{A553F3F0-3805-11D0-B6B2-00AA003240C7}",,"IWbemEventSubsystem_m4"
+0x1,"Classes\Interface\{A553F3F0-3805-11D0-B6B2-00AA003240C7}\NumMethods",,"11"
+0x1,"Classes\Interface\{A553F3F0-3805-11D0-B6B2-00AA003240C7}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{A57BE31E-EFE3-11D0-AD71-00C04FD8FDFF}",,"IWbemCausalityAccess"
+0x1,"Classes\Interface\{A57BE31E-EFE3-11D0-AD71-00C04FD8FDFF}\NumMethods",,"10"
+0x1,"Classes\Interface\{A57BE31E-EFE3-11D0-AD71-00C04FD8FDFF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{C1E2D758-CABD-11D3-A11B-00105A1F515A}",,"IWbemCallResultEx"
+0x1,"Classes\Interface\{C1E2D758-CABD-11D3-A11B-00105A1F515A}\NumMethods",,"8"
+0x1,"Classes\Interface\{C1E2D758-CABD-11D3-A11B-00105A1F515A}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{DD0BE256-50DC-48A8-9866-B559F279D0F6}",,"IWbemObjectSinkEx"
+0x1,"Classes\Interface\{DD0BE256-50DC-48A8-9866-B559F279D0F6}\NumMethods",,"6"
+0x1,"Classes\Interface\{DD0BE256-50DC-48A8-9866-B559F279D0F6}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{E1CBFF9F-4DB9-4264-80D1-13EC5D091FD0}",,"Internal_IWbemCallResult"
+0x1,"Classes\Interface\{E1CBFF9F-4DB9-4264-80D1-13EC5D091FD0}\NumMethods",,"7"
+0x1,"Classes\Interface\{E1CBFF9F-4DB9-4264-80D1-13EC5D091FD0}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{E2451054-B06E-11D0-AD61-00C04FD8FDFF}",,"IWbemPropertySource"
+0x1,"Classes\Interface\{E2451054-B06E-11D0-AD61-00C04FD8FDFF}\NumMethods",,"5"
+0x1,"Classes\Interface\{E2451054-B06E-11D0-AD61-00C04FD8FDFF}\ProxyStubClsid32",,"{7C857801-7381-11CF-884D-00AA004B2E24}"
+0x1,"Classes\Interface\{E246107B-B06E-11D0-AD61-00C04FD8FDFF}",,"IWbemUnboundObjectSink"
+0x1,"Classes\Interface\{E246107B-B06E-11D0-AD61-00C04FD8FDFF}\NumMethods",,"4"
+0x1,"Classes\Interface\{E246107B-B06E-11D0-AD61-00C04FD8FDFF}\ProxyStubClsid32",,"{29B5828C-CAB9-11D2-B35C-00105A1F8177}"
+
+[Software.AddReg.2600]
+; 1.0.4 - XP Only
+; RegServer fwdprov.dll - [U] SP2 - No Second Pass
+0x0,"Microsoft\WBEM\FWD"
+0x1,"Classes\CLSID\{7879E40D-9FB5-450A-8A6D-00C89F349FCE}",,"Microsoft WBEM Forwarding Event Provider"
+0x2,"Classes\CLSID\{7879E40D-9FB5-450A-8A6D-00C89F349FCE}\InprocServer32",,"fwdprov.dll"
+0x1,"Classes\CLSID\{7879E40D-9FB5-450A-8A6D-00C89F349FCE}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{AD1B46E8-0AAC-401B-A3B8-FCDCF8186F55}",,"Microsoft WBEM Forwarding Consumer Provider"
+0x2,"Classes\CLSID\{AD1B46E8-0AAC-401B-A3B8-FCDCF8186F55}\InprocServer32",,"fwdprov.dll"
+0x1,"Classes\CLSID\{AD1B46E8-0AAC-401B-A3B8-FCDCF8186F55}\InprocServer32","ThreadingModel","Both"
+
+; RegServer tmplprov.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{C486ABD2-27F6-11D3-865E-00C04F63049B}",,"Microsoft WBEM Template Provider"
+0x2,"Classes\CLSID\{C486ABD2-27F6-11D3-865E-00C04F63049B}\InprocServer32",,"tmplprov.dll"
+0x1,"Classes\CLSID\{C486ABD2-27F6-11D3-865E-00C04F63049B}\InprocServer32","ThreadingModel","Both"
+
+; RegServer trnsprov.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{405595AA-1E14-11D3-B33D-00105A1F4AAF}",,"Microsoft WBEM Transient Instance Provider"
+0x2,"Classes\CLSID\{405595AA-1E14-11D3-B33D-00105A1F4AAF}\InprocServer32",,"trnsprov.dll"
+0x1,"Classes\CLSID\{405595AA-1E14-11D3-B33D-00105A1F4AAF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{405595AB-1E14-11D3-B33D-00105A1F4AAF}",,"Microsoft WBEM Transient Instance Reboot Event Provider"
+0x2,"Classes\CLSID\{405595AB-1E14-11D3-B33D-00105A1F4AAF}\InprocServer32",,"trnsprov.dll"
+0x1,"Classes\CLSID\{405595AB-1E14-11D3-B33D-00105A1F4AAF}\InprocServer32","ThreadingModel","Both"
+
+; RegServer updprov.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{74E3B84C-C7BE-4E0A-9BD2-853CA72CD435}",,"Microsoft WBEM Updating Consumer Assoc Provider"
+0x2,"Classes\CLSID\{74E3B84C-C7BE-4E0A-9BD2-853CA72CD435}\InprocServer32",,"updprov.dll"
+0x1,"Classes\CLSID\{74E3B84C-C7BE-4E0A-9BD2-853CA72CD435}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{A3A16907-227B-11D3-865D-00C04F63049B}",,"Microsoft WBEM Updating Consumer Provider"
+0x2,"Classes\CLSID\{A3A16907-227B-11D3-865D-00C04F63049B}\InprocServer32",,"updprov.dll"
+0x1,"Classes\CLSID\{A3A16907-227B-11D3-865D-00C04F63049B}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wmimsg.dll - [U] SP2 - No Second Pass
+0x1,"Classes\CLSID\{622D47B6-CEEC-4DE1-8056-B6D16F29BC97}",,"Microsoft WBEM Rpc Message Sender"
+0x2,"Classes\CLSID\{622D47B6-CEEC-4DE1-8056-B6D16F29BC97}\InprocServer32",,"wmimsg.dll"
+0x1,"Classes\CLSID\{622D47B6-CEEC-4DE1-8056-B6D16F29BC97}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{89F9F7B0-8DE3-4AE0-8B41-109ABAB32151}",,"Microsoft WBEM Message Multi SendReceive"
+0x2,"Classes\CLSID\{89F9F7B0-8DE3-4AE0-8B41-109ABAB32151}\InprocServer32",,"wmimsg.dll"
+0x1,"Classes\CLSID\{89F9F7B0-8DE3-4AE0-8B41-109ABAB32151}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{958C59A0-3670-4FE0-B893-6998BB494402}",,"Microsoft WBEM Smart Object Marshaler"
+0x2,"Classes\CLSID\{958C59A0-3670-4FE0-B893-6998BB494402}\InprocServer32",,"wmimsg.dll"
+0x1,"Classes\CLSID\{958C59A0-3670-4FE0-B893-6998BB494402}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{9F007F18-9C24-4630-8B3E-61F96280C593}",,"Microsoft WBEM Rpc Message Receiver"
+0x2,"Classes\CLSID\{9F007F18-9C24-4630-8B3E-61F96280C593}\InprocServer32",,"wmimsg.dll"
+0x1,"Classes\CLSID\{9F007F18-9C24-4630-8B3E-61F96280C593}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{C1692211-1EC1-4847-9C0D-D2F2D80D07CF}",,"Microsoft WBEM Smart Object Access Factory"
+0x2,"Classes\CLSID\{C1692211-1EC1-4847-9C0D-D2F2D80D07CF}\InprocServer32",,"wmimsg.dll"
+0x1,"Classes\CLSID\{C1692211-1EC1-4847-9C0D-D2F2D80D07CF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{C169CC11-1EC1-4847-9C0D-D2F2D80D07CF}",,"Microsoft WBEM Smart Object Marshaler"
+0x2,"Classes\CLSID\{C169CC11-1EC1-4847-9C0D-D2F2D80D07CF}\InprocServer32",,"wmimsg.dll"
+0x1,"Classes\CLSID\{C169CC11-1EC1-4847-9C0D-D2F2D80D07CF}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{CE69CC1E-1EC0-4847-9C0D-D2F2D80D07CF}",,"Microsoft WBEM Message Service"
+0x2,"Classes\CLSID\{CE69CC1E-1EC0-4847-9C0D-D2F2D80D07CF}\InprocServer32",,"wmimsg.dll"
+0x1,"Classes\CLSID\{CE69CC1E-1EC0-4847-9C0D-D2F2D80D07CF}\InprocServer32","ThreadingModel","Both"
+
+[Software.AddReg.3790]
+; 1.0.4 - W2k3 Only
+; RegServer cluswmi.dll - [U] W2k3SP1
+0x1,"Classes\CLSID\{598065EA-EDC9-4B2C-913B-5104D04D098A}",,"Cluster service WMI instance provider"
+0x2,"Classes\CLSID\{598065EA-EDC9-4B2C-913B-5104D04D098A}\InprocServer32",,"cluswmi.dll"
+0x1,"Classes\CLSID\{598065EA-EDC9-4B2C-913B-5104D04D098A}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{6A52C339-DCB0-4682-8B1B-02DE2C436A6D}",,"Cluster service WMI class provider"
+0x2,"Classes\CLSID\{6A52C339-DCB0-4682-8B1B-02DE2C436A6D}\InprocServer32",,"cluswmi.dll"
+0x1,"Classes\CLSID\{6A52C339-DCB0-4682-8B1B-02DE2C436A6D}\InprocServer32","ThreadingModel","Both"
+0x1,"Classes\CLSID\{92863246-4EDE-4EFF-B606-79C1971DB230}",,"Cluster service WMI event provider"
+0x2,"Classes\CLSID\{92863246-4EDE-4EFF-B606-79C1971DB230}\InprocServer32",,"cluswmi.dll"
+0x1,"Classes\CLSID\{92863246-4EDE-4EFF-B606-79C1971DB230}\InprocServer32","ThreadingModel","Both"
+
+; RegServer replprov.dll - [U] W2k3SP1
+0x1,"Classes\CLSID\{29288F43-39B1-40db-B41F-CE899450E911}",,"RpcReplProv Class"
+0x2,"Classes\CLSID\{29288F43-39B1-40db-B41F-CE899450E911}\InprocServer32",,"replprov.dll"
+0x1,"Classes\CLSID\{29288F43-39B1-40db-B41F-CE899450E911}\InprocServer32","ThreadingModel","both"
+0x1,"Classes\CLSID\{29288F43-39B1-40db-B41F-CE899450E911}\ProgID",,"ReplProv1.RpcReplProv.1"
+0x1,"Classes\CLSID\{29288F43-39B1-40db-B41F-CE899450E911}\VersionIndependentProgID",,"ReplProv1.RpcReplProv"
+0x1,"Classes\ReplProv1.RpcReplProv",,"RpcReplProv Class"
+0x1,"Classes\ReplProv1.RpcReplProv.1",,"RpcReplProv Class"
+0x1,"Classes\ReplProv1.RpcReplProv.1\CLSID",,"{29288F43-39B1-40db-B41F-CE899450E911)"
+0x1,"Classes\ReplProv1.RpcReplProv\CLSID",,"{29288F43-39B1-40db-B41F-CE899450E911)"
+0x1,"Classes\TypeLib\{D072B0CF-E841-4A7B-9394-C1E859B4DDB5}\1.0",,"ReplProv1 1.0 Type Library"
+0x2,"Classes\TypeLib\{D072B0CF-E841-4A7B-9394-C1E859B4DDB5}\1.0\0\win32",,"replprov.dll"
+0x1,"Classes\TypeLib\{D072B0CF-E841-4A7B-9394-C1E859B4DDB5}\1.0\FLAGS",,"0"
+0x2,"Classes\TypeLib\{D072B0CF-E841-4A7B-9394-C1E859B4DDB5}\1.0\HELPDIR",,"%SystemRoot%\Help"
+
+; RegServer vdswmi.dll - [U] W2k3SP1
+0x1,"Classes\CLSID\{890CB943-D715-401B-98B1-CF82DCF36D7C}",,"Volume Shadow Copy WMI Provider"
+0x2,"Classes\CLSID\{890CB943-D715-401B-98B1-CF82DCF36D7C}\InprocServer32",,"vdswmi.dll"
+0x1,"Classes\CLSID\{890CB943-D715-401B-98B1-CF82DCF36D7C}\InprocServer32","ThreadingModel","Both"
+
+; RegServer vsswmi.dll - [U] W2k3SP1
+0x1,"Classes\CLSID\{72970BEB-81F8-46D4-B220-D743F4E49C95}",,"Volume Shadow Copy WMI Provider"
+0x2,"Classes\CLSID\{72970BEB-81F8-46D4-B220-D743F4E49C95}\InprocServer32",,"vsswmi.dll"
+0x1,"Classes\CLSID\{72970BEB-81F8-46D4-B220-D743F4E49C95}\InprocServer32","ThreadingModel","Both"
+
+; RegServer wlbsprov.dll - [U] W2k3SP1
+0x1,"Classes\CLSID\{FB223274-D72E-11D2-A420-00C04F68FE28}",,"Microsoft NLB Instance Provider"
+0x2,"Classes\CLSID\{FB223274-D72E-11D2-A420-00C04F68FE28}\InprocServer32",,"wlbsprov.dll"
+0x1,"Classes\CLSID\{FB223274-D72E-11D2-A420-00C04F68FE28}\InprocServer32","ThreadingModel","Apartment"
+
+; RegServer wmipdfs.dl - [U] W2k3SP1
+0x1,"Classes\CLSID\{7F72CC7A-74A0-45B4-909C-14FB8186DD7E}",,"WBEM IP DFS Provider"
+0x2,"Classes\CLSID\{7F72CC7A-74A0-45B4-909C-14FB8186DD7E}\InprocServer32",,"wmipdfs.dll"
+0x1,"Classes\CLSID\{7F72CC7A-74A0-45B4-909C-14FB8186DD7E}\InprocServer32","ThreadingModel","Both"
+
+[SetupReg.AddReg.3790]
+; RegServer replprov.dll - [U] W2k3SP1
+0x2,"ControlSet001\Services\EventLog\Application\DSReplicationProvider","EventMessageFile","%SystemRoot%\system32\wbem\replprov.dll"
+0x4,"ControlSet001\Services\EventLog\Application\DSReplicationProvider","TypesSupported",0x7

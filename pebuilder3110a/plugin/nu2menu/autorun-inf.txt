@@ -1,0 +1,2 @@
+[autorun]
+open=Programs\nu2menu\nu2menu.exe

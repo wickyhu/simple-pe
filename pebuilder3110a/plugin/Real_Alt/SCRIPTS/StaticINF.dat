@@ -1,0 +1,562 @@
+; RealAlt.inf
+; PE Builder v3 plugin INF file for Real Alternative
+; Plugin by Xtreme
+; Xtremesony_xp@yahoo.com
+; Made For Windows Xpire Rd CD
+; © Windows Xpire Tech Center
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="(Xtremee) Real Alternative Codecs v1.5.2.0"
+Enable=1
+
+[WinntDirectories]
+a="Programs\Media Player Classic",2
+b="Programs\Real Alternative",2
+
+[SourceDisksFiles]
+files\Sys32\pncrt.dll=2,,1
+files\Sys32\pndx5016.dll=2,,1
+files\Sys32\pndx5032.dll=2,,1
+files\Sys32\rmoc3260.dll=2,,1
+
+[SourceDisksFolders]
+"files\Media Player Classic"=a
+"files\Real Alternative"=b
+
+[Software.AddReg]
+0x2,"Sherpya\XPEinit\Programs","Players\Media Player Classic","%SystemDrive%\Programs\Media Player Classic\mplayerc.exe"
+0x2,"Sherpya\XPEinit\Programs","CodecS\Real Alternative\Configuration","%SystemDrive%\Programs\Real Alternative\settings.exe"
+0x2, "Sherpya\XPEinit\Quicklaunch", "Media Player Classic", "%SystemDrive%\Programs\Media Player Classic\mplayerc.exe"
+
+[Software.AddReg]
+0x1, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{238D0F23-5DC9-45A6-9BE2-666160C324DD}","FriendlyName","RealVideo Decoder"
+0x1, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{238D0F23-5DC9-45A6-9BE2-666160C324DD}","CLSID","{238D0F23-5DC9-45A6-9BE2-666160C324DD}"
+0x3, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{238D0F23-5DC9-45A6-9BE2-666160C324DD}","FilterData",\
+  02,00,00,00,00,00,60,00,02,00,00,00,00,00,00,00,30,70,69,33,\
+  00,00,00,00,00,00,00,00,04,00,00,00,00,00,00,00,00,00,00,00,30,74,79,33,00,\
+  00,00,00,90,00,00,00,A0,00,00,00,31,74,79,33,00,00,00,00,90,00,00,00,B0,00,\
+  00,00,32,74,79,33,00,00,00,00,90,00,00,00,C0,00,00,00,33,74,79,33,00,00,00,\
+  00,90,00,00,00,D0,00,00,00,31,70,69,33,08,00,00,00,00,00,00,00,01,00,00,00,\
+  00,00,00,00,00,00,00,00,30,74,79,33,00,00,00,00,90,00,00,00,E0,00,00,00,76,\
+  69,64,73,00,00,10,00,80,00,00,AA,00,38,9B,71,52,56,32,30,00,00,10,00,80,00,\
+  00,AA,00,38,9B,71,52,56,33,30,00,00,10,00,80,00,00,AA,00,38,9B,71,52,56,34,\
+  30,00,00,10,00,80,00,00,AA,00,38,9B,71,52,56,34,31,00,00,10,00,80,00,00,AA,\
+  00,38,9B,71,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+0x1, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{765035B3-5944-4A94-806B-20EE3415F26F}","FriendlyName","RealMedia Source"
+0x1, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{765035B3-5944-4A94-806B-20EE3415F26F}","CLSID","{765035B3-5944-4A94-806B-20EE3415F26F}"
+0x3, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{765035B3-5944-4A94-806B-20EE3415F26F}","FilterData",\
+  02,00,00,00,00,00,60,00,00,00,00,00,00,00,00,00
+0x1, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{941A4793-A705-4312-8DFC-C11CA05F397E}","FriendlyName","RealAudio Decoder"
+0x1, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{941A4793-A705-4312-8DFC-C11CA05F397E}","CLSID","{941A4793-A705-4312-8DFC-C11CA05F397E}"
+0x3, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{941A4793-A705-4312-8DFC-C11CA05F397E}","FilterData",\
+  02,00,00,00,00,00,60,00,02,00,00,00,00,00,00,00,30,70,69,33,\
+  00,00,00,00,00,00,00,00,09,00,00,00,00,00,00,00,00,00,00,00,30,74,79,33,00,\
+  00,00,00,E0,00,00,00,F0,00,00,00,31,74,79,33,00,00,00,00,E0,00,00,00,00,01,\
+  00,00,32,74,79,33,00,00,00,00,E0,00,00,00,10,01,00,00,33,74,79,33,00,00,00,\
+  00,E0,00,00,00,20,01,00,00,34,74,79,33,00,00,00,00,E0,00,00,00,30,01,00,00,\
+  35,74,79,33,00,00,00,00,E0,00,00,00,40,01,00,00,36,74,79,33,00,00,00,00,E0,\
+  00,00,00,50,01,00,00,37,74,79,33,00,00,00,00,E0,00,00,00,60,01,00,00,38,74,\
+  79,33,00,00,00,00,E0,00,00,00,70,01,00,00,31,70,69,33,08,00,00,00,00,00,00,\
+  00,01,00,00,00,00,00,00,00,00,00,00,00,30,74,79,33,00,00,00,00,E0,00,00,00,\
+  80,01,00,00,61,75,64,73,00,00,10,00,80,00,00,AA,00,38,9B,71,31,34,5F,34,00,\
+  00,10,00,80,00,00,AA,00,38,9B,71,32,38,5F,38,00,00,10,00,80,00,00,AA,00,38,\
+  9B,71,41,54,52,43,00,00,10,00,80,00,00,AA,00,38,9B,71,43,4F,4F,4B,00,00,10,\
+  00,80,00,00,AA,00,38,9B,71,44,4E,45,54,00,00,10,00,80,00,00,AA,00,38,9B,71,\
+  53,49,50,52,00,00,10,00,80,00,00,AA,00,38,9B,71,FF,00,00,00,00,00,10,00,80,\
+  00,00,AA,00,38,9B,71,52,41,41,43,00,00,10,00,80,00,00,AA,00,38,9B,71,52,41,\
+  43,50,00,00,10,00,80,00,00,AA,00,38,9B,71,01,00,00,00,00,00,10,00,80,00,00,\
+  AA,00,38,9B,71
+0x1, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{E21BE468-5C18-43EB-B0CC-DB93A847D769}","FriendlyName","RealMedia Splitter"
+0x1, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{E21BE468-5C18-43EB-B0CC-DB93A847D769}","CLSID","{E21BE468-5C18-43EB-B0CC-DB93A847D769}"
+0x3, "Classes\CLSID\{083863F1-70DE-11d0-BD40-00A0C911CE86}\Instance\{E21BE468-5C18-43EB-B0CC-DB93A847D769}","FilterData",\
+  02,00,00,00,00,00,60,00,02,00,00,00,00,00,00,00,30,70,69,33,\
+  00,00,00,00,00,00,00,00,01,00,00,00,00,00,00,00,00,00,00,00,30,74,79,33,00,\
+  00,00,00,50,00,00,00,60,00,00,00,31,70,69,33,08,00,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,83,EB,36,E4,4F,52,CE,11,9F,53,00,20,AF,0B,A7,\
+  70,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+0x1, "Classes\CLSID\{0FDF6D6B-D672-463B-846E-C6FF49109662}","","RealPlayer Download Handler"
+0x0, "Classes\CLSID\{0FDF6D6B-D672-463B-846E-C6FF49109662}\DocObject"
+0x1, "Classes\CLSID\{0FDF6D6B-D672-463B-846E-C6FF49109662}\InprocServer32","","X:\I386\system32\rmoc3260.dll"
+0x1, "Classes\CLSID\{0FDF6D6B-D672-463B-846E-C6FF49109662}\InprocServer32","ThreadingModel",""
+0x1, "Classes\CLSID\{0FDF6D6B-D672-463B-846E-C6FF49109662}\ProgID","","rmocx.RealPlayer Download Handler.1"
+0x1, "Classes\CLSID\{0FDF6D6B-D672-463B-846E-C6FF49109662}\VersionIndependentProgID","","rmocx.RealPlayer Download Handler"
+0x1, "Classes\CLSID\{224E833B-2CC6-42D9-AE39-90B6A38A4FA2}","","RealPlayer SMIL Download Handler"
+0x0, "Classes\CLSID\{224E833B-2CC6-42D9-AE39-90B6A38A4FA2}\DocObject"
+0x1, "Classes\CLSID\{224E833B-2CC6-42D9-AE39-90B6A38A4FA2}\InprocServer32","","X:\I386\system32\rmoc3260.dll"
+0x1, "Classes\CLSID\{224E833B-2CC6-42D9-AE39-90B6A38A4FA2}\InprocServer32","ThreadingModel",""
+0x1, "Classes\CLSID\{224E833B-2CC6-42D9-AE39-90B6A38A4FA2}\ProgID","","rmocx.RealPlayer SMIL Download Handler.1"
+0x1, "Classes\CLSID\{224E833B-2CC6-42D9-AE39-90B6A38A4FA2}\VersionIndependentProgID","","rmocx.RealPlayer SMIL Download Handler"
+0x1, "Classes\CLSID\{2F542A2E-EDC9-4BF7-8CB1-87C9919F7F93}","","RealPlayer RAM Download Handler"
+0x0, "Classes\CLSID\{2F542A2E-EDC9-4BF7-8CB1-87C9919F7F93}\DocObject"
+0x1, "Classes\CLSID\{2F542A2E-EDC9-4BF7-8CB1-87C9919F7F93}\InprocServer32","","X:\I386\system32\rmoc3260.dll"
+0x1, "Classes\CLSID\{2F542A2E-EDC9-4BF7-8CB1-87C9919F7F93}\InprocServer32","ThreadingModel",""
+0x1, "Classes\CLSID\{2F542A2E-EDC9-4BF7-8CB1-87C9919F7F93}\ProgID","","rmocx.RealPlayer RAM Download Handler.1"
+0x1, "Classes\CLSID\{2F542A2E-EDC9-4BF7-8CB1-87C9919F7F93}\VersionIndependentProgID","","rmocx.RealPlayer RAM Download Handler"
+0x1, "Classes\CLSID\{3B5E0503-DE28-4BE8-919C-76E0E894A3C2}","","RealPlayer RNX Download Handler"
+0x0, "Classes\CLSID\{3B5E0503-DE28-4BE8-919C-76E0E894A3C2}\DocObject"
+0x1, "Classes\CLSID\{3B5E0503-DE28-4BE8-919C-76E0E894A3C2}\InprocServer32","","X:\I386\system32\rmoc3260.dll"
+0x1, "Classes\CLSID\{3B5E0503-DE28-4BE8-919C-76E0E894A3C2}\InprocServer32","ThreadingModel",""
+0x1, "Classes\CLSID\{3B5E0503-DE28-4BE8-919C-76E0E894A3C2}\ProgID","","rmocx.RealPlayer RNX Download Handler.1"
+0x1, "Classes\CLSID\{3B5E0503-DE28-4BE8-919C-76E0E894A3C2}\VersionIndependentProgID","","rmocx.RealPlayer RNX Download Handler"
+0x1, "Classes\CLSID\{44CCBCEB-BA7E-4C99-A078-9F683832D493}","","RealPlayer RMP Download Handler"
+0x0, "Classes\CLSID\{44CCBCEB-BA7E-4C99-A078-9F683832D493}\DocObject"
+0x1, "Classes\CLSID\{44CCBCEB-BA7E-4C99-A078-9F683832D493}\InprocServer32","","X:\I386\system32\rmoc3260.dll"
+0x1, "Classes\CLSID\{44CCBCEB-BA7E-4C99-A078-9F683832D493}\InprocServer32","ThreadingModel",""
+0x1, "Classes\CLSID\{44CCBCEB-BA7E-4C99-A078-9F683832D493}\ProgID","","rmocx.RealPlayer RMP Download Handler.1"
+0x1, "Classes\CLSID\{44CCBCEB-BA7E-4C99-A078-9F683832D493}\VersionIndependentProgID","","rmocx.RealPlayer RMP Download Handler"
+0x1, "Classes\CLSID\{A1A41E11-91DB-4461-95CD-0C02327FD934}","","RealPlayer Stream Handler"
+0x0, "Classes\CLSID\{A1A41E11-91DB-4461-95CD-0C02327FD934}\DocObject"
+0x1, "Classes\CLSID\{A1A41E11-91DB-4461-95CD-0C02327FD934}\InprocServer32","","X:\I386\system32\rmoc3260.dll"
+0x1, "Classes\CLSID\{A1A41E11-91DB-4461-95CD-0C02327FD934}\InprocServer32","ThreadingModel",""
+0x1, "Classes\CLSID\{A1A41E11-91DB-4461-95CD-0C02327FD934}\ProgID","","rmocx.RealPlayer Stream Handler.1"
+0x1, "Classes\CLSID\{A1A41E11-91DB-4461-95CD-0C02327FD934}\VersionIndependentProgID","","rmocx.RealPlayer Stream Handler"
+0x1, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}","","RealPlayer G2 Control"
+0x0, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\Control"
+0x0, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}"
+0x0, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}"
+0x1, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\InprocServer32","","X:\I386\system32\rmoc3260.dll"
+0x1, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\InprocServer32","ThreadingModel",""
+0x1, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\MiscStatus","","0"
+0x1, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\MiscStatus\1","","131473"
+0x1, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\ProgID","","rmocx.RealPlayer G2 Control.1"
+0x1, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\ToolboxBitmap32","","X:\I386\system32\rmoc3260.dll, 1"
+0x1, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\TypeLib","","{CFCDAA00-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\Version","","1.0"
+0x1, "Classes\CLSID\{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}\VersionIndependentProgID","","rmocx.RealPlayer G2 Control"
+0x1, "Classes\CLSID\{238D0F23-5DC9-45A6-9BE2-666160C324DD}","","RealVideo Decoder"
+0x1, "Classes\CLSID\{238D0F23-5DC9-45A6-9BE2-666160C324DD}\InprocServer32","","X:\Programs\Real Alternative\RealMediaSplitter.ax"
+0x1, "Classes\CLSID\{238D0F23-5DC9-45A6-9BE2-666160C324DD}\InprocServer32","ThreadingModel","Both"
+0x1, "Classes\CLSID\{765035B3-5944-4A94-806B-20EE3415F26F}","","RealMedia Source"
+0x1, "Classes\CLSID\{765035B3-5944-4A94-806B-20EE3415F26F}\InprocServer32","","X:\Programs\Real Alternative\RealMediaSplitter.ax"
+0x1, "Classes\CLSID\{765035B3-5944-4A94-806B-20EE3415F26F}\InprocServer32","ThreadingModel","Both"
+0x1, "Classes\CLSID\{941A4793-A705-4312-8DFC-C11CA05F397E}","","RealAudio Decoder"
+0x1, "Classes\CLSID\{941A4793-A705-4312-8DFC-C11CA05F397E}\InprocServer32","","X:\Programs\Real Alternative\RealMediaSplitter.ax"
+0x1, "Classes\CLSID\{941A4793-A705-4312-8DFC-C11CA05F397E}\InprocServer32","ThreadingModel","Both"
+0x1, "Classes\CLSID\{E21BE468-5C18-43EB-B0CC-DB93A847D769}","","RealMedia Splitter"
+0x1, "Classes\CLSID\{E21BE468-5C18-43EB-B0CC-DB93A847D769}\InprocServer32","","X:\Programs\Real Alternative\RealMediaSplitter.ax"
+0x1, "Classes\CLSID\{E21BE468-5C18-43EB-B0CC-DB93A847D769}\InprocServer32","ThreadingModel","Both"
+0x1, "Classes\Interface\{CFCDAA01-8BE4-11CF-B84B-0020AFBBCCFA}","","IRealAudio"
+0x1, "Classes\Interface\{CFCDAA01-8BE4-11CF-B84B-0020AFBBCCFA}\ProxyStubClsid","","{00020424-0000-0000-C000-000000000046}"
+0x1, "Classes\Interface\{CFCDAA01-8BE4-11CF-B84B-0020AFBBCCFA}\ProxyStubClsid32","","{00020424-0000-0000-C000-000000000046}"
+0x1, "Classes\Interface\{CFCDAA01-8BE4-11CF-B84B-0020AFBBCCFA}\TypeLib","","{CFCDAA00-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\Interface\{CFCDAA01-8BE4-11CF-B84B-0020AFBBCCFA}\TypeLib","Version","1.0"
+0x1, "Classes\Interface\{CFCDAA02-8BE4-11CF-B84B-0020AFBBCCFA}","","DRealAudioEvents"
+0x1, "Classes\Interface\{CFCDAA02-8BE4-11CF-B84B-0020AFBBCCFA}\ProxyStubClsid","","{00020420-0000-0000-C000-000000000046}"
+0x1, "Classes\Interface\{CFCDAA02-8BE4-11CF-B84B-0020AFBBCCFA}\ProxyStubClsid32","","{00020420-0000-0000-C000-000000000046}"
+0x1, "Classes\Interface\{CFCDAA02-8BE4-11CF-B84B-0020AFBBCCFA}\TypeLib","","{CFCDAA00-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\Interface\{CFCDAA02-8BE4-11CF-B84B-0020AFBBCCFA}\TypeLib","Version","1.0"
+0x1, "Classes\Media Type\{e436eb83-524f-11ce-9f53-0020af0ba770}\{57428EC6-C2B2-44A2-AA9C-28F0B6A5C48E}","0","0,4,,2E524D46"
+0x1, "Classes\Media Type\{e436eb83-524f-11ce-9f53-0020af0ba770}\{57428EC6-C2B2-44A2-AA9C-28F0B6A5C48E}","Source Filter","{E436EBB5-524F-11CE-9F53-0020AF0BA770}"
+0x1, "Classes\MIME\Database\Content Type\application/smil","Extension",".smil"
+0x1, "Classes\MIME\Database\Content Type\application/smil","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\MIME\Database\Content Type\application/vnd.rn-realmedia","Extension",".rm"
+0x1, "Classes\MIME\Database\Content Type\application/vnd.rn-realmedia","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\MIME\Database\Content Type\application/vnd.rn-rsml","Extension",".rsml"
+0x1, "Classes\MIME\Database\Content Type\application/vnd.rn-rsml","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\MIME\Database\Content Type\application/x-realplayer","CLSID","{3B46067C-FD87-49b6-8DDD-12F0D687035F}"
+0x1, "Classes\MIME\Database\Content Type\audio/vnd.rn-realaudio","Extension",".ra"
+0x1, "Classes\MIME\Database\Content Type\audio/vnd.rn-realaudio","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\MIME\Database\Content Type\audio/vnd.rn-realmedia","Extension",".rm"
+0x1, "Classes\MIME\Database\Content Type\audio/vnd.rn-realmedia","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}}"
+0x1, "Classes\MIME\Database\Content Type\audio/vnd.rn-realpix","Extension",".rp"
+0x1, "Classes\MIME\Database\Content Type\audio/x.pn-realaudio","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\MIME\Database\Content Type\audio/x.pn-realaudio","Extension",".ram"
+0x1, "Classes\MIME\Database\Content Type\audio/x-pn-realaudio","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\MIME\Database\Content Type\audio/x-pn-realaudio","Extension",".ram"
+0x1, "Classes\MIME\Database\Content Type\audio/x-pn-realaudio-plugin","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\MIME\Database\Content Type\audio/x-realaudio","Extension",".ra"
+0x1, "Classes\MIME\Database\Content Type\audio/x-realaudio","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\MIME\Database\Content Type\image/vnd.rn-realpix","Extension",".rp"
+0x1, "Classes\MIME\Database\Content Type\image/vnd.rn-realpix","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\MIME\Database\Content Type\text/vnd.rn-realtext","Extension",".rt"
+0x1, "Classes\MIME\Database\Content Type\text/vnd.rn-realtext","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\MIME\Database\Content Type\video/vnd.rn-realvideo","Extension",".rv"
+0x1, "Classes\MIME\Database\Content Type\video/vnd.rn-realvideo","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x0, "Classes\SOFTWARE\Classes"
+0x1, "Classes\SOFTWARE\RealNetworks\Gemini\0.1\Preferences\PluginFilePath","","X:\Programs\Real Alternative\RCAPlugins\"
+0x1, "Classes\SOFTWARE\RealNetworks\Preferences\CountryID","","32"
+0x1, "Classes\SOFTWARE\RealNetworks\Preferences\DT_Codecs","","X:\Programs\Real Alternative\Codecs\"
+0x1, "Classes\SOFTWARE\RealNetworks\Preferences\DT_Common","","X:\Programs\Real Alternative\Common\"
+0x1, "Classes\SOFTWARE\RealNetworks\Preferences\DT_Objbrokr","","X:\Programs\Real Alternative\Common\"
+0x1, "Classes\SOFTWARE\RealNetworks\Preferences\DT_Plugins","","X:\Programs\Real Alternative\Plugins\"
+0x1, "Classes\SOFTWARE\RealNetworks\Preferences\DT_Update_OB","","X:\Programs\Real Alternative\Update_OB\"
+0x1, "Classes\SOFTWARE\RealNetworks\Preferences\UserAddress","","somebody@somewhere.abc"
+0x1, "Classes\SOFTWARE\RealNetworks\Preferences\Volume","","-1"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\Bandwidth","","786432"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\BufferedPlayTime","","60"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\CacheEnabled","","0"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\CacheFilename","","B:\All Users\Application Data\real"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\CacheMaxSize","","10485760"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\ConnectionTimeout","","30"
+0x4, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\CookiesEnabled","", 0x00000000
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\EmbededVolume","","100"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\ExternalResourcesDirectory","","X:\Programs\Real Alternative\Plugins\ExtResources"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxyAutoConfig","","0"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxyHost","",""
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxyPort","","8080"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxySupport","","0"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\LiveSuperBuffer","","1"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\MaxBandwidth","","786432"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\ODSuperBuffer","","1"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\PNAProxyHost","",""
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\PNAProxyPort","","1090"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\PNAProxySupport","","0"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\ProxyAutoConfigURL","",""
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPPNMProxyAutoConfig","","0"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPProxyHost","",""
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPProxyPort","","554"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPProxySupport","","0"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\SendStatistics","","0"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\ServerTimeout","","90"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\SuperBufferLength","","1800000"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\TurboPlay","","1"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\UDPPort","","7070-7071"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\UseSystemProxySettings","","1"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\UseUDPPort","","0"
+0x1, "Classes\SOFTWARE\RealNetworks\RealMediaSDK\6.0\Preferences\Volume","","-1"
+0x1, "Classes\SOFTWARE\RealNetworks\RealPlayer\6.0\Preferences\DisplayName","","RealPlayer"
+0x1, "Classes\SOFTWARE\RealNetworks\RealPlayer\6.0\Preferences\DistCode","","RN30BB"
+0x1, "Classes\SOFTWARE\RealNetworks\RealPlayer\6.0\Preferences\GetHTTPProxyFromBrowser","","1"
+0x1, "Classes\SOFTWARE\RealNetworks\RealPlayer\6.0\Preferences\LangID","","en"
+0x1, "Classes\SOFTWARE\RealNetworks\RealPlayer\6.0\Preferences\MainApp","","X:\Programs\Real Alternative\mpclauncher.exe"
+0x1, "Classes\SOFTWARE\RealNetworks\RealPlayer\6.0\Preferences\OrigCode","","RN30BB"
+0x1, "Classes\SOFTWARE\RealNetworks\RealPlayer\6.0\Preferences\PluginFilePath","","X:\Programs\Real Alternative\rpplugins"
+0x1, "Classes\SOFTWARE\RealNetworks\RealPlayer\6.0\Preferences\Title","","RealPlayer"
+0x1, "Classes\SOFTWARE\RealNetworks\RealPlayer\6.0\Preferences\Volume","","-1"
+0x1, "Classes\SOFTWARE\RealNetworks\RealPlayer\CurrentVersion","","6.0"
+0x0, "Classes\SOFTWARE\RealNetworks\Update"
+0x1, "Classes\TypeLib\{CFCDAA00-8BE4-11CF-B84B-0020AFBBCCFA}\1.0","","Real Player ActiveX Control Library"
+0x1, "Classes\TypeLib\{CFCDAA00-8BE4-11CF-B84B-0020AFBBCCFA}\1.0\0\win32","","X:\I386\system32\rmoc3260.dll"
+0x1, "Classes\TypeLib\{CFCDAA00-8BE4-11CF-B84B-0020AFBBCCFA}\1.0\FLAGS","","0"
+0x1, "Classes\TypeLib\{CFCDAA00-8BE4-11CF-B84B-0020AFBBCCFA}\1.0\HELPDIR","","X:\I386\system32"
+0x1, "Classes\.ra","","RA RealMedia File"
+0x1, "Classes\.ra","Content Type","audio/vnd.rn-realaudio"
+0x1, "Classes\.ra","PerceivedType","audio"
+0x1, "Classes\.ram","","RA RealMedia File"
+0x1, "Classes\.ram","Content Type","audio/x.pn-realaudio"
+0x1, "Classes\.ram","PerceivedType","video"
+0x1, "Classes\.rm","","RA RealMedia File"
+0x1, "Classes\.rm","Content Type","audio/vnd.rn-realmedia"
+0x1, "Classes\.rm","PerceivedType","video"
+0x1, "Classes\.rmm","","RA RealMedia File"
+0x1, "Classes\.rmm","Content Type","audio/x.pn-realaudio"
+0x1, "Classes\.rmvb","","RA RealMedia File"
+0x1, "Classes\.rmvb","PerceivedType","video"
+0x1, "Classes\.rnx","","RA RealMedia File"
+0x1, "Classes\.rnx","Content Type","audio/vnd.rn-realplayer"
+0x1, "Classes\.rp","","RA RealMedia File"
+0x1, "Classes\.rp","Content Type","audio/vnd.rn-realpix"
+0x1, "Classes\.rpm","Content Type","audio/x-pn-realaudio-plugin"
+0x1, "Classes\.rpm","CLSID","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\.rt","","RA RealMedia File"
+0x1, "Classes\.rt","Content Type","text/vnd.rn-realtext"
+0x1, "Classes\.rv","","RA RealMedia File"
+0x1, "Classes\.rv","Content Type","video/vnd.rn-realvideo"
+0x1, "Classes\.smi","","RA RealMedia File"
+0x1, "Classes\.smi","Content Type","application/smil"
+0x1, "Classes\.smil","","RA RealMedia File"
+0x1, "Classes\.smil","Content Type","application/smil"
+0x1, "Classes\RA RealMedia File\DefaultIcon","","X:\Programs\Real Alternative\real.ico"
+0x1, "Classes\RA RealMedia File\Shell","","open"
+0x1, "Classes\RA RealMedia File\Shell\Open","",""
+0x2, "Classes\RA RealMedia File\Shell\Open\Command","","%SystemRoot%\system32\wmplayer.exe /prefetch:1"
+0x1, "Classes\rmocx.RealPlayer Download Handler","","RealPlayer Download Handler"
+0x3, "Classes\rmocx.RealPlayer Download Handler","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer Download Handler\CLSID","","{0FDF6D6B-D672-463B-846E-C6FF49109662}"
+0x1, "Classes\rmocx.RealPlayer Download Handler\CurVer","","rmocx.RealPlayer Download Handler.1"
+0x1, "Classes\rmocx.RealPlayer Download Handler.1","","RealPlayer Download Handler"
+0x3, "Classes\rmocx.RealPlayer Download Handler.1","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer Download Handler.1\CLSID","","{0FDF6D6B-D672-463B-846E-C6FF49109662}"
+0x1, "Classes\rmocx.RealPlayer G2 Control","","RealPlayer G2 Control"
+0x3, "Classes\rmocx.RealPlayer G2 Control","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer G2 Control\CLSID","","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\rmocx.RealPlayer G2 Control\CurVer","","rmocx.RealPlayer G2 Control.1"
+0x0, "Classes\rmocx.RealPlayer G2 Control\Insertable"
+0x1, "Classes\rmocx.RealPlayer G2 Control.1","","RealPlayer G2 Control"
+0x3, "Classes\rmocx.RealPlayer G2 Control.1","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer G2 Control.1\CLSID","","{CFCDAA03-8BE4-11CF-B84B-0020AFBBCCFA}"
+0x1, "Classes\rmocx.RealPlayer Playback Handler","","RealPlayer Playback Handler"
+0x3, "Classes\rmocx.RealPlayer Playback Handler","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer Playback Handler\CLSID","","{3B46067C-FD87-49B6-8DDD-12F0D687035F}"
+0x1, "Classes\rmocx.RealPlayer Playback Handler\CurVer","","rmocx.RealPlayer Playback Handler.1"
+0x1, "Classes\rmocx.RealPlayer Playback Handler.1","","RealPlayer Playback Handler"
+0x3, "Classes\rmocx.RealPlayer Playback Handler.1","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer Playback Handler.1\CLSID","","{3B46067C-FD87-49B6-8DDD-12F0D687035F}"
+0x1, "Classes\rmocx.RealPlayer RAM Download Handler","","RealPlayer RAM Download Handler"
+0x3, "Classes\rmocx.RealPlayer RAM Download Handler","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer RAM Download Handler\CLSID","","{2F542A2E-EDC9-4BF7-8CB1-87C9919F7F93}"
+0x1, "Classes\rmocx.RealPlayer RAM Download Handler\CurVer","","rmocx.RealPlayer RAM Download Handler.1"
+0x1, "Classes\rmocx.RealPlayer RAM Download Handler.1","","RealPlayer RAM Download Handler"
+0x3, "Classes\rmocx.RealPlayer RAM Download Handler.1","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer RAM Download Handler.1\CLSID","","{2F542A2E-EDC9-4BF7-8CB1-87C9919F7F93}"
+0x1, "Classes\rmocx.RealPlayer RMP Download Handler","","RealPlayer RMP Download Handler"
+0x3, "Classes\rmocx.RealPlayer RMP Download Handler","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer RMP Download Handler\CLSID","","{44CCBCEB-BA7E-4C99-A078-9F683832D493}"
+0x1, "Classes\rmocx.RealPlayer RMP Download Handler\CurVer","","rmocx.RealPlayer RMP Download Handler.1"
+0x1, "Classes\rmocx.RealPlayer RMP Download Handler.1","","RealPlayer RMP Download Handler"
+0x3, "Classes\rmocx.RealPlayer RMP Download Handler.1","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer RMP Download Handler.1\CLSID","","{44CCBCEB-BA7E-4C99-A078-9F683832D493}"
+0x1, "Classes\rmocx.RealPlayer RNX Download Handler","","RealPlayer RNX Download Handler"
+0x3, "Classes\rmocx.RealPlayer RNX Download Handler","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer RNX Download Handler\CLSID","","{3B5E0503-DE28-4BE8-919C-76E0E894A3C2}"
+0x1, "Classes\rmocx.RealPlayer RNX Download Handler\CurVer","","rmocx.RealPlayer RNX Download Handler.1"
+0x1, "Classes\rmocx.RealPlayer RNX Download Handler.1","","RealPlayer RNX Download Handler"
+0x3, "Classes\rmocx.RealPlayer RNX Download Handler.1","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer RNX Download Handler.1\CLSID","","{3B5E0503-DE28-4BE8-919C-76E0E894A3C2}"
+0x1, "Classes\rmocx.RealPlayer SMIL Download Handler","","RealPlayer SMIL Download Handler"
+0x3, "Classes\rmocx.RealPlayer SMIL Download Handler","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer SMIL Download Handler\CLSID","","{224E833B-2CC6-42D9-AE39-90B6A38A4FA2}"
+0x1, "Classes\rmocx.RealPlayer SMIL Download Handler\CurVer","","rmocx.RealPlayer SMIL Download Handler.1"
+0x1, "Classes\rmocx.RealPlayer SMIL Download Handler.1","","RealPlayer SMIL Download Handler"
+0x3, "Classes\rmocx.RealPlayer SMIL Download Handler.1","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer SMIL Download Handler.1\CLSID","","{224E833B-2CC6-42D9-AE39-90B6A38A4FA2}"
+0x1, "Classes\rmocx.RealPlayer Stream Handler","","RealPlayer Stream Handler"
+0x3, "Classes\rmocx.RealPlayer Stream Handler","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer Stream Handler\CLSID","","{A1A41E11-91DB-4461-95CD-0C02327FD934}"
+0x1, "Classes\rmocx.RealPlayer Stream Handler\CurVer","","rmocx.RealPlayer Stream Handler.1"
+0x1, "Classes\rmocx.RealPlayer Stream Handler.1","","RealPlayer Stream Handler"
+0x3, "Classes\rmocx.RealPlayer Stream Handler.1","EditFlags",\
+  00,00,01,00
+0x1, "Classes\rmocx.RealPlayer Stream Handler.1\CLSID","","{A1A41E11-91DB-4461-95CD-0C02327FD934}"
+0x1, "Classes\rtsp","","URL: RealTime Streaming Protocol"
+0x1, "Classes\rtsp","URL Protocol",""
+0x2, "Classes\rtsp\DefaultIcon","","%SystemRoot%\system32\url.dll,0"
+0x1, "Classes\rtsp\shell\open\command","","""X:\Programs\Media Player Classic\mplayerc.exe"" ""%1"""
+0x1, "Microsoft\MediaPlayer\MLS\Extensions","ra","audio"
+0x1, "Microsoft\MediaPlayer\MLS\Extensions","ram","video"
+0x1, "Microsoft\MediaPlayer\MLS\Extensions","rm","video"
+0x1, "Microsoft\MediaPlayer\MLS\Extensions","rmvb","video"
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.ra","PerceivedType","audio"
+0x4, "Microsoft\Multimedia\WMPlayer\Extensions\.ra","Permissions", 0x0000000f
+0x4, "Microsoft\Multimedia\WMPlayer\Extensions\.ra","Runtime", 0x00000007
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.ram","PerceivedType","video"
+0x4, "Microsoft\Multimedia\WMPlayer\Extensions\.ram","Permissions", 0x0000000f
+0x4, "Microsoft\Multimedia\WMPlayer\Extensions\.ram","Runtime", 0x00000007
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.rm","PerceivedType","video"
+0x4, "Microsoft\Multimedia\WMPlayer\Extensions\.rm","Permissions", 0x0000000f
+0x4, "Microsoft\Multimedia\WMPlayer\Extensions\.rm","Runtime", 0x00000007
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","AlreadyRegistered","yes"
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","Extension.Handler","midfile"
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","Extension.MIME","audio/mid"
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","MCIHandler","Sequencer"
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","MediaType.Description","MIDI Sequence"
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","MediaType.DescriptionID","9907"
+0x2, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","MediaType.Icon","wmplayer.exe,-120"
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","PerceivedType","audio"
+0x4, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","Permissions", 0x0000000f
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","ReplaceApps","wmplayer.exe|mplayer2.exe|amovie.ocx|sndrec32.exe|mplay32.exe|mplayer.exe|iexplore.exe"
+0x4, "Microsoft\Multimedia\WMPlayer\Extensions\.rmi","Runtime", 0x00000007
+0x1, "Microsoft\Multimedia\WMPlayer\Extensions\.rmvb","PerceivedType","video"
+0x4, "Microsoft\Multimedia\WMPlayer\Extensions\.rmvb","Permissions", 0x0000000f
+0x4, "Microsoft\Multimedia\WMPlayer\Extensions\.rmvb","Runtime", 0x00000007
+0x1, "Microsoft\Windows\CurrentVersion\App Paths\mplayerc.exe","","""X:\Programs\Media Player Classic\mplayerc.exe"""
+0x1, "Microsoft\Windows\CurrentVersion\App Paths\mplayerc.exe","Path","""X:\Programs\Media Player Classic"""
+0x1, "Gabest\Media Player Classic\Instances","pf","""X:\Programs\Media Player Classic\mplayerc.exe"""
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571","Path","X:\Programs\Real Alternative\browser\plugins\nppl3260.dll"
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571","Product","RealPlayer"
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571","Version","6.0.11.2571"
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571","Description","RealMedia Plugin"
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571","Vendor","RealNetworks"
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571","XPTPath","X:\Programs\Real Alternative\browser\components\nppl3260.xpt"
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571\MimeTypes\audio/x-pn-realaudio-plugin","Suffixes","ra,ram,rm,rpm"
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571\MimeTypes\audio/x-pn-realaudio-plugin","Description","RealPlayer(tm) as Plugin (*.ra,*.ram,*.rm,*.rpm)"
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571\Suffixes","ra",""
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571\Suffixes","ram",""
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571\Suffixes","rm",""
+0x1, "MozillaPlugins\@real.com/nppl3260;version=6.0.11.2571\Suffixes","rpm",""
+0x1, "MozillaPlugins\@real.com/nprpjplug;version=6.0.12.1739","Path","X:\Programs\Real Alternative\browser\plugins\nprpjplug.dll"
+0x1, "MozillaPlugins\@real.com/nprpjplug;version=6.0.12.1739","Product","RealPlayer"
+0x1, "MozillaPlugins\@real.com/nprpjplug;version=6.0.12.1739","Version","6.0.12.1739"
+0x1, "MozillaPlugins\@real.com/nprpjplug;version=6.0.12.1739","Description","RealPlayer Version Plugin"
+0x1, "MozillaPlugins\@real.com/nprpjplug;version=6.0.12.1739","Vendor","RealNetworks"
+0x1, "MozillaPlugins\@real.com/nprpjplug;version=6.0.12.1739\MimeTypes\application/vnd.rn-realplayer-javascript","Suffixes","rpj"
+0x1, "MozillaPlugins\@real.com/nprpjplug;version=6.0.12.1739\MimeTypes\application/vnd.rn-realplayer-javascript","Description","RealPlayer Version Plugin(*.rpj)"
+0x1, "MozillaPlugins\@real.com/nprpjplug;version=6.0.12.1739\Suffixes","rpj",""
+0x1, "MozillaPlugins\@real.com/nsJSRealPlayerPlugin;version=","XPTPath","X:\Programs\Real Alternative\browser\components\nsJSRealPlayerPlugin.xpt"
+0x1, "RealAlternative","installdir","X:\Programs\Real Alternative"
+0x4, "RealAlternative","version", 0x00000098
+0x1, "RealAlternative","type","regular"
+0x1, "RealNetworks\RealPlayer","version","6.0.12.1741"
+
+[Default.AddReg]
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\Bandwidth","","786432"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\BufferedPlayTime","","60"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\CacheEnabled","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\CacheFilename","","B:\Default User\Application Data\real"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\CacheMaxSize","","10485760"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\ConnectionTimeout","","30"
+0x4, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\CookiesEnabled","", 0x00000000
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\EmbededVolume","","100"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\HTTPProxyAutoConfig","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\HTTPProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\HTTPProxyPort","","8080"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\HTTPProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\LiveSuperBuffer","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\MaxBandwidth","","786432"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\ODSuperBuffer","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\PNAProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\PNAProxyPort","","1090"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\PNAProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\ProxyAutoConfigURL","",""
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\RTSPPNMProxyAutoConfig","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\RTSPProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\RTSPProxyPort","","554"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\RTSPProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\SendStatistics","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\ServerTimeout","","90"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\SuperBufferLength","","1800000"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\TurboPlay","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\UDPPort","","7070-7071"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\UseSystemProxySettings","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\UseUDPPort","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\Volume","","-1"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\Bandwidth","","786432"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\BufferedPlayTime","","60"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\CacheEnabled","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\CacheFilename","","B:\Default User\Application Data\real"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\CacheMaxSize","","10485760"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\ConnectionTimeout","","30"
+0x4, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\CookiesEnabled","", 0x00000000
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\EmbededVolume","","100"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxyAutoConfig","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxyPort","","8080"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\LiveSuperBuffer","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\MaxBandwidth","","786432"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\ODSuperBuffer","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\PNAProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\PNAProxyPort","","1090"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\PNAProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\ProxyAutoConfigURL","",""
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPPNMProxyAutoConfig","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPProxyPort","","554"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\SendStatistics","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\ServerTimeout","","90"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\SuperBufferLength","","1800000"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\TurboPlay","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\UDPPort","","7070-7071"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\UseSystemProxySettings","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\UseUDPPort","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\Volume","","-1"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\Bandwidth","","786432"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\BufferedPlayTime","","60"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\CacheEnabled","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\CacheFilename","","B:\Default User\Application Data\real"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\CacheMaxSize","","10485760"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\ConnectionTimeout","","30"
+0x4, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\CookiesEnabled","", 0x00000000
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\EmbededVolume","","100"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\HTTPProxyAutoConfig","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\HTTPProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\HTTPProxyPort","","8080"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\HTTPProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\LiveSuperBuffer","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\MaxBandwidth","","786432"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\ODSuperBuffer","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\PNAProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\PNAProxyPort","","1090"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\PNAProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\ProxyAutoConfigURL","",""
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\RTSPPNMProxyAutoConfig","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\RTSPProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\RTSPProxyPort","","554"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\RTSPProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\SendStatistics","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\ServerTimeout","","90"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\SuperBufferLength","","1800000"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\TurboPlay","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\UDPPort","","7070-7071"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\UseSystemProxySettings","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\UseUDPPort","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\10.0\Preferences\Volume","","-1"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\Bandwidth","","786432"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\BufferedPlayTime","","60"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\CacheEnabled","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\CacheFilename","","B:\Default User\Application Data\real"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\CacheMaxSize","","10485760"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\ConnectionTimeout","","30"
+0x4, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\CookiesEnabled","", 0x00000000
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\EmbededVolume","","100"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxyAutoConfig","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxyPort","","8080"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\HTTPProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\LiveSuperBuffer","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\MaxBandwidth","","786432"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\ODSuperBuffer","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\PNAProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\PNAProxyPort","","1090"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\PNAProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\ProxyAutoConfigURL","",""
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPPNMProxyAutoConfig","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPProxyHost","",""
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPProxyPort","","554"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\RTSPProxySupport","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\SendStatistics","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\ServerTimeout","","90"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\SuperBufferLength","","1800000"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\TurboPlay","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\UDPPort","","7070-7071"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\UseSystemProxySettings","","1"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\UseUDPPort","","0"
+0x1, "Software\RealNetworks\RealMediaSDK\6.0\Preferences\Volume","","-1"
+
+[Software.AddReg]
+0x1, "Classes\CLSID\{CFCDA953-8BE4-11CF-B84B-0020AFBBCCFA}","","RealPlayer General Property Page"
+0x1, "Classes\CLSID\{CFCDA953-8BE4-11CF-B84B-0020AFBBCCFA}\InprocServer32","","X:\I386\system32\rmoc3260.dll"
+0x1, "Classes\CLSID\{CFCDA953-8BE4-11CF-B84B-0020AFBBCCFA}\InprocServer32","ThreadingModel",""
+0x1, "Microsoft\Windows\CurrentVersion\Explorer\Shell Folders","Common AppData","B:\All Users\Application Data"
+
+[Default.AddReg]
+0x1, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","FolderType","Documents"
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","Mode", 0x00000006
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","ScrollPos1024x768(1).x", 0x00000000
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","ScrollPos1024x768(1).y", 0x00000000
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","Sort", 0x00000000
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","SortDir", 0x00000001
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","Col", 0xffffffff
+0x3, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","ColInfo",\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,fd,df,df,fd,0f,\
+  00,06,00,28,00,10,00,34,00,48,00,00,00,00,00,01,00,00,00,02,00,00,00,03,00,\
+  00,00,04,00,00,00,05,00,00,00,B4,00,60,00,78,00,78,00,B4,00,B4,00,00,00,00,\
+  00,01,00,00,00,02,00,00,00,03,00,00,00,FF,FF,FF,FF,00,00,00,00,00,00,00,00,\
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+  00,00,00
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","MinPos1024x768(1).x", 0xffffffff
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","MinPos1024x768(1).y", 0xffffffff
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","MaxPos1024x768(1).x", 0xffffffff
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","MaxPos1024x768(1).y", 0xffffffff
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","WinPos1024x768(1).left", 0x00000042
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","WinPos1024x768(1).top", 0x00000057
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","WinPos1024x768(1).right", 0x00000362
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","WinPos1024x768(1).bottom", 0x000002af
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","Rev", 0x00000007
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","WFlags", 0x00000002
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","ShowCmd", 0x00000003
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","FFlags", 0x00000001
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","HotKey", 0x00000000
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","Buttons", 0xffffffff
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","Links", 0x00000000
+0x4, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","Address", 0xffffffff
+0x1, "Software\Microsoft\Windows\ShellNoRoam\Bags\1\Shell","Vid","{65F125E5-7BE1-4810-BA9D-D271C8432CE3}"

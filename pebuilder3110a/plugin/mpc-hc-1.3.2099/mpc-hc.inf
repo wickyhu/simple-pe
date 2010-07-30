@@ -1,0 +1,72 @@
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="Media Player Classic Home Cinema"
+Enable=1
+
+[WinntDirectories]
+a="Programs\MPC-HC",2
+
+[SourceDisksFiles]
+MediaInfo.dll=a,,1
+mpc-hc.exe=a,,1
+mpcresources.ua.dll=a,,1
+
+[Software.AddReg]
+0x2, "Sherpya\XPEinit\Programs","Players\Media Player Classic Home Cinema","%SystemDrive%\Programs\MPC-HC\mpc-hc.exe"
+0x2, "Sherpya\XPEinit\Desktop","MPC-HC","%SystemDrive%\Programs\MPC-HC\mpc-hc.exe"
+
+0x1,"Classes\.asf","","VideoFile"
+0x1,"Classes\.avi","","VideoFile"
+0x1,"Classes\.cda","","SoundFile"
+0x1,"Classes\.mp3","","SoundFile"
+0x1,"Classes\.m1v","","mpegfile"
+0x1,"Classes\.m3u","","SoundFile"
+0x1,"Classes\.mid","","midfile"
+0x1,"Classes\.midi","","midfile"
+0x1,"Classes\.mov","","VideoFile"
+0x1,"Classes\.mp2","","SoundFile"
+0x1,"Classes\.mp2v","","SoundFile"
+0x1,"Classes\.mpa","","mpegfile"
+0x1,"Classes\.mpe","","mpegfile"
+0x1,"Classes\.mpg","","mpegfile"
+0x1,"Classes\.mpeg","","mpegfile"
+0x1,"Classes\.mpv2","","mpegfile"
+0x1,"Classes\.qt","","VideoFile"
+0x1,"Classes\.rmi","","midfile"
+0x1,"Classes\.wav","","SoundFile"
+0x1,"Classes\.wmv","","VideoFile"
+0x1,"Classes\.wma","","VideoFile"
+0x1,"Classes\.wmdb","","VideoFile"
+0x1,"Classes\.vob","","VideoFile"
+0x1,"Classes\.mkv","","VideoFile"
+
+0x1,"Classes\MIDFile","","MIDI"
+0x1,"Classes\MIDFile\shell",,"open"
+0x1,"Classes\MIDFile\shell\open",,"&Open"
+0x2,"Classes\MIDFile\shell\open\command",,"%SystemDrive%\Programs\MPC-HC\mpc-hc.exe ""%L"""
+
+0x1,"Classes\MpegFile",,"mpeg"
+0x1,"Classes\MpegFile\shell",,"open"
+0x1,"Classes\MpegFile\shell\open",,"&Open"
+0x2,"Classes\MpegFile\shell\open\command",,"%SystemDrive%\Programs\MPC-HC\mpc-hc.exe ""%L"""
+
+0x1,"Classes\SoundFile",,"Sound"
+0x1,"Classes\SoundFile\shell",,"open"
+0x1,"Classes\SoundFile\shell\open",,"&Open"
+0x2,"Classes\SoundFile\shell\open\command",,"%SystemDrive%\Programs\MPC-HC\mpc-hc.exe ""%L"""
+
+0x1,"Classes\VideoFile",,"Videoclip"
+0x1,"Classes\VideoFile\shell",,"open"
+0x1,"Classes\VideoFile\shell\open",,"&Open"
+0x2,"Classes\VideoFile\shell\open\command",,"%SystemDrive%\Programs\MPC-HC\mpc-hc.exe ""%L"""
+
+0x1,"Classes\MovFile","","Videoclip"
+0x1,"Classes\MovFile\shell\open",,"&Open"
+0x2,"Classes\MovFile\shell\open\command",,"%SystemDrive%\Programs\MPC-HC\mpc-hc.exe ""%L"""
+
+
+[Append]
+nu2menu.xml, mpc-hc_nu2menu.xml

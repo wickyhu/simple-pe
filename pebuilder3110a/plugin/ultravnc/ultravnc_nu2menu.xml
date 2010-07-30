@@ -1,0 +1,11 @@
+<!-- UltraVNC -->
+<NU2MENU>
+<MENU ID="Programs">
+ <MITEM TYPE="POPUP" MENUID="UltraVNC">UltraVNC</MITEM>
+</MENU>
+<MENU ID="UltraVNC">      
+ <MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetProgramDrive()\Programs\ultravnc\vncviewer.exe))" CMD="RUN" FUNC="@GetProgramDrive()\Programs\ultravnc\vncviewer.exe">VNC Viewer</MITEM>
+ <MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetProgramDrive()\Programs\ultravnc\vncviewer.exe))" CMD="RUN" FUNC="@Exec(@GetProgramDrive()\Programs\ultravnc\vncviewer.exe -listen ,0)">VNC Viewer (in listen mode)</MITEM>
+ <MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetProgramDrive()\Programs\ultravnc\ultravnc.cmd))" CMD="RUN" FUNC="@GetWinDir()\system32\run.cmd @GetProgramDrive()\Programs\ultravnc\ultravnc.cmd">Load VNC Server</MITEM>
+</MENU>
+</NU2MENU>

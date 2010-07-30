@@ -1,0 +1,24 @@
+; bartpe.inf
+; PE Builder v3 plug-in INF file
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="BARTPE: Network Support"
+Enable=1
+Help="bartpe.htm"
+
+[SourceDisksFiles]
+netplwiz.dll=2
+srvsvc.dll=2
+hnetcfg.dll=2 ; added by BL nov 25, 2004
+netconfig.exe=2,,1
+netconfig.txt=2,,1
+msclient.cmd=2,,1
+msserver.cmd=2,,1
+msclisrv.cmd=2,,1
+run.cmd=2,,1
+
+[Append]
+nu2menu.xml, bartpe_nu2menu.xml

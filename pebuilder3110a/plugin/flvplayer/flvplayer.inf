@@ -1,0 +1,29 @@
+; flvplayer.inf
+; PE Builder v3 plug-in INF file for FLV Player
+
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="FLV Video Player"
+Enable=1
+
+[WinntDirectories]
+a="Programs\FLV Video Player",2
+
+[SourceDisksFiles]
+FLVPlayer.exe=a,,1
+
+[Software.AddReg]
+0x2, "Sherpya\XPEinit\Programs","Players\FLV Video Player","%SystemDrive%\Programs\FLV Video Player\FLVPlayer.exe"
+0x2, "Sherpya\XPEinit\Desktop","FLV Player","%SystemDrive%\Programs\FLV Video Player\FLVPlayer.exe"
+
+0x1,"Classes\.flv","","FlvFile"
+
+0x1,"Classes\FlvFile","","Videoclip"
+0x1,"Classes\FlvFile\shell\open",,"&Open"
+0x2,"Classes\FlvFile\shell\open\command",,"""%SystemDrive%\Programs\FLV Video Player\FLVPlayer.exe"" ""%L"""
+
+[Append]
+nu2menu.xml, flvplayer_nu2menu.xml

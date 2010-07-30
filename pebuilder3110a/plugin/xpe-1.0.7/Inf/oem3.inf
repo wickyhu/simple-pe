@@ -1,0 +1,317 @@
+;*******************************************************************
+; Installation file (.inf) for the USB to Virtual Serial ports device.
+;
+; (c) Copyright 2004-2005 USB World Technology Inc. 
+;
+;
+; 27-May-2004
+;*******************************************************************
+
+[Manufacturer]
+%MfgName%=Mfg0
+
+[Mfg0]
+%DeviceDesc%=usb2vcom, USB\VID_6547&PID_0232
+
+[SourceDisksNames]
+1="%Disk.desc%",,,
+
+[SourceDisksFiles]
+USBPORT.SYS=1
+SER2UP.VXD=1
+SER2UP.INF=1
+USB2VCOM.INF=1
+
+[SourceDisksFiles.x86]
+usb2vcom.sys=1
+
+[DestinationDirs]
+USB2VCOM.Files.Ext = 11
+USB2VCOM.Files.Inf = 10,INF
+usb2vcom.NT.Copy = 12        ;DIRID_DRIVERS
+SerialEnumerator.NT.Copy=12 ;DIRID_DRIVERS
+NonPort.NT.Copy = 12        ;DIRID_DRIVERS
+
+[Version]
+Signature="$Chicago$"
+Class=USB
+provider=%Mfg%
+
+[usb2vcom]
+;opyFiles=USB2VCOM.Files.Ext, USB2VCOM.Files.Inf
+AddReg=USB2VCOM.AddReg
+
+[USB2VCOM.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbport.sys
+
+[USB2VCOM.Files.Ext]
+USBPORT.SYS
+SER2UP.VXD
+
+[USB2VCOM.Files.Inf]
+USB2VCOM.INF
+SER2UP.INF
+
+;========================================================================
+;	for win2000/xp
+;========================================================================
+[Version]
+Signature="$Chicago$"
+Provider=%Mfg%
+
+Class=Ports
+ClassGUID={4d36e978-e325-11ce-bfc1-08002be10318}
+;CatalogFile=usb2vcom.cat
+DriverVer=07/09/2005,1.9.0.0
+AddReg=PortsClass.AddReg
+
+[PortsClass.AddReg]
+HKR,,,,%PortsClassName%
+
+[usb2vcom.NT]
+;opyFiles=usb2vcom.NT.Copy
+AddReg=usb2vcom.AddReg, usb2vcom.NT.AddReg
+LogConfig=c3a,c4a,caa
+SyssetupPnPFlags = 1
+
+[ClassInstall32.NT]
+AddReg=PortsClass.NT.AddReg
+
+[PortsClass.NT.AddReg]
+HKR,,,,%PortsClassName%
+HKR,,Icon,,"-23"
+HKR,,Installer32,,"MsPorts.Dll,PortsClassInstaller"
+
+[usb2vcom.NT.HW]
+AddReg=usb2vcom.NT.HW.AddReg
+
+[usb2vcom.NT.Copy]
+usb2vcom.sys
+
+[usb2vcom.NT.AddReg]
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[usb2vcom.NT.HW.AddReg]
+HKR,,"UpperFilters",0x00010000,"serenum"
+
+
+; MultiPort COM Sections;
+; -------------------------------------------------------
+
+[MultiComPort.NT]
+;opyFiles=usb2vcom.NT.Copy
+AddReg=usb2vcom.AddReg, usb2vcom.NT.AddReg
+LogConfig=cm1,cm2,cm3,cm4,dg1,dga,cma
+SyssetupPnPFlags = 1
+
+[MultiComPort.NT.HW]
+; Add multiport and normal port into the hardware devnode
+AddReg=MultiComPort.NT.HW.AddReg,usb2vcom.NT.HW.AddReg
+
+[MultiComPort.NT.HW.AddReg]
+; Add multiport specific info to the hardware devnode
+HKR,,MultiportDevice,0x00010001,1
+
+; The serial enumerator by itself, so that other INFs can install serenum w/out usb2vcom.sys
+; -------------------------------------------------------
+
+[SerialEnumerator.NT]
+;opyFiles=SerialEnumerator.NT.Copy
+
+[SerialEnumerator.NT.Copy]
+serenum.sys
+
+;-------------- Service installation
+; Port Driver (function driver for this device)
+[usb2vcom.NT.Services]
+AddService = usb2vcom, 0x00000002, Serial_Service_Inst, Serial_EventLog_Inst
+AddService = Serenum,,Serenum_Service_Inst
+
+[MultiComPort.NT.Services]
+AddService = usb2vcom, 0x00000002, Serial_Service_Inst, Serial_EventLog_Inst
+AddService = Serenum,,Serenum_Service_Inst
+
+[SerialEnumerator.NT.Services]
+AddService = Serenum,,Serenum_Service_Inst
+
+; -------------- Serial Port Driver install sections
+[Serial_Service_Inst]
+DisplayName    = %Serial.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_SYSTEM_START (this driver may do detection)
+ErrorControl   = 1               ; SERVICE_ERROR_IGNORE
+ServiceBinary  = %12%\usb2vcom.sys
+; LoadOrderGroup = Extended base
+
+; -------------- Serenum Driver install section
+[Serenum_Service_Inst]
+DisplayName    = %Serenum.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\serenum.sys
+LoadOrderGroup = PNP Filter
+
+[Serial_EventLog_Inst]
+AddReg = Serial_EventLog_AddReg
+
+[Serial_EventLog_AddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\usb2vcom.sys"
+HKR,,TypesSupported,0x00010001,7
+
+[*pnp0500.det]
+AddReg=Ports.AddReg,DevMap.AddReg
+
+; The following sections are COM port resource configs.
+; Section name format means:
+; Char 1 = c (COM port)
+; Char 2 = I/O config: 1 (3f8), 2 (2f8), 3 (3e8), 4 (2e8), a (any)
+; Char 3 = IRQ config: #, a (any)
+
+[c14]                   ; COM1,IRQ4
+ConfigPriority=HARDRECONFIG
+IOConfig=3f8-3ff(3ff::)
+IRQConfig=S:4
+
+[c1a]                   ; COM1, any IRQ
+ConfigPriority=HARDRECONFIG
+IOConfig=3f8-3ff(3ff::)
+IRQConfig=S:3,4,5,7,9,10,11,12,14,15
+
+[c23]                   ; COM2, IRQ3
+ConfigPriority=HARDRECONFIG
+IOConfig=2f8-2ff(3ff::)
+IRQConfig=S:3
+
+[c2a]                   ; COM2, any IRQ
+ConfigPriority=HARDRECONFIG
+IOConfig=2f8-2ff(3ff::)
+IRQConfig=S:3,4,5,7,9,10,11,12,14,15
+
+[c34]                   ; COM3, IRQ4
+ConfigPriority=HARDRECONFIG
+IOConfig=3e8-3ef(3ff::)
+IRQConfig=S:4
+
+[c3a]                   ; COM3, any IRQ
+ConfigPriority=HARDRECONFIG
+IOConfig=3e8-3ef(3ff::)
+IRQConfig=S:3,4,5,7,9,10,11,12,14,15
+
+[c43]                   ; COM4, IRQ3
+ConfigPriority=HARDRECONFIG
+IOConfig=2e8-2ef(3ff::)
+IRQConfig=S:3,5
+
+[c4a]                   ; COM4, any IRQ
+ConfigPriority=HARDRECONFIG
+IOConfig=2e8-2ef(3ff::)
+IRQConfig=S:3,4,5,7,9,10,11,12,14,15
+
+[caa]                   ; Any base, any IRQ
+ConfigPriority=HARDRECONFIG
+IOConfig=8@100-ffff%fff8(3ff::)
+IRQConfig=S:3,4,5,7,9,10,11,12,14,15
+
+; The following are multiport configs for DigiBoard (dgxx)
+; and Comtrol (cmxx) multiport boards
+; Section name format means:
+; Char 1,2 = manufacturer abbreviation
+; Char 3   = config number, a = no idea, use base setting
+
+[cm1]
+ConfigPriority=HARDRECONFIG
+IOConfig=7@240-27E%3F8(3FF::)
+IOConfig=247-247(3FF::)
+IRQConfig=S:2,3,4,5,7,10,11
+
+[cm2]
+ConfigPriority=HARDRECONFIG
+IOConfig=7@280-2BE%3F8(3FF::)
+IOConfig=287-287(3FF::)
+IRQConfig=S:2,3,4,5,7,10,11
+
+[cm3]
+ConfigPriority=HARDRECONFIG
+IOConfig=7@500-5BE%FF8(3FF::)
+IOConfig=507-507(FFF::)
+IRQConfig=S:2,3,4,5,7,10,11
+
+[cm4]
+ConfigPriority=HARDRECONFIG
+IOConfig=7@580-5BE%FF8(3FF::)
+IOConfig=587-587(3FF::)
+IRQConfig=S:2,3,4,5,7,10,11
+
+[cma]
+ConfigPriority=HARDRECONFIG
+IOConfig=7@100-3FF%3F8(3FF::) ; I suspect we still need alignment here?
+IOConfig=1@100-3FF(3FF::)     ; How about here?
+IRQConfig=S:2,3,4,5,7,10,11
+
+[dg1]
+ConfigPriority=HARDRECONFIG
+IOConfig=7@100-17E%3F8(3FF::)
+IOConfig=140-140(3FF::)
+IRQConfig=S:3,4,5,6,7,9,10,11,12,14,15
+
+[dga]
+ConfigPriority=HARDRECONFIG
+IOConfig=7@100-3FF%3F8(3FF::) ; I suspect we still need alignment here?
+IOConfig=1@100-3FF(3FF::)     ; How about here?
+IRQConfig=S:3,4,5,6,7,9,10,11,12,14,15
+
+; End COM port LogConfig sections
+
+
+
+[usb2vcom.PosDup]
+*PNP0500,*PNP0501,*PNP0502
+
+[usb2vcom.NT.PosDup]
+*PNP0500,*PNP0501,*PNP0502,*PNP0510,*PNP0511,*SMCF010
+
+[DevMap.AddReg]
+HKLM,hardware\devicemap\serialcomm,COM1,,COM1
+HKLM,hardware\devicemap\serialcomm,COM2,,COM2
+
+
+; "NoDrv" section: We do not yet support these port devices.
+;----------------------------------------------------------
+[NoDrv]
+
+; "Non-port" sections: PCMCIA cards that look like COM
+; ports, but aren't (excluding modems).
+;----------------------------------------------------------
+[NonPort]
+;opyFiles=NonPort.Copy
+AddReg=NonPort.AddReg
+
+[NonPort.Copy]
+serial.vxd
+
+[NonPort.AddReg]
+HKR,,PortSubClass,1,01
+HKR,,DevLoader,,*vcomm
+HKR,,PortDriver,,serial.vxd
+HKR,,Contention,,*vcd
+HKR,,DCB,3,1C,00,00,00, 80,25,00,00, 11,33,00,00, 00,00, 0a,00, 0a,00, 08, 00, 00, 11, 13, 00, 00, 00
+
+[NonPort.NT]
+;
+; BUGBUG--Unclear whether these devices are presently supported under NT.  For now, leave a blank
+; install section so we won't run the Win9x stuff.  The fact that no function driver will be installed
+; for this devnode will cause the installation to fail, which is what we want to have happen for now.
+;
+
+;--------- Strings Section ---------------------------------------------------
+
+[Strings]
+Mfg="USB Data Cable"
+MfgName="USB World Technology Inc."
+PortsClassName="Ports (COM & LPT)"
+DeviceDesc="USB Data Cable"
+Serial.SVCDESC="USB Data Cable"
+Serenum.SVCDESC="Serenum Filter Driver"
+Disk.desc="USB Data Cable Disk"  ; in win98 the name should be true.

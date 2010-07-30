@@ -1,0 +1,32 @@
+<html>
+<head></head>
+<body>
+<i>PE Builder v3 help</i>
+<hr>
+<a href="index.htm">Table of contents</a><br>
+<h1>Command line options</h1>
+PE Builder accepts the following command line arguments:<br>
+<table border="1">
+<tr><td>-auto</td><td>Automatically start building</td></tr>
+<tr><td>-exit</td><td>Automatically exit program after building.
+When there are errors during building pebuilder does not exit!</td></tr>
+<tr><td>-overwrite</td><td>Automatically overwrite target folder (does not ask for confirmation)</td></tr>
+<tr><td>-verbose</td><td>Set verbose mode on, pebuilder will talk more</td></tr>
+<tr><td>-skipregistry</td><td>Skip building the registry files</td></tr>
+<tr><td>-skipfiles</td><td>Skip building the files, handy when you are testing changes that only reflect registry</td></tr>
+<tr><td>-buildiso</td><td>Build the ISO image, simply rebuild the ISO image from the output path (also burns CD/DVD when required)</td></tr>
+</table>
+<br>
+PE Builder returns the number of errors while building as the errorlevel.<br>
+<br>
+If you want to automate building BartPE you can use the following example:
+<pre>
+pebuilder.exe -auto -overwrite -exit
+if errorlevel 1 echo *** Something was wrong ***
+</pre><br>
+<br>
+<a href="index.htm">Table of contents</a><br>
+<hr>
+<i>PE Builder Copyright (c) 2002-2006 Bart Lagerweij. All rights reserved.</i><br>
+</body>
+</html>

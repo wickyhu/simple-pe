@@ -1,0 +1,33 @@
+; PE Builder v3 plug-in INF file for Nu2Menu
+; Created by Bart Lagerweij
+; http://www.nu2.nu/pebuilder/
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="Nu2Menu"
+Enable=1
+Help="Nu2menu.htm"
+
+[WinntDirectories]
+a="Programs\Nu2Menu",2
+
+[SourceDisksFiles]
+; To have your own "go" button:
+; create a file called "nu2go.bmp"
+nu2go.bmp=a,,3
+nu2menu.exe=a,,3
+nu2menumsg.exe=2,,3
+nu2menu.lic=a,,3
+nu2menu.xml=a,,3
+setres.exe=a,,3
+autorun-inf.txt=30000,autorun.inf,3 ; dir id 30000 is the target "root"
+;
+main.cpl=2 ;system32
+timedate.cpl=2 ;system32
+access.cpl=2 ;system32
+
+[SetupReg.AddReg]
+; Install nu2menu.exe as shell
+0x1, "Setup", "CmdLine", "\Programs\Nu2Menu\nu2menu.exe"

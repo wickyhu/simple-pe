@@ -1,0 +1,401 @@
+; PE Builder v3 plug-in INF file
+; Created by Sherpya
+;
+; Yes this is my scratchpad ;)
+; MiniSetupInProgress
+; CommandLineToArgvW
+; DriverSigningPolicy
+; HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion","DevicePath",0x00020002,"%SystemRoot%\inf"
+
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="[Sherpya] Windows XPE: Defaults v1.0.7"
+Help="XPE.htm"
+Enable=1
+
+[Update]
+id=xpe-defaults
+parent=xpe
+url=http://winpe.sourceforge.net/plugin_check.php
+Version=1.0.7
+
+[SetValue]
+"txtsetup.sif","SetupData","loaderprompt","""Starting Windows XPE [The Horse Power]..."""
+
+[SetupReg.AddReg]
+; XPELogon.exe switches:
+; -r calls xpeinit -r that does RunOnceEx using internal routine
+; -s only used with -r causes xpeinit to not display an error message when an entry in RunOnceEx fails
+; -d launch a command line prompt before executing any stuff
+; -p profiles boot time, displays a message with msec elapsed during boot, the counter starts when XPELogon.exe is launched
+; -n hides progressbar
+; -w disable desktop switching (this implies winlogon resource limit)
+0x1,"Setup","CmdLine","XPELogon.exe -r"
+
+; Required
+0x2,"ControlSet001\Control\Session Manager\Environment","USERPROFILE","%temp%\@ProfilesDir@\Default User"
+0x2,"ControlSet001\Control\Session Manager\Environment","ProfilesDir","%temp%\@ProfilesDir@"
+
+; Swap file
+0x7,"ControlSet001\Control\Session Manager\Memory Management","PagingFiles","NUL: 0 0"
+;0x7,"ControlSet001\Control\Session Manager\Memory Management","PagingFiles","B:\pagefile.sys 32 48"
+
+; Force Mouse Wheel Detection
+0x4,"ControlSet001\Services\i8042prt\Parameters","EnableWheelDetection",0x2
+
+; Screen Resoultion 1024x768 32bpp
+0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.BitsPerPel",0x020
+0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.XResolution",0x400
+0x4,"ControlSet001\Services\VgaSave\Device0","DefaultSettings.YResolution",0x300
+
+; Set Default Computer Name
+0x1,"ControlSet001\Control\ComputerName\ComputerName","ComputerName","WinXPE"
+0x1,"ControlSet001\Control\Session Manager\Environment","ComputerName","WinXPE"
+
+[Software.DelReg]
+; Remove Recycle bin from desktop
+"Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{645FF040-5081-101B-9F08-00AA002F954E}"
+
+[Software.AddReg]
+; Owner informations
+0x1,"Microsoft\Windows NT\CurrentVersion","RegisteredOrganization","Horse Power"
+0x1,"Microsoft\Windows NT\CurrentVersion","RegisteredOwner","XPE"
+
+;Central European
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA res)","couree.fon"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA res)","serifee.fon"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA res)","sserifee.fon"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA res)","smallee.fon"
+
+; SetupApi Log Level
+; See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/install/hh/install/troubleshoot_7s6f.asp
+0x4,"Microsoft\Windows\CurrentVersion\Setup","LogLevel",0x0
+
+0x0,"Sherpya\XPELogon"
+
+; Small arrow for shortcuts
+0x2,"Microsoft\Windows\CurrentVersion\Explorer\Shell Icons","29","%SystemRoot%\System32\xpeinit.exe,2"
+
+; Remove Recycle Bin function
+0x4,"Microsoft\Windows\CurrentVersion\Explorer\BitBucket","UseGlobalSettings",0x1
+0x4,"Microsoft\Windows\CurrentVersion\Explorer\BitBucket","NukeOnDelete",0x1
+
+; Profiles
+;0x2,"Microsoft\Windows NT\CurrentVersion\ProfileList","ProfilesDirectory","%temp%\@ProfilesDir@"
+0x2,"Microsoft\Windows NT\CurrentVersion\ProfileList","ProfilesDirectory","%ProfilesDir%"
+0x1,"Microsoft\Windows NT\CurrentVersion\ProfileList","DefaultUserProfile","Default User"
+0x1,"Microsoft\Windows NT\CurrentVersion\ProfileList","AllUsersProfile","All Users"
+
+; Xpeinit safety check key - don't remove it or it will do nothing (this prevents xpeinit to run on normal systems)
+; running xpeinit stuff on normal systems can mess windows installation
+0x0,"Sherpya\XPEinit\Safe"
+
+; WinLogon Background Color
+0x1,"Microsoft\Windows NT\CurrentVersion\Winlogon","Background","0 0 0"
+
+; Set NumLock "On"
+0x1,"Microsoft\Windows NT\CurrentVersion\IniFileMapping\win.ini\Windows","InitialKeyboardIndicators","USR:Control Panel\Keyboard"
+
+; Command prompt here
+;0x1,"Classes\Directory\shell\cmd",,"Command Prompt Here"
+0x1,"Classes\Directory\shell\cmd",,"@shell32.dll,-22022"
+0x2,"Classes\Directory\shell\cmd\command",,"cmd.exe /k cd %L"
+
+; XPEinit startup menu & desktop
+
+; Start Menu Root
+0x0,"Sherpya\XPEinit\StartMenu"
+
+; Startup
+0x0,"Sherpya\XPEinit\StartUp"
+
+; Desktop
+0x0,"Sherpya\XPEinit\Desktop"
+0x2,"Sherpya\XPEinit\Desktop","@shell32.dll,-22022","%comspec%"
+
+; Programs
+0x0,"Sherpya\XPEinit\Programs"
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-21761\@shell32.dll,-22019","%SystemRoot%\system32\calc.exe"
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-21761\@shell32.dll,-22054","%SystemRoot%\system32\mspaint.exe"
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-21761\@shell32.dll,-22069","%SystemRoot%\system32\wordpad.exe"
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-21761\@shell32.dll,-22051","%SystemRoot%\system32\notepad.exe"
+
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-21761\@shell32.dll,-21788\@shell32.dll,-22021","%SystemRoot%\system32\charmap.exe"
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-21761\@shell32.dll,-21788\@shell32.dll,-22026","%SystemRoot%\system32\cleanmgr.exe"
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-21761\@shell32.dll,-21788\@regedit.exe,-16","%SystemRoot%\system32\regedit.exe"
+
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-21761\@shell32.dll,-22067","%SystemRoot%\Explorer.exe||explorer.exe,1"
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-22034","%SystemRoot%\IExplore.exe"
+0x2,"Sherpya\XPEinit\Programs","@shell32.dll,-22022","%comspec%"
+
+; Quick Launch
+0x2,"Sherpya\XPEinit\QuickLaunch","Windows PE Media","%SystemRoot%\explorer.exe|%SystemDrive%|xpeinit.exe,0"
+
+; Send To
+0x2,"Sherpya\XPEinit\SendTo","@shell32.dll,-22069","%SystemRoot%\system32\wordpad.exe"
+
+; XPE Initialization - do not overwrite this entry
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\600","100","||xpeinit.exe"
+
+; DO NOT REMOVE this line - PnP Support
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","100","||xpeinit.exe -f -m ""Detecting PnP Devices"" bartpe.exe -pnp -cn WinXPE -wg WORKGROUP"
+
+; Networking using bartpe + dhcp
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","101","||xpeinit.exe -m ""Installing Tcp/IP"" bartpe.exe -c p -i ms_tcpip"
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","102","||xpeinit.exe -m ""Installing MsClient"" bartpe.exe -c c -i ms_msclient"
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","103","||xpeinit.exe -s -m ""Starting Tcp/IP Service"" net start tcpip"
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","104","||xpeinit.exe -m ""Starting Dhcp Service"" net start dhcp"
+
+; You may need to enable/disable these services depending on your configuration
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","106","||xpeinit.exe -m ""Starting NLA Service"" net start nla"
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\900","107","||xpeinit.exe -m ""Starting LmHosts Service"" net start lmhosts"
+
+; ShortCuts Creation - this command should be the last command
+0x1,"Microsoft\Windows\CurrentVersion\RunOnceEx\999","999","||xpeinit.exe -l"
+
+[Software.AddReg.2600]
+; Set default on eject media action before shutdown/reboot (it can be changed at runtime with tray icon)
+0x4,"Sherpya\XPELogon","Eject",0x1
+
+[Software.AddReg.3790]
+; Eject doesn't work on w2k3
+0x4,"Sherpya\XPELogon","Eject",0x0
+0x4,"Sherpya\XPELogon","HideTray",0x1
+
+[Default.AddReg]
+; Fixup Proxy
+0x0,"Software\Microsoft\Windows\CurrentVersion\Internet Settings\Connections"
+
+; Preferences mask see: http://www.tburke.net/info/regentry/topics/55198.htm
+; you should put 2 bytes hex values in reversed order: 0x80003e9e becomes 9e,3e,00,80
+;0x3,"Control Panel\Desktop","UserPreferencesMask",9e,3e,00,80
+0x3,"Control Panel\Desktop","UserPreferencesMask",98,20,00,80
+
+; IE Start Page
+0x1,"Software\Microsoft\Internet Explorer\Main","Start Page","about:blank"
+0x1,"Software\Microsoft\Internet Explorer\Main","Default_Page_URL","about:blank"
+
+; Ie History and Autocomplation - JamesB
+0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\AutoComplete","AutoSuggest","yes"
+0x4,"Software\Microsoft\Windows\CurrentVersion\Internet Settings\Url History","DaysToKeep",0x1
+0x1,"Software\Microsoft\Internet Explorer\Main","FormSuggest Passwords","no"
+0x1,"Software\Microsoft\Internet Explorer\Main","Use FormSuggest","yes"
+
+; Don't ask when sending post data with ie
+0x4,"Software\Microsoft\Internet Explorer\IntelliForms","AskUser",0x0
+
+; Remove My documents from desktop
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\ClassicStartMenu","{450D8FBA-AD25-11D0-98A8-0800361B1103}",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel","{450D8FBA-AD25-11D0-98A8-0800361B1103}",0x1
+
+; Points My Document to %Temp%
+0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders","Personal","%temp%"
+
+; WallPaper Style (mainly for w2k3) 2 is Extended
+0x1,"Control Panel\Desktop","Pattern Upgrade","TRUE"
+0x1,"Control Panel\Desktop","WallpaperStyle","2"
+0x1,"Software\Microsoft\Internet Explorer\Desktop\General","WallpaperStyle","2"
+
+; Block Shortcut Cleanup Wizard
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\CleanupWiz","NoRun",0x1
+
+; Disable Inactive Icons stuff
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer","EnableAutoTray",0x0
+
+; NumLock status
+0x1,"Control Panel\Keyboard","InitialKeyboardIndicators","2"
+
+; Console Copy/Paste
+0x4,"Console","QuickEdit",0x1
+0x4,"Console","InsertMode",0x1
+
+; Show Map/Disconnect Network Drive on each explorer windows
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","MapNetDrvBtn",0x1
+
+; Remove "shortcut to"
+0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer","link",00,00,00,00
+
+; Desktop Namespace
+; From here you can change the name for Network folder
+;0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{208D2C60-3AEA-1069-A2D7-08002B30309D}",,"My Death Net"
+;0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{208D2C60-3AEA-1069-A2D7-08002B30309D}\DefaultIcon",,"%SystemRoot%\System32\shell32.dll,17"
+
+; From here you can change the name for "My Computer"
+;0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}",,"Toxic Factory"
+;0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\DefaultIcon","","%SystemRoot%\explorer.exe,0"
+
+; From here you can change the name for "My Documents"
+;0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{450D8FBA-AD25-11D0-98A8-0800361B1103}",,"Top Secret"
+;0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{450D8FBA-AD25-11D0-98A8-0800361B1103}\DefaultIcon",,"%SystemRoot%\System32\mydocs.dll,0"
+
+; From here you can change the name for Recycle bin
+;0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}",,"Trashcan"
+;0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}\DefaultIcon","full","%SystemRoot%\System32\shell32.dll,32"
+;0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}\DefaultIcon","empty","%SystemRoot%\System32\shell32.dll,31"
+;0x2,"Software\Microsoft\Windows\CurrentVersion\Explorer\CLSID\{645FF040-5081-101B-9F08-00AA002F954E}\DefaultIcon",,"%SystemRoot%\System32\shell32.dll,31"
+
+; Explorer Settings
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","TaskbarSizeMove",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","TaskbarGlomming",0x0
+
+; MMC
+0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","StartMenuAdminTools","YES"
+
+; Detailed View
+0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\Streams","Settings",\
+  08,00,00,00,04,00,00,00,01,00,00,00,00,77,7e,13,73,35,cf,11,ae,69,08,00,2b,\
+  2e,12,62,04,00,00,00,01,00,00,00,43,00,00,00
+
+; Performance
+; Animation when minimizing or maximizing windows - thx fafot
+0x1,"Control Panel\Desktop\WindowMetrics","MinAnimate","0"
+
+; JamesB
+0x1,"Control Panel\Desktop","DragFullWindows","0"
+
+; Visual Effects - beware this doesn't work as expected you should tweak also UserPreferencesMask
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects","VisualFXSetting",0x3
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\AnimateMinMax","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ComboBoxAnimation","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\CursorShadow","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\DragFullWindows","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\DropShadow","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\DropShadow","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListBoxSmoothScrolling","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewAlphaSelect","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewAlphaSelect","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewShadow","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewShadow","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewWatermark","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\ListviewWatermark","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\MenuAnimation","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\MenuAnimation","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\SelectionFade","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\SelectionFade","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\TaskbarAnimations","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\TaskbarAnimations","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\TooltipAnimation","DefaultValue",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\TooltipAnimation","DefaultApplied",0x1
+0x4,"Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\WebView","DefaultApplied",0x1
+
+; Start Menu
+0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","CascadeControlPanel","YES"
+0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced","CascadeNetworkConnections","YES"
+
+; Start Menu Delay
+0x1,"Control Panel\Desktop","MenuShowDelay","0"
+
+; Classic Start Menu
+0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer","ShellState",\
+  24,00,00,00,33,A8,00,00,00,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,0D,\
+  00,00,00,00,00,00,00,00,00,00,00
+
+; FontSmoothing - set FontSmoothingType to 0x1 if you don't like "bold" effect
+0x1,"Control Panel\Desktop","FontSmoothing","2"
+0x4,"Control Panel\Desktop","FontSmoothingOrientation",0x1
+0x4,"Control Panel\Desktop","FontSmoothingType",0x2
+
+; Mouse Settings - thx fafot
+0x4,"Control Panel\Mouse","ActiveWindowTracking",0x0
+0x1,"Control Panel\Mouse","DoubleClickHeight","4"
+0x1,"Control Panel\Mouse","DoubleClickSpeed","500"
+0x1,"Control Panel\Mouse","DoubleClickWidth","4"
+0x1,"Control Panel\Mouse","MouseSensitivity","10"
+0x1,"Control Panel\Mouse","MouseSpeed","1"
+0x1,"Control Panel\Mouse","MouseThreshold1","6"
+0x1,"Control Panel\Mouse","MouseThreshold2","10"
+0x1,"Control Panel\Mouse","SnapToDefaultButton","0"
+0x1,"Control Panel\Mouse","SwapMouseButtons","0"
+0x1,"Control Panel\Mouse","MouseTrails","0"
+
+; Regedit in last run ;)
+0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU","a","regedit\1"
+0x1,"Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU","MRUList","a"
+
+; TaskBar on Top - Autohide
+0x3,"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects2","Settings",\
+  28,00,00,00,ff,ff,ff,ff,03,00,00,00,01,00,00,00,3c,00,00,00,1e,00,00,00,fe,\
+  ff,ff,ff,fe,ff,ff,ff,02,04,00,00,1c,00,00,00
+
+; Disables IE PopUp when submitting a form, thanks to TheHive
+0x4,"Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3","1601",0x0
+
+; 1.0.7 - fix fonts in IE search bar, thanks to d4vr0s
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\3","IEFixedFontName","Courier New"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\3","IEPropFontName","Times New Roman"
+0x3,"Software\Microsoft\Internet Explorer\International\Scripts\3","IEFontSize",02,00,00,00
+
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\4","IEFixedFontName","Courier New"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\4","IEPropFontName","Times New Roman"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\5","IEFixedFontName","Courier New"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\5","IEPropFontName","Times New Roman"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\6","IEFixedFontName","Courier New"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\6","IEPropFontName","Times New Roman"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\7","IEFixedFontName","Sylfaen"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\7","IEPropFontName","Sylfaen"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\8","IEFixedFontName","Miriam Fixed"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\8","IEPropFontName","David"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\9","IEFixedFontName","Simplified Arabic Fixed"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\9","IEPropFontName","Simplified Arabic"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\10","IEFixedFontName","Mangal"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\10","IEPropFontName","Mangal"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\11","IEFixedFontName","Vrinda"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\11","IEPropFontName","Vrinda"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\12","IEFixedFontName","Raavi"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\12","IEPropFontName","Raavi"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\13","IEFixedFontName","Shruti"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\13","IEPropFontName","Shruti"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\14","IEFixedFontName","Kalinga"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\14","IEPropFontName","Kalinga"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\15","IEFixedFontName","Latha"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\15","IEPropFontName","Latha"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\16","IEFixedFontName","Gautami"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\16","IEPropFontName","Gautami"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\17","IEFixedFontName","Tunga"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\17","IEPropFontName","Tunga"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\18","IEFixedFontName","Kartika"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\18","IEPropFontName","Kartika"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\19","IEFixedFontName","Tahoma"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\19","IEPropFontName","Tahoma"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\20","IEFixedFontName","DokChampa"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\20","IEPropFontName","DokChampa"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\21","IEFixedFontName","Microsoft Himalaya"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\21","IEPropFontName","Microsoft Himalaya"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\22","IEFixedFontName","Sylfaen"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\22","IEPropFontName","Sylfaen"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\23","IEFixedFontName","GulimChe"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\23","IEPropFontName","Gulim"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\24","IEFixedFontName","MS Gothic"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\24","IEPropFontName","MS PGothic"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\25","IEFixedFontName","MingLiu"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\25","IEPropFontName","PMingLiu"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\26","IEFixedFontName","NSimsun"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\26","IEPropFontName","Simsun"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\27","IEFixedFontName","Nyala"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\27","IEPropFontName","Nyala"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\28","IEFixedFontName","Euphemia"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\28","IEPropFontName","Euphemia"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\29","IEFixedFontName","Plantagenet Cherokee"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\29","IEPropFontName","Plantagenet Cherokee"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\30","IEFixedFontName","Microsoft Yi Baiti"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\30","IEPropFontName","Microsoft Yi Baiti"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\34","IEFixedFontName","Iskoola Pota"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\34","IEPropFontName","Iskoola Pota"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\35","IEFixedFontName","Estrangelo Edessa"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\35","IEPropFontName","Estrangelo Edessa"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\37","IEFixedFontName","DaunPenh"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\37","IEPropFontName","DaunPenh"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\38","IEFixedFontName","MV Boli"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\38","IEPropFontName","MV Boli"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\39","IEFixedFontName","Mongolian Baiti"
+0x1,"Software\Microsoft\Internet Explorer\International\Scripts\39","IEPropFontName","Mongolian Baiti"
+
+; Usb Storage Ids
+[SetupReg.AddReg]
+; eXagerate Usb Key 256MB
+;0x3,"ControlSet001\Control\UsbFlags\011701170100","osvc",00,00
+; Phison Electronics Corp. PS2044 Pen Drive
+;0x3,"ControlSet001\Control\UsbFlags\0d7d14200002","osvc",00,00

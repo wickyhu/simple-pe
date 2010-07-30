@@ -1,0 +1,65 @@
+; Windows Virtual Serial Port Setup File
+; Copyright (c) 2006-2010 ZTE CORPORATION
+; Manufacturer: ZTE CORPORATION
+;
+; This INF file installs a virtual COM port on Win2K system.
+
+[Version]
+signature  = "$WINDOWS NT$"
+Class      = Ports
+Provider   = %ZTE%
+ClassGuid  = {4D36E978-E325-11CE-BFC1-08002BE10318}
+DriverVer  = 02/04/2008,1.2040.0.10
+CatalogFile = ZTEUSBDiag32.cat
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[SourceDisksNames]
+1000 = %ZTESRCDISK%,,,""
+
+[SourceDisksFiles]
+ztechandsetusbser.sys = 1000,,
+
+[DestinationDirs]
+DefaultDestDir = 12
+ZTEportInstall6k.NT.Copy=12
+
+[Manufacturer]
+%ZTE% = ZTEcomSerialPort
+
+[ZTEcomSerialPort]
+
+%ZTEDIAG19D20020% = ZTEportInstall6k, USB\VID_19D2&PID_0020&MI_01
+
+; ###### Installation Section ######
+
+[ZTEportInstall6k.NT]
+;opyFiles=ZTEportInstall6k.NT.Copy
+AddReg = All6k, AddReg.NT
+
+[ZTEportInstall6k.NT.Copy]
+ztechandsetusbser.sys
+
+[ZTEportInstall6k.NT.Services]
+AddService = ZTEhandsetusbser6K, 0x00000002, ZTEport_Service_Inst6k
+
+[ZTEport_Service_Inst6k]
+DisplayName   = %ZTEHandsetcomSerialPortName6k%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\ztechandsetusbser.sys
+
+[All6k]
+HKR,,NTMPDriver,,ztechandsetusbser.sys
+
+[AddReg.NT]
+HKR,,PortSubClass,1,01
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Strings]
+ZTE                                            = "ZTE Corporation"
+ZTESRCDISK                                     = "ZTE Multimedia USB COM Driver Disk"
+ZTEDIAG19D20020                                = "ZTE CDMA Handset Diagnostics Interface"
+ZTEHandsetcomSerialPortName6k                  = "ZTE Handset Diagnostic USB Serial  Port"

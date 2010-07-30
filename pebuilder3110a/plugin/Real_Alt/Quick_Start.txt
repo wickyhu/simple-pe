@@ -1,0 +1,14 @@
+Real Alternative CodecS Plugin
+Plugin by: Xtreme
+Plugin for: Windows Xpire Rd CD
+Website: http://xtremee.orgfree.com
+===================================== 
+    * 1- Download Real Alternative Codec from Here
+           http://www.free-codecs.com/Real_Alternative_download.htm
+    * 2- Setup it on your windows.
+    * 3- Run the Get_Files.cmd to collect the needed files.
+    * 4- Start your build and enjoy !
+
+-------------------------------------------------------------------------
+Copyright © Windows Xpire Tech Center. All rights reserved. 
+-------------------------------------------------------------------------

@@ -1,0 +1,11 @@
+<!-- Nu2Menu entry for "FLV Player" -->
+<NU2MENU>
+
+	<MENU ID="Programs">
+		<MITEM TYPE="POPUP" MENUID="FLVPlayer">FLV Video Player</MITEM>
+	</MENU>
+
+	<MENU ID="FLVPlayer">
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetProgramDrive()\Programs\FLV Video Player\FLVPlayer.exe))" CMD="RUN" FUNC="@GetProgramDrive()\Programs\FLV Video Player\FLVPlayer.exe" PARM="1">FLV Video Player</MITEM>		
+	</MENU>
+</NU2MENU>

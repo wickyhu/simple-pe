@@ -1,0 +1,10 @@
+<NU2MENU>
+
+	<MENU ID="Programs">
+		<MITEM TYPE="POPUP" MENUID="MPCHC">Media Player Classic Home Cinema</MITEM>
+	</MENU>
+
+	<MENU ID="MPCHC">
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetProgramDrive()\Programs\MPC-HC\mpc-hc.exe))" CMD="RUN" FUNC="@GetProgramDrive()\Programs\MPC-HC\mpc-hc.exe" PARM="1">Media Player Classic - Home Cinema</MITEM>
+	</MENU>
+</NU2MENU>

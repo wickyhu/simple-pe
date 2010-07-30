@@ -1,0 +1,6 @@
+<!-- Nu2Menu entry for Network Support -->
+<NU2MENU>
+<MENU ID="Network">
+	<MITEM TYPE="ITEM" DISABLED="@Or(@Not(@FileExists(@GetWinDir()\setupldr.bin)), @Not(@FileExists(@GetWinDir()\system32\penetcfg.exe)))" CMD="RUN" FUNC="@GetWinDir()\system32\penetcfg.exe /UseProfile">PE Network Configurator</MITEM>
+</MENU>
+</NU2MENU>

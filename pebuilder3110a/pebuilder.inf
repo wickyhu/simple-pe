@@ -1,0 +1,1017 @@
+; PE Builder v3 INF file
+; Created by Bart Lagerweij
+; http://www.nu2.nu/pebuilder/
+;
+; More information about the format of this file, see pluginformat.htm
+
+[Version]
+Signature= "$Windows NT$"
+
+[SourceDisksFiles]
+bartpe.exe=2,,1
+bartpe.txt=2,,1
+biosinfo.inf=2
+halaacpi.dll=2
+halacpi.dll=2
+halapic.dll=2
+netmscli.inf=20
+netnb.inf=20
+nettcpip.inf=20
+ntoskrnl.exe=2,ntkrnlmp.exe
+;bartpe.bmp=2
+Wallpaper.JPG=2
+setupldr.bin=1
+;
+; 8-2-2006 BL: Registry files are now build directly in the config folder.
+;default=3
+;sam.log=3
+;sam=3
+;security.log=3
+;security=3
+;setupreg.hiv=2
+;software.log=3
+;software=3
+;
+txtsetup.sif=1
+vga850.fon=22
+vgaoem.fon=22
+; no need for winbom.ini and winpeoem.sif in BartPE (28-2-2005 12:22)
+; winbom.ini=1
+; winbom.ini=30000
+; winpeoem.sif=2
+nslookup.exe=2
+tracert.exe=2
+ftp.exe=2
+netplwiz.dll=2
+diskcopy.dll=2
+fmifs.dll=2
+riched32.dll=2
+explorer.exe=1
+
+; 10-10-2003 12:56 added more cmdtools
+cacls.exe=2
+comp.exe=2
+compact.exe=2
+convert.exe=2
+fc.exe=2
+find.exe=2
+findstr.exe=2
+finger.exe=2
+hostname.exe=2
+label.exe=2
+lpq.exe=2
+lpr.exe=2
+makecab.exe=2
+mountvol.exe=2
+nbtstat.exe=2
+pathping.exe=2
+traffic.dll=2 ; added dec 15, 2004
+print.exe=2
+replace.exe=2
+route.exe=2
+sort.exe=2
+subst.exe=2
+tftp.exe=2
+fsutil.exe=2 ; added feb 28, 2005
+
+; Fix "failed to create an empty document" when starting wordpad
+; BL 10-11-2003 15:18
+[SourceDisksFiles]
+msftedit.dll=2
+; /Fix
+
+[Software.AddReg]
+0x0, "Classes\CLSID\{AEB84C83-95DC-11D0-B7FC-B61140119C4A}\Control"
+0x0, "Classes\CLSID\{AEB84C84-95DC-11D0-B7FC-B61140119C4A}\InprocServer32"
+0x0, "Microsoft\MMC\SnapIns\{dbfca500-8c31-11d0-aa2c-00a0c92749a3}\NodeTypes"
+0x0, "Microsoft\MMC\SnapIns\{dbfca500-8c31-11d0-aa2c-00a0c92749a3}\NodeTypes\{312B59C1-4002-11d0-96F8-00A0C9191601}"
+0x0, "Microsoft\MMC\SnapIns\{dbfca500-8c31-11d0-aa2c-00a0c92749a3}\StandAlone"
+0x1, "Microsoft\MMC\NodeTypes\{312B59C1-4002-11d0-96F8-00A0C9191601}", "", ""
+0x1, "Microsoft\MMC\SnapIns\{dbfca500-8c31-11d0-aa2c-00a0c92749a3}", "NameString", "Disk Management"
+0x1, "Microsoft\MMC\SnapIns\{dbfca500-8c31-11d0-aa2c-00a0c92749a3}", "NameStringIndirect", "@dmdskres.dll,-65535"
+0x1, "Microsoft\MMC\SnapIns\{dbfca500-8c31-11d0-aa2c-00a0c92749a3}", "NodeType", "{312B59C1-4002-11d0-96F8-00A0C9191601}"
+0x1, "Microsoft\MMC\SnapIns\{dbfca500-8c31-11d0-aa2c-00a0c92749a3}", "Provider", "Microsoft Corp., VERITAS Software Corp."
+0x1, "Microsoft\MMC\SnapIns\{dbfca500-8c31-11d0-aa2c-00a0c92749a3}", "Version", "1.0"
+0x1, "Microsoft\MMC\SnapIns\{dbfca500-8c31-11d0-aa2c-00a0c92749a3}", "About", "{FAC1D9C0-0296-11d1-A840-00A0C92C9D5D}"
+0x1, "Microsoft\MMC\SnapIns\{8EAD3A12-B2C1-11d0-83AA-00A0C92C9D5D}", "NameString", "Disk Management Extension"
+0x1, "Microsoft\MMC\SnapIns\{8EAD3A12-B2C1-11d0-83AA-00A0C92C9D5D}", "About", "{FAC1D9C0-0296-11d1-A840-00A0C92C9D5D}"
+0x1, "Microsoft\MMC\NodeTypes\{476e644a-aaff-11d0-b944-00c04fd8d5b0}\Extensions\NameSpace", "{8EAD3A12-B2C1-11d0-83AA-00A0C92C9D5D}", "Disk Management Extension"
+0x1, "Classes\Typelib\{AEB84C80-95DC-11D0-B7FC-B61140119C4A}\1.0", "", "Disk Management Snap-In Object Library"
+0x2, "Classes\Typelib\{AEB84C80-95DC-11D0-B7FC-B61140119C4A}\1.0\0\win32", "", "%SystemRoot%\System32\dmview.ocx"
+0x1, "Classes\Typelib\{AEB84C80-95DC-11D0-B7FC-B61140119C4A}\1.0\FLAGS", "", "2"
+0x1, "Classes\Typelib\{AEB84C80-95DC-11D0-B7FC-B61140119C4A}\1.0\HELPDIR", "", ""
+0x1, "Classes\DiskManagement.Control", "", "DiskManagement.Control"
+0x1, "Classes\DiskManagement.Control\CLSID", "", "{AEB84C83-95DC-11D0-B7FC-B61140119C4A}"
+0x1, "Classes\DiskManagement.UITasks", "", "DiskManagement.UITasks"
+0x1, "Classes\DiskManagement.UITasks\CLSID", "", "{7086AD76-44BD-11D0-81ED-00A0C90FC491}"
+0x1, "Classes\DiskManagement.SnapInExtension", "", "DiskManagement.SnapInExtension"
+0x1, "Classes\DiskManagement.SnapInExtension\CLSID", "", "{8EAD3A12-B2C1-11d0-83AA-00A0C92C9D5D}"
+0x1, "Classes\DiskManagement.DataObject", "", "DiskManagement.DataObject"
+0x1, "Classes\DiskManagement.DataObject\CLSID", "", "{E13B6688-3F39-11D0-96F6-00A0C9191601}"
+0x1, "Classes\DiskManagement.SnapIn", "", "DiskManagement.SnapIn"
+0x1, "Classes\DiskManagement.SnapIn\CLSID", "", "{E13B6686-3F39-11D0-96F6-00A0C9191601}"
+0x1, "Classes\DiskManagement.SnapInComponent", "", "DiskManagement.SnapInComponent"
+0x1, "Classes\DiskManagement.SnapInComponent\CLSID", "", "{DBFCA500-8C31-11D0-AA2C-00A0C92749A3}"
+0x1, "Classes\DiskManagement.SnapInAbout", "", "DiskManagement.SnapInAbout"
+0x1, "Classes\DiskManagement.SnapInAbout\CLSID", "", "{FAC1D9C0-0296-11D1-A840-00A0C92C9D5D}"
+0x1, "Classes\DiskManagement.Connection", "", "DiskManagement.Connection"
+0x1, "Classes\DiskManagement.Connection\CLSID", "", "{FD78D554-4C6E-11D0-970D-00A0C9191601}"
+0x1, "Classes\CLSID\{7086AD76-44BD-11D0-81ED-00A0C90FC491}", "", "DiskManagement.UITasks"
+0x2, "Classes\CLSID\{7086AD76-44BD-11D0-81ED-00A0C90FC491}\InProcServer32", "", "%SystemRoot%\System32\dmdlgs.dll"
+0x1, "Classes\CLSID\{7086AD76-44BD-11D0-81ED-00A0C90FC491}\ProgID", "", "DiskManagement.UITasks"
+0x1, "Classes\CLSID\{8EAD3A12-B2C1-11d0-83AA-00A0C92C9D5D}", "", "DiskManagement.SnapInExtension"
+0x2, "Classes\CLSID\{8EAD3A12-B2C1-11d0-83AA-00A0C92C9D5D}\InProcServer32", "", "%SystemRoot%\System32\dmdskmgr.dll"
+0x1, "Classes\CLSID\{8EAD3A12-B2C1-11d0-83AA-00A0C92C9D5D}\InProcServer32", "ThreadingModel", "Apartment"
+0x1, "Classes\CLSID\{8EAD3A12-B2C1-11d0-83AA-00A0C92C9D5D}\ProgID", "", "DiskManagement.SnapInExtension"
+0x1, "Classes\CLSID\{AEB84C83-95DC-11D0-B7FC-B61140119C4A}", "", "DiskManagement.Control"
+0x2, "Classes\CLSID\{AEB84C83-95DC-11D0-B7FC-B61140119C4A}\InProcServer32", "", "%SystemRoot%\System32\dmview.ocx"
+0x1, "Classes\CLSID\{AEB84C83-95DC-11D0-B7FC-B61140119C4A}\InProcServer32", "ThreadingModel", "Apartment"
+0x1, "Classes\CLSID\{AEB84C83-95DC-11D0-B7FC-B61140119C4A}\ProgID", "", "DiskManagement.Control"
+0x1, "Classes\CLSID\{AEB84C83-95DC-11D0-B7FC-B61140119C4A}\TypeLib", "", "{AEB84C80-95DC-11D0-B7FC-B61140119C4A}"
+0x2, "Classes\CLSID\{AEB84C83-95DC-11D0-B7FC-B61140119C4A}\ToolboxBitmap32", "", "%SystemRoot%\System32\dmview.ocx,1"
+0x1, "Classes\CLSID\{AEB84C83-95DC-11D0-B7FC-B61140119C4A}\Version", "", "1.0"
+0x1, "Classes\CLSID\{AEB84C83-95DC-11D0-B7FC-B61140119C4A}\MiscStatus", "", "0"
+0x1, "Classes\CLSID\{AEB84C83-95DC-11D0-B7FC-B61140119C4A}\MiscStatus\1", "", "131473"
+0x1, "Classes\CLSID\{AEB84C84-95DC-11D0-B7FC-B61140119C4A}", "", "DiskManagement.Property Page"
+0x1, "Classes\CLSID\{DBFCA500-8C31-11D0-AA2C-00A0C92749A3}", "", "DiskManagement.SnapInComponent"
+0x2, "Classes\CLSID\{DBFCA500-8C31-11D0-AA2C-00A0C92749A3}\InProcServer32", "", "%SystemRoot%\System32\dmdskmgr.dll"
+0x1, "Classes\CLSID\{DBFCA500-8C31-11D0-AA2C-00A0C92749A3}\InProcServer32", "ThreadingModel", "Apartment"
+0x1, "Classes\CLSID\{DBFCA500-8C31-11D0-AA2C-00A0C92749A3}\ProgID", "", "DiskManagement.SnapInComponent"
+0x1, "Classes\CLSID\{E13B6686-3F39-11D0-96F6-00A0C9191601}", "", "DiskManagement.SnapIn"
+0x2, "Classes\CLSID\{E13B6686-3F39-11D0-96F6-00A0C9191601}\InProcServer32", "", "%SystemRoot%\System32\dmdskmgr.dll"
+0x1, "Classes\CLSID\{E13B6686-3F39-11D0-96F6-00A0C9191601}\InProcServer32", "ThreadingModel", "Apartment"
+0x1, "Classes\CLSID\{E13B6686-3F39-11D0-96F6-00A0C9191601}\ProgID", "", "DiskManagement.SnapIn"
+0x1, "Classes\CLSID\{E13B6688-3F39-11D0-96F6-00A0C9191601}", "", "DiskManagement.DataObject"
+0x2, "Classes\CLSID\{E13B6688-3F39-11D0-96F6-00A0C9191601}\InProcServer32", "", "%SystemRoot%\System32\dmdskmgr.dll"
+0x1, "Classes\CLSID\{E13B6688-3F39-11D0-96F6-00A0C9191601}\InProcServer32", "ThreadingModel", "Apartment"
+0x1, "Classes\CLSID\{E13B6688-3F39-11D0-96F6-00A0C9191601}\ProgID", "", "DiskManagement.DataObject"
+0x1, "Classes\CLSID\{FAC1D9C0-0296-11D1-A840-00A0C92C9D5D}", "", "DiskManagement.SnapInAbout"
+0x2, "Classes\CLSID\{FAC1D9C0-0296-11D1-A840-00A0C92C9D5D}\InProcServer32", "", "%SystemRoot%\System32\dmdskmgr.dll"
+0x1, "Classes\CLSID\{FAC1D9C0-0296-11D1-A840-00A0C92C9D5D}\InProcServer32", "ThreadingModel", "Apartment"
+0x1, "Classes\CLSID\{FAC1D9C0-0296-11D1-A840-00A0C92C9D5D}\ProgID", "", "DiskManagement.SnapInAbout"
+0x1, "Classes\CLSID\{FD78D554-4C6E-11D0-970D-00A0C9191601}", "", "DiskManagement.Connection"
+0x2, "Classes\CLSID\{FD78D554-4C6E-11D0-970D-00A0C9191601}\InProcServer32", "", "%SystemRoot%\System32\dmdskmgr.dll"
+0x1, "Classes\CLSID\{FD78D554-4C6E-11D0-970D-00A0C9191601}\ProgID", "", "DiskManagement.Connection"
+0x1, "Classes\CLSID\{D2D79DF5-3400-11d0-B40B-00AA005FF586}", "", "IVolumeClient_PSFactory"
+0x2, "Classes\CLSID\{D2D79DF5-3400-11d0-B40B-00AA005FF586}\InprocServer32", "", "%SystemRoot%\System32\dmintf.dll"
+0x1, "Classes\CLSID\{D2D79DF7-3400-11d0-B40B-00AA005FF586}", "", "IDMNotify_PSFactory"
+0x2, "Classes\CLSID\{D2D79DF7-3400-11d0-B40B-00AA005FF586}\InprocServer32", "", "%SystemRoot%\System32\dmintf.dll"
+0x1, "Classes\CLSID\{4BDAFC52-FE6A-11d2-93F8-00105A11164A}", "", "IVolumeClient2_PSFactory"
+0x2, "Classes\CLSID\{4BDAFC52-FE6A-11d2-93F8-00105A11164A}\InprocServer32", "", "%SystemRoot%\System32\dmintf.dll"
+0x1, "Classes\CLSID\{135698D2-3A37-4d26-99DF-E2BB6AE3AC61}", "", "IVolumeClient3_PSFactory"
+0x2, "Classes\CLSID\{135698D2-3A37-4d26-99DF-E2BB6AE3AC61}\InprocServer32", "", "%SystemRoot%\System32\dmintf.dll"
+0x1, "Classes\CLSID\{DEB01010-3A37-4d26-99DF-E2BB6AE3AC61}", "", "IVolumeClient4_PSFactory"
+0x2, "Classes\CLSID\{DEB01010-3A37-4d26-99DF-E2BB6AE3AC61}\InprocServer32", "", "%SystemRoot%\System32\dmintf.dll"
+0x1, "Classes\Interface\{AEB84C81-95DC-11D0-B7FC-B61140119C4A}", "", "_DDMView"
+0x1, "Classes\Interface\{AEB84C81-95DC-11D0-B7FC-B61140119C4A}\ProxyStubClsid", "", "{00020420-0000-0000-C000-000000000046}"
+0x1, "Classes\Interface\{AEB84C81-95DC-11D0-B7FC-B61140119C4A}\ProxyStubClsid32", "", "{00020420-0000-0000-C000-000000000046}"
+0x1, "Classes\Interface\{AEB84C81-95DC-11D0-B7FC-B61140119C4A}\TypeLib", "", "{AEB84C80-95DC-11D0-B7FC-B61140119C4A}"
+0x1, "Classes\Interface\{AEB84C81-95DC-11D0-B7FC-B61140119C4A}\TypeLib", "Version", "1.0"
+0x1, "Classes\Interface\{AEB84C82-95DC-11D0-B7FC-B61140119C4A}", "", "_DDMViewEvents"
+0x1, "Classes\Interface\{AEB84C82-95DC-11D0-B7FC-B61140119C4A}\ProxyStubClsid", "", "{00020420-0000-0000-C000-000000000046}"
+0x1, "Classes\Interface\{AEB84C82-95DC-11D0-B7FC-B61140119C4A}\ProxyStubClsid32", "", "{00020420-0000-0000-C000-000000000046}"
+0x1, "Classes\Interface\{AEB84C82-95DC-11D0-B7FC-B61140119C4A}\TypeLib", "", "{AEB84C80-95DC-11D0-B7FC-B61140119C4A}"
+0x1, "Classes\Interface\{AEB84C82-95DC-11D0-B7FC-B61140119C4A}\TypeLib", "Version", "1.0"
+0x1, "Classes\Interface\{D2D79DF5-3400-11d0-B40B-00AA005FF586}", "", "IVolumeClient"
+0x1, "Classes\Interface\{D2D79DF5-3400-11d0-B40B-00AA005FF586}\ProxyStubClsid32", "", "{D2D79DF5-3400-11d0-B40B-00AA005FF586}"
+0x1, "Classes\Interface\{D2D79DF7-3400-11d0-B40B-00AA005FF586}", "", "IDMNotify"
+0x1, "Classes\Interface\{D2D79DF7-3400-11d0-B40B-00AA005FF586}\ProxyStubClsid32", "", "{D2D79DF7-3400-11d0-B40B-00AA005FF586}"
+0x1, "Classes\Interface\{4BDAFC52-FE6A-11d2-93F8-00105A11164A}", "", "IVolumeClient2"
+0x1, "Classes\Interface\{4BDAFC52-FE6A-11d2-93F8-00105A11164A}\ProxyStubClsid32", "", "{4BDAFC52-FE6A-11d2-93F8-00105A11164A}"
+0x1, "Classes\Interface\{135698D2-3A37-4d26-99DF-E2BB6AE3AC61}", "", "IVolumeClient3"
+0x1, "Classes\Interface\{135698D2-3A37-4d26-99DF-E2BB6AE3AC61}\ProxyStubClsid32", "", "{135698D2-3A37-4d26-99DF-E2BB6AE3AC61}"
+0x1, "Classes\Interface\{DEB01010-3A37-4d26-99DF-E2BB6AE3AC61}", "", "IVolumeClient4"
+0x1, "Classes\Interface\{DEB01010-3A37-4d26-99DF-E2BB6AE3AC61}\ProxyStubClsid32", "", "{DEB01010-3A37-4d26-99DF-E2BB6AE3AC61}"
+0x1, "Classes\APPID\{D485DDC0-49C6-11d1-8E56-00A0C92C9D5D}", "", "Logical Disk Manager Remote Client"
+0x1, "Classes\APPID\{D485DDC0-49C6-11d1-8E56-00A0C92C9D5D}", "LocalServer32", "dmremote.exe"
+0x3, "Classes\APPID\{D485DDC0-49C6-11d1-8E56-00A0C92C9D5D}", "LaunchPermission",\
+	01,00,04,80,48,00,00,00,64,00,00,00,00,00,00,00,14,00,00,00,02,00,34,00,\
+	02,00,00,00,00,00,14,00,01,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00,\
+	00,00,18,00,01,00,00,00,01,02,00,00,00,00,00,05,20,00,00,00,20,02,00,00,\
+	01,05,00,00,00,00,00,05,15,00,00,00,A0,5F,84,1F,5E,2E,6B,49,CE,12,03,03,\
+	F4,01,00,00,01,05,00,00,00,00,00,05,15,00,00,00,A0,5F,84,1F,5E,2E,6B,49,\
+	CE,12,03,03,F4,01,00,00
+0x1, "Classes\APPID\dmremote.exe", "AppID", "{D485DDC0-49C6-11d1-8E56-00A0C92C9D5D}"
+0x1, "Classes\CLSID\{D485DDC0-49C6-11d1-8E56-00A0C92C9D5D}", "", "Logical Disk Manager Remote Client"
+0x1, "Classes\CLSID\{D485DDC0-49C6-11d1-8E56-00A0C92C9D5D}", "AppID", "{D485DDC0-49C6-11d1-8E56-00A0C92C9D5D}"
+0x1, "Classes\CLSID\{D485DDC0-49C6-11d1-8E56-00A0C92C9D5D}\LocalServer32", "", "dmremote.exe"
+0x1, "Classes\CLSID\{D485DDC0-49C6-11d1-8E56-00A0C92C9D5D}\LocalServer32", "ThreadingModel", "Apartment"
+0x1, "Classes\CLSID\{3A410F21-553F-11d1-8E5E-00A0C92C9D5D}", "", "IDMRemoteServer_PSFactory"
+0x2, "Classes\CLSID\{3A410F21-553F-11d1-8E5E-00A0C92C9D5D}\InprocServer32", "", "%SystemRoot%\System32\dmintf.dll"
+0x1, "Classes\Interface\{3A410F21-553F-11d1-8E5E-00A0C92C9D5D}", "", "IDMRemoteServer"
+0x1, "Classes\Interface\{3A410F21-553F-11d1-8E5E-00A0C92C9D5D}\ProxyStubClsid32", "", "{3A410F21-553F-11d1-8E5E-00A0C92C9D5D}"
+0x1, "Classes\APPID\{4FB6BB00-3347-11d0-B40A-00AA005FF586}", "", "Logical Disk Manager Administrative Service"
+0x1, "Classes\APPID\{4FB6BB00-3347-11d0-B40A-00AA005FF586}", "LocalService", "dmadmin"
+0x1, "Classes\APPID\{4FB6BB00-3347-11d0-B40A-00AA005FF586}", "ServiceParameters", "/com"
+0x1, "Classes\APPID\dmadmin.exe", "AppID", "{4FB6BB00-3347-11d0-B40A-00AA005FF586}"
+0x1, "Classes\CLSID\{4FB6BB00-3347-11d0-B40A-00AA005FF586}", "", "Logical Disk Manager Administrative Service"
+0x1, "Classes\CLSID\{4FB6BB00-3347-11d0-B40A-00AA005FF586}", "AppID", "{4FB6BB00-3347-11d0-B40A-00AA005FF586}"
+0x2, "Classes\CLSID\{4FB6BB00-3347-11d0-B40A-00AA005FF586}\LocalServer32", "", "dmadmin.exe /com"
+0x1, "Classes\APPID\{F290BFB2-1864-45B1-8804-2654194A87E7}", "", "Virtual Disk Service"
+0x1, "Classes\APPID\{F290BFB2-1864-45B1-8804-2654194A87E7}", "LocalService", "vds"
+0x1, "Classes\APPID\vds.exe", "AppID", "{F290BFB2-1864-45B1-8804-2654194A87E7}"
+0x1, "Classes\CLSID\{7D1933CB-86F6-4A98-8628-01BE94C9A575}", "", "Virtual Disk Service"
+0x1, "Classes\CLSID\{7D1933CB-86F6-4A98-8628-01BE94C9A575}", "AppID", "{F290BFB2-1864-45B1-8804-2654194A87E7}"
+0x1, "Classes\CLSID\{DE010DA1-289B-4232-8CD0-5112DCA6A7B3}", "", "VDS Basic Provider"
+0x2, "Classes\CLSID\{DE010DA1-289B-4232-8CD0-5112DCA6A7B3}\InprocServer32", "", "%SystemRoot%\System32\vdsbas.dll"
+0x1, "Classes\CLSID\{DE010DA1-289B-4232-8CD0-5112DCA6A7B3}\InprocServer32", "ThreadingModel", "Free"
+0x1, "Classes\CLSID\{DEB10DEB-289B-4232-8CD0-5112DCA6A7B3}", "", "VDS Dynamic Provider"
+0x2, "Classes\CLSID\{DEB10DEB-289B-4232-8CD0-5112DCA6A7B3}\InprocServer32", "", "%SystemRoot%\System32\vdsdyndr.dll"
+0x1, "Classes\CLSID\{DEB10DEB-289B-4232-8CD0-5112DCA6A7B3}\InprocServer32", "ThreadingModel", "Free"
+0x1, "Classes\APPID\{5364ED0E-493F-4B16-9DBF-AE486CF22660}", "", "Virtual Disk Service Loader"
+0x1, "Classes\APPID\{5364ED0E-493F-4B16-9DBF-AE486CF22660}", "LocalServer32", "vdsldr.exe"
+0x1, "Classes\CLSID\{9C38ED61-D565-4728-AEEE-C80952F0ECDE}", "", "Virtual Disk Service Loader"
+0x1, "Classes\CLSID\{9C38ED61-D565-4728-AEEE-C80952F0ECDE}", "AppID", "{5364ED0E-493F-4B16-9DBF-AE486CF22660}"
+0x1, "Classes\CLSID\{9C38ED61-D565-4728-AEEE-C80952F0ECDE}\LocalServer32", "", "vdsldr.exe"
+0x1, "Classes\CLSID\{9C38ED61-D565-4728-AEEE-C80952F0ECDE}\LocalServer32", "ThreadingModel", "Free"
+0x1, "Classes\CLSID\{E0393303-90D4-4A97-AB71-E9B671EE2729}", "", "VDS ProxyStub"
+0x2, "Classes\CLSID\{E0393303-90D4-4A97-AB71-E9B671EE2729}\InprocServer32", "", "%SystemRoot%\System32\vds_ps.dll"
+0x1, "Classes\CLSID\{E0393303-90D4-4A97-AB71-E9B671EE2729}\InProcServer32", "ThreadingModel", "Both"
+0x1, "Classes\Interface\{E0393303-90D4-4A97-AB71-E9B671EE2729}", "", "IVdsServiceLoader"
+0x1, "Classes\Interface\{E0393303-90D4-4A97-AB71-E9B671EE2729}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{0818A8EF-9BA9-40D8-A6F9-E22833CC771E}", "", "IVdsService"
+0x1, "Classes\Interface\{0818A8EF-9BA9-40D8-A6F9-E22833CC771E}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{4AFC3636-DB01-4052-80C3-03BBCB8D3C69}", "", "IVdsServiceInitialization"
+0x1, "Classes\Interface\{4AFC3636-DB01-4052-80C3-03BBCB8D3C69}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{D188E97D-85AA-4D33-ABC6-26299A10FFC1}", "", "IVdsAdmin"
+0x1, "Classes\Interface\{D188E97D-85AA-4D33-ABC6-26299A10FFC1}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{118610B7-8D94-4030-B5B8-500889788E4E}", "", "IEnumVdsObject"
+0x1, "Classes\Interface\{118610B7-8D94-4030-B5B8-500889788E4E}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{8326CD1D-CF59-4936-B786-5EFC08798E25}", "", "IVdsAdviseSink"
+0x1, "Classes\Interface\{8326CD1D-CF59-4936-B786-5EFC08798E25}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{D5D23B6D-5A55-4492-9889-397A3C2D2DBC}", "", "IVdsAsync"
+0x1, "Classes\Interface\{D5D23B6D-5A55-4492-9889-397A3C2D2DBC}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{10C5E575-7984-4E81-A56B-431F5F92AE42}", "", "IVdsProvider"
+0x1, "Classes\Interface\{10C5E575-7984-4E81-A56B-431F5F92AE42}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{9AA58360-CE33-4F92-B658-ED24B14425B8}", "", "IVdsSwProvider"
+0x1, "Classes\Interface\{9AA58360-CE33-4F92-B658-ED24B14425B8}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{3B69D7F5-9D94-4648-91CA-79939BA263BF}", "", "IVdsPack"
+0x1, "Classes\Interface\{3B69D7F5-9D94-4648-91CA-79939BA263BF}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{07E5C822-F00C-47A1-8FCE-B244DA56FD06}", "", "IVdsDisk"
+0x1, "Classes\Interface\{07E5C822-F00C-47A1-8FCE-B244DA56FD06}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{6E6F6B40-977C-4069-BDDD-AC710059F8C0}", "", "IVdsAdvancedDisk"
+0x1, "Classes\Interface\{6E6F6B40-977C-4069-BDDD-AC710059F8C0}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{0316560B-5DB4-4ED9-BBB5-213436DDC0D9}", "", "IVdsRemovable"
+0x1, "Classes\Interface\{0316560B-5DB4-4ED9-BBB5-213436DDC0D9}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{88306BB2-E71F-478C-86A2-79DA200A0F11}", "", "IVdsVolume"
+0x1, "Classes\Interface\{88306BB2-E71F-478C-86A2-79DA200A0F11}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{EE2D5DED-6236-4169-931D-B9778CE03DC6}", "", "IVdsVolumeMF"
+0x1, "Classes\Interface\{EE2D5DED-6236-4169-931D-B9778CE03DC6}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{4DAA0135-E1D1-40F1-AAA5-3CC1E53221C3}", "", "IVdsVolumePlex"
+0x1, "Classes\Interface\{4DAA0135-E1D1-40F1-AAA5-3CC1E53221C3}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{E882C452-CF37-482A-BBFF-E6EE614E8023}", "", "IVdsSwProviderPrivate"
+0x1, "Classes\Interface\{E882C452-CF37-482A-BBFF-E6EE614E8023}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{33B87426-5C06-49F4-84BD-F486B1B4A21D}", "", "IVdsMigrateDisks"
+0x1, "Classes\Interface\{33B87426-5C06-49F4-84BD-F486B1B4A21D}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{54D1F9E3-7FD3-421A-AF9C-53C2D8EE5BCF}", "", "IVdsOwnershipChangeQuery"
+0x1, "Classes\Interface\{54D1F9E3-7FD3-421A-AF9C-53C2D8EE5BCF}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{11F3CD41-B7E8-48FF-9472-9DFF018AA292}", "", "IVdsProviderPrivate"
+0x1, "Classes\Interface\{11F3CD41-B7E8-48FF-9472-9DFF018AA292}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{98F17BF3-9F33-4F12-8714-8B4075092C2E}", "", "IVdsHwProviderPrivate"
+0x1, "Classes\Interface\{98F17BF3-9F33-4F12-8714-8B4075092C2E}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{D99BDAAE-B13A-4178-9FDB-E27F16B4603E}", "", "IVdsHwProvider"
+0x1, "Classes\Interface\{D99BDAAE-B13A-4178-9FDB-E27F16B4603E}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{3540A9C7-E60F-4111-A840-8BBA6C2C83D8}", "", "IVdsLun"
+0x1, "Classes\Interface\{3540A9C7-E60F-4111-A840-8BBA6C2C83D8}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{0EE1A790-5D2E-4ABB-8C99-C481E8BE2138}", "", "IVdsLunPlex"
+0x1, "Classes\Interface\{0EE1A790-5D2E-4ABB-8C99-C481E8BE2138}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{6FCEE2D3-6D90-4F91-80E2-A5C7CAACA9D8}", "", "IVdsSubSystem"
+0x1, "Classes\Interface\{6FCEE2D3-6D90-4F91-80E2-A5C7CAACA9D8}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{CB53D96E-DFFB-474A-A078-790D1E2BC082}", "", "IVdsController"
+0x1, "Classes\Interface\{CB53D96E-DFFB-474A-A078-790D1E2BC082}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{FF24EFA4-AADE-4B6B-898B-EAA6A20887C7}", "", "IVdsDrive"
+0x1, "Classes\Interface\{FF24EFA4-AADE-4B6B-898B-EAA6A20887C7}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Classes\Interface\{DAEBEEF3-8523-47ED-A2B9-05CECCE2A1AE}", "", "IVdsMaintenance"
+0x1, "Classes\Interface\{DAEBEEF3-8523-47ED-A2B9-05CECCE2A1AE}\ProxyStubClsid32", "", "{E0393303-90D4-4A97-AB71-E9B671EE2729}"
+0x1, "Microsoft\Windows NT\CurrentVersion", "ProductId", "50293-000-1234567-12345"
+; Fix default font being *bold*
+0x1, "Microsoft\Windows NT\CurrentVersion\Fonts", "Tahoma (TrueType)", "TAHOMA.TTF"
+; /Fix default font being *bold*
+0x3, "Microsoft\Driver Signing", "Policy",00
+0x3, "Microsoft\Non-Driver Signing", "Policy",00
+
+[Software.DelReg]
+; Software.DelReg is empty at the moment...
+
+[SetupReg.AddReg]
+0x1, "ControlSet001\Control\MiniNT"
+0x0, "ControlSet001\Control\CoDeviceInstallers"
+0x0, "ControlSet001\Control\Session Manager\AppCompatability"
+0x0, "ControlSet001\Control\Session Manager\AppPatches"
+0x0, "ControlSet001\Control\Session Manager\Executive"
+0x0, "ControlSet001\Control\Session Manager\FileRenameOperations"
+0x0, "ControlSet001\Control\Session Manager\Power"
+0x0, "ControlSet001\Services\EventLog\Security"
+0x0, "ControlSet001\Services\Mup\Parameters"
+0x0, "ControlSet001\Services\Ndis\MediaTypes"
+0x0, "ControlSet001\Services\Spooler\Parameters"
+0x0, "Setup\AllowStart"
+0x0, "Setup\AllowStart\AFD"
+0x0, "Setup\AllowStart\EventLog"
+0x0, "Setup\AllowStart\PlugPlay"
+0x0, "Setup\AllowStart\ProtectedStorage"
+0x0, "Setup\AllowStart\Rpcss"
+0x0, "Setup\AllowStart\Samss"
+0x0, "Setup\AllowStart\Seclogon"
+0x0, "Setup\AllowStart\WS2IFSL"
+0x4, "ControlSet001\Control\Session Manager\WPA\Pnp", "Seed", 0x1B7D38EA
+0x4, "ControlSet001\Control\GraphicsDrivers\DCI", "Timeout", 0x7
+0x7, "ControlSet001\Control\ProductOptions", "ProductSuite", ""
+0x1, "ControlSet001\Control\ProductOptions", "ProductType", "WinNT"
+0x1, "ControlSet001\Control\SecurityProviders", "SecurityProviders", "schannel.dll"
+0x1, "ControlSet001\Control\SecurityProviders\SaslProfiles", "GSSAPI", "Kerberos"
+0x7, "ControlSet001\Control\Session Manager\", "BootExecute", ""
+0x1, "ControlSet001\Control\Session Manager\DOS Devices", "AUX", "\DosDevices\COM1"
+0x1, "ControlSet001\Control\Session Manager\DOS Devices", "MAILSLOT", "\Device\MailSlot"
+0x1, "ControlSet001\Control\Session Manager\DOS Devices", "NUL", "\Device\Null"
+0x1, "ControlSet001\Control\Session Manager\DOS Devices", "PIPE", "\Device\NamedPipe"
+0x1, "ControlSet001\Control\Session Manager\DOS Devices", "PRN", "\DosDevices\LPT1"
+0x1, "ControlSet001\Control\Session Manager\DOS Devices", "UNC", "\Device\Mup"
+0x1, "ControlSet001\Control\Session Manager\Environment", "OS", "Windows_NT"
+
+0x4, "WPA\Pnp", "Seed", 0x1B7D38EA
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "advapi32", "advapi32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "comdlg32", "comdlg32.dll"
+0x2, "ControlSet001\Control\Session Manager\KnownDLLs", "DllDirectory", "%systemroot%\system32"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "gdi32", "gdi32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "imagehlp", "imagehlp.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "kernel32", "kernel32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "lz32", "lz32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "ole32", "ole32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "oleaut32", "oleaut32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "olecli32", "olecli32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "olecnv32", "olecnv32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "olesvr32", "olesvr32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "rpcrt4", "rpcrt4.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "shell32", "shell32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "url", "url.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "urlmon", "urlmon.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "user32", "user32.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "version", "version.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "wininet", "wininet.dll"
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "wldap32", "wldap32.dll"
+0x1, "ControlSet001\Control\Session Manager\SFC", "CommonFilesDir", "\"
+0x1, "ControlSet001\Control\Session Manager\SFC", "ProgramFilesDir", "\"
+0x2, "ControlSet001\Control\Session Manager\SubSystems", "Debug", ""
+0x2, "ControlSet001\Control\Session Manager\SubSystems", "kmode", "%SystemRoot%\System32\win32k.sys"
+0x7, "ControlSet001\Control\Session Manager\SubSystems", "Required", "Debug", "Windows"
+0x2, "ControlSet001\Control\Session Manager\SubSystems", "Windows", "%SystemRoot%\system32\csrss.exe ObjectDirectory=\Windows SharedSection=1024,3072,512 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitialization, 3 ServerDll=winsrv:ConServerDllInitialization,2 ProfileControl=Off MaxRequestThreads=16"
+0x1, "ControlSet001\Services\i8042prt", "Group", "Keyboard Port"
+0x4, "ControlSet001\Services\i8042prt", "Start", 0x1
+0x4, "ControlSet001\Services\i8042prt", "Type", 0x1
+0x4, "ControlSet001\Services\i8042prt\Parameters", "PollingIterations", 0x2EE0
+0x4, "ControlSet001\Services\i8042prt\Parameters", "PollingIterationsMaximum", 0x2EE0
+0x4, "ControlSet001\Services\i8042prt\Parameters", "ResendIterations", 0x3
+0x1, "ControlSet001\Services\kbdclass", "Group", "Keyboard Class"
+0x2, "ControlSet001\Services\kbdclass", "ImagePath", "System32\drivers\kbdclass.sys"
+0x4, "ControlSet001\Services\kbdclass", "Start", 0x1
+0x4, "ControlSet001\Services\kbdclass", "Tag", 0x1
+0x4, "ControlSet001\Services\kbdclass", "Type", 0x1
+0x4, "ControlSet001\Services\kbdclass\Parameters", "ConnectMultiplePorts", 0x0
+0x4, "ControlSet001\Services\kbdclass\Parameters", "ConnectMultiplePortsChanged", 0x1
+0x4, "ControlSet001\Services\kbdclass\Parameters", "ConnectMultiplePortsUpgraded", 0x1
+0x4, "ControlSet001\Services\kbdclass\Parameters", "KeyboardDataQueueSize", 0x64
+0x1, "ControlSet001\Services\kbdclass\Parameters", "KeyboardDeviceBaseName", "KeyboardClass"
+0x4, "ControlSet001\Services\kbdclass\Parameters", "MaximumPortsServiced", 0x3
+0x4, "ControlSet001\Services\kbdclass\Parameters", "SentOutputToAllPorts", 0x1
+0x1, "ControlSet001\Services\mouclass", "Group", "Pointer Class"
+0x2, "ControlSet001\Services\mouclass", "ImagePath", "System32\drivers\mouclass.sys"
+0x4, "ControlSet001\Services\mouclass", "Start", 0x1
+0x4, "ControlSet001\Services\mouclass", "Tag", 0x1
+0x4, "ControlSet001\Services\mouclass", "Type", 0x1
+0x4, "ControlSet001\Services\mouclass\Parameters", "ConnectMultiplePorts", 0x0
+0x4, "ControlSet001\Services\mouclass\Parameters", "ConnectMultiplePortsChanged", 0x1
+0x4, "ControlSet001\Services\mouclass\Parameters", "ConnectMultiplePortsUpgraded", 0x1
+0x4, "ControlSet001\Services\mouclass\Parameters", "MaximumPortsServiced", 0x3
+0x4, "ControlSet001\Services\mouclass\Parameters", "MouseDataQueueSize", 0x64
+0x1, "ControlSet001\Services\mouclass\Parameters", "PointerDeviceBaseName", "PointerClass"
+0x4, "ControlSet001\Services\VgaSave", "ErrorControl", 0x0
+0x1, "ControlSet001\Services\VgaSave", "Group", "Video Save"
+0x2, "ControlSet001\Services\VgaSave", "ImagePath", "\SystemRoot\System32\drivers\vga.sys"
+0x4, "ControlSet001\Services\VgaSave", "Start", 0x1
+0x4, "ControlSet001\Services\VgaSave", "Tag", 0x1
+0x4, "ControlSet001\Services\VgaSave", "Type", 0x1
+0x1, "ControlSet001\Services\VgaSave\Video", "VideoID", "{23A77BF7-ED96-40EC-AF06-9B1F4867732A}"
+0x1, "ControlSet001\Services\VgaSave\Video", "Service", "VgaSave"
+0x7, "ControlSet001\Services\VgaSave\Device0", "InstalledDisplayDrivers", "vga", "framebuf", "vga256", "vga64k"
+0x4, "ControlSet001\Services\VgaSave\Device0", "VgaCompatible", 0x1
+0x1, "ControlSet001\Control\Video\{23A77BF7-ED96-40EC-AF06-9B1F4867732A}\Video", "Service", "VgaSave"
+0x7, "ControlSet001\Control\Video\{23A77BF7-ED96-40EC-AF06-9B1F4867732A}\0000", "InstalledDisplayDrivers", "vga", "framebuf", "vga256", "vga64k"
+0x4, "ControlSet001\Control\Video\{23A77BF7-ED96-40EC-AF06-9B1F4867732A}\0000", "VgaCompatible", 0x1
+0x1, "Setup", "CmdLine", "cmd.exe /k startnet.cmd"
+0x1, "Setup", "OsLoaderPath", "\"
+0x4, "Setup", "SetupType", 0x1
+0x4, "Setup", "SystemSetupInProgress", 0x1
+0x2, "ControlSet001\Control\Session Manager\Environment", "ComSpec", "%SystemRoot%\system32\cmd.exe"
+
+; Added "bin" 24-10-2003 BL
+0x2, "ControlSet001\Control\Session Manager\Environment", "Path", "%SystemRoot%;%SystemRoot%\System32;%SystemDrive%\Bin"
+; 0x2, "ControlSet001\Control\Session Manager\Environment", "Path", "%SystemRoot%\system32;%SystemRoot%"
+; /bin
+
+0x2, "ControlSet001\Control\Session Manager\Environment", "windir", "%SystemRoot%"
+0x4, "ControlSet001\Control\PriorityControl", "Win32PrioritySeparation", 0x2
+0x7, "ControlSet001\Control\Lsa", "Authentication Packages", "msv1_0"
+0x3, "ControlSet001\Control\Lsa", "Bounds",00,30,00,00,00,20,00,00
+0x7, "ControlSet001\Control\Lsa", "Security Packages", "kerberos", "msv1_0", "schannel"
+0x7, "ControlSet001\Control\Lsa\AccessProviders", "ProviderOrder", "Windows NT Access Provider"
+0x2, "ControlSet001\Control\Lsa\AccessProviders\Windows NT AccessProvider", "ProviderPath", "%SystemRoot%\system32\ntmarta.dll"
+0x2, "ControlSet001\Services\WinTrust\SubjectPackages\MS Subjects 1", "$DLL", "%SystemRoot%\system32\MsSip1.dll"
+0x2, "ControlSet001\Services\WinTrust\SubjectPackages\MS Subjects 2", "$DLL", "%SystemRoot%\system32\MsSip2.dll"
+0x2, "ControlSet001\Services\WinTrust\SubjectPackages\MS Subjects 3", "$DLL", "%SystemRoot%\system32\MsSip3.dll"
+0x2, "ControlSet001\Services\WinTrust\TrustProviders\Software Publisher", "$DLL", "%SystemRoot%\system32\SoftPub.dll"
+0x1, "ControlSet001\Services\Afd", "DisplayName", "AFD Networking Support Environment"
+0x4, "ControlSet001\Services\Afd", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\Afd", "Group", "TDI"
+0x2, "ControlSet001\Services\Afd", "ImagePath", "\SystemRoot\system32\drivers\afd.sys"
+0x4, "ControlSet001\Services\Afd", "Start", 0x3
+0x4, "ControlSet001\Services\Afd", "Type", 0x1
+0x4, "ControlSet001\Services\Msfs", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\Msfs", "Group", "File system"
+0x4, "ControlSet001\Services\Msfs", "Start", 0x1
+0x4, "ControlSet001\Services\Msfs", "Type", 0x2
+0x4, "ControlSet001\Services\Null", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\Null", "Group", "Base"
+0x4, "ControlSet001\Services\Null", "Start", 0x1
+0x4, "ControlSet001\Services\Null", "Tag", 0x1
+0x4, "ControlSet001\Services\Null", "Type", 0x1
+0x4, "ControlSet001\Services\Beep", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\Beep", "Group", "Base"
+0x4, "ControlSet001\Services\Beep", "Start", 0x1
+0x4, "ControlSet001\Services\Beep", "Tag", 0x2
+0x4, "ControlSet001\Services\Beep", "Type", 0x1
+0x4, "ControlSet001\Services\Npfs", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\Npfs", "Group", "File system"
+0x4, "ControlSet001\Services\Npfs", "Start", 0x1
+0x4, "ControlSet001\Services\Npfs", "Type", 0x2
+0x7, "ControlSet001\Services\Npfs\Aliases", "lsass", "protected_storage", "netlogon", "lsarpc", "samr"
+0x7, "ControlSet001\Services\Npfs\Aliases", "ntsvcs", "eventlog", "svcctl"
+0x1, "ControlSet001\Services\PlugPlay", "Description", "Manages device installation and configuration and notifies programs of device changes."
+0x1, "ControlSet001\Services\PlugPlay", "DisplayName", "Plug and Play"
+0x4, "ControlSet001\Services\PlugPlay", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\PlugPlay", "Group", "PlugPlay"
+0x2, "ControlSet001\Services\PlugPlay", "ImagePath", "%SystemRoot%\system32\services.exe"
+0x1, "ControlSet001\Services\PlugPlay", "ObjectName", "LocalSystem"
+0x4, "ControlSet001\Services\PlugPlay", "PlugPlayServiceType", 0x3
+0x4, "ControlSet001\Services\PlugPlay", "Start", 0x2
+0x4, "ControlSet001\Services\PlugPlay", "Type", 0x20
+0x7, "ControlSet001\Services\ProtectedStorage", "DependOnService", "RpcSs"
+0x1, "ControlSet001\Services\ProtectedStorage", "Description", "Provides protected storage for sensitive data, such as private keys, to prevent access by unauthorized services, processes, or users."
+0x1, "ControlSet001\Services\ProtectedStorage", "DisplayName", "Protected Storage"
+0x4, "ControlSet001\Services\ProtectedStorage", "ErrorControl", 0x1
+0x2, "ControlSet001\Services\ProtectedStorage", "ImagePath", "%SystemRoot%\system32\lsass.exe"
+0x1, "ControlSet001\Services\ProtectedStorage", "ObjectName", "LocalSystem"
+0x4, "ControlSet001\Services\ProtectedStorage", "Start", 0x2
+0x4, "ControlSet001\Services\ProtectedStorage", "Type", 0x120
+0x1, "ControlSet001\Services\SamSs", "Description", "Stores security information for local user accounts."
+0x1, "ControlSet001\Services\SamSs", "DisplayName", "Security Accounts Manager"
+0x4, "ControlSet001\Services\SamSs", "ErrorControl", 0x1
+0x2, "ControlSet001\Services\SamSs", "ImagePath", "%SystemRoot%\system32\lsass.exe"
+0x1, "ControlSet001\Services\SamSs", "ObjectName", "LocalSystem"
+0x4, "ControlSet001\Services\SamSs", "Start", 0x2
+0x4, "ControlSet001\Services\SamSs", "Type", 0x20
+0x1, "ControlSet001\Services\SamSs", "Group", "MS_WindowsLocalValidation"
+0x7, "ControlSet001\Services\SamSs", "DependOnService", "RPCSS"
+0x3, "ControlSet001\Services\Samss\Security", "Security",\
+	01,00,14,80,B4,00,00,00,C0,00,00,00,14,00,00,00,34,00,00,00,02,00,20,00,\
+	01,00,00,00,02,80,18,00,FF,01,0F,00,01,01,00,00,00,00,00,01,00,00,00,00,\
+	20,02,00,00,02,00,80,00,05,00,00,00,00,03,18,00,8D,00,02,00,01,01,00,00,\
+	00,00,00,01,00,00,00,00,00,00,00,00,00,03,18,00,FF,01,0F,00,01,02,00,00,\
+	00,00,00,05,20,00,00,00,20,02,00,00,00,03,18,00,8F,00,02,00,01,02,00,00,\
+	00,00,00,05,20,00,00,00,23,02,00,00,00,03,18,00,9D,00,00,00,01,01,00,00,\
+	00,00,00,05,04,00,00,00,23,02,00,00,00,03,18,00,9D,00,00,00,01,02,00,00,\
+	00,00,00,05,20,00,00,00,21,02,00,00,01,01,00,00,00,00,00,05,12,00,00,00,\
+	01,01,00,00,00,00,00,05,12,00,00,00
+0x1, "ControlSet001\Services\RpcSs", "Description", "Provides the endpoint mapper and other miscellaneous RPC services."
+0x1, "ControlSet001\Services\RpcSs", "DisplayName", "Remote Procedure Call (RPC)"
+0x4, "ControlSet001\Services\RpcSs", "ErrorControl", 0x1
+0x2, "ControlSet001\Services\RpcSs", "ImagePath", "%SystemRoot%\system32\svchost -k rpcss"
+0x1, "ControlSet001\Services\RpcSs", "ObjectName", "LocalSystem"
+0x4, "ControlSet001\Services\RpcSs", "Start", 0x2
+0x4, "ControlSet001\Services\RpcSs", "Type", 0x20
+0x2, "ControlSet001\Services\RpcSs\Parameters", "ServiceDll", "%SystemRoot%\system32\rpcss.dll"
+0x3, "ControlSet001\Services\RpcSs\Security", "Security",\
+	01,00,14,80,B4,00,00,00,C0,00,00,00,14,00,00,00,34,00,00,00,02,00,20,00,\
+	01,00,00,00,02,80,18,00,FF,01,0F,00,01,01,00,00,00,00,00,01,00,00,00,00,\
+	20,02,00,00,02,00,80,00,05,00,00,00,00,03,18,00,8D,00,02,00,01,01,00,00,\
+	00,00,00,01,00,00,00,00,00,00,00,00,00,03,18,00,FF,01,0F,00,01,02,00,00,\
+	00,00,00,05,20,00,00,00,20,02,00,00,00,03,18,00,8F,00,02,00,01,02,00,00,\
+	00,00,00,05,20,00,00,00,23,02,00,00,00,03,18,00,9D,00,00,00,01,01,00,00,\
+	00,00,00,05,04,00,00,00,23,02,00,00,00,03,18,00,9D,00,00,00,01,02,00,00,\
+	00,00,00,05,20,00,00,00,21,02,00,00,01,01,00,00,00,00,00,05,12,00,00,00,\
+	01,01,00,00,00,00,00,05,12,00,00,00
+0x1, "ControlSet001\Services\Mup", "DisplayName", "Mup"
+0x4, "ControlSet001\Services\Mup", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\Mup", "Group", "Network"
+0x4, "ControlSet001\Services\Mup", "Start", 0x0
+0x4, "ControlSet001\Services\Mup", "Tag", 0x2
+0x4, "ControlSet001\Services\Mup", "Type", 0x2
+0x2, "ControlSet001\Services\EventLog\System\dmio", "EventMessageFile", "%SystemRoot%\System32\IoLogMsg.dll;%SystemRoot%\System32\Drivers\dmio.sys"
+0x4, "ControlSet001\Services\EventLog\System\dmio", "TypesSupported", 0x7
+0x2, "ControlSet001\Services\EventLog\System\dmboot", "EventMessageFile", "%SystemRoot%\System32\Drivers\dmboot.sys"
+0x4, "ControlSet001\Services\EventLog\System\dmboot", "TypesSupported", 0x7
+0x4, "ControlSet001\Services\dmload", "Type", 0x1
+0x4, "ControlSet001\Services\dmload", "Start", 0x0
+0x4, "ControlSet001\Services\dmload", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\dmload", "Group", "System Bus Extender"
+0x4, "ControlSet001\Services\dmload", "Tag", 0xC
+0x2, "ControlSet001\Services\dmload", "ImagePath", "System32\drivers\dmload.sys"
+0x4, "ControlSet001\Services\dmboot", "Type", 0x1
+0x4, "ControlSet001\Services\dmboot", "Start", 0x0
+0x4, "ControlSet001\Services\dmboot", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\dmboot", "Group", "Filter"
+0x4, "ControlSet001\Services\dmboot", "Tag", 0xB
+0x2, "ControlSet001\Services\dmboot", "ImagePath", "System32\drivers\dmboot.sys"
+0x4, "ControlSet001\Services\dmio", "Type", 0x1
+0x4, "ControlSet001\Services\dmio", "Start", 0x0
+0x4, "ControlSet001\Services\dmio", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\dmio", "Group", "System Bus Extender"
+0x4, "ControlSet001\Services\dmio", "Tag", 0xD
+0x2, "ControlSet001\Services\dmio", "ImagePath", "System32\drivers\dmio.sys"
+0x7, "ControlSet001\Services\dmserver", "DependOnService", "RpcSs", "PlugPlay"
+0x4, "ControlSet001\Services\dmserver", "Type", 0x20
+0x4, "ControlSet001\Services\dmserver", "Start", 0x2
+0x4, "ControlSet001\Services\dmserver", "ErrorControl", 0x1
+0x2, "ControlSet001\Services\dmserver", "ImagePath", "%SystemRoot%\System32\svchost.exe -k netsvcs"
+0x1, "ControlSet001\Services\dmserver", "DisplayName", "Logical Disk Manager"
+0x1, "ControlSet001\Services\dmserver", "ObjectName", "LocalSystem"
+0x1, "ControlSet001\Services\dmserver", "Description", "Logical Disk Manager Watchdog Service"
+0x2, "ControlSet001\Services\dmserver\Parameters", "ServiceDll", "%SystemRoot%\System32\dmserver.dll"
+0x7, "ControlSet001\Services\dmadmin", "DependOnService", "RpcSs", "PlugPlay", "DmServer"
+0x4, "ControlSet001\Services\dmadmin", "Type", 0x20
+0x4, "ControlSet001\Services\dmadmin", "Start", 0x3
+0x4, "ControlSet001\Services\dmadmin", "ErrorControl", 0x1
+0x2, "ControlSet001\Services\dmadmin", "ImagePath", "%SystemRoot%\System32\dmadmin.exe /com"
+0x1, "ControlSet001\Services\dmadmin", "DisplayName", "Logical Disk Manager Administrative Service"
+0x1, "ControlSet001\Services\dmadmin", "ObjectName", "LocalSystem"
+0x1, "ControlSet001\Services\dmadmin", "Description", "Administrative service for disk management requests"
+0x2, "ControlSet001\Services\EventLog\System\LDMS", "EventMessageFile", "%SystemRoot%\System32\dmserver.dll"
+0x4, "ControlSet001\Services\EventLog\System\LDMS", "TypesSupported", 0x7
+0x2, "ControlSet001\Services\EventLog\System\LDM", "EventMessageFile", "%SystemRoot%\System32\dmadmin.exe"
+0x4, "ControlSet001\Services\EventLog\System\LDM", "TypesSupported", 0x7
+0x1, "ControlSet001\Control\Class\{4D36E972-E325-11CE-BFC1-08002BE10318}", "", "Network adapters"
+0x1, "ControlSet001\Control\Class\{4D36E972-E325-11CE-BFC1-08002BE10318}", "Class", "Net"
+0x1, "ControlSet001\Control\Class\{4D36E972-E325-11CE-BFC1-08002BE10318}", "Icon", "-5"
+0x1, "ControlSet001\Control\Class\{4D36E972-E325-11CE-BFC1-08002BE10318}", "Installer32", "NetCfgx.Dll,NetClassInstaller"
+0x1, "ControlSet001\Control\Class\{4D36E972-E325-11CE-BFC1-08002BE10318}", "EnumPropPages32", "NetCfgx.Dll,NetPropPageProvider"
+0x1, "ControlSet001\Control\Class\{4D36E973-E325-11CE-BFC1-08002BE10318}", "", "Network Client"
+0x1, "ControlSet001\Control\Class\{4D36E973-E325-11CE-BFC1-08002BE10318}", "Class", "NetClient"
+0x1, "ControlSet001\Control\Class\{4D36E973-E325-11CE-BFC1-08002BE10318}", "Icon", "-7"
+0x1, "ControlSet001\Control\Class\{4D36E973-E325-11CE-BFC1-08002BE10318}", "Installer32", "NetCfgx.Dll,NetClassInstaller"
+0x1, "ControlSet001\Control\Class\{4D36E973-E325-11CE-BFC1-08002BE10318}", "NoInstallClass", "1"
+0x1, "ControlSet001\Control\Class\{4D36E973-E325-11CE-BFC1-08002BE10318}", "NoDisplayClass", "1"
+0x1, "ControlSet001\Control\Class\{4D36E974-E325-11CE-BFC1-08002BE10318}", "", "Network Service"
+0x1, "ControlSet001\Control\Class\{4D36E974-E325-11CE-BFC1-08002BE10318}", "Class", "NetService"
+0x1, "ControlSet001\Control\Class\{4D36E974-E325-11CE-BFC1-08002BE10318}", "Icon", "-8"
+0x1, "ControlSet001\Control\Class\{4D36E974-E325-11CE-BFC1-08002BE10318}", "Installer32", "NetCfgx.Dll,NetClassInstaller"
+0x1, "ControlSet001\Control\Class\{4D36E974-E325-11CE-BFC1-08002BE10318}", "NoInstallClass", "1"
+0x1, "ControlSet001\Control\Class\{4D36E974-E325-11CE-BFC1-08002BE10318}", "NoDisplayClass", "1"
+0x1, "ControlSet001\Control\Class\{4D36E975-E325-11CE-BFC1-08002BE10318}", "", "Network Protocol"
+0x1, "ControlSet001\Control\Class\{4D36E975-E325-11CE-BFC1-08002BE10318}", "Class", "NetTrans"
+0x1, "ControlSet001\Control\Class\{4D36E975-E325-11CE-BFC1-08002BE10318}", "Icon", "-6"
+0x1, "ControlSet001\Control\Class\{4D36E975-E325-11CE-BFC1-08002BE10318}", "NoInstallClass", "1"
+0x1, "ControlSet001\Control\Class\{4D36E975-E325-11CE-BFC1-08002BE10318}", "NoDisplayClass", "1"
+0x1, "ControlSet001\Control\Class\{4D36E975-E325-11CE-BFC1-08002BE10318}", "Installer32", "NetCfgx.Dll,NetClassInstaller"
+0x1, "ControlSet001\Control\ComputerName\ComputerName", "ComputerName", "MININT-JVC"
+0x7, "ControlSet001\Control\Network\Connections", "ClassManagers", "{BA126AD3-2166-11D1-B1D0-00805FC1270E}", "{BA126AD5-2166-11D1-B1D0-00805FC1270E}", "{BA126ADD-2166-11D1-B1D0-00805FC1270E}"
+0x7, "ControlSet001\Control\Network", "FilterClasses", "scheduler", "loadbalance", "failover"
+0x1, "ControlSet001\Control\Network\{4D36E972-E325-11CE-BFC1-08002BE10318}", "", "Network Adapters"
+0x1, "ControlSet001\Control\Network\{4D36E972-E325-11CE-BFC1-08002BE10318}", "Class", "Net"
+0x1, "ControlSet001\Control\Network\{4D36E973-E325-11CE-BFC1-08002BE10318}", "", "Network Client"
+0x1, "ControlSet001\Control\Network\{4D36E973-E325-11CE-BFC1-08002BE10318}", "Class", "NetClient"
+0x1, "ControlSet001\Control\Network\{4D36E974-E325-11CE-BFC1-08002BE10318}", "", "Network Service"
+0x1, "ControlSet001\Control\Network\{4D36E974-E325-11CE-BFC1-08002BE10318}", "Class", "NetService"
+0x1, "ControlSet001\Control\Network\{4D36E975-E325-11CE-BFC1-08002BE10318}", "", "Network Protocol"
+0x1, "ControlSet001\Control\Network\{4D36E975-E325-11CE-BFC1-08002BE10318}", "Class", "NetTrans"
+0x1, "ControlSet001\Control\NetworkProvider\HwOrder", "ProviderOrder", "LanmanWorkstation"
+0x1, "ControlSet001\Control\NetworkProvider\Order", "ProviderOrder", "LanmanWorkstation"
+0x1, "ControlSet001\Services\NDIS", "DisplayName", "NDIS System Driver"
+0x4, "ControlSet001\Services\NDIS", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\NDIS", "Group", "NDIS Wrapper"
+0x4, "ControlSet001\Services\NDIS", "Start", 0x0
+0x4, "ControlSet001\Services\NDIS", "Type", 0x1
+0x4, "ControlSet001\Services\NDIS\Parameters", "ProcessorAffinityMask", 0x0
+0x7, "ControlSet001\Services\NDProxy", "DisplayName", "NDIS Proxy"
+0x4, "ControlSet001\Services\NDProxy", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\NDProxy", "Group", "PNP_TDI"
+0x4, "ControlSet001\Services\NDProxy", "Start", 0x3
+0x4, "ControlSet001\Services\NDProxy", "Type", 0x1
+0x7, "ControlSet001\Services\NetDDE", "DependOnService", "NetDDEDSDM"
+0x1, "ControlSet001\Services\NetDDE", "Description", "Provides network transport and security for dynamic data exchange (DDE)."
+0x1, "ControlSet001\Services\NetDDE", "DisplayName", "Network DDE"
+0x4, "ControlSet001\Services\NetDDE", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\NetDDE", "Group", "NetDDEGroup"
+0x2, "ControlSet001\Services\NetDDE", "ImagePath", "%SystemRoot%\system32\netdde.exe"
+0x1, "ControlSet001\Services\NetDDE", "ObjectName", "LocalSystem"
+0x4, "ControlSet001\Services\NetDDE", "Start", 0x4
+0x4, "ControlSet001\Services\NetDDE", "Type", 0x20
+0x3, "ControlSet001\Services\NetDDE\Security", "Security",\
+	01,00,14,80,9C,00,00,00,A8,00,00,00,14,00,00,00,34,00,00,00,02,00,20,00,\
+	01,00,00,00,02,80,18,00,FF,01,0F,00,01,01,00,00,00,00,00,01,00,00,00,00,\
+	20,02,00,00,02,00,68,00,04,00,00,00,00,03,18,00,8D,00,02,00,01,01,00,00,\
+	00,00,00,01,00,00,00,00,00,00,00,00,00,03,18,00,FF,01,0F,00,01,02,00,00,\
+	00,00,00,05,20,00,00,00,20,02,00,00,00,03,18,00,8F,00,02,00,01,02,00,00,\
+	00,00,00,05,20,00,00,00,23,02,00,00,00,03,18,00,9D,00,00,00,01,01,00,00,\
+	00,00,00,05,04,00,00,00,23,02,00,00,01,01,00,00,00,00,00,05,12,00,00,00,\
+	01,01,00,00,00,00,00,05,12,00,00,00
+0x7, "ControlSet001\Services\NetDDEdsdm", "DependOnService", ""
+0x1, "ControlSet001\Services\NetDDEdsdm", "Description", "Manages shared dynamic data exchange and is used by Network DDE"
+0x1, "ControlSet001\Services\NetDDEdsdm", "DisplayName", "Network DDE DSDM"
+0x4, "ControlSet001\Services\NetDDEdsdm", "ErrorControl", 0x1
+0x2, "ControlSet001\Services\NetDDEdsdm", "ImagePath", "%SystemRoot%\system32\netdde.exe"
+0x1, "ControlSet001\Services\NetDDEdsdm", "ObjectName", "LocalSystem"
+0x4, "ControlSet001\Services\NetDDEdsdm", "Start", 0x4
+0x4, "ControlSet001\Services\NetDDEdsdm", "Type", 0x20
+0x3, "ControlSet001\Services\NetDDEdsdm\Security", "Security",\
+	01,00,14,80,9C,00,00,00,A8,00,00,00,14,00,00,00,34,00,00,00,02,00,20,00,\
+	01,00,00,00,02,80,18,00,FF,01,0F,00,01,01,00,00,00,00,00,01,00,00,00,00,\
+	20,02,00,00,02,00,68,00,04,00,00,00,00,03,18,00,8D,00,02,00,01,01,00,00,\
+	00,00,00,01,00,00,00,00,00,00,00,00,00,03,18,00,FF,01,0F,00,01,02,00,00,\
+	00,00,00,05,20,00,00,00,20,02,00,00,00,03,18,00,8F,00,02,00,01,02,00,00,\
+	00,00,00,05,20,00,00,00,23,02,00,00,00,03,18,00,9D,00,00,00,01,01,00,00,\
+	00,00,00,05,04,00,00,00,23,02,00,00,01,01,00,00,00,00,00,05,12,00,00,00,\
+	01,01,00,00,00,00,00,05,12,00,00,00
+0x4, "ControlSet001\Services\Netlogon\Parameters", "DisablePasswordChange", 0x0
+0x7, "ControlSet001\Services\Netman", "DependOnService", "RpcSs"
+0x1, "ControlSet001\Services\Netman", "Description", "Manages objects in the Network and Dial-Up Connections folder, in which you can view both local area network and remote connections."
+0x1, "ControlSet001\Services\Netman", "DisplayName", "Network Connections"
+0x4, "ControlSet001\Services\Netman", "ErrorControl", 0x1
+0x2, "ControlSet001\Services\Netman", "ImagePath", "%SystemRoot%\System32\svchost.exe -k netsvcs"
+0x1, "ControlSet001\Services\Netman", "ObjectName", "LocalSystem"
+0x4, "ControlSet001\Services\Netman", "Start", 0x3
+0x4, "ControlSet001\Services\Netman", "Type", 0x120
+0x2, "ControlSet001\Services\Netman\Parameters", "ServiceDll", "%SystemRoot%\System32\netman.dll"
+0x7, "ControlSet001\Services\Spooler", "DependOnService", "RPCSS"
+0x1, "ControlSet001\Services\Spooler", "Description", "Loads files to memory for later printing."
+0x1, "ControlSet001\Services\Spooler", "DisplayName", "Print Spooler"
+0x4, "ControlSet001\Services\Spooler", "ErrorControl", 0x1
+0x1, "ControlSet001\Services\Spooler", "Group", "SpoolerGroup"
+0x2, "ControlSet001\Services\Spooler", "ImagePath", "%SystemRoot%\system32\spoolsv.exe"
+0x1, "ControlSet001\Services\Spooler", "ObjectName", "LocalSystem"
+0x4, "ControlSet001\Services\Spooler", "Start", 0x3
+0x4, "ControlSet001\Services\Spooler", "Type", 0x110
+0x1, "ControlSet001\Services\Spooler\Performance", "Close", "PerfClose"
+0x1, "ControlSet001\Services\Spooler\Performance", "Collect", "PerfCollect"
+0x4, "ControlSet001\Services\Spooler\Performance", "Collect Timeout", 0x7D0
+0x1, "ControlSet001\Services\Spooler\Performance", "Library", "winspool.drv"
+0x1, "ControlSet001\Services\Spooler\Performance", "Object List", "1450"
+0x1, "ControlSet001\Services\Spooler\Performance", "Open", "PerfOpen"
+0x4, "ControlSet001\Services\Spooler\Performance", "Open Timeout", 0xFA0
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000402", "bg"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000404", "ch"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000405", "cz"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000406", "dk"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000407", "gr"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000408", "gk"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000409", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000040A", "sp"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000040B", "su"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000040C", "fr"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000040E", "hu"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000040F", "is"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000410", "it"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000411", "jp"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000412", "ko"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000413", "nl"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000414", "no"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000415", "pl"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000416", "br"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000418", "ro"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000419", "ru"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000041A", "yu"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000041B", "sl"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000041C", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000041D", "sv"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000041F", "tr"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000422", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000423", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000424", "yu"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000425", "et"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000426", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000427", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000804", "ch"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000807", "sg"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000809", "uk"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000080A", "la"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000080C", "be"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000813", "be"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000816", "po"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000C0C", "cf"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00000C1A", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00001009", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0000100C", "sf"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00001809", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010402", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010405", "cz"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010407", "gr"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010408", "gk"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010409", "dv"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0001040A", "sp"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0001040E", "hu"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010410", "it"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010415", "pl"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010419", "ru"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0001041B", "sl"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "0001041F", "tr"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010426", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010C0C", "cf"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00010C1A", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00020408", "gk"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00020409", "us"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00030409", "usl"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00040409", "usr"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybCodes", "00050408", "gk"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybIDs", "00000410", "141"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybIDs", "0000041F", "179"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybIDs", "00010408", "220"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybIDs", "00010410", "142"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybIDs", "00010415", "214"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybIDs", "0001041F", "440"
+0x1, "ControlSet001\Control\Keyboard Layout\DosKeybIDs", "00020408", "319"
+0x1, "ControlSet001\Control\Keyboard Layouts\00000409", "Layout File", "KBDUS.DLL"
+0x1, "ControlSet001\Control\Keyboard Layouts\00000409", "Layout Text", "US"
+0x1, "ControlSet001\Control\Keyboard Layouts\00000409", "Layout Display Name", "@%SystemRoot%\system32\input.dll,-5000"
+0x1, "ControlSet001\Control\Keyboard Layouts\00010409", "Layout File", "KBDDV.DLL"
+0x1, "ControlSet001\Control\Keyboard Layouts\00010409", "Layout Id", "0002"
+0x1, "ControlSet001\Control\Keyboard Layouts\00010409", "Layout Text", "United States Dvorak"
+0x1, "ControlSet001\Control\Keyboard Layouts\00020409", "Layout File", "KBDUSX.DLL"
+0x1, "ControlSet001\Control\Keyboard Layouts\00020409", "Layout Id", "0001"
+0x1, "ControlSet001\Control\Keyboard Layouts\00020409", "Layout Text", "United States International"
+0x1, "ControlSet001\Control\Keyboard Layouts\00030409", "Layout File", "KBDUSL.DLL"
+0x1, "ControlSet001\Control\Keyboard Layouts\00030409", "Layout Id", "001A"
+0x1, "ControlSet001\Control\Keyboard Layouts\00030409", "Layout Text", "United States Dvorak for left hand"
+0x1, "ControlSet001\Control\Keyboard Layouts\00040409", "Layout File", "KBDUSR.DLL"
+0x1, "ControlSet001\Control\Keyboard Layouts\00040409", "Layout Id", "001B"
+0x1, "ControlSet001\Control\Keyboard Layouts\00040409", "Layout Text", "United States Dvorak for right hand"
+0x1, "ControlSet001\Control\Nls\CodePage\EUDCCodeRange", "932", "F040-F9FC"
+0x1, "ControlSet001\Control\Nls\CodePage\EUDCCodeRange", "936", "AAA1-AFFE,F8A1-FEFE,A140-A7A0"
+0x1, "ControlSet001\Control\Nls\CodePage\EUDCCodeRange", "949", "C9A1-C9FE,FEA1-FEFE"
+0x1, "ControlSet001\Control\Nls\CodePage\EUDCCodeRange", "950", "FA40-FEFE,8E40-A0FE,8140-8DFE,C6A1-C8FE"
+0x1, "ControlSet001\Control\Nls\CodePage\EUDCCodeRange", "Unicode", "E000-F8FF"
+0x4, "ControlSet001\Control\TimeZoneInformation", "ActiveTimeBias", 0xfffffe20
+0x4, "ControlSet001\Control\TimeZoneInformation", "Bias", 0xfffffe20
+0x4, "ControlSet001\Control\TimeZoneInformation", "DaylightBias", 0xFFFFFFC4
+0x1, "ControlSet001\Control\TimeZoneInformation", "DaylightName", "(GMT +08:00)Beijing, Chongqing, Hong Kong, Urumqi"
+0x3, "ControlSet001\Control\TimeZoneInformation", "DaylightStart",\
+	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+0x4, "ControlSet001\Control\TimeZoneInformation", "StandardBias", 0x0
+0x1, "ControlSet001\Control\TimeZoneInformation", "StandardName", "(GMT +08:00)Beijing, Chongqing, Hong Kong, Urumqi"
+0x3, "ControlSet001\Control\TimeZoneInformation", "StandardStart",\
+	00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+
+[Default.AddReg]
+; Showing file extensions and hidden files and folders.
+0x0, "Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
+0x4, "Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "Hidden", 0x00000001
+0x4, "Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "HideFileExt", 0x00000000
+0x4, "Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "ShowSuperHidden", 0x00000001
+0x4, "Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "SuperHidden",0x00000000
+
+; Points "My Documents" to the system drive.
+0x2, "Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders","Personal","%SystemDrive%"
+
+; Include "My Computer" icon for "Open" and "Save" dialog box APIs
+0x2, "Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30309D}\DefaultIcon","","%SystemRoot%\explorer.exe,0"
+; Thanks to Cybervyk!
+
+; Set wallpaper
+;0x2, "Control Panel\desktop", "WallPaper", "%systemroot%\system32\bartpe.bmp"
+0x2, "Control Panel\desktop", "WallPaper", "%systemroot%\system32\Wallpaper.JPG"
+
+[Default.DelReg]
+; Default.DelReg is empty at the moment...
+
+[SetValue]
+; Adjust txtsetup.sif
+"txtsetup.sif", "SetupData", "osloadoptions", """/fastdetect /minint"""
+"txtsetup.sif", "SetupData", "loaderprompt", """Starting BartPE..."""
+
+[DelLine]
+"netmscli.inf", "MSClient.ndi.AddReg", "HKR, Ndi,            HelpText,"
+"netmscli.inf", "MSClient.Browser.AddReg", "HKR, Parameters, MaintainServerList,"
+
+"nettcpip.inf", "Msft", "%MS_SMB.DisplayName%"
+"nettcpip.inf", "Registry.MS_TCPIP.PrimaryInstall", "HKR,Ndi,HelpText,"
+"nettcpip.inf", "Registry.MS_TCPIP.PrimaryInstall", "HKR,Ndi,CoServices,"
+"nettcpip.inf", "Registry.MS_TCPIP.PrimaryInstall", "HKR,Ndi,ExcludeSetupStartServices,"
+"nettcpip.inf", "MS_TCPIP.PrimaryInstall.Services", "AddService      = PolicyAgent,"
+"nettcpip.inf", "MS_TCPIP.PrimaryInstall.Services", "AddService      = Dnscache,"
+"nettcpip.inf", "Registry.MS_TCPIP.Legacy.Remove", "HKLM,SOFTWARE\Microsoft\Rpc\ClientProtocols,"
+"nettcpip.inf", "Registry.Service.TCPIP", "HKR,Performance,Object List,"
+"nettcpip.inf", "PolicyAgentEventLog.AddReg", "HKLM,SOFTWARE\Microsoft\IPSec,"
+
+[AddLine]
+"netmscli.inf", "MSClient.DelReg", "HKLM, Software\Microsoft\Rpc\SecurityService, 9"
+"netmscli.inf", "MSClient.DelReg", "HKLM, Software\Microsoft\Rpc\SecurityService, 10"
+"netmscli.inf", "MSClient.DelReg", "HKLM, Software\Microsoft\Rpc\SecurityService, 14"
+"netmscli.inf", "MSClient.DelReg", "HKLM, Software\Microsoft\Rpc\SecurityService, 16"
+"netmscli.inf", "MSClient.AddReg", "HKLM, Software\Microsoft\Rpc\SecurityService, 9,  , secur32.dll"
+"netmscli.inf", "MSClient.AddReg", "HKLM, Software\Microsoft\Rpc\SecurityService, 10, , secur32.dll"
+"netmscli.inf", "MSClient.AddReg", "HKLM, Software\Microsoft\Rpc\SecurityService, 14, , schannel.dll"
+"netmscli.inf", "MSClient.AddReg", "HKLM, Software\Microsoft\Rpc\SecurityService, 16, , secur32.dll"
+"netmscli.inf", "MSClient.NetLogon.AddReg", "HKR, Parameters, DBFlag, 0, 0"
+"netmscli.inf", "MSClient.Browser.AddReg", "HKR, Parameters, MaintainServerList, 0,       Auto"
+"netmscli.inf", "MSClient.ndi.AddReg", "HKR, Ndi,            HelpText,                  0,      ""%%MSClient_HELP%%"""
+"nettcpip.inf", "Registry.MS_TCPIP.PrimaryInstall", "    HKR,Ndi,HelpText,,%%MS_TCPIP.HelpText%%"
+"nettcpip.inf", "Registry.MS_TCPIP.PrimaryInstall", "    HKR,Ndi,CoServices,%%FLG_ADDREG_TYPE_MULTI_SZ%%,""Tcpip"", ""Netbt"", ""Lmhosts"", ""Dhcp"", ""Dnscache"", ""PolicyAgent"", ""Nla"""
+"nettcpip.inf", "Registry.MS_TCPIP.PrimaryInstall", "    HKR,Ndi,ExcludeSetupStartServices, 0x00010000,""Tcpip"", ""Netbt"", ""Lmhosts"", ""Dhcp"", ""Dnscache"", ""PolicyAgent"", ""Nla"""
+"nettcpip.inf", "MS_TCPIP.PrimaryInstall.Services", "    AddService      = PolicyAgent, 0,    Install.AddService.PolicyAgent, PolicyAgentEventLog"
+"nettcpip.inf", "Registry.MS_TCPIP", "    HKLM,SOFTWARE\Microsoft\Rpc\ClientProtocols,ncacn_nb_tcp,,""rpcrt4.dll"""
+"nettcpip.inf", "Registry.Service.TCPIP", "    HKR,Parameters\Winsock,""UseDelayedAcceptance"",%%FLG_ADDREG_TYPE_DWORD%%,0x0000"
+
+[SetValue]
+"netmscli.inf", "Alerter_Service_Inst", "StartType", "3"
+"netmscli.inf", "Messenger_Service_Inst", "StartType", "2"
+"netmscli.inf", "Messenger_Service_Inst", "ServiceBinary", "%%11%%\svchost.exe -k LocalService"
+"netmscli.inf", "Messenger_Service_Inst", "StartName", """NT AUTHORITY""\LocalService"
+"netmscli.inf", "RpcLocator_Service_Inst", "StartName", "LocalSystem"
+"netmscli.inf", "MSClient.ndi.PrintProvider"
+"netmscli.inf", "MSClient.NetLogon.AddReg", "HKR, Parameters, DBFlag, 0, 0"
+"netmscli.inf", "Strings", "MSClient_HELP", """Allows your computer to access resources on a Microsoft network."""
+"netmscli.inf", "NetLogon_Service_Inst", "LoadOrderGroup", "MS_WindowsRemoteValidation"
+
+"nettcpip.inf", "ControlFlags", "ExcludeFromSelect", "MS_NetBT,MS_NETBT_SMB"
+"nettcpip.inf", "MS_TCPIP.PrimaryInstall", "Characteristics", "0x80"
+"nettcpip.inf", "MS_TCPIP.PrimaryInstall", "ProfileItems" ; del key
+"nettcpip.inf", "MS_TCPIP.Shortcut.Remove" ; del section
+"nettcpip.inf", "Install.AddService.TCPIP", "AddReg", "Registry.Service.TCPIP"
+"nettcpip.inf", "Install.AddService.DHCP", "ServiceBinary", """%%11%%\svchost.exe -k NetworkService"""
+"nettcpip.inf", "Install.AddService.DHCP", "Dependencies", "Tcpip, Afd, NetBT"
+"nettcpip.inf", "Install.AddService.DHCP", "StartName", "LocalSystem"
+"nettcpip.inf", "Install.AddService.DHCP", "AddReg", "Registry.Service.DHCP"
+"nettcpip.inf", "Install.AddService.DHCP", "Security" ; del key
+"nettcpip.inf", "Install.AddService.DNSCACHE", "AddReg", "Registry.Service.DNSCACHE"
+"nettcpip.inf", "Install.AddService.DNSCACHE", "Security" ; del key
+"nettcpip.inf", "Install.AddService.NLA", "StartType", "2"
+"nettcpip.inf", "Install.AddService.NLA", "Security" ; zap key
+"nettcpip.inf", "Registry.Service.DHCP.Secure" ; zap section
+"nettcpip.inf", "Registry.Service.DHCP.Secure.Security" ; zap section
+"nettcpip.inf", "Registry.Service.TCPIP.AdminOnly" ; zap section
+"nettcpip.inf", "Registry.Service.TCPIP.AdminOnly.Security" ; zap section
+"nettcpip.inf", "Registry.Service.DNSCACHE.Secure" ; zap section
+"nettcpip.inf", "Registry.Service.DNSCACHE.Secure.Security" ; zap section
+"nettcpip.inf", "Registry.Service.IPSEC" ; zap section
+"nettcpip.inf", "Install.AddService.LMHosts", "StartName", "LocalSystem"
+"nettcpip.inf", "Install.AddService.NetBT", "Security" ; zap key
+"nettcpip.inf", "Install.AddService.NetBT", "AddReg", "Registry.Service.NetBT"
+"nettcpip.inf", "Registry.Service.NetBT.Secure" ; zap section
+"nettcpip.inf", "Registry.Service.NetBT.Secure.Security" ; zap section
+"nettcpip.inf", "MS_SMB.Install" ; zap section
+"nettcpip.inf", "Registry.MS_SMB.Install" ; zap section
+"nettcpip.inf", "MS_SMB.Install.Services" ; zap section
+"nettcpip.inf", "Install.AddService.Smb" ; zap section
+"nettcpip.inf", "Registry.Service.Smb" ; zap section
+"nettcpip.inf", "Registry.Service.Smb.DelReg" ; zap section
+"nettcpip.inf", "MS_SMB.Install.Remove" ; zap section
+"nettcpip.inf", "MS_SMB.Install.Remove.Services" ; zap section
+"nettcpip.inf", "Registry.Service.TCPIP.Secure" ; zap section
+"nettcpip.inf", "Registry.Service.TCPIP.Secure.Security" ; zap section
+"nettcpip.inf", "Install.AddService.IPSEC", "AddReg", "Registry.Service.IPSEC"
+"nettcpip.inf", "Strings", "MS_TCPIP.HelpText", "Transmission Control Protocol/Internet Protocol. The default wide area network protocol that provides communication across diverse interconnected networks."
+
+; Accessories: wordpad, paint, calc
+[SourceDisksFiles]
+wordpad.exe=2
+mspaint.exe=2
+calc.exe=2
+
+; file associations for wordpad
+[Software.AddReg]
+; --- DOC ---
+0x1,"Classes\.doc","","WordPad.Document.1"
+0x1,"Classes\WordPad.Document.1","","WordPad Document"
+0x2,"Classes\WordPad.Document.1","FriendlyTypeName",""@%SystemRoot%\System32\WORDPAD.EXE",-209"
+0x2,"Classes\WordPad.Document.1\DefaultIcon","",""%SystemRoot%\System32\WORDPAD.EXE",1"
+; 0x2,"Classes\WordPad.Document.1\shell\open\command","","%SystemRoot%\System32\WORDPAD.EXE" "%1"
+0x2,"Classes\WordPad.Document.1\shell\open\command","","""%SystemRoot%\System32\WORDPAD.EXE"" ""%1"""
+
+; --- RTF ---
+0x1,"Classes\.rtf","","rtffile"
+0x1,"Classes\rtffile","","Rich Text Document"
+0x2,"Classes\rtffile","FriendlyTypeName",""@%SystemRoot%\System32\WORDPAD.EXE",-190"
+0x2,"Classes\rtffile\DefaultIcon","",""%SystemRoot%\System32\WORDPAD.EXE",1"
+; 0x2,"Classes\rtffile\shell\open\command","","%SystemRoot%\System32\WORDPAD.EXE" "%1"
+0x2,"Classes\rtffile\shell\open\command","","""%SystemRoot%\System32\WORDPAD.EXE"" ""%1"""
+
+; --- WRI ---
+0x1,"Classes\.wri","","wrifile"
+0x1,"Classes\wrifile","","Write Document"
+0x2,"Classes\wrifile","FriendlyTypeName",""@%SystemRoot%\System32\WORDPAD.EXE",-208"
+0x2,"Classes\wrifile\DefaultIcon","",""%SystemRoot%\System32\WORDPAD.EXE",2"
+; 0x2,"Classes\wrifile\shell\open\command","","%SystemRoot%\System32\WORDPAD.EXE" "%1"
+0x2,"Classes\wrifile\shell\open\command","","""%SystemRoot%\System32\WORDPAD.EXE"" ""%1"""
+; /Accessories: wordpad, paint, calc
+
+; Add VDS service
+; BL 10-11-2003 16:27
+[SetupReg.AddReg]
+;Registry keys for Virtual disk manager
+0x7, "ControlSet001\Services\vds", "DependOnService", "PlugPlay", "RpcSs"
+0x4, "ControlSet001\Services\vds", "Type", 0x10
+0x4, "ControlSet001\Services\vds", "Start", 0x03
+0x4, "ControlSet001\Services\vds", "ErrorControl", 0x01
+0x2, "ControlSet001\Services\vds", "ImagePath", "%SystemRoot%\System32\vds.exe"
+0x1, "ControlSet001\Services\vds", "DisplayName", "Virtual Disk Service"
+0x1, "ControlSet001\Services\vds", "ObjectName", "LocalSystem"
+0x1, "ControlSet001\Services\vds", "Description", "Provides software volume and hardware volume management service."
+
+0x3, "ControlSet001\Services\vds\Security", "Security", 01,00,14,80,90,00,00,00,9c,00,00,00,14,00,00,00,30,00,00,00,02,\
+  00,1c,00,01,00,00,00,02,80,14,00,ff,01,0f,00,01,01,00,00,00,00,00,01,00,00,\
+  00,00,02,00,60,00,04,00,00,00,00,00,14,00,fd,01,02,00,01,01,00,00,00,00,00,\
+  05,12,00,00,00,00,00,18,00,ff,01,0f,00,01,02,00,00,00,00,00,05,20,00,00,00,\
+  20,02,00,00,00,00,14,00,8d,01,02,00,01,01,00,00,00,00,00,05,0b,00,00,00,00,\
+  00,18,00,fd,01,02,00,01,02,00,00,00,00,00,05,20,00,00,00,23,02,00,00,01,01,\
+  00,00,00,00,00,05,12,00,00,00,01,01,00,00,00,00,00,05,12,00,00,00
+
+0x1, "ControlSet001\Services\vds\SoftwareProviders\{CA7DE14F-5BC8-48fd-93DE-A19527B0459E}", "", "Microsoft Virtual Disk Service Basic Provider"
+0x1, "ControlSet001\Services\vds\SoftwareProviders\{CA7DE14F-5BC8-48fd-93DE-A19527B0459E}", "Clsid", "{DE010DA1-289B-4232-8CD0-5112DCA6A7B3}"
+0x1, "ControlSet001\Services\vds\SoftwareProviders\{CA7DE14F-5BC8-48fd-93DE-A19527B0459E}", "Version", "1.0.0.1"
+0x1, "ControlSet001\Services\vds\SoftwareProviders\{CA7DE14F-5BC8-48fd-93DE-A19527B0459E}", "VersionId", "{21CBA22B-9418-43c7-8B77-80F0B410D503}"
+
+0x1, "ControlSet001\Services\vds\SoftwareProviders\{F96544E6-5C8D-47b9-AA6E-FD19AB278629}", "", "Microsoft Virtual Disk Service Dynamic Provider"
+0x1, "ControlSet001\Services\vds\SoftwareProviders\{F96544E6-5C8D-47b9-AA6E-FD19AB278629}", "Clsid", "{DEB10DEB-289B-4232-8CD0-5112DCA6A7B3}"
+0x1, "ControlSet001\Services\vds\SoftwareProviders\{F96544E6-5C8D-47b9-AA6E-FD19AB278629}", "Version", "1.0.0.1"
+0x1, "ControlSet001\Services\vds\SoftwareProviders\{F96544E6-5C8D-47b9-AA6E-FD19AB278629}", "VersionId", "{FE71AD60-99F3-4015-8B81-44C1516F9B9C}"
+
+0x1, "ControlSet001\Services\vds\Enum", "0", "Root\LEGACY_VDS\0000"
+0x4, "ControlSet001\Services\vds\Enum", "Count", 0x01
+0x4, "ControlSet001\Services\vds\Enum", "NextInstance", 0x01
+
+0x4, "ControlSet001\Enum\Root\LEGACY_VDS", "NextInstance", 0x01
+
+0x1, "ControlSet001\Enum\Root\LEGACY_VDS\0000", "Service", "vds"
+0x4, "ControlSet001\Enum\Root\LEGACY_VDS\0000", "Legacy", 0x01
+0x4, "ControlSet001\Enum\Root\LEGACY_VDS\0000", "ConfigFlags", 0x00
+0x1, "ControlSet001\Enum\Root\LEGACY_VDS\0000", "Class", "LegacyDriver"
+0x1, "ControlSet001\Enum\Root\LEGACY_VDS\0000", "ClassGUID", "{8ECC055D-047F-11D1-A537-0000F8753ED1}"
+0x1, "ControlSet001\Enum\Root\LEGACY_VDS\0000", "DeviceDesc", "Virtual Disk Service"
+
+0x4, "ControlSet001\Enum\Root\LEGACY_VDS\0000", "*NewlyCreated*", 0x00
+0x1, "ControlSet001\Enum\Root\LEGACY_VDS\0000", "ActiveService", "vds"
+
+; Add PE Builder key and version value
+; BL 11-11-2003 14:43
+[SetupReg.AddReg]
+0x1, "ControlSet001\Control\@Program@","Version","@Version@"
+; /Add PE Builder key and version value
+
+[SetValue.2600]
+; Only for XP
+"nettcpip.inf", "Install.AddService.DHCP", "ServiceBinary", """%%11%%\svchost.exe -k netsvcs"""
+
+;
+; Correct problem related to Fixed Size Fonts not being correctly displayed
+; Notably visible under stinger, bst5, putty, vncviewer, adawarese...
+
+[SourceDisksFiles]
+coure.fon=22
+serife.fon=22
+sserife.fon=22
+smalle.fon=22
+symbole.fon=22
+
+[Software.AddReg]
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Roman (All res)","ROMAN.FON"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Script (All res)","SCRIPT.FON"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Modern (All res)","MODERN.FON"
+
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Courier 10,12,15 (VGA res)","coure.fon"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Sans Serif 8,10,12,14,18,24 (VGA res)","serife.fon"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","MS Serif 8,10,12,14,18,24 (VGA res)","sserife.fon"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Small Fonts (VGA res)","SMALLE.FON"
+0x1,"Microsoft\Windows NT\CurrentVersion\Fonts","Symbol 8,10,12,14,18,24 (VGA res)","SYMBOLE.FON"
+
+; enable showing ACL permissions sheet on files and folders
+[SourceDisksFiles]
+rshx32.dll=2
+
+[Software.AddReg] 
+0x1,"Classes\CLSID\{1F2E5C40-9550-11CE-99D2-00AA006E086C}",,"Security Shell Extension"
+0x1,"Classes\CLSID\{1F2E5C40-9550-11CE-99D2-00AA006E086C}\InProcServer32",,"rshx32.dll"
+0x1,"Classes\CLSID\{1F2E5C40-9550-11CE-99D2-00AA006E086C}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Classes\CLSID\{F37C5810-4D3F-11d0-B4BF-00AA00BBB723}",,"Security Shell Extension"
+0x1,"Classes\CLSID\{F37C5810-4D3F-11d0-B4BF-00AA00BBB723}\InProcServer32",,"rshx32.dll"
+0x1,"Classes\CLSID\{F37C5810-4D3F-11d0-B4BF-00AA00BBB723}\InProcServer32","ThreadingModel","Apartment"
+0x1,"Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\SimpleSharing","Type","checkbox"
+0x1,"Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\SimpleSharing","Text","@shell32.dll,-30518"
+0x4,"Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\SimpleSharing","HKeyRoot",0x80000002
+0x1,"Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\SimpleSharing","RegPath","System\CurrentControlSet\Control\LSA"
+0x1,"Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\SimpleSharing","ValueName","ForceGuest"
+0x4,"Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\SimpleSharing","CheckedValue",0x1
+0x4,"Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\SimpleSharing","UncheckedValue",0x0
+0x1,"Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\SimpleSharing","HelpID","shell.hlp#51154"
+0x4,"Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\SimpleSharing","DefaultValue",0x1
+; /enable showing ACL permissions sheet on files and folders
+
+; jan 20, 2006 v3.1.10
+; W2k3 SP1 will crash if the NTVDM.EXE is stored in i386\system32 with the above 
+; RegKey. This happens for example with the dospe plugin. In W2k3 the olethk32.dll 
+; doesn't exist in the KnownDll List
+; only for XP build
+[SetupReg.AddReg.2600]
+0x1, "ControlSet001\Control\Session Manager\KnownDLLs", "olethk32", "olethk32.dll"
+
+; jan 22, 2006 v3.1.10
+; add bootfont.bin to [root] (if exists)
+[SourceDisksFiles]
+bootfont.bin=30000,,12

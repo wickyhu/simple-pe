@@ -1,0 +1,6 @@
+<!-- Nu2Menu entry for bginfo -->
+<NU2MENU>
+<MENU ID="Programs">	   		
+		<MITEM TYPE="ITEM" DISABLED="@Not(@FileExists(@GetProgramDrive()\programs\bginfo\bginfo.exe))" CMD="RUN" FUNC="@GetProgramDrive()\programs\bginfo\bginfo.cmd">BGInfo</MITEM>
+	</MENU>
+</NU2MENU>

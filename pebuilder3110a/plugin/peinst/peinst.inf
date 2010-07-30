@@ -1,0 +1,22 @@
+; PE Builder v3 plug-in INF file
+; Created by Bart Lagerweij
+
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="BartPE Installer v2"
+Enable=0
+Help="peinst.htm"
+
+[WinntDirectories]
+a="Programs\peinst",2
+
+[SourceDisksFiles]
+peinst.cmd=a,,3
+peinst.txt=a,,3
+mkbt.exe=a,,3
+nt2peldr.exe=a,,3
+
+[Append]
+nu2menu.xml, peinst_nu2menu.xml

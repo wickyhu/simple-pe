@@ -1,0 +1,58 @@
+<html>
+<head></head>
+<body>
+<i>PE Builder v3 help</i>
+<hr>
+<a href="index.htm">Table of contents</a><br>
+<h1>Main dialog screen</h1>
+<br>
+<h2>Source path</h2>
+Drive letter to CD or local/remote path containing the &quot;source&quot; files.
+The source files must be one of the following versions of Windows:<br>
+<ul>
+<li>Windows XP Home Edition (must be Service Pack 1 or higher)</li>
+<li>Windows XP Professional (must be Service Pack 1 or higher)</li>
+<li>Windows Server 2003, Web Edition</li>
+<li>Windows Server 2003, Standard Edition</li>
+<li>Windows Server 2003, Enterprise Edition</li>
+</ul>
+<br>
+If your PC comes with Windows XP preinstalled on the harddisk and your
+vendor supplies CD/DVD media that will restore the system back into the 
+factory/preinstalled state you may not have a Windows XP installation CD.<br>
+However, there is a big change that the Windows installation files are somewhere 
+on your harddisk. Try searching for Windows installation files using the
+<a href="search.htm">Source/Search</a> menu option.<br>
+<br>
+<h2>Custom directory</h2>
+Select a local or remote path containing any folders and files you want to add/include.<br>
+Don't include your windows directory, or any other folder that has file that are in use.
+Also keep in mind that the files added must fix your target media.
+For example when creating a bootable CD-Rom you can add something around 300-400MB of extra data.<br>
+If you unsure what enter in this fields, then leave it empty!<br>
+<br>
+<h2>Output directory</h2>
+Enter a directory name to &quot;store&quot; the files PE Builder copies for you.
+Please note that the location your enter is relative to your pebuilder directory.<br>
+If you need to specify an absolute path, you must change the &quot;output path 
+absolute&quot; in the <a href="options.htm">Options dialog</a>.
+<br>
+<h2>Media output</h2>
+When you specify &quot;None&quot; the builder will only output the files to your 
+output location and take no further action.<br>
+If you want to create an ISO image you must select &quot;Create ISO image&quot; 
+and you must check that a valid filename is entered in the textbox below.<br>
+The builder can also burn a CD or DVD media for you if you select &quot;Burn to CD/DVD&quot;.
+If you burn using &quot;cdrecord&quot; you can only burn a CD (not a DVD).
+Burning to a DVD writer is only supported when burning using starburn!<br>
+PE Builder uses <a target="_blank" href="http://freshmeat.net/projects/cdrecord/" >mkisofs</a> by Joerg Schilling (<a target="_blank" href="http://www.gnu.org/licenses/gpl.html" title="http://www.gnu.org/licenses/gpl.html">GNU-GPL license</a>) for building the ISO image.<br>
+PE Builder uses <a target="_blank" href="http://freshmeat.net/projects/cdrecord/" >cdrecord</a> by Joerg Schilling (<a target="_blank" href="http://www.gnu.org/licenses/gpl.html" title="http://www.gnu.org/licenses/gpl.html">GNU-GPL license</a>) for burning CD.<br>
+PE Builder uses the <a target="_blank" href="http://www.rocketdivision.com/burn_sdk.html">StarBurn SDK</a> library from Rocket Division Software for burning CD/DVD.
+
+<br>
+<br>
+<a href="index.htm">Table of contents</a><br>
+<hr>
+<i>PE Builder Copyright (c) 2002-2006 Bart Lagerweij. All rights reserved.</i><br>
+</body>
+</html>

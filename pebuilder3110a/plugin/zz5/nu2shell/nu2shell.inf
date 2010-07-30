@@ -1,0 +1,28 @@
+[Version]
+Signature= "$Windows NT$"
+
+[PEBuilder]
+Name="Nu2Shell"
+Enable=0
+Config=nu2shellcfg.exe @PluginFile@
+
+[Strings]
+password-hash=
+password-boot-prompt="This CD is protected by a boot password!"
+
+[SourceDisksFiles]
+nu2shell.exe=2,,3
+nu2shell.txt=2,,3
+shutdown.cmd=2,,3
+reboot.cmd=2,,3
+
+[SetupReg.AddReg]
+; Install nu2shell.exe
+0x2, "Setup", "CmdLine", "nu2shell.exe \Programs\Nu2Menu\nu2menu.exe"
+
+[SetupReg.AddReg]
+0x1, "ControlSet001\Control\PE Builder", "bootpwd", "%password-hash%"
+0x1, "ControlSet001\Control\PE Builder", "bootprompt", "%password-boot-prompt%"
+
+[Append]
+nu2menu.xml, nu2shell_nu2menu.xml
